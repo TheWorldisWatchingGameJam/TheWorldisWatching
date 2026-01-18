@@ -1,16 +1,31 @@
-# Godot 4+ specific ignores
-.godot/
-.nomedia
+# Created by https://www.toptal.com/developers/gitignore/api/renpy
+# Edit at https://www.toptal.com/developers/gitignore?templates=renpy
 
-# Godot-specific ignores
-.import/
-export.cfg
-export_credentials.cfg
+### Renpy ###
+# Don't track content of these folders #
+########################################
+cache/
+saves/
 
-# Imported translations (automatically generated from CSV files)
-*.translation
 
-# Mono-specific ignores
-.mono/
-data_*/
-mono_crash.*.json
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+*.rpyc
+*.rpymc
+
+
+# The log file and other misc things #
+######################################
+log.txt
+errors.txt
+traceback.txt
+files.txt
+
+# End of https://www.toptal.com/developers/gitignore/api/renpy
