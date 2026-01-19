@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c535h32f4a1ed"]
+
+[ext_resource type="Script" path="res://Scenes/PlanetButton.gd" id="1_is4o2"]
+[ext_resource type="Texture2D" uid="uid://d1pg65rmosvlv" path="res://icon.svg" id="2_niu05"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3ncj"]
+radius = 44.1022
+
+[node name="PlanetButton" type="Area2D"]
+script = ExtResource("1_is4o2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.00001, -2)
+scale = Vector2(0.429688, 0.46875)
+texture = ExtResource("2_niu05")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s3ncj")
