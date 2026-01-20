@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bchhcro7px8l6"]
+
+[ext_resource type="Script" path="res://PlanetNode.gd" id="1_hylc5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_33w5r"]
+
+[node name="PlanetNode" type="Area2D" node_paths=PackedStringArray("sprite", "label")]
+script = ExtResource("1_hylc5")
+sprite = NodePath("Sprite2D")
+label = NodePath("Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_33w5r")

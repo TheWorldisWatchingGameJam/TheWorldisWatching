@@ -12,8 +12,8 @@ func set_planet(p_data):
 	planet_data = p_data
 	$Label.text = p_data.name
 	sprite.texture = p_data.sprite
+
 	_resize_sprite_and_collision()
-	
 func _ready():
 	input_pickable = true
 	input_event.connect(_on_input_event)

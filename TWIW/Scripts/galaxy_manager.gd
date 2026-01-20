@@ -1,129 +1,161 @@
-# galaxy_manager.gd
-# ATTACH THIS TO: A Node in your main scene called "GalaxyManager"
 extends Node
 
 @export var max_path_length_days: int = 20
+@export var PlanetNodeScene: PackedScene  # Assign your PlanetNode.tscn here
 
-# Planet data structure as inner class
+
+# Planet data structure
 class PlanetData:
 	var id: String
 	var name: String
+	var sprite: Texture2D
 	
-	func _init(p_id: String, p_name: String):
+	func _init(p_id: String, p_name: String, p_sprite: Texture2D):
 		id = p_id
 		name = p_name
+		sprite = p_sprite
+		
+# Variables
+var all_planets: Array = []
+var selected_planets: Array = []
+var player_planet: PlanetData = null
+var galaxy_graph: Dictionary = {}       # planet_id -> [{to, days}]
+var planet_positions: Dictionary = {}   # planet_id -> Vector2
 
-var all_planets: Array = []  # Array of PlanetData
-var selected_planets: Array = []  # 6 planets total (player + 5)
-var player_planet = null  # PlanetData
-var galaxy_graph: Dictionary = {}  # planet_id -> [{to: planet_id, days: int}]
-
+# Initialization
 func _ready():
 	_initialize_planets()
 
 func _initialize_planets():
 	all_planets = [
-		PlanetData.new("planet_1", "Planet Alpha"),
-		PlanetData.new("planet_2", "Planet Beta"),
-		PlanetData.new("planet_3", "Planet Gamma"),
-		PlanetData.new("planet_4", "Planet Delta"),
-		PlanetData.new("planet_5", "Planet Epsilon"),
-		PlanetData.new("planet_6", "Planet Zeta"),
-		PlanetData.new("planet_7", "Planet Eta"),
-		PlanetData.new("planet_8", "Planet Theta"),
+		PlanetData.new("planet_1", "Planet Alpha", preload("res://Sprites/PlanetSprites/polarbeartemp.jpg")),
+		PlanetData.new("planet_2", "Planet Beta", preload("res://Sprites/PlanetSprites/polarbeartemp.jpg")),
+		PlanetData.new("planet_3", "Planet Gamma", preload("res://Sprites/PlanetSprites/sealiontemp.jpg")),
+		PlanetData.new("planet_4", "Planet Delta", preload("res://Sprites/PlanetSprites/sealiontemp.jpg")),
+		PlanetData.new("planet_5", "Planet Epsilon", preload("res://Sprites/PlanetSprites/walrustemp.jpg")),
+		PlanetData.new("planet_6", "Planet Zeta", preload("res://Sprites/PlanetSprites/walrustemp.jpg")),
 	]
 
-# Get 3 random planets for player choice
+# Player planet selection
 func get_3_random_planets() -> Array:
 	var shuffled = all_planets.duplicate()
 	shuffled.shuffle()
 	return [shuffled[0], shuffled[1], shuffled[2]]
 
-# Call this after player clicks and selects their planet
-func setup_galaxy(chosen_planet):
+func setup_galaxy(chosen_planet: PlanetData):
 	player_planet = chosen_planet
 	selected_planets = [player_planet]
 	
-	# Pick 5 random planets from ALL planets (chosen planet returns to pool first)
+	# Pick 5 random planets from remaining
 	var remaining = all_planets.duplicate()
 	remaining.shuffle()
-	
 	var count = 0
 	for planet in remaining:
 		if planet.id != player_planet.id and count < 5:
 			selected_planets.append(planet)
 			count += 1
-	
-	_generate_map()
 
-func _generate_map():
+	# Draw planets first (positions needed for distances)
+	draw_galaxy_random()
+	
+	# Then generate fully connected graph
+	_generate_fully_connected_graph()
+	
+	# Draw visual connections
+	draw_connections()
+	
+	print_map()
+
+# Draw planets randomly in viewport
+func draw_galaxy_random():
+	# Remove old planets
+	for child in get_tree().get_root().get_children():
+		if child is Area2D and "planet_data" in child:
+			child.queue_free()
+
+	planet_positions.clear()
+	var positions: Array = []
+	var min_distance = 150
+	var max_attempts = 50
+
+	# Get viewport size
+	var screen_size = get_viewport().get_visible_rect().size
+	var padding = 100
+
+	for planet in selected_planets:
+		var pos: Vector2
+		var attempt = 0
+		while true:
+			attempt += 1
+			pos = Vector2(
+				randf_range(padding, screen_size.x - padding),
+				randf_range(padding, screen_size.y - padding)
+			)
+			# Avoid overlap
+			var too_close = false
+			for existing in positions:
+				if pos.distance_to(existing) < min_distance:
+					too_close = true
+					break
+			if not too_close or attempt >= max_attempts:
+				break
+
+		positions.append(pos)
+		planet_positions[planet.id] = pos
+
+		# Instantiate PlanetNode
+		var planet_node = PlanetNodeScene.instantiate()
+		planet_node.set_planet(planet)
+		planet_node.position = pos
+		get_tree().get_root().add_child(planet_node)
+
+# Fully connected graph with distance-based travel days
+func _generate_fully_connected_graph():
 	galaxy_graph.clear()
-	
-	# Initialize graph
-	for planet in selected_planets:
-		galaxy_graph[planet.id] = []
-	
-	# Connect all planets (minimum spanning tree)
-	var connected = [selected_planets[0].id]
-	var unconnected = []
-	for i in range(1, selected_planets.size()):
-		unconnected.append(selected_planets[i].id)
-	
-	while unconnected.size() > 0:
-		var from_id = connected[randi() % connected.size()]
-		var to_id = unconnected.pop_back()
-		var days = randi_range(1, 7)
-		
-		galaxy_graph[from_id].append({"to": to_id, "days": days})
-		galaxy_graph[to_id].append({"to": from_id, "days": days})
-		
-		connected.append(to_id)
-	
-	# Validate using Dijkstra
-	if not _validate_max_distance():
-		print("Map too large, regenerating...")
-		_generate_map()
+	var DISTANCE_TO_DAYS_FACTOR = 50.0
 
-# Dijkstra's algorithm
-func dijkstra(start_id: String, end_id: String) -> int:
-	var distances = {}
-	var unvisited = []
-	
-	for planet in selected_planets:
-		distances[planet.id] = 999999
-		unvisited.append(planet.id)
-	
-	distances[start_id] = 0
-	
-	while unvisited.size() > 0:
-		var current = null
-		var min_dist = 999999
-		for node in unvisited:
-			if distances[node] < min_dist:
-				min_dist = distances[node]
-				current = node
-		
-		if current == null or current == end_id:
-			break
-		
-		unvisited.erase(current)
-		
-		for connection in galaxy_graph[current]:
-			var neighbor = connection.to
-			if neighbor in unvisited:
-				var alt = distances[current] + connection.days
-				if alt < distances[neighbor]:
-					distances[neighbor] = alt
-	
-	return distances[end_id]
-
-func _validate_max_distance() -> bool:
 	for i in range(selected_planets.size()):
 		for j in range(i + 1, selected_planets.size()):
-			var dist = dijkstra(selected_planets[i].id, selected_planets[j].id)
-			if dist > max_path_length_days:
-				return false
-	return true
+			var id1 = selected_planets[i].id
+			var id2 = selected_planets[j].id
+
+			var dist = planet_positions[id1].distance_to(planet_positions[id2])
+			var days = int(clamp(dist / DISTANCE_TO_DAYS_FACTOR, 1, max_path_length_days))
+
+			if id1 not in galaxy_graph:
+				galaxy_graph[id1] = []
+			if id2 not in galaxy_graph:
+				galaxy_graph[id2] = []
+
+			galaxy_graph[id1].append({"to": id2, "days": days})
+			galaxy_graph[id2].append({"to": id1, "days": days})
+
+# Draw connections visually
+func draw_connections():
+	# Remove old connections
+	for child in get_tree().get_root().get_children():
+		if child.name == "Connections":
+			child.queue_free()
+
+	var connections_node = Node2D.new()
+	connections_node.name = "Connections"
+	get_tree().get_root().add_child(connections_node)
+
+	for planet in selected_planets:
+		var from_id = planet.id
+		var from_pos = planet_positions[from_id]
+
+		for conn in galaxy_graph[from_id]:
+			var to_id = conn.to
+			var to_pos = planet_positions[to_id]
+
+			if from_id < to_id:  # draw each line only once
+				var line = Line2D.new()
+				line.width = 4
+				line.default_color = Color(0.8, 0.8, 1.0)
+				line.add_point(from_pos)
+				line.add_point(to_pos)
+				connections_node.add_child(line)
 
 # Debug print
 func print_map():
