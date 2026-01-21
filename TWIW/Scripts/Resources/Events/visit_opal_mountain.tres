@@ -19,11 +19,10 @@ dialogue = "You send an expedition to Opal Mountain."
 
 [sub_resource type="Resource" id="Resource_gonin"]
 script = ExtResource("3_earlu")
-event_history_requirement = null
-war_event = null
-condition_type = null
-condition_value = null
-on_planet = null
+war_event = false
+condition_type = ""
+condition_value = 0
+on_planet = &""
 
 [sub_resource type="Resource" id="Resource_p86fe"]
 script = ExtResource("4_22fub")

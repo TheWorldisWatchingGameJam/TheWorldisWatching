@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cmcx2y2kmefbe"]
+
+[node name="PlanetScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
