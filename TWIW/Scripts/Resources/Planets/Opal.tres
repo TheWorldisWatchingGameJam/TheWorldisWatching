@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="PlanetData" load_steps=7 format=3 uid="uid://f0quaynyrmg"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="1_25gqv"]
+[ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_atbtt"]
+[ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="2_6bee7"]
+[ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_htv20"]
+[ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_6c5ua"]
+[ext_resource type="Texture2D" uid="uid://dq5x6at4n3ro7" path="res://Sprites/PlanetSprites/polarbeartemp.jpg" id="6_5yff6"]
+
+[resource]
+script = ExtResource("2_6bee7")
+id = "planet_4"
+name = &"Opal"
+sprite = ExtResource("6_5yff6")
+desc = ""
+food_prod = 2
+luxury_prod = 6
+weapon_prod = 4
+food_demand = 6
+luxury_demand = 2
+weapon_demand = 4
+current_relations = Array[ExtResource("2_htv20")]([])
+current_reputation = Array[ExtResource("3_6c5ua")]([])
+current_info = Array[ExtResource("1_atbtt")]([])
+event_pool = Array[ExtResource("1_25gqv")]([])
+live_events = Array[ExtResource("1_25gqv")]([])
+event_history = Array[ExtResource("1_25gqv")]([])

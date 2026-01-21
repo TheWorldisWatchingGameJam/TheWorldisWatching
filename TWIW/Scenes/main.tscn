@@ -1,10 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfixd4skh3ig7"]
+[gd_scene load_steps=16 format=3 uid="uid://dfixd4skh3ig7"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ektus"]
 [ext_resource type="Script" path="res://Scenes/PlanetOption.gd" id="2_1an38"]
 [ext_resource type="Script" path="res://Scripts/galaxy_manager.gd" id="2_mqygn"]
 [ext_resource type="PackedScene" uid="uid://bchhcro7px8l6" path="res://Scripts/Scenes/planet_node.tscn" id="3_071my"]
 [ext_resource type="Texture2D" uid="uid://d1pg65rmosvlv" path="res://icon.svg" id="3_mfgap"]
+[ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="4_h3u51"]
+[ext_resource type="Resource" uid="uid://b4kf7erwn6muh" path="res://Scripts/Resources/Planets/Frez.tres" id="5_6araa"]
+[ext_resource type="Resource" uid="uid://d1r5bocod2xw1" path="res://Scripts/Resources/Planets/Huldar.tres" id="6_325so"]
+[ext_resource type="Resource" uid="uid://f0quaynyrmg" path="res://Scripts/Resources/Planets/Opal.tres" id="7_ynkjw"]
+[ext_resource type="Resource" uid="uid://b0wugdfli82wd" path="res://Scripts/Resources/Planets/Verp.tres" id="8_oyrie"]
+[ext_resource type="Resource" uid="uid://bha42xdgt1wit" path="res://Scripts/Resources/Planets/Xoov.tres" id="9_krdru"]
+[ext_resource type="Resource" uid="uid://cda2udbfuiixi" path="res://Scripts/Resources/Planets/Gomix.tres" id="10_bkkx6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l35hw"]
 size = Vector2(150.435, 154.034)
@@ -22,6 +29,7 @@ script = ExtResource("1_ektus")
 [node name="GalaxyManager" type="Node" parent="."]
 script = ExtResource("2_mqygn")
 PlanetNodeScene = ExtResource("3_071my")
+all_planets = Array[ExtResource("4_h3u51")]([ExtResource("5_6araa"), ExtResource("6_325so"), ExtResource("7_ynkjw"), ExtResource("8_oyrie"), ExtResource("9_krdru"), ExtResource("10_bkkx6")])
 
 [node name="GalaxyMap" type="Node2D" parent="GalaxyManager"]
 

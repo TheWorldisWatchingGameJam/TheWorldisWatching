@@ -2,39 +2,14 @@ extends Node
 
 @export var max_path_length_days: int = 20
 @export var PlanetNodeScene: PackedScene  # Assign your PlanetNode.tscn here
+@export var all_planets: Array[PlanetData]
 
-
-# Planet data structure
-class PlanetData:
-	var id: String
-	var name: String
-	var sprite: Texture2D
-	
-	func _init(p_id: String, p_name: String, p_sprite: Texture2D):
-		id = p_id
-		name = p_name
-		sprite = p_sprite
-		
 # Variables
-var all_planets: Array = []
 var selected_planets: Array = []
 var player_planet: PlanetData = null
 var galaxy_graph: Dictionary = {}       # planet_id -> [{to, days}]
 var planet_positions: Dictionary = {}   # planet_id -> Vector2
 
-# Initialization
-func _ready():
-	_initialize_planets()
-
-func _initialize_planets():
-	all_planets = [
-		PlanetData.new("planet_1", "Planet Alpha", preload("res://Sprites/PlanetSprites/polarbeartemp.jpg")),
-		PlanetData.new("planet_2", "Planet Beta", preload("res://Sprites/PlanetSprites/polarbeartemp.jpg")),
-		PlanetData.new("planet_3", "Planet Gamma", preload("res://Sprites/PlanetSprites/sealiontemp.jpg")),
-		PlanetData.new("planet_4", "Planet Delta", preload("res://Sprites/PlanetSprites/sealiontemp.jpg")),
-		PlanetData.new("planet_5", "Planet Epsilon", preload("res://Sprites/PlanetSprites/walrustemp.jpg")),
-		PlanetData.new("planet_6", "Planet Zeta", preload("res://Sprites/PlanetSprites/walrustemp.jpg")),
-	]
 
 # Player planet selection
 func get_3_random_planets() -> Array:

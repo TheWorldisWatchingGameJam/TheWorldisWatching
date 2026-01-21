@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="PlanetData" load_steps=7 format=3 uid="uid://cda2udbfuiixi"]
+
+[ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_bxaqs"]
+[ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_00vvr"]
+[ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_y0wg4"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_legbn"]
+[ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_u6a02"]
+[ext_resource type="Texture2D" uid="uid://dq5x6at4n3ro7" path="res://Sprites/PlanetSprites/polarbeartemp.jpg" id="6_07oj5"]
+
+[resource]
+script = ExtResource("5_u6a02")
+id = "planet_2"
+name = &"Gomix"
+sprite = ExtResource("6_07oj5")
+desc = ""
+food_prod = 2
+luxury_prod = 6
+weapon_prod = 4
+food_demand = 6
+luxury_demand = 2
+weapon_demand = 4
+current_relations = Array[ExtResource("2_00vvr")]([])
+current_reputation = Array[ExtResource("3_y0wg4")]([])
+current_info = Array[ExtResource("1_bxaqs")]([])
+event_pool = Array[ExtResource("4_legbn")]([])
+live_events = Array[ExtResource("4_legbn")]([])
+event_history = Array[ExtResource("4_legbn")]([])

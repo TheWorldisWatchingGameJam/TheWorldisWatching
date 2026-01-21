@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="PlanetData" load_steps=7 format=3 uid="uid://d1r5bocod2xw1"]
+
+[ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_p50pw"]
+[ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_swagv"]
+[ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_e581v"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_m4vwl"]
+[ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_vlwws"]
+[ext_resource type="Texture2D" uid="uid://d1e1gyiw2ij1y" path="res://Sprites/PlanetSprites/walrustemp.jpg" id="6_yalje"]
+
+[resource]
+script = ExtResource("5_vlwws")
+id = "planet_3"
+name = &"Huldar"
+sprite = ExtResource("6_yalje")
+desc = ""
+food_prod = 2
+luxury_prod = 6
+weapon_prod = 4
+food_demand = 6
+luxury_demand = 2
+weapon_demand = 4
+current_relations = Array[ExtResource("2_swagv")]([])
+current_reputation = Array[ExtResource("3_e581v")]([])
+current_info = Array[ExtResource("1_p50pw")]([])
+event_pool = Array[ExtResource("4_m4vwl")]([])
+live_events = Array[ExtResource("4_m4vwl")]([])
+event_history = Array[ExtResource("4_m4vwl")]([])
