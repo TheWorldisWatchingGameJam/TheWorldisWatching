@@ -35,4 +35,3 @@ func _resize_sprite_and_collision():
 	
 	if collision.shape is RectangleShape2D:
 		collision.shape.size = TARGET_SIZE
-

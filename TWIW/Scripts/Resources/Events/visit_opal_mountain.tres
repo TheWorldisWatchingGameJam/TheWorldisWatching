@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Event" load_steps=10 format=3 uid="uid://d2ed0hntvxxlc"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="1_c2msr"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_deuhj"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="1_pmb4y"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_earlu"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="4_22fub"]
+
+[sub_resource type="Resource" id="Resource_mw65e"]
+script = ExtResource("1_deuhj")
+cost_type = "Rep"
+cost_value = 0
+on_planet = &""
+
+[sub_resource type="Resource" id="Resource_msw20"]
+script = ExtResource("1_pmb4y")
+name = ""
+dialogue = "You send an expedition to Opal Mountain."
+
+[sub_resource type="Resource" id="Resource_gonin"]
+script = ExtResource("3_earlu")
+event_history_requirement = null
+war_event = null
+condition_type = null
+condition_value = null
+on_planet = null
+
+[sub_resource type="Resource" id="Resource_p86fe"]
+script = ExtResource("4_22fub")
+effect_type = ""
+effect_value = 0
+effect_probability = 0
+on_planet = &""
+
+[resource]
+script = ExtResource("1_c2msr")
+event_name = &"Visit Opal Mountain"
+event_desc = "Send an expedition to Opal's legendary landmark, for a chance of finding precious gems. The more info you have about Opal, the better your chances and the better your reward."
+event_conditions = Array[ExtResource("3_earlu")]([SubResource("Resource_gonin")])
+dialogue = Array[ExtResource("1_pmb4y")]([SubResource("Resource_msw20")])
+event_effects = Array[ExtResource("4_22fub")]([SubResource("Resource_p86fe")])
+cost = Array[ExtResource("1_deuhj")]([SubResource("Resource_mw65e")])
