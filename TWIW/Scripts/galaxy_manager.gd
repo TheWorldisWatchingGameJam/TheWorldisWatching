@@ -9,6 +9,10 @@ class PlanetData:
 	var id: String
 	var name: String
 	var sprite: Texture2D
+	var foodProduction: float
+	var weaponProduction: float
+	var luxuryProduction : float
+	var uniqueAbility : String
 	
 	func _init(p_id: String, p_name: String, p_sprite: Texture2D):
 		id = p_id
