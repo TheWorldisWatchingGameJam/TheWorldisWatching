@@ -5,7 +5,11 @@
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="2_6bee7"]
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_htv20"]
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_6c5ua"]
+<<<<<<< Updated upstream
 [ext_resource type="Resource" uid="uid://d2ed0hntvxxlc" path="res://Scripts/Resources/Events/visit_opal_mountain.tres" id="5_3p4bt"]
+=======
+[ext_resource type="Resource" uid="uid://d2ed0hntvxxlc" path="res://Scripts/Resources/Events/Opal Events/visit_opal_mountain.tres" id="5_3p4bt"]
+>>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://dq5x6at4n3ro7" path="res://Sprites/PlanetSprites/polarbeartemp.jpg" id="6_5yff6"]
 [ext_resource type="Resource" uid="uid://cdrl87ns5uk01" path="res://Scripts/Resources/Events/hold_rally.tres" id="6_m2bxk"]
 [ext_resource type="Resource" uid="uid://cuvuqfn7iepd6" path="res://Scripts/Resources/Events/Opal Events/attend_mining_seminar.tres" id="7_sk2l5"]
