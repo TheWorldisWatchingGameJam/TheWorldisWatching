@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b10wbtxe0xalt"]
+[gd_scene load_steps=7 format=3 uid="uid://dadho75nk6g5x"]
 
 [ext_resource type="Script" path="res://Scenes/planet_screen.gd" id="1_4tjyn"]
 [ext_resource type="Resource" uid="uid://f0quaynyrmg" path="res://Scripts/Resources/Planets/Opal.tres" id="2_oqs4j"]
