@@ -114,13 +114,14 @@ func _generate_fully_connected_graph():
 			galaxy_graph[id2].append({"to": id1, "days": days})
 
 # Draw connections visually
+# Draw connections visually
 func draw_connections():
 	if connections_node:
 		connections_node.queue_free()
 
 	connections_node = Node2D.new()
 	connections_node.name = "Connections"
-	connections_node.visible = true  # the Node2D itself can stay visible
+	connections_node.visible = true  # Lines exist, hidden individually via planet_lines
 	get_tree().get_root().add_child(connections_node)
 
 	planet_lines.clear()
@@ -129,22 +130,32 @@ func draw_connections():
 		var from_id = planet.id
 		var from_pos = planet_positions[from_id]
 
-		planet_lines[from_id] = []
+		if from_id not in planet_lines:
+			planet_lines[from_id] = []
 
 		for conn in galaxy_graph[from_id]:
 			var to_id = conn.to
 			var to_pos = planet_positions[to_id]
 
-			if from_id < to_id:  # draw each line only once
+			# Only draw once
+			if from_id < to_id:
 				var line = Line2D.new()
 				line.width = 4
 				line.default_color = Color(0.8, 0.8, 1.0)
-				# convert global positions to local positions relative to connections_node
+
+				# Convert world positions to connections_node local space
 				line.add_point(connections_node.to_local(from_pos))
 				line.add_point(connections_node.to_local(to_pos))
-				line.visible = false  # hide initially
+
+				line.visible = false  # Hide initially
 				connections_node.add_child(line)
+
+				# Store under both planets for hover
 				planet_lines[from_id].append(line)
+				if to_id not in planet_lines:
+					planet_lines[to_id] = []
+				planet_lines[to_id].append(line)
+
 
 
 
