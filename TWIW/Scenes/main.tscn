@@ -36,6 +36,7 @@ rocket_texture = ExtResource("11_q3y5o")
 [node name="GalaxyMap" type="Node2D" parent="GalaxyManager"]
 
 [node name="PlanetOption1" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "collision")]
+scale = Vector2(3, 3)
 script = ExtResource("2_1an38")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
@@ -59,6 +60,7 @@ offset_bottom = 343.623
 rotation = 0.610718
 
 [node name="PlanetOption2" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "collision")]
+scale = Vector2(3, 3)
 script = ExtResource("2_1an38")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
@@ -81,6 +83,7 @@ offset_bottom = 465.467
 rotation = 0.670502
 
 [node name="PlanetOption3" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "collision")]
+scale = Vector2(3, 3)
 script = ExtResource("2_1an38")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
@@ -102,6 +105,12 @@ offset_right = 294.868
 offset_bottom = 584.387
 rotation = 0.629984
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="ElectionCounter" type="Label" parent="."]
+visible = false
+offset_left = 4.88389
+offset_top = 15.0382
+offset_right = 207.884
+offset_bottom = 157.038
+rotation = 0.654498
+scale = Vector2(3, 3)
+text = "Days Until Next Election: 0"

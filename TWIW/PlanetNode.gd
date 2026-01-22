@@ -38,10 +38,15 @@ func set_as_home_planet(rocket_texture: Texture2D):
 func _ready():
 	input_pickable = true
 	input_event.connect(_on_input_event)
+# Connect hover signals
+	connect("mouse_entered", Callable(self, "_on_mouse_entered"))
+	connect("mouse_exited", Callable(self, "_on_mouse_exited"))
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if planet_data:
+			planet_clicked.emit(planet_data)
+			print("CLICKED planet:", planet_data.name)  # ✅ Debug click
 			planet_clicked.emit(planet_data)
 
 func _resize_sprite_and_collision():
@@ -54,5 +59,22 @@ func _resize_sprite_and_collision():
 
 	planet_sprite.scale = Vector2.ONE * uniform_scale
 
+	# Make sure collision matches planet
 	if collision.shape is RectangleShape2D:
 		collision.shape.size = TARGET_SIZE
+		collision.disabled = false  # ensure it detects mouse
+	elif collision.shape is CircleShape2D:
+		collision.radius = TARGET_SIZE.x * 0.5
+		collision.disabled = false
+
+
+#show planets on hover
+func _on_mouse_entered():
+	print("HOVER ENTER:", planet_data.name)  # ✅ Debug hover
+	if planet_data and get_parent().has_method("show_planet_connections"):
+		get_parent().show_planet_connections(planet_data.id)
+
+func _on_mouse_exited():
+	print("HOVER EXIT:", planet_data.name)  # ✅ Debug hover exit
+	if planet_data and get_parent().has_method("hide_planet_connections"):
+		get_parent().hide_planet_connections(planet_data.id)

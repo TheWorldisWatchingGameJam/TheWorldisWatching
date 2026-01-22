@@ -1,10 +1,10 @@
 extends Node
 
-@export var max_path_length_days: int = 20
+@export var max_path_length_days: int = 5
 @export var PlanetNodeScene: PackedScene  # Assign your PlanetNode.tscn here
 @export var all_planets: Array[PlanetData]
 @export var rocket_texture: Texture2D
-
+@export var days_until_election: int = 20  # editable in inspector
 
 # Variables
 var selected_planets: Array[PlanetData] = []
@@ -12,8 +12,7 @@ var player_planet: PlanetData = null
 var galaxy_graph: Dictionary = {}       # planet_id -> [{to, days}]
 var planet_positions: Dictionary = {}   # planet_id -> Vector2
 var connections_node: Node2D = null
-
-
+var planet_lines: Dictionary = {}       # planet_id -> Array of Line2D
 
 # Player planet selection
 func get_3_random_planets() -> Array:
@@ -24,7 +23,7 @@ func get_3_random_planets() -> Array:
 func setup_galaxy(chosen_planet: PlanetData):
 	player_planet = chosen_planet
 	selected_planets = [player_planet]
-	
+
 	# Pick 5 random planets from remaining
 	var remaining = all_planets.duplicate()
 	remaining.shuffle()
@@ -36,13 +35,13 @@ func setup_galaxy(chosen_planet: PlanetData):
 
 	# Draw planets first (positions needed for distances)
 	draw_galaxy_random()
-	
+
 	# Then generate fully connected graph
 	_generate_fully_connected_graph()
-	
+
 	# Draw visual connections
 	draw_connections()
-	
+
 	print_map()
 
 # Draw planets randomly in viewport
@@ -93,7 +92,6 @@ func draw_galaxy_random():
 
 		get_tree().get_root().add_child(planet_node)
 
-
 # Fully connected graph with distance-based travel days
 func _generate_fully_connected_graph():
 	galaxy_graph.clear()
@@ -103,7 +101,6 @@ func _generate_fully_connected_graph():
 		for j in range(i + 1, selected_planets.size()):
 			var id1 = selected_planets[i].id
 			var id2 = selected_planets[j].id
-
 			var dist = planet_positions[id1].distance_to(planet_positions[id2])
 			var days = int(clamp(dist / DISTANCE_TO_DAYS_FACTOR, 1, max_path_length_days))
 
@@ -117,32 +114,35 @@ func _generate_fully_connected_graph():
 
 # Draw connections visually
 func draw_connections():
-	# Remove old connections if they exist
 	if connections_node:
 		connections_node.queue_free()
 
 	connections_node = Node2D.new()
 	connections_node.name = "Connections"
-	connections_node.visible = false  # 👈 HIDDEN AT START
+	connections_node.visible = true  # lines exist but hidden via planet_lines
 	get_tree().get_root().add_child(connections_node)
+
+	planet_lines.clear()
 
 	for planet in selected_planets:
 		var from_id = planet.id
 		var from_pos = planet_positions[from_id]
 
+		planet_lines[from_id] = []
+
 		for conn in galaxy_graph[from_id]:
 			var to_id = conn.to
 			var to_pos = planet_positions[to_id]
 
-			# Draw each line once
-			if from_id < to_id:
+			if from_id < to_id:  # draw once
 				var line = Line2D.new()
 				line.width = 4
 				line.default_color = Color(0.8, 0.8, 1.0)
 				line.add_point(from_pos)
 				line.add_point(to_pos)
+				line.visible = false  # hide initially
 				connections_node.add_child(line)
-
+				planet_lines[from_id].append(line)
 
 # Debug print
 func print_map():
@@ -155,3 +155,13 @@ func print_map():
 				if p.id == conn.to:
 					target_name = p.name
 			print("  -> " + target_name + " (" + str(conn.days) + " days)")
+
+func show_planet_connections(planet_id: String):
+	if planet_id in planet_lines:
+		for line in planet_lines[planet_id]:
+			line.visible = true
+
+func hide_planet_connections(planet_id: String):
+	if planet_id in planet_lines:
+		for line in planet_lines[planet_id]:
+			line.visible = false

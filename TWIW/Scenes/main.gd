@@ -3,6 +3,9 @@ extends Node2D
 
 @onready var galaxy_manager = $GalaxyManager
 @onready var planet_options = [$PlanetOption1, $PlanetOption2, $PlanetOption3]
+@onready var election_counter = $ElectionCounter
+@export var days_until_election: int = 20
+
 
 var selection_phase = true
 
@@ -35,4 +38,10 @@ func _on_planet_selected(planet_data):
 	galaxy_manager.draw_galaxy_random()
 	galaxy_manager.draw_connections()
 	
+	_update_election_counter()
+	
 	print("Galaxy generated! Check console for map.")
+
+func _update_election_counter():
+	election_counter.text = "Days until next election: " + str(galaxy_manager.days_until_election)
+	election_counter.visible = true
