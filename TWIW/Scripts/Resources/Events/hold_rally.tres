@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Event" load_steps=9 format=3 uid="uid://chhto0p513evd"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_72kst"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="2_4h3hu"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_6af2o"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_0l56e"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="4_g815u"]
+[ext_resource type="Texture2D" uid="uid://c6epef4omjj1h" path="res://Sprites/EventIcons/hold_rally.png" id="5_3hj5b"]
+
+[sub_resource type="Resource" id="Resource_inw5d"]
+script = ExtResource("1_72kst")
+cost_type = "Money"
+cost_value = 300
+on_planet = &""
+
+[sub_resource type="Resource" id="Resource_qhfaw"]
+script = ExtResource("4_g815u")
+effect_type = "Rep"
+effect_value = 2
+effect_probability = 0
+on_planet = &""
+on_current_planet = true
+
+[resource]
+script = ExtResource("4_0l56e")
+event_name = &"Rally"
+event_desc = "Fund a rally at this planet."
+event_icon_texture = ExtResource("5_3hj5b")
+event_button_text = "Fund."
+home_exclusive = false
+event_conditions = Array[ExtResource("3_6af2o")]([])
+dialogue = Array[ExtResource("2_4h3hu")]([])
+event_effects = Array[ExtResource("4_g815u")]([SubResource("Resource_qhfaw")])
+cost = Array[ExtResource("1_72kst")]([SubResource("Resource_inw5d")])
