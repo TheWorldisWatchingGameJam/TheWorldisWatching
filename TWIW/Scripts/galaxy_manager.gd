@@ -3,12 +3,16 @@ extends Node
 @export var max_path_length_days: int = 20
 @export var PlanetNodeScene: PackedScene  # Assign your PlanetNode.tscn here
 @export var all_planets: Array[PlanetData]
+@export var rocket_texture: Texture2D
+
 
 # Variables
-var selected_planets: Array = []
+var selected_planets: Array[PlanetData] = []
 var player_planet: PlanetData = null
 var galaxy_graph: Dictionary = {}       # planet_id -> [{to, days}]
 var planet_positions: Dictionary = {}   # planet_id -> Vector2
+var connections_node: Node2D = null
+
 
 
 # Player planet selection
@@ -45,7 +49,7 @@ func setup_galaxy(chosen_planet: PlanetData):
 func draw_galaxy_random():
 	# Remove old planets
 	for child in get_tree().get_root().get_children():
-		if child is Area2D and "planet_data" in child:
+		if child is Area2D and child.has_method("set_planet"):
 			child.queue_free()
 
 	planet_positions.clear()
@@ -82,7 +86,13 @@ func draw_galaxy_random():
 		var planet_node = PlanetNodeScene.instantiate()
 		planet_node.set_planet(planet)
 		planet_node.position = pos
+
+		# 🚀 If this is the home planet, attach rocket
+		if planet.id == player_planet.id:
+			planet_node.set_as_home_planet(rocket_texture)
+
 		get_tree().get_root().add_child(planet_node)
+
 
 # Fully connected graph with distance-based travel days
 func _generate_fully_connected_graph():
@@ -107,13 +117,13 @@ func _generate_fully_connected_graph():
 
 # Draw connections visually
 func draw_connections():
-	# Remove old connections
-	for child in get_tree().get_root().get_children():
-		if child.name == "Connections":
-			child.queue_free()
+	# Remove old connections if they exist
+	if connections_node:
+		connections_node.queue_free()
 
-	var connections_node = Node2D.new()
+	connections_node = Node2D.new()
 	connections_node.name = "Connections"
+	connections_node.visible = false  # 👈 HIDDEN AT START
 	get_tree().get_root().add_child(connections_node)
 
 	for planet in selected_planets:
@@ -124,13 +134,15 @@ func draw_connections():
 			var to_id = conn.to
 			var to_pos = planet_positions[to_id]
 
-			if from_id < to_id:  # draw each line only once
+			# Draw each line once
+			if from_id < to_id:
 				var line = Line2D.new()
 				line.width = 4
 				line.default_color = Color(0.8, 0.8, 1.0)
 				line.add_point(from_pos)
 				line.add_point(to_pos)
 				connections_node.add_child(line)
+
 
 # Debug print
 func print_map():
