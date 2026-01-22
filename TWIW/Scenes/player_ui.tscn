@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://q2uixqxbi58v"]
+[gd_scene load_steps=3 format=3 uid="uid://dkelrugrmtsdk"]
 
 [ext_resource type="Texture2D" uid="uid://dpi2wodq4jimt" path="res://Sprites/ResourceIcons/apple-439397.png" id="1_28p4k"]
 [ext_resource type="LabelSettings" uid="uid://ds0mouqpjhvx6" path="res://Sprites/Theme/ui_value_label_settings.tres" id="2_ve04h"]
