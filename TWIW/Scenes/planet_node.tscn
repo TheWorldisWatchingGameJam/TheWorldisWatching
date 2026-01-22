@@ -3,25 +3,31 @@
 [ext_resource type="Script" path="res://PlanetNode.gd" id="1_hylc5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k17nh"]
-size = Vector2(138, 138)
+size = Vector2(245.5, 191.5)
 
 [node name="PlanetNode" type="Area2D" node_paths=PackedStringArray("planet_sprite", "collision", "rocket_sprite")]
-position = Vector2(263, 146)
+position = Vector2(3, 5)
 script = ExtResource("1_hylc5")
 planet_sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
 rocket_sprite = NodePath("RocketSprite")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(24, 21)
+position = Vector2(-1, 1.00001)
+scale = Vector2(0.611821, 0.67734)
 
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -5.0
+offset_top = 29.0
+offset_right = 35.0
+offset_bottom = 52.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(24, 18)
+position = Vector2(-9, -3)
 shape = SubResource("RectangleShape2D_k17nh")
 
 [node name="RocketSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
