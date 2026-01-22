@@ -115,13 +115,14 @@ func _generate_fully_connected_graph():
 
 # Draw connections visually
 # Draw connections visually
+# Draw connections visually
 func draw_connections():
 	if connections_node:
 		connections_node.queue_free()
 
 	connections_node = Node2D.new()
 	connections_node.name = "Connections"
-	connections_node.visible = true  # Lines exist, hidden individually via planet_lines
+	connections_node.visible = true
 	get_tree().get_root().add_child(connections_node)
 
 	planet_lines.clear()
@@ -144,17 +145,36 @@ func draw_connections():
 				line.default_color = Color(0.8, 0.8, 1.0)
 
 				# Convert world positions to connections_node local space
-				line.add_point(connections_node.to_local(from_pos))
-				line.add_point(connections_node.to_local(to_pos))
+				var local_from = connections_node.to_local(from_pos)
+				var local_to = connections_node.to_local(to_pos)
 
-				line.visible = false  # Hide initially
+				line.add_point(local_from)
+				line.add_point(local_to)
+				line.visible = false
 				connections_node.add_child(line)
 
-				# Store under both planets for hover
-				planet_lines[from_id].append(line)
+# --- Add travel time label ---
+				var label = Label.new()
+				label.text = str(conn.days) + " days"
+				label.modulate = Color(1, 1, 0.8)
+				label.visible = false
+
+				# Position label at midpoint of line
+				var midpoint = (local_from + local_to) / 2
+				label.position = midpoint
+
+				# Center the text and offset so it appears above the line
+				label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+				label.pivot_offset = label.size / 2  # Center pivot
+
+				connections_node.add_child(label)
+
+				# Store both line and label together
+				planet_lines[from_id].append({"line": line, "label": label})
 				if to_id not in planet_lines:
 					planet_lines[to_id] = []
-				planet_lines[to_id].append(line)
+				planet_lines[to_id].append({"line": line, "label": label})
 
 
 
@@ -173,10 +193,12 @@ func print_map():
 
 func show_planet_connections(planet_id: String):
 	if planet_id in planet_lines:
-		for line in planet_lines[planet_id]:
-			line.visible = true
+		for entry in planet_lines[planet_id]:
+			entry.line.visible = true
+			entry.label.visible = true
 
 func hide_planet_connections(planet_id: String):
 	if planet_id in planet_lines:
-		for line in planet_lines[planet_id]:
-			line.visible = false
+		for entry in planet_lines[planet_id]:
+			entry.line.visible = false
+			entry.label.visible = false

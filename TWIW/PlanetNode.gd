@@ -64,10 +64,8 @@ func _resize_sprite_and_collision():
 # Hover detection
 func _on_mouse_entered():
 	if planet_data != null and galaxy_manager != null:
-		print("HOVER ENTER planet:", planet_data.name)
 		galaxy_manager.show_planet_connections(planet_data.id)
 
 func _on_mouse_exited():
 	if planet_data != null and galaxy_manager != null:
-		print("HOVER EXIT planet:", planet_data.name)
 		galaxy_manager.hide_planet_connections(planet_data.id)
