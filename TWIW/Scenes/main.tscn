@@ -4,8 +4,11 @@
 [ext_resource type="Script" path="res://Scenes/PlanetOption.gd" id="2_1an38"]
 [ext_resource type="Script" path="res://Scripts/galaxy_manager.gd" id="2_mqygn"]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://bchhcro7px8l6" path="res://Scripts/Scenes/planet_node.tscn" id="3_071my"]
 =======
+=======
+>>>>>>> Stashed changes
 [ext_resource type="FontFile" uid="uid://dit4a8qdkxjfn" path="res://Sprites/Theme/SuperFeel-JpZqa.ttf" id="2_sg53m"]
 [ext_resource type="PackedScene" uid="uid://bchhcro7px8l6" path="res://Scenes/planet_node.tscn" id="3_071my"]
 >>>>>>> Stashed changes
