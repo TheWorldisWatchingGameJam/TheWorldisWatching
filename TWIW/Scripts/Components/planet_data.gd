@@ -41,10 +41,8 @@ func roll_events(number_of_events: int) -> Array[Event]:
 		list.append(get_random_option())
 	return list
 
-
-func get_random_option():
-	event_pool.pick_random()
-
+func get_random_option() -> Event:
+	return event_pool.pick_random()
 
 func modify_info(planet_name: StringName, info_value: int) -> void:
 	for x in current_info:

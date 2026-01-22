@@ -1,0 +1,132 @@
+[gd_scene load_steps=7 format=3 uid="uid://2j2qjxqd8opk"]
+
+[ext_resource type="Script" path="res://Scenes/planet_screen.gd" id="1_4tjyn"]
+[ext_resource type="Resource" uid="uid://f0quaynyrmg" path="res://Scripts/Resources/Planets/Opal.tres" id="2_oqs4j"]
+[ext_resource type="Texture2D" uid="uid://ce0op742vttx2" path="res://Sprites/mountainous-5942962_1920.jpg" id="3_k4rev"]
+[ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Sprites/Theme/event_name_label_settings.tres" id="4_k735d"]
+[ext_resource type="Texture2D" uid="uid://cgwee6045hdhj" path="res://Sprites/EventIcons/attend_mining_seminar.png" id="5_jp5oo"]
+[ext_resource type="LabelSettings" uid="uid://b2jya7wkh1jay" path="res://Sprites/Theme/event_desc_label_settings.tres" id="6_iwn8f"]
+
+[node name="PlanetScreen" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_4tjyn")
+planet = ExtResource("2_oqs4j")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_k4rev")
+expand_mode = 1
+
+[node name="PlanetWindow" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1600, 900)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -450.0
+offset_right = 800.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlanetWindow"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="PlanetWindow/VBoxContainer"]
+custom_minimum_size = Vector2(400, 70)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlanetWindow/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Attend Mining Seminar"
+label_settings = ExtResource("4_k735d")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PlanetWindow/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_jp5oo")
+
+[node name="PanelContainer2" type="PanelContainer" parent="PlanetWindow/VBoxContainer"]
+custom_minimum_size = Vector2(400, 70)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PlanetWindow/VBoxContainer/PanelContainer2"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "Purchase a ticket to attend a mining seminar in Opal."
+label_settings = ExtResource("6_iwn8f")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="PlanetWindow/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="PlanetWindow/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Purchase."
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PlanetWindow"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="PlanetWindow/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 70)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlanetWindow/VBoxContainer2/PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Attend Mining Seminar"
+label_settings = ExtResource("4_k735d")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PlanetWindow/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_jp5oo")
+
+[node name="PanelContainer2" type="PanelContainer" parent="PlanetWindow/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 70)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PlanetWindow/VBoxContainer2/PanelContainer2"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "Purchase a ticket to attend a mining seminar in Opal."
+label_settings = ExtResource("6_iwn8f")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="PlanetWindow/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="PlanetWindow/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Purchase."

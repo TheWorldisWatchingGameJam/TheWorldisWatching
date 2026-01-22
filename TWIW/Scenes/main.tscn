@@ -1,9 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfixd4skh3ig7"]
+[gd_scene load_steps=18 format=3 uid="uid://dfixd4skh3ig7"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ektus"]
 [ext_resource type="Script" path="res://Scenes/PlanetOption.gd" id="2_1an38"]
 [ext_resource type="Script" path="res://Scripts/galaxy_manager.gd" id="2_mqygn"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://bchhcro7px8l6" path="res://Scripts/Scenes/planet_node.tscn" id="3_071my"]
+=======
+[ext_resource type="FontFile" uid="uid://dit4a8qdkxjfn" path="res://Sprites/Theme/SuperFeel-JpZqa.ttf" id="2_sg53m"]
+[ext_resource type="PackedScene" uid="uid://bchhcro7px8l6" path="res://Scenes/planet_node.tscn" id="3_071my"]
+>>>>>>> Stashed changes
 [ext_resource type="Texture2D" uid="uid://d1pg65rmosvlv" path="res://icon.svg" id="3_mfgap"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="4_h3u51"]
 [ext_resource type="Resource" uid="uid://b4kf7erwn6muh" path="res://Scripts/Resources/Planets/Frez.tres" id="5_6araa"]
@@ -12,6 +17,10 @@
 [ext_resource type="Resource" uid="uid://b0wugdfli82wd" path="res://Scripts/Resources/Planets/Verp.tres" id="8_oyrie"]
 [ext_resource type="Resource" uid="uid://bha42xdgt1wit" path="res://Scripts/Resources/Planets/Xoov.tres" id="9_krdru"]
 [ext_resource type="Resource" uid="uid://cda2udbfuiixi" path="res://Scripts/Resources/Planets/Gomix.tres" id="10_bkkx6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gjwe0"]
+font = ExtResource("2_sg53m")
+font_size = 70
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l35hw"]
 size = Vector2(150.435, 154.034)
@@ -23,8 +32,20 @@ size = Vector2(144.255, 129.649)
 size = Vector2(127.179, 152.021)
 
 [node name="Main" type="Node2D"]
-rotation = -0.651232
 script = ExtResource("1_ektus")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 468.0
+offset_top = 100.0
+offset_right = 1452.0
+offset_bottom = 187.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "Choose your home planet."
+label_settings = SubResource("LabelSettings_gjwe0")
 
 [node name="GalaxyManager" type="Node" parent="."]
 script = ExtResource("2_mqygn")
@@ -34,72 +55,65 @@ all_planets = Array[ExtResource("4_h3u51")]([ExtResource("5_6araa"), ExtResource
 [node name="GalaxyMap" type="Node2D" parent="GalaxyManager"]
 
 [node name="PlanetOption1" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "collision")]
+position = Vector2(365, 316)
 script = ExtResource("2_1an38")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlanetOption1"]
 position = Vector2(21.4718, 275.374)
-rotation = 0.785398
 scale = Vector2(0.988476, 1.0235)
 texture = ExtResource("3_mfgap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlanetOption1"]
 position = Vector2(18.7643, 277.633)
-rotation = -0.948813
 shape = SubResource("RectangleShape2D_l35hw")
 
 [node name="Label" type="Label" parent="PlanetOption1"]
-offset_left = -75.8809
-offset_top = 320.623
-offset_right = -35.8809
-offset_bottom = 343.623
-rotation = 0.610718
+offset_left = -6.00001
+offset_top = 365.0
+offset_right = 34.0
+offset_bottom = 388.0
+metadata/_edit_use_anchors_ = true
 
 [node name="PlanetOption2" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "collision")]
+position = Vector2(799, 207)
 script = ExtResource("2_1an38")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlanetOption2"]
 position = Vector2(170.883, 377.932)
-rotation = 0.650436
 texture = ExtResource("3_mfgap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlanetOption2"]
 position = Vector2(174.671, 379.562)
-rotation = 0.636305
 shape = SubResource("RectangleShape2D_55hyc")
 
 [node name="Label" type="Label" parent="PlanetOption2"]
-offset_left = 110.383
-offset_top = 442.467
-offset_right = 150.383
-offset_bottom = 465.467
-rotation = 0.670502
+offset_left = 151.0
+offset_top = 449.0
+offset_right = 191.0
+offset_bottom = 472.0
+metadata/_edit_use_anchors_ = true
 
 [node name="PlanetOption3" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "collision")]
+position = Vector2(1228, 100)
 script = ExtResource("2_1an38")
 sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlanetOption3"]
 position = Vector2(331.997, 493.181)
-rotation = 0.605808
 texture = ExtResource("3_mfgap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlanetOption3"]
 position = Vector2(332.225, 489.583)
-rotation = 0.61287
 shape = SubResource("RectangleShape2D_3ef4e")
 
 [node name="Label" type="Label" parent="PlanetOption3"]
-offset_left = 254.868
-offset_top = 561.387
-offset_right = 294.868
-offset_bottom = 584.387
-rotation = 0.629984
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 306.0
+offset_top = 568.0
+offset_right = 346.0
+offset_bottom = 591.0
+metadata/_edit_use_anchors_ = true
