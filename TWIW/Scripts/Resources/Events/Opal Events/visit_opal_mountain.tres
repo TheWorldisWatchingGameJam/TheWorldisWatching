@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Event" load_steps=10 format=3 uid="uid://d2ed0hntvxxlc"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_fbod0"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="2_lvbli"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_wy2vh"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="4_ishxj"]
+[ext_resource type="Texture2D" uid="uid://li263d0xjtdr" path="res://Sprites/EventIcons/visit_opal_mountain.png" id="5_5xvcf"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="5_qrk80"]
+
+[sub_resource type="Resource" id="Resource_mw65e"]
+script = ExtResource("1_fbod0")
+cost_type = "Rep"
+cost_value = 0
+on_planet = &""
+
+[sub_resource type="Resource" id="Resource_msw20"]
+script = ExtResource("2_lvbli")
+name = ""
+dialogue = "You send an expedition to Opal Mountain."
+
+[sub_resource type="Resource" id="Resource_p86fe"]
+script = ExtResource("4_ishxj")
+effect_type = ""
+effect_value = 0
+effect_probability = 0
+on_planet = &""
+on_current_planet = false
+
+[resource]
+script = ExtResource("5_qrk80")
+event_name = &"Visit Opal Mountain"
+event_desc = "Fund an expedition to Opal's legendary landmark for a chance of finding precious gems. The more tools you have, the better your chances of striking it big."
+event_icon_texture = ExtResource("5_5xvcf")
+event_button_text = "Fund."
+home_exclusive = false
+event_conditions = Array[ExtResource("3_wy2vh")]([])
+dialogue = Array[ExtResource("2_lvbli")]([SubResource("Resource_msw20")])
+event_effects = Array[ExtResource("4_ishxj")]([SubResource("Resource_p86fe")])
+cost = Array[ExtResource("1_fbod0")]([SubResource("Resource_mw65e")])
