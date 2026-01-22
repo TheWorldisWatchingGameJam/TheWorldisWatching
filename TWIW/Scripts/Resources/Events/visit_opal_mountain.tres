@@ -19,7 +19,6 @@ dialogue = "You send an expedition to Opal Mountain."
 
 [sub_resource type="Resource" id="Resource_gonin"]
 script = ExtResource("3_earlu")
-event_history_requirement = null
 war_event = null
 condition_type = null
 condition_value = null
@@ -31,11 +30,14 @@ effect_type = ""
 effect_value = 0
 effect_probability = 0
 on_planet = &""
+on_current_planet = false
 
 [resource]
 script = ExtResource("1_c2msr")
 event_name = &"Visit Opal Mountain"
 event_desc = "Send an expedition to Opal's legendary landmark, for a chance of finding precious gems. The more info you have about Opal, the better your chances and the better your reward."
+event_button_text = ""
+home_exclusive = false
 event_conditions = Array[ExtResource("3_earlu")]([SubResource("Resource_gonin")])
 dialogue = Array[ExtResource("1_pmb4y")]([SubResource("Resource_msw20")])
 event_effects = Array[ExtResource("4_22fub")]([SubResource("Resource_p86fe")])
