@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/planet_screen.gd" id="1_i27ir"]
 [ext_resource type="Resource" uid="uid://f0quaynyrmg" path="res://Scripts/Resources/Planets/Opal.tres" id="2_mlqaq"]
-[ext_resource type="Texture2D" path="res://Sprites/mountainous-5942962_1920.jpg" id="2_o2vp4"]
-[ext_resource type="LabelSettings" path="res://Sprites/Theme/event_name_label_settings.tres" id="3_eddby"]
+[ext_resource type="Texture2D" uid="uid://bq70p4u11in48" path="res://Assets/mountainous-5942962_1920.jpg" id="2_o2vp4"]
+[ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Assets/Theme/event_name_label_settings.tres" id="3_eddby"]
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="3_v6rpu"]
 [ext_resource type="PackedScene" uid="uid://dkelrugrmtsdk" path="res://Scenes/player_ui.tscn" id="5_h8kr8"]
 

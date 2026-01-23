@@ -1,18 +1,32 @@
 extends Node
 
 @export var max_path_length_days: int = 5
-@export var PlanetNodeScene: PackedScene  # Assign your PlanetNode.tscn here
+@export var PlanetNodeScene: PackedScene
 @export var all_planets: Array[PlanetData]
 @export var rocket_texture: Texture2D
-@export var days_until_election: int = 20  # editable in inspector
+@export var days_until_election: int = 20
+@export var planet_screen_scene: PackedScene
+@export var player_data: PlayerData
+
+#camera variables
+@onready var camera: Camera2D = get_node("../MapCamera")
+@onready var travel_panel: Control = get_node("../UI/PlanetTravelPanel")
+@onready var travel_button: Button = get_node("../UI/PlanetTravelPanel/VBoxContainer/TravelButton")
 
 # Variables
 var selected_planets: Array[PlanetData] = []
 var player_planet: PlanetData = null
-var galaxy_graph: Dictionary = {}       # planet_id -> [{to, days}]
-var planet_positions: Dictionary = {}   # planet_id -> Vector2
+var galaxy_graph: Dictionary = {}
+var planet_positions: Dictionary = {}
 var connections_node: Node2D = null
-var planet_lines: Dictionary = {}       # planet_id -> Array of Line2D
+var planet_lines: Dictionary = {}
+
+var default_zoom := Vector2.ONE
+var zoomed_in := false
+var current_focused_planet = null
+
+func _ready():
+	add_to_group("galaxy_manager")  # Add to group so planets can find it
 
 # Player planet selection
 func get_3_random_planets() -> Array:
@@ -24,7 +38,6 @@ func setup_galaxy(chosen_planet: PlanetData):
 	player_planet = chosen_planet
 	selected_planets = [player_planet]
 
-	# Pick 5 random planets from remaining
 	var remaining = all_planets.duplicate()
 	remaining.shuffle()
 	var count = 0
@@ -33,20 +46,12 @@ func setup_galaxy(chosen_planet: PlanetData):
 			selected_planets.append(planet)
 			count += 1
 
-	# Draw planets first (positions needed for distances)
 	draw_galaxy_random()
-
-	# Then generate fully connected graph
 	_generate_fully_connected_graph()
-
-	# Draw visual connections
 	draw_connections()
-
 	print_map()
 
-# Draw planets randomly in viewport
 func draw_galaxy_random():
-	# Remove old planets
 	for child in get_tree().get_root().get_children():
 		if child is Area2D and child.has_method("set_planet"):
 			child.queue_free()
@@ -56,7 +61,6 @@ func draw_galaxy_random():
 	var min_distance = 150
 	var max_attempts = 50
 
-	# Get viewport size
 	var screen_size = get_viewport().get_visible_rect().size
 	var padding = 100
 
@@ -69,7 +73,6 @@ func draw_galaxy_random():
 				randf_range(padding, screen_size.x - padding),
 				randf_range(padding, screen_size.y - padding)
 			)
-			# Avoid overlap
 			var too_close = false
 			for existing in positions:
 				if pos.distance_to(existing) < min_distance:
@@ -81,19 +84,17 @@ func draw_galaxy_random():
 		positions.append(pos)
 		planet_positions[planet.id] = pos
 
-		# Instantiate PlanetNode
 		var planet_node = PlanetNodeScene.instantiate()
 		planet_node.set_planet(planet)
 		planet_node.position = pos
 		planet_node.galaxy_manager = self
 
-		# 🚀 If this is the home planet, attach rocket
 		if planet.id == player_planet.id:
 			planet_node.set_as_home_planet(rocket_texture)
 
 		get_tree().get_root().add_child(planet_node)
+		planet_node.planet_clicked.connect(_on_planet_clicked)
 
-# Fully connected graph with distance-based travel days
 func _generate_fully_connected_graph():
 	galaxy_graph.clear()
 	var DISTANCE_TO_DAYS_FACTOR = 50.0
@@ -113,9 +114,6 @@ func _generate_fully_connected_graph():
 			galaxy_graph[id1].append({"to": id2, "days": days})
 			galaxy_graph[id2].append({"to": id1, "days": days})
 
-# Draw connections visually
-# Draw connections visually
-# Draw connections visually
 func draw_connections():
 	if connections_node:
 		connections_node.queue_free()
@@ -138,13 +136,11 @@ func draw_connections():
 			var to_id = conn.to
 			var to_pos = planet_positions[to_id]
 
-			# Only draw once
 			if from_id < to_id:
 				var line = Line2D.new()
 				line.width = 4
 				line.default_color = Color(0.8, 0.8, 1.0)
 
-				# Convert world positions to connections_node local space
 				var local_from = connections_node.to_local(from_pos)
 				var local_to = connections_node.to_local(to_pos)
 
@@ -153,33 +149,24 @@ func draw_connections():
 				line.visible = false
 				connections_node.add_child(line)
 
-# --- Add travel time label ---
 				var label = Label.new()
 				label.text = str(conn.days) + " days"
 				label.modulate = Color(1, 1, 0.8)
 				label.visible = false
 
-				# Position label at midpoint of line
 				var midpoint = (local_from + local_to) / 2
-				label.position = midpoint
+				label.position = midpoint - Vector2(30, 20)  # Offset from line
 
-				# Center the text and offset so it appears above the line
 				label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-				label.pivot_offset = label.size / 2  # Center pivot
 
 				connections_node.add_child(label)
 
-				# Store both line and label together
 				planet_lines[from_id].append({"line": line, "label": label})
 				if to_id not in planet_lines:
 					planet_lines[to_id] = []
 				planet_lines[to_id].append({"line": line, "label": label})
 
-
-
-
-# Debug print
 func print_map():
 	print("=== Galaxy Map ===")
 	for planet in selected_planets:
@@ -202,3 +189,59 @@ func hide_planet_connections(planet_id: String):
 		for entry in planet_lines[planet_id]:
 			entry.line.visible = false
 			entry.label.visible = false
+
+# Called when planet is clicked
+func _on_planet_clicked(planet_node):
+	zoom_to_planet(planet_node)
+
+func zoom_to_planet(planet_node: Node2D):
+	if camera:
+		camera.global_position = planet_node.global_position
+		camera.zoom = Vector2(2.0, 2.0)  # Zoom in closer
+		zoomed_in = true
+		current_focused_planet = planet_node
+		show_travel_panel(planet_node.planet_data)
+func reset_zoom():
+	if camera:
+		# Get the center of the viewport/screen
+		var screen_center = get_viewport().get_visible_rect().size / 2
+		camera.global_position = screen_center
+		camera.zoom = default_zoom
+		zoomed_in = false
+		current_focused_planet = null
+		hide_travel_panel()
+
+func show_travel_panel(planet_data = null):
+	if travel_panel:
+		travel_panel.visible = true
+		if planet_data and travel_button:
+			travel_button.text = "Travel to " + planet_data.name
+
+func hide_travel_panel():
+	if travel_panel:
+		travel_panel.visible = false
+
+func _on_cancel_button_pressed():
+	reset_zoom()
+
+
+func _on_travel_button_pressed():
+	if current_focused_planet and current_focused_planet.planet_data:
+		# Find the full PlanetData from all_planets array
+		var target_planet: PlanetData = null
+		for planet in all_planets:
+			if planet.id == current_focused_planet.planet_data.id:
+				target_planet = planet
+				break
+		
+		if target_planet:
+			var planet_screen = planet_screen_scene.instantiate()
+			planet_screen.planet = target_planet  # Use the full .tres resource
+			planet_screen.home_planet_data = player_planet
+			planet_screen.player_data = player_data
+			
+			get_tree().get_root().add_child(planet_screen)
+			hide_travel_panel()
+			reset_zoom()
+		else:
+			print("Error: Could not find planet in all_planets array")
