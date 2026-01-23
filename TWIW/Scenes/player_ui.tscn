@@ -1,16 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkelrugrmtsdk"]
+[gd_scene load_steps=9 format=3 uid="uid://dkelrugrmtsdk"]
 
 [ext_resource type="Texture2D" uid="uid://dpi2wodq4jimt" path="res://Sprites/ResourceIcons/apple-439397.png" id="1_28p4k"]
+[ext_resource type="Script" path="res://Scenes/player_ui.gd" id="1_mjph3"]
+[ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="2_v837k"]
 [ext_resource type="LabelSettings" uid="uid://ds0mouqpjhvx6" path="res://Sprites/Theme/ui_value_label_settings.tres" id="2_ve04h"]
+[ext_resource type="Texture2D" uid="uid://c284smqldiw1q" path="res://Sprites/ResourceIcons/diamond-6687408.png" id="3_mvrxx"]
+[ext_resource type="Texture2D" uid="uid://beh8mme8s3pmx" path="res://Sprites/ResourceIcons/alien-gun-4780305.png" id="4_yrif5"]
+[ext_resource type="Texture2D" uid="uid://bcij8aaxvmw7m" path="res://Sprites/ResourceIcons/dollar-2719007.png" id="5_d7crd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_082ji"]
+font_size = 40
 
 [node name="PlayerUi" type="Control"]
-custom_minimum_size = Vector2(1920, 1080)
+custom_minimum_size = Vector2(1920, 80)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -980.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mjph3")
+player_data = ExtResource("2_v837k")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(1920, 80)
@@ -32,12 +43,16 @@ layout_mode = 2
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="FoodIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("1_28p4k")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Control6" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="FoodValue" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "79"
 label_settings = ExtResource("2_ve04h")
@@ -46,12 +61,16 @@ label_settings = ExtResource("2_ve04h")
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="LuxuryIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_28p4k")
+texture = ExtResource("3_mvrxx")
 expand_mode = 2
 
-[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Control7" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="LuxuryValue" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "79"
 label_settings = ExtResource("2_ve04h")
@@ -60,12 +79,16 @@ label_settings = ExtResource("2_ve04h")
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="WeaponsIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_28p4k")
+texture = ExtResource("4_yrif5")
 expand_mode = 2
 
-[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Control8" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="WeaponsValue" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "79"
 label_settings = ExtResource("2_ve04h")
@@ -74,12 +97,16 @@ label_settings = ExtResource("2_ve04h")
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 
-[node name="TextureRect4" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="MoneyIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_28p4k")
+texture = ExtResource("5_d7crd")
 expand_mode = 2
 
-[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Control9" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="MoneyValue" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "79"
 label_settings = ExtResource("2_ve04h")
@@ -88,6 +115,55 @@ label_settings = ExtResource("2_ve04h")
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="RepIcon" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "REP  "
+label_settings = ExtResource("2_ve04h")
+
+[node name="RepMeter" type="ProgressBar" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -600.0
+max_value = 600.0
+step = 1.0
+value = 500.0
+show_percentage = false
+
+[node name="RepValue" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/RepMeter"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "VALUE"
+label_settings = SubResource("LabelSettings_082ji")
+
 [node name="Control6" type="Control" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+
+[node name="TestButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.5
+offset_top = -31.0
+offset_right = 49.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Add 1 Food"
+
+[connection signal="pressed" from="TestButton" to="." method="_on_test_button_pressed"]

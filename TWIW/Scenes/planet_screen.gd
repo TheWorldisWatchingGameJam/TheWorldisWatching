@@ -1,6 +1,8 @@
 extends Control
 
 @export var planet: PlanetData 
+@export var player_data: PlayerData
+@export var home_planet_data: PlanetData
 @export var event_name_label_settings: LabelSettings
 @export var event_desc_label_settings: LabelSettings
 
@@ -66,5 +68,29 @@ func display_options(events: Array[Event]) -> void:
 		var button = Button.new()
 		button.text = event.event_button_text
 		event_container.add_child(button)
+		button.pressed.connect(_on_event_selected.bind(event))
+
+
+func _on_event_selected(event: Event) -> void:
+	print("Event Selected: " + event.event_name)
+	print("---EVENT COSTS---")
+	for cost in event.cost:
+		print("Paying cost of type: " + cost.cost_type) 
+		print("Cost: ", str(cost.cost_value))
+		match cost.cost_type:
+			"Food":
+				player_data.food -= cost.cost_value
+			"Luxuries":
+				player_data.luxuries -= cost.cost_value
+			"Weapons":
+				player_data.weapons -= cost.cost_value
+			"Money":
+				player_data.money -= cost.cost_value
+			"Rep":
+				pass
+	planet_window.hide()
+	
+	
+
 
    

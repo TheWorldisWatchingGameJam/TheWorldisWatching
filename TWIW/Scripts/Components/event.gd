@@ -13,7 +13,7 @@ class_name Event
 @export_group("Event Execution")
 @export var home_exclusive: bool
 @export var event_conditions: Array[EventCondition]
-@export var dialogue: Array[DialogueItem]
+@export var outcome_dialogue: Array[DialogueItem]
 @export var event_effects: Array[EventEffect]
 
 #Event cost
