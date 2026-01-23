@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://dgvksy7yjscfo"]
+
+[ext_resource type="Script" path="res://Scripts/Components/player_data.gd" id="1_myrfh"]
+
+[resource]
+script = ExtResource("1_myrfh")
+food = 100
+luxuries = 100
+weapons = 100
+money = 500

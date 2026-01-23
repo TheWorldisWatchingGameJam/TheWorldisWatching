@@ -9,14 +9,15 @@
 
 [sub_resource type="Resource" id="Resource_mw65e"]
 script = ExtResource("1_fbod0")
-cost_type = "Rep"
-cost_value = 0
+cost_type = "Money"
+cost_value = 100
 on_planet = &""
 
-[sub_resource type="Resource" id="Resource_msw20"]
-script = ExtResource("2_lvbli")
-name = ""
-dialogue = "You send an expedition to Opal Mountain."
+[sub_resource type="Resource" id="Resource_8errm"]
+script = ExtResource("1_fbod0")
+cost_type = "Food"
+cost_value = 30
+on_planet = &""
 
 [sub_resource type="Resource" id="Resource_p86fe"]
 script = ExtResource("4_ishxj")
@@ -34,6 +35,6 @@ event_icon_texture = ExtResource("5_5xvcf")
 event_button_text = "Fund."
 home_exclusive = false
 event_conditions = Array[ExtResource("3_wy2vh")]([])
-dialogue = Array[ExtResource("2_lvbli")]([SubResource("Resource_msw20")])
+outcome_dialogue = Array[ExtResource("2_lvbli")]([])
 event_effects = Array[ExtResource("4_ishxj")]([SubResource("Resource_p86fe")])
-cost = Array[ExtResource("1_fbod0")]([SubResource("Resource_mw65e")])
+cost = Array[ExtResource("1_fbod0")]([SubResource("Resource_mw65e"), SubResource("Resource_8errm")])

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp6bem6tf6okw"
-path="res://.godot/imported/food_icon.png-47eeb6dd262ca9c950de945c293751cf.ctex"
+uid="uid://beh8mme8s3pmx"
+path="res://.godot/imported/alien-gun-4780305.png-aa43119adfa20f79677cc80da18d941e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/ResouceIcons/food_icon.png"
-dest_files=["res://.godot/imported/food_icon.png-47eeb6dd262ca9c950de945c293751cf.ctex"]
+source_file="res://Sprites/ResourceIcons/alien-gun-4780305.png"
+dest_files=["res://.godot/imported/alien-gun-4780305.png-aa43119adfa20f79677cc80da18d941e.ctex"]
 
 [params]
 
