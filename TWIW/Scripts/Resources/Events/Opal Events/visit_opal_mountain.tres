@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="2_lvbli"]
 [ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_wy2vh"]
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="4_ishxj"]
-[ext_resource type="Texture2D" uid="uid://li263d0xjtdr" path="res://Sprites/EventIcons/visit_opal_mountain.png" id="5_5xvcf"]
+[ext_resource type="Texture2D" uid="uid://li263d0xjtdr" path="res://Assets/EventIcons/visit_opal_mountain.png" id="5_5xvcf"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="5_qrk80"]
 
 [sub_resource type="Resource" id="Resource_mw65e"]

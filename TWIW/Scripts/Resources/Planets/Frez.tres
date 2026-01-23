@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_hwu0p"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_q1n0u"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_fvv0p"]
-[ext_resource type="Texture2D" uid="uid://cmmor4mk6io4e" path="res://Sprites/PlanetSprites/sealiontemp.jpg" id="6_d5t3e"]
+[ext_resource type="Texture2D" uid="uid://cmmor4mk6io4e" path="res://Assets/PlanetSprites/sealiontemp.jpg" id="6_d5t3e"]
 
 [resource]
 script = ExtResource("5_fvv0p")

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Scenes/planet_screen.gd" id="1_4tjyn"]
 [ext_resource type="Resource" uid="uid://f0quaynyrmg" path="res://Scripts/Resources/Planets/Opal.tres" id="2_oqs4j"]
-[ext_resource type="Texture2D" uid="uid://bq70p4u11in48" path="res://Sprites/mountainous-5942962_1920.jpg" id="3_k4rev"]
-[ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Sprites/Theme/event_name_label_settings.tres" id="4_k735d"]
-[ext_resource type="Texture2D" uid="uid://cgwee6045hdhj" path="res://Sprites/EventIcons/attend_mining_seminar.png" id="5_jp5oo"]
-[ext_resource type="LabelSettings" uid="uid://b2jya7wkh1jay" path="res://Sprites/Theme/event_desc_label_settings.tres" id="6_iwn8f"]
+[ext_resource type="Texture2D" path="res://Sprites/mountainous-5942962_1920.jpg" id="3_k4rev"]
+[ext_resource type="LabelSettings" path="res://Sprites/Theme/event_name_label_settings.tres" id="4_k735d"]
+[ext_resource type="Texture2D" path="res://Sprites/EventIcons/attend_mining_seminar.png" id="5_jp5oo"]
+[ext_resource type="LabelSettings" path="res://Sprites/Theme/event_desc_label_settings.tres" id="6_iwn8f"]
 
 [node name="PlanetScreen" type="Control"]
 clip_contents = true
