@@ -19,6 +19,7 @@ default_font_size = 30
 Button/fonts/font = ExtResource("10_hubp0")
 Button/styles/hover = ExtResource("11_geemm")
 Button/styles/normal = ExtResource("12_d1a24")
+Label/fonts/font = ExtResource("10_hubp0")
 
 [node name="PlanetScreen" type="Control"]
 clip_contents = true
@@ -71,6 +72,7 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(1350, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Window/HBoxContainer/VBoxContainer3/VBoxContainer"]
@@ -78,6 +80,16 @@ layout_mode = 2
 text = "Events"
 label_settings = ExtResource("6_fwpuq")
 horizontal_alignment = 1
+
+[node name="EventChosenLabel" type="Label" parent="Window/HBoxContainer/VBoxContainer3/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "The event of the day has already been chosen."
+label_settings = ExtResource("6_fwpuq")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlanetWindow" type="HBoxContainer" parent="Window/HBoxContainer/VBoxContainer3/VBoxContainer"]
 unique_name_in_owner = true
@@ -151,6 +163,7 @@ layout_mode = 2
 [node name="PlayerUi" parent="." instance=ExtResource("5_h8kr8")]
 layout_mode = 1
 
+[connection signal="eventChosen" from="." to="." method="_on_event_chosen"]
 [connection signal="pressed" from="Window/HBoxContainer/VBoxContainer/VBoxContainer2/TradeButton" to="." method="_on_trade_button_pressed"]
 [connection signal="pressed" from="Window/HBoxContainer/VBoxContainer/VBoxContainer2/MarketButton" to="." method="_on_market_button_pressed"]
 [connection signal="pressed" from="Window/HBoxContainer/VBoxContainer/VBoxContainer2/ThreatenButton" to="." method="_on_threaten_button_pressed"]
