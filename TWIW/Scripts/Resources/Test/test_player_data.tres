@@ -1,10 +1,41 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://dgvksy7yjscfo"]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=9 format=3 uid="uid://dgvksy7yjscfo"]
 
+[ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_l3eed"]
 [ext_resource type="Script" path="res://Scripts/Components/player_data.gd" id="1_myrfh"]
+[ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_5vccm"]
+[ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_cco1b"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_f27hi"]
+[ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_4vo74"]
+
+[sub_resource type="Resource" id="Resource_43d60"]
+script = ExtResource("3_cco1b")
+planet_name = &"Opal"
+reputation = 0
+
+[sub_resource type="Resource" id="Resource_335xq"]
+script = ExtResource("5_4vo74")
+id = ""
+name = &""
+desc = ""
+food_prod = 0
+luxury_prod = 0
+weapon_prod = 0
+food_demand = 0
+luxury_demand = 0
+weapon_demand = 0
+weapons = 0
+current_relations = Array[ExtResource("2_5vccm")]([])
+current_reputation = Array[ExtResource("3_cco1b")]([SubResource("Resource_43d60")])
+current_info = Array[ExtResource("1_l3eed")]([])
+event_pool = Array[ExtResource("4_f27hi")]([])
+live_events = Array[ExtResource("4_f27hi")]([])
+event_history = Array[ExtResource("4_f27hi")]([])
 
 [resource]
 script = ExtResource("1_myrfh")
+home_planet_data = SubResource("Resource_335xq")
 food = 100
 luxuries = 100
 weapons = 100
 money = 500
+total_rep = null

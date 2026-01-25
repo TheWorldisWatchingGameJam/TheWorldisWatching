@@ -1,3 +1,8 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://b2jya7wkh1jay"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b2jya7wkh1jay"]
+
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="1_72pra"]
 
 [resource]
+font = ExtResource("1_72pra")
+font_size = 20
+font_color = Color(0, 0.133333, 0.00784314, 1)

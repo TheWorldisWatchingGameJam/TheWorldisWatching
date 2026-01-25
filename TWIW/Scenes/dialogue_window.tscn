@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://cda42r1gvv8am"]
+
+[ext_resource type="Script" path="res://Scenes/dialogue_window.gd" id="1_vvlpg"]
+[ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_8gimu"]
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="3_m4032"]
+[ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="3_rei1e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vjws"]
+font = ExtResource("2_8gimu")
+font_size = 55
+
+[sub_resource type="LabelSettings" id="LabelSettings_c883e"]
+font = ExtResource("3_m4032")
+font_size = 49
+
+[node name="DialogueWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vvlpg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="CharacterSprite" type="Sprite2D" parent="VBoxContainer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="NameContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 140)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_rei1e")
+metadata/_edit_use_anchors_ = true
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer/NameContainer"]
+custom_minimum_size = Vector2(500, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Emperor Shay Rimizio"
+label_settings = SubResource("LabelSettings_7vjws")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DialogueContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("3_rei1e")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/DialogueContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer/DialogueContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DialogueContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/DialogueContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="DialogueLabel" type="Label" parent="VBoxContainer/DialogueContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(1882, 0)
+layout_mode = 2
+size_flags_vertical = 0
+label_settings = SubResource("LabelSettings_c883e")
+autowrap_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer/DialogueContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/DialogueContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[connection signal="gui_input" from="VBoxContainer/DialogueContainer" to="." method="_on_dialogue_container_gui_input"]

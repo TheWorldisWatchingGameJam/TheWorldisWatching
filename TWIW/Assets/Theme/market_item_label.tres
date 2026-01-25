@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://nya3oggxmp3m"]
+
+[ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="1_ah3w7"]
+
+[resource]
+font = ExtResource("1_ah3w7")
+font_size = 60

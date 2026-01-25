@@ -2,6 +2,8 @@ extends Resource
 
 class_name PlanetData
 
+signal currentReputationChanged
+
 #Planet identifiers
 @export_group("Planet Identifiers")
 @export var id: String
@@ -20,6 +22,11 @@ class_name PlanetData
 @export var food_demand: int
 @export var luxury_demand: int
 @export var weapon_demand: int
+
+#Planet threaten data
+@export_group("Planet Threaten Event")
+@export var weapons: int
+@export var max_threaten_reward: EventCost
 
 #Planet relation values
 @export_group("Planet Relations")
@@ -53,8 +60,30 @@ func modify_reputation(planet_name: StringName, rep_value: int) -> void:
 	for x in current_reputation:
 		if x.planet_name == planet_name:
 			x.reputation += rep_value
+			emit_signal("currentReputationChanged")
 
 func modify_relations(planet_name: StringName, relation: String) -> void:
 	for x in current_relations:
 		if x.planet_name == planet_name:
-			x.relation= relation
+			x.relation = relation
+
+func get_reputation(from_planet: StringName) -> int:
+	for x in current_reputation:
+		if from_planet == x.planet_name:
+			return x.reputation
+	return 0
+
+func threaten(player_weapon_value: int) -> EventCost:
+	print("Player Threatens Planet.")
+	if player_weapon_value - weapons >= max_threaten_reward.cost_value:
+		print("Player gets max reward of: ", max_threaten_reward.cost_value, " ", max_threaten_reward.cost_type)
+		return max_threaten_reward
+	else: 
+		if player_weapon_value <= 0:
+			print("Player does not have enough Weapons to threaten this planet.")
+			return null
+		else:
+			var threaten_reward = max_threaten_reward
+			threaten_reward.cost_value = player_weapon_value - weapons
+			print("Player gets max reward of: ", threaten_reward.cost_value, " ", threaten_reward.cost_type)
+			return threaten_reward
