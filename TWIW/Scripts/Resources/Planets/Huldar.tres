@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_e581v"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_m4vwl"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_vlwws"]
-[ext_resource type="Texture2D" uid="uid://d1e1gyiw2ij1y" path="res://Sprites/PlanetSprites/walrustemp.jpg" id="6_yalje"]
+[ext_resource type="Texture2D" uid="uid://d1e1gyiw2ij1y" path="res://Assets/PlanetSprites/walrustemp.jpg" id="6_yalje"]
 
 [resource]
 script = ExtResource("5_vlwws")
@@ -19,6 +19,7 @@ weapon_prod = 4
 food_demand = 6
 luxury_demand = 2
 weapon_demand = 4
+weapons = 0
 current_relations = Array[ExtResource("2_swagv")]([])
 current_reputation = Array[ExtResource("3_e581v")]([])
 current_info = Array[ExtResource("1_p50pw")]([])

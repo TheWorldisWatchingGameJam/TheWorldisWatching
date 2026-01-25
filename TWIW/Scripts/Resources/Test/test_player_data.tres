@@ -38,4 +38,4 @@ food = 100
 luxuries = 100
 weapons = 100
 money = 500
-total_rep = null
+total_rep = 0

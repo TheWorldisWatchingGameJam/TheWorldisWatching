@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=7 format=3 uid="uid://b4kf7erwn6muh"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://b4kf7erwn6muh"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_rb1px"]
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_r0xra"]
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_hwu0p"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_q1n0u"]
+[ext_resource type="Resource" uid="uid://cuvuqfn7iepd6" path="res://Scripts/Resources/Events/Opal Events/attend_mining_seminar.tres" id="5_ae84w"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_fvv0p"]
 [ext_resource type="Texture2D" uid="uid://cmmor4mk6io4e" path="res://Assets/PlanetSprites/sealiontemp.jpg" id="6_d5t3e"]
 
@@ -13,15 +14,16 @@ id = "planet_1"
 name = &"Frez"
 sprite = ExtResource("6_d5t3e")
 desc = ""
-food_prod = 2
-luxury_prod = 6
-weapon_prod = 4
-food_demand = 6
-luxury_demand = 2
-weapon_demand = 4
+food_prod = 4
+luxury_prod = 2
+weapon_prod = 0
+food_demand = 0
+luxury_demand = 4
+weapon_demand = 0
+weapons = 0
 current_relations = Array[ExtResource("2_r0xra")]([])
 current_reputation = Array[ExtResource("3_hwu0p")]([])
 current_info = Array[ExtResource("1_rb1px")]([])
-event_pool = Array[ExtResource("4_q1n0u")]([])
+event_pool = Array[ExtResource("4_q1n0u")]([ExtResource("5_ae84w")])
 live_events = Array[ExtResource("4_q1n0u")]([])
 event_history = Array[ExtResource("4_q1n0u")]([])

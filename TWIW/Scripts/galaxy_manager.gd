@@ -89,11 +89,13 @@ func draw_galaxy_random():
 		planet_node.position = pos
 		planet_node.galaxy_manager = self
 
+		# Connect signal immediately
+		planet_node.planet_clicked.connect(_on_planet_clicked)
+
 		if planet.id == player_planet.id:
 			planet_node.set_as_home_planet(rocket_texture)
 
 		get_tree().get_root().add_child(planet_node)
-		planet_node.planet_clicked.connect(_on_planet_clicked)
 
 func _generate_fully_connected_graph():
 	galaxy_graph.clear()
