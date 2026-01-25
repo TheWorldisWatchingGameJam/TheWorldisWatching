@@ -1,4 +1,7 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://ds0mouqpjhvx6"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ds0mouqpjhvx6"]
+
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="1_83e1s"]
 
 [resource]
+font = ExtResource("1_83e1s")
 font_size = 50

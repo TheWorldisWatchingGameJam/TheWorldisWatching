@@ -10,16 +10,15 @@ extends Control
 @onready var market_button = %MarketButton
 @onready var threaten_button = %ThreatenButton
 @onready var window = $Window
+@onready var event_chosen_label = %EventChosenLabel
 @onready var market_window = load("res://Scenes/market_window.tscn")
 
+signal eventChosen
 
 func _ready() -> void:
 	await get_tree().process_frame
 	initialize_market_window()
 	display_options(random_options(3))
-	reset_threaten_button()
-
-func reset_threaten_button() -> void:
 	threaten_button.disabled = false
 
 func initialize_market_window() -> void:
@@ -131,7 +130,7 @@ func _on_event_selected(event: Event) -> void:
 			return
 	for cost in event.cost:
 			player_data.player_data_modify(cost)
-	leave_planet()
+	emit_signal("eventChosen")
 
 func _on_trade_button_pressed() -> void:
 	var trade_window = load("res://Scenes/trade_window.tscn")
@@ -151,5 +150,6 @@ func _on_threaten_button_pressed() -> void:
 	player_data.home_planet_data.modify_reputation(planet.name, -5)
 	print("Player reputation at ", planet.name, " is now at ", player_data.home_planet_data.get_reputation(planet.name))
 
-func leave_planet() -> void:
-	pass
+func _on_event_chosen() -> void:
+	planet_window.hide()
+	event_chosen_label.visible = true

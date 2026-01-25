@@ -21,30 +21,48 @@ func _ready() -> void:
 
 
 func _on_food_sell_button_pressed() -> void:
-	player_data.food -= 1
+	var food_cost_token = EventCost.new()
+	food_cost_token.cost_type = "Food"
+	food_cost_token.cost_value = -1
+	if not player_data.can_pay(food_cost_token):
+		print("Not enough food in player inventory.")
+		return
+	player_data.player_data_modify(food_cost_token)
 	player_data.money += food_price
 	print("Player now has ", str(player_data.food), " food, and ", str(player_data.money), " money")
 
 
 func _on_luxuries_sell_button_pressed() -> void:
-	player_data.luxuries -= 1
+	var luxury_cost_token = EventCost.new()
+	luxury_cost_token.cost_type = "Luxuries"
+	luxury_cost_token.cost_value = -1
+	if not player_data.can_pay(luxury_cost_token):
+		print("Not enough luxuries in player inventory.")
+		return
+	player_data.player_data_modify(luxury_cost_token)
 	player_data.money += luxuries_price
-	print("Player now has ", str(player_data.luxuries), " food, and ", str(player_data.money), " money")
+	print("Player now has ", str(player_data.luxuries), " luxuries and ", str(player_data.money), " money")
 
 
 func _on_weapons_sell_button_pressed() -> void:
-	player_data.weapons -= 1
+	var weapon_cost_token = EventCost.new()
+	weapon_cost_token.cost_type = "Weapons"
+	weapon_cost_token.cost_value = -1
+	if not player_data.can_pay(weapon_cost_token):
+		print("Not enough weapons in player inventory.")
+		return
+	player_data.player_data_modify(weapon_cost_token)
 	player_data.money += weapons_price
-	print("Player now has ", str(player_data.weapons), " food, and ", str(player_data.money), " money")
+	print("Player now has ", str(player_data.weapons), " weapons and ", str(player_data.money), " money")
 
 
 func calculate_prices(planet: PlanetData) -> void:
 	if planet.food_demand > 0:
-		food_price = planet.food_demand + [-1, 1, 2, 3].pick_random()
+		food_price = planet.food_demand + [-1, 0, 1, 2].pick_random()
 	if planet.luxury_demand > 0:
-		luxuries_price = planet.luxury_demand + [-1, 1, 2, 3].pick_random()
+		luxuries_price = planet.luxury_demand + [-1, 0, 1, 2].pick_random()
 	if planet.weapon_demand > 0:
-		weapons_price = planet.weapon_demand + [-1, 1, 2, 3].pick_random()
+		weapons_price = planet.weapon_demand + [-1, 0, 1, 2].pick_random()
 
 
 func _on_close_button_pressed() -> void:
