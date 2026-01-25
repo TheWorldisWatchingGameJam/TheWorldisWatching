@@ -18,6 +18,7 @@ script = ExtResource("4_g815u")
 effect_type = "Rep"
 effect_value = 2
 effect_probability = 0
+effect_dialogue = Array[ExtResource("2_4h3hu")]([])
 on_planet = &""
 on_current_planet = true
 
@@ -29,6 +30,6 @@ event_icon_texture = ExtResource("5_3hj5b")
 event_button_text = "Fund."
 home_exclusive = false
 event_conditions = Array[ExtResource("3_6af2o")]([])
-outcome_dialogue = Array[ExtResource("2_4h3hu")]([])
+event_dialogue = Array[ExtResource("2_4h3hu")]([])
 event_effects = Array[ExtResource("4_g815u")]([SubResource("Resource_qhfaw")])
 cost = Array[ExtResource("1_72kst")]([SubResource("Resource_inw5d")])

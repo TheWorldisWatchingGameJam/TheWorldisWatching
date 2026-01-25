@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://kdox7h3lrego"]
+
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="1_rl7x1"]
+[ext_resource type="StyleBox" uid="uid://4b7i8jghbajh" path="res://Assets/Theme/button_hover_stylebox.tres" id="2_gef0a"]
+[ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="3_m3mrt"]
+[ext_resource type="StyleBox" uid="uid://c6g1nk3ec6mu4" path="res://Assets/Theme/non_button_stylebox.tres" id="4_uocx7"]
+
+[resource]
+default_font_size = 37
+Button/colors/font_color = Color(0.000228075, 0.132305, 0.00591678, 1)
+Button/fonts/font = ExtResource("1_rl7x1")
+Button/styles/hover = ExtResource("2_gef0a")
+Button/styles/normal = ExtResource("3_m3mrt")
+Label/colors/font_color = Color(0, 0.133333, 0.00784314, 1)
+Label/fonts/font = ExtResource("1_rl7x1")
+PanelContainer/styles/panel = ExtResource("4_uocx7")

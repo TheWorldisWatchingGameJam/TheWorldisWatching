@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://dkelrugrmtsdk"]
 
-[ext_resource type="Texture2D" path="res://Sprites/ResourceIcons/apple-439397.png" id="1_28p4k"]
+[ext_resource type="Texture2D" uid="uid://dpi2wodq4jimt" path="res://Assets/ResourceIcons/apple-439397.png" id="1_28p4k"]
 [ext_resource type="Script" path="res://Scenes/player_ui.gd" id="1_mjph3"]
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="2_v837k"]
-[ext_resource type="LabelSettings" path="res://Sprites/Theme/ui_value_label_settings.tres" id="2_ve04h"]
-[ext_resource type="Texture2D" path="res://Sprites/ResourceIcons/diamond-6687408.png" id="3_mvrxx"]
-[ext_resource type="Texture2D" path="res://Sprites/ResourceIcons/alien-gun-4780305.png" id="4_yrif5"]
-[ext_resource type="Texture2D" path="res://Sprites/ResourceIcons/dollar-2719007.png" id="5_d7crd"]
+[ext_resource type="LabelSettings" uid="uid://ds0mouqpjhvx6" path="res://Assets/Theme/ui_value_label_settings.tres" id="2_ve04h"]
+[ext_resource type="Texture2D" uid="uid://c284smqldiw1q" path="res://Assets/ResourceIcons/diamond-6687408.png" id="3_mvrxx"]
+[ext_resource type="Texture2D" uid="uid://beh8mme8s3pmx" path="res://Assets/ResourceIcons/alien-gun-4780305.png" id="4_yrif5"]
+[ext_resource type="Texture2D" uid="uid://bcij8aaxvmw7m" path="res://Assets/ResourceIcons/dollar-2719007.png" id="5_d7crd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_082ji"]
 font_size = 40
@@ -45,6 +45,7 @@ layout_mode = 2
 
 [node name="FoodIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Food"
 texture = ExtResource("1_28p4k")
 expand_mode = 2
 
@@ -63,6 +64,7 @@ layout_mode = 2
 
 [node name="LuxuryIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Luxuries"
 texture = ExtResource("3_mvrxx")
 expand_mode = 2
 
@@ -81,6 +83,7 @@ layout_mode = 2
 
 [node name="WeaponsIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Weapons"
 texture = ExtResource("4_yrif5")
 expand_mode = 2
 
@@ -99,6 +102,7 @@ layout_mode = 2
 
 [node name="MoneyIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "Money"
 texture = ExtResource("5_d7crd")
 expand_mode = 2
 
@@ -117,7 +121,9 @@ size_flags_horizontal = 3
 
 [node name="RepIcon" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "REP  "
+tooltip_text = "Reputation across all planets."
+mouse_filter = 0
+text = "REP "
 label_settings = ExtResource("2_ve04h")
 
 [node name="RepMeter" type="ProgressBar" parent="PanelContainer/VBoxContainer/HBoxContainer"]
@@ -125,10 +131,10 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+tooltip_text = "Reputation across all planets."
 min_value = -600.0
 max_value = 600.0
 step = 1.0
-value = 500.0
 show_percentage = false
 
 [node name="RepValue" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/RepMeter"]
@@ -146,6 +152,10 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "VALUE"
 label_settings = SubResource("LabelSettings_082ji")
+
+[node name="Control10" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
 
 [node name="Control6" type="Control" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)

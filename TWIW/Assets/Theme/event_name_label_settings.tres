@@ -1,7 +1,8 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dt0j1ho485ia6"]
 
-[ext_resource type="FontFile" uid="uid://dit4a8qdkxjfn" path="res://Sprites/Theme/SuperFeel-JpZqa.ttf" id="1_tebry"]
+[ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="1_lfcst"]
 
 [resource]
-font = ExtResource("1_tebry")
+font = ExtResource("1_lfcst")
 font_size = 30
+font_color = Color(0, 0.133333, 0.00784314, 1)

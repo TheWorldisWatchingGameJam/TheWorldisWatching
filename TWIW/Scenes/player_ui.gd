@@ -20,6 +20,14 @@ func update_ui():
 	luxuries_value_label.text = str(player_data.luxuries)
 	weapons_value_label.text = str(player_data.weapons)
 	money_value_label.text = str(player_data.money)
+	rep_meter.value = player_data.total_rep
+	rep_value_label.text = str(player_data.total_rep)
+	if player_data.total_rep < 0:
+		rep_meter.self_modulate = Color.CRIMSON
+	elif player_data.total_rep > 0:
+		rep_meter.self_modulate = Color.LIME_GREEN
+	elif player_data.total_rep == 0:
+		rep_meter.self_modulate = Color.WHITE
 
 
 
