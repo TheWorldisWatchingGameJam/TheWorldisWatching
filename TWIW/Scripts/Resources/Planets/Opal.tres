@@ -6,10 +6,10 @@
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_htv20"]
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_6c5ua"]
 [ext_resource type="Resource" uid="uid://cuvuqfn7iepd6" path="res://Scripts/Resources/Events/Opal Events/attend_mining_seminar.tres" id="5_2e7u1"]
-[ext_resource type="Texture2D" uid="uid://dq5x6at4n3ro7" path="res://Assets/PlanetSprites/polarbeartemp.jpg" id="6_5yff6"]
 [ext_resource type="Resource" uid="uid://d2ed0hntvxxlc" path="res://Scripts/Resources/Events/Opal Events/visit_opal_mountain.tres" id="6_ywsmr"]
 [ext_resource type="Resource" uid="uid://dinerntw1rsen" path="res://Scripts/Resources/Events/Neutral Events/hold_rally.tres" id="7_6lloy"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="8_ihskw"]
+[ext_resource type="Texture2D" uid="uid://eckrwpp0gi2i" path="res://Assets/PlanetSprites/Opal.webp" id="10_2i0hb"]
 
 [sub_resource type="Resource" id="Resource_roi81"]
 script = ExtResource("8_ihskw")
@@ -22,7 +22,7 @@ on_current_planet = false
 script = ExtResource("2_6bee7")
 id = "planet_4"
 name = &"Opal"
-sprite = ExtResource("6_5yff6")
+sprite = ExtResource("10_2i0hb")
 desc = ""
 food_prod = 2
 luxury_prod = 6

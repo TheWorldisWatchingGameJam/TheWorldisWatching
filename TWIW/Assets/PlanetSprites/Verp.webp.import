@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmmor4mk6io4e"
-path="res://.godot/imported/sealiontemp.jpg-4401009e5238e75ab1a05ef3dd57bfd7.ctex"
+uid="uid://6lkrssl20f46"
+path="res://.godot/imported/Verp.webp-03bf448b540ad8029dd0698beab38c00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PlanetSprites/sealiontemp.jpg"
-dest_files=["res://.godot/imported/sealiontemp.jpg-4401009e5238e75ab1a05ef3dd57bfd7.ctex"]
+source_file="res://Assets/PlanetSprites/Verp.webp"
+dest_files=["res://.godot/imported/Verp.webp-03bf448b540ad8029dd0698beab38c00.ctex"]
 
 [params]
 

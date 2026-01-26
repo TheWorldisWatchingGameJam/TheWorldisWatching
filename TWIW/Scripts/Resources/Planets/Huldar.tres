@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_e581v"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_m4vwl"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_vlwws"]
-[ext_resource type="Texture2D" uid="uid://d1e1gyiw2ij1y" path="res://Assets/PlanetSprites/walrustemp.jpg" id="6_yalje"]
+[ext_resource type="Texture2D" uid="uid://bxn5xlpergrfo" path="res://Assets/PlanetSprites/Huldar.webp" id="6_tbbdo"]
 
 [resource]
 script = ExtResource("5_vlwws")
 id = "planet_3"
 name = &"Huldar"
-sprite = ExtResource("6_yalje")
+sprite = ExtResource("6_tbbdo")
 desc = ""
 food_prod = 2
 luxury_prod = 6

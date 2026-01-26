@@ -7,13 +7,13 @@
 [ext_resource type="Resource" uid="uid://cuvuqfn7iepd6" path="res://Scripts/Resources/Events/Opal Events/attend_mining_seminar.tres" id="5_ae84w"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_fvv0p"]
 [ext_resource type="Resource" uid="uid://cuqefho4xwcxd" path="res://Scripts/Resources/Events/Frez Events/fund_great_harvest_festival.tres" id="6_7sefl"]
-[ext_resource type="Texture2D" uid="uid://cmmor4mk6io4e" path="res://Assets/PlanetSprites/sealiontemp.jpg" id="6_d5t3e"]
+[ext_resource type="Texture2D" uid="uid://dhx2b30rqhvkw" path="res://Assets/PlanetSprites/Frez.webp" id="8_tal5m"]
 
 [resource]
 script = ExtResource("5_fvv0p")
 id = "planet_1"
 name = &"Frez"
-sprite = ExtResource("6_d5t3e")
+sprite = ExtResource("8_tal5m")
 desc = ""
 food_prod = 4
 luxury_prod = 2

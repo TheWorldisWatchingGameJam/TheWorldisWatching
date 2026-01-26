@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_3a0u1"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_qejpo"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_w5tab"]
-[ext_resource type="Texture2D" uid="uid://cmmor4mk6io4e" path="res://Sprites/PlanetSprites/sealiontemp.jpg" id="6_kcven"]
+[ext_resource type="Texture2D" uid="uid://6lkrssl20f46" path="res://Assets/PlanetSprites/Verp.webp" id="6_s3enc"]
 
 [resource]
 script = ExtResource("5_w5tab")
 id = "planet_5"
 name = &"Verp"
-sprite = ExtResource("6_kcven")
+sprite = ExtResource("6_s3enc")
 desc = ""
 food_prod = 2
 luxury_prod = 6
@@ -19,6 +19,7 @@ weapon_prod = 4
 food_demand = 6
 luxury_demand = 2
 weapon_demand = 4
+weapons = 0
 current_relations = Array[ExtResource("2_k1j0k")]([])
 current_reputation = Array[ExtResource("3_3a0u1")]([])
 current_info = Array[ExtResource("1_ol3aw")]([])

@@ -6,13 +6,13 @@
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_5qy3j"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_fu0gs"]
 [ext_resource type="Resource" uid="uid://b2e5qey6jngbp" path="res://Scripts/Resources/Events/Blex Events/purchase_lottery_ticket.tres" id="5_yqb73"]
-[ext_resource type="Texture2D" uid="uid://d1e1gyiw2ij1y" path="res://Assets/PlanetSprites/walrustemp.jpg" id="6_p538t"]
+[ext_resource type="Texture2D" uid="uid://um3xpam1bcfr" path="res://Assets/PlanetSprites/Blex.webp" id="7_j0e1l"]
 
 [resource]
 script = ExtResource("5_fu0gs")
 id = "planet_6"
 name = &"Blex"
-sprite = ExtResource("6_p538t")
+sprite = ExtResource("7_j0e1l")
 desc = ""
 food_prod = 2
 luxury_prod = 6

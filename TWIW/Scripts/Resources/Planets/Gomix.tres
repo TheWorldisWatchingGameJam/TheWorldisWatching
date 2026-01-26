@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_y0wg4"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_legbn"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_u6a02"]
-[ext_resource type="Texture2D" uid="uid://dq5x6at4n3ro7" path="res://Assets/PlanetSprites/polarbeartemp.jpg" id="6_07oj5"]
+[ext_resource type="Texture2D" uid="uid://dsm5cu8wvmxit" path="res://Assets/PlanetSprites/Gomix.webp" id="6_cf77y"]
 
 [resource]
 script = ExtResource("5_u6a02")
 id = "planet_2"
 name = &"Gomix"
-sprite = ExtResource("6_07oj5")
+sprite = ExtResource("6_cf77y")
 desc = ""
 food_prod = 2
 luxury_prod = 6

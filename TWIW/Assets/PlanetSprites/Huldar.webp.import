@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1e1gyiw2ij1y"
-path="res://.godot/imported/walrustemp.jpg-d471c7ee724e697765914cfe6ea699c5.ctex"
+uid="uid://bxn5xlpergrfo"
+path="res://.godot/imported/Huldar.webp-2c1456af6547e120ef65e6bc49980222.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PlanetSprites/walrustemp.jpg"
-dest_files=["res://.godot/imported/walrustemp.jpg-d471c7ee724e697765914cfe6ea699c5.ctex"]
+source_file="res://Assets/PlanetSprites/Huldar.webp"
+dest_files=["res://.godot/imported/Huldar.webp-2c1456af6547e120ef65e6bc49980222.ctex"]
 
 [params]
 
