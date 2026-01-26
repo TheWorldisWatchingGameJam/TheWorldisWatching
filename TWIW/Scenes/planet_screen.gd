@@ -137,14 +137,41 @@ func _on_event_selected(event: Event) -> void:
 	emit_signal("eventChosen")
 
 func resolve_event_effect(event_effects: Array[EventEffect]) -> void:
-	for effect in event_effects:
-		player_data.player_data_modify(effect.effect_value_token)
-		if effect.effect_dialogue:
-			var new_dialogue = dialogue_window.instantiate()
-			new_dialogue.dialogue_array = effect.effect_dialogue
-			new_dialogue.dialogueFinished.connect(on_effect_dialogue_finished.bind(new_dialogue))
-			window.hide()
-			get_tree().get_root().add_child(new_dialogue)
+	if event_effects.is_empty():
+		return
+
+	var chosen_effect: EventEffect = null
+
+	# ✅ If only one effect, always pick it
+	if event_effects.size() == 1:
+		chosen_effect = event_effects[0]
+	else:
+		var roll := randi_range(1, 100)
+		var cumulative := 0
+
+		for effect in event_effects:
+			cumulative += effect.effect_probability
+			if roll <= cumulative:
+				chosen_effect = effect
+				break
+
+	if not chosen_effect:
+		return
+
+	# Apply effect
+	if chosen_effect.effect_value_token:
+		player_data.player_data_modify(chosen_effect.effect_value_token)
+
+	# Show dialogue if any
+	if chosen_effect.effect_dialogue and not chosen_effect.effect_dialogue.is_empty():
+		var new_dialogue = dialogue_window.instantiate()
+		new_dialogue.dialogue_array = chosen_effect.effect_dialogue
+		new_dialogue.dialogueFinished.connect(
+			on_effect_dialogue_finished.bind(new_dialogue)
+		)
+		window.hide()
+		get_tree().get_root().add_child(new_dialogue)
+
 
 func on_effect_dialogue_finished(dialogue_screen: Control) -> void:
 	dialogue_screen.queue_free()

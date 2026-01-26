@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=7 format=3 uid="uid://cuvuqfn7iepd6"]
+[gd_resource type="Resource" script_class="Event" load_steps=9 format=3 uid="uid://cuvuqfn7iepd6"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_fjelq"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="2_jvpfw"]
@@ -7,6 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://cgwee6045hdhj" path="res://Assets/EventIcons/attend_mining_seminar.png" id="5_msd0r"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_ysqc4"]
 
+[sub_resource type="Resource" id="Resource_nclsb"]
+script = ExtResource("3_odr7l")
+war_event = false
+condition_type = "Rep"
+condition_value = 0
+on_planet = &"Opal"
+
+[sub_resource type="Resource" id="Resource_83w77"]
+script = ExtResource("4_0dygo")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("2_jvpfw")]([])
+
 [resource]
 script = ExtResource("6_ysqc4")
 event_name = &"Attend Mining Seminar"
@@ -14,7 +26,7 @@ event_desc = "Purchase a ticket to attend a mining seminar in Opal."
 event_icon_texture = ExtResource("5_msd0r")
 event_button_text = "Purchase."
 home_exclusive = false
-event_conditions = Array[ExtResource("3_odr7l")]([])
+event_conditions = Array[ExtResource("3_odr7l")]([SubResource("Resource_nclsb")])
 event_dialogue = Array[ExtResource("2_jvpfw")]([])
-event_effects = Array[ExtResource("4_0dygo")]([])
+event_effects = Array[ExtResource("4_0dygo")]([SubResource("Resource_83w77")])
 cost = Array[ExtResource("1_fjelq")]([])

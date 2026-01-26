@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=7 format=3 uid="uid://bha42xdgt1wit"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://bha42xdgt1wit"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_k8x0i"]
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_skv75"]
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_syww1"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_5qy3j"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_fu0gs"]
-[ext_resource type="Texture2D" uid="uid://d1e1gyiw2ij1y" path="res://Sprites/PlanetSprites/walrustemp.jpg" id="6_p538t"]
+[ext_resource type="Resource" uid="uid://b2e5qey6jngbp" path="res://Scripts/Resources/Events/Blex Events/purchase_lottery_ticket.tres" id="5_yqb73"]
+[ext_resource type="Texture2D" uid="uid://d1e1gyiw2ij1y" path="res://Assets/PlanetSprites/walrustemp.jpg" id="6_p538t"]
 
 [resource]
 script = ExtResource("5_fu0gs")
 id = "planet_6"
-name = &"Xoov"
+name = &"Blex"
 sprite = ExtResource("6_p538t")
 desc = ""
 food_prod = 2
@@ -19,9 +20,10 @@ weapon_prod = 4
 food_demand = 6
 luxury_demand = 2
 weapon_demand = 4
+weapons = 0
 current_relations = Array[ExtResource("2_skv75")]([])
 current_reputation = Array[ExtResource("3_syww1")]([])
 current_info = Array[ExtResource("1_k8x0i")]([])
-event_pool = Array[ExtResource("4_5qy3j")]([])
+event_pool = Array[ExtResource("4_5qy3j")]([ExtResource("5_yqb73")])
 live_events = Array[ExtResource("4_5qy3j")]([])
 event_history = Array[ExtResource("4_5qy3j")]([])

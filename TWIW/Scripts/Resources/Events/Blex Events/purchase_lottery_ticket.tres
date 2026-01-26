@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="Event" load_steps=20 format=3 uid="uid://b2e5qey6jngbp"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_rsuoj"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="2_vbyia"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="3_8aq3a"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="4_5j675"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="5_xnkeq"]
+
+[sub_resource type="Resource" id="Resource_j845h"]
+script = ExtResource("1_rsuoj")
+cost_type = "Money"
+cost_value = -200
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_5uagn"]
+script = ExtResource("2_vbyia")
+war_event = false
+condition_type = "Money"
+condition_value = 100
+on_planet = &""
+
+[sub_resource type="Resource" id="Resource_1pm35"]
+script = ExtResource("3_8aq3a")
+name = ""
+dialogue = "Unlucky! "
+
+[sub_resource type="Resource" id="Resource_k0x66"]
+script = ExtResource("1_rsuoj")
+cost_type = "Money"
+cost_value = 0
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_bvsj1"]
+script = ExtResource("4_5j675")
+effect_value_token = SubResource("Resource_k0x66")
+effect_probability = 70
+effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_1pm35")])
+
+[sub_resource type="Resource" id="Resource_jacet"]
+script = ExtResource("3_8aq3a")
+name = ""
+dialogue = "Small Win! Not bad"
+
+[sub_resource type="Resource" id="Resource_lc5yv"]
+script = ExtResource("1_rsuoj")
+cost_type = "Money"
+cost_value = 400
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_fcupu"]
+script = ExtResource("4_5j675")
+effect_value_token = SubResource("Resource_lc5yv")
+effect_probability = 25
+effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_jacet")])
+
+[sub_resource type="Resource" id="Resource_m6oxd"]
+script = ExtResource("3_8aq3a")
+name = ""
+dialogue = "Alright Big win!"
+
+[sub_resource type="Resource" id="Resource_088kf"]
+script = ExtResource("1_rsuoj")
+cost_type = "Money"
+cost_value = 1000
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_newk4"]
+script = ExtResource("4_5j675")
+effect_value_token = SubResource("Resource_088kf")
+effect_probability = 4
+effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_m6oxd")])
+
+[sub_resource type="Resource" id="Resource_2xr6b"]
+script = ExtResource("3_8aq3a")
+name = ""
+dialogue = "JACKPOT!!!!!!"
+
+[sub_resource type="Resource" id="Resource_7ltc8"]
+script = ExtResource("1_rsuoj")
+cost_type = "Money"
+cost_value = 3000
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_bdjh4"]
+script = ExtResource("4_5j675")
+effect_value_token = SubResource("Resource_7ltc8")
+effect_probability = 1
+effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_2xr6b")])
+
+[resource]
+script = ExtResource("5_xnkeq")
+event_name = &"Purchase Lottery Ticket"
+event_desc = "SMALL CHANCE TO WIN BIG"
+event_button_text = ""
+home_exclusive = false
+event_conditions = Array[ExtResource("2_vbyia")]([SubResource("Resource_5uagn")])
+event_dialogue = Array[ExtResource("3_8aq3a")]([])
+event_effects = Array[ExtResource("4_5j675")]([SubResource("Resource_bvsj1"), SubResource("Resource_fcupu"), SubResource("Resource_newk4"), SubResource("Resource_bdjh4")])
+cost = Array[ExtResource("1_rsuoj")]([SubResource("Resource_j845h")])
