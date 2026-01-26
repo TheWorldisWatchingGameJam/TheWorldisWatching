@@ -16,6 +16,7 @@ script = ExtResource("8_ihskw")
 cost_type = "Luxuries"
 cost_value = 5
 on_planet = &""
+on_current_planet = false
 
 [resource]
 script = ExtResource("2_6bee7")

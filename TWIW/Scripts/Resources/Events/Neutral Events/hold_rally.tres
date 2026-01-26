@@ -12,15 +12,12 @@ script = ExtResource("1_72kst")
 cost_type = "Money"
 cost_value = 300
 on_planet = &""
+on_current_planet = false
 
 [sub_resource type="Resource" id="Resource_qhfaw"]
 script = ExtResource("4_g815u")
-effect_type = "Rep"
-effect_value = 2
 effect_probability = 0
 effect_dialogue = Array[ExtResource("2_4h3hu")]([])
-on_planet = &""
-on_current_planet = true
 
 [resource]
 script = ExtResource("4_0l56e")
