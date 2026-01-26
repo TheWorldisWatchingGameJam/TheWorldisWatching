@@ -57,9 +57,11 @@ func modify_info(planet_name: StringName, info_value: int) -> void:
 			x.info += info_value
 
 func modify_reputation(planet_name: StringName, rep_value: int) -> void:
+	print("Attempting to modify relation at ", planet_name, " by ", str(rep_value))
 	for x in current_reputation:
 		if x.planet_name == planet_name:
 			x.reputation += rep_value
+			print("currentReputationChanged signal emitted.")
 			emit_signal("currentReputationChanged")
 
 func modify_relations(planet_name: StringName, relation: String) -> void:

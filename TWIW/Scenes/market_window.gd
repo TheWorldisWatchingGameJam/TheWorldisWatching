@@ -7,14 +7,17 @@ extends Control
 @export var luxuries_price: int
 @export var weapons_price: int
 
+@onready var market_name_label = %MarketNameLabel
 @onready var food_current_price_label = %FoodCurrentPriceLabel
 @onready var luxuries_current_price_label = %LuxuriesCurrentPriceLabel
 @onready var weapons_current_price_label = %WeaponsCurrentPriceLabel
+
 
 signal marketWindowClosed
 
 func _ready() -> void:
 	calculate_prices(planet)
+	market_name_label.text = str("Welcome to the ", planet.name, " Market!")
 	food_current_price_label.text = str("Current Price: ", food_price)
 	luxuries_current_price_label.text = str("Current Price: ", luxuries_price)
 	weapons_current_price_label.text = str("Current Price: ", weapons_price)
