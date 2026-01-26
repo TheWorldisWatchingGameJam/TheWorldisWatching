@@ -40,8 +40,7 @@ func _on_planet_selected(planet_data):
 	galaxy_manager.setup_galaxy(planet_data)
 	galaxy_manager.print_map()
 	
-	galaxy_manager.draw_galaxy_random()
-	galaxy_manager.draw_connections()
+	galaxy_manager.	generate_graph_and_draw()
 	
 	_update_election_counter()
 	

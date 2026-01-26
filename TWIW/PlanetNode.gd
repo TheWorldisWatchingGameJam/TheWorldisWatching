@@ -8,7 +8,7 @@ signal planet_clicked(planet_node)  # Changed to emit the node itself
 
 var galaxy_manager: Node = null
 var planet_data = null
-const TARGET_SIZE := Vector2(128, 128)
+const TARGET_SIZE := Vector2(200, 200)
 
 func set_planet(p_data):
 	planet_data = p_data
