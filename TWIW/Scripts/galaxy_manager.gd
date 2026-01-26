@@ -38,6 +38,9 @@ func setup_galaxy(chosen_planet: PlanetData):
 	player_planet = chosen_planet
 	selected_planets = [player_planet]
 
+	# Assign player home planet
+	player_data.home_planet_data = player_planet
+
 	var remaining = all_planets.duplicate()
 	remaining.shuffle()
 	var count = 0
@@ -45,6 +48,9 @@ func setup_galaxy(chosen_planet: PlanetData):
 		if planet.id != player_planet.id and count < 5:
 			selected_planets.append(planet)
 			count += 1
+
+	# Initialize player's reputation with selected planets to zero
+	player_data.initialize_reputation_values(selected_planets)
 
 	draw_galaxy_random()
 	_generate_fully_connected_graph()
@@ -116,6 +122,7 @@ func _generate_fully_connected_graph():
 			galaxy_graph[id1].append({"to": id2, "days": days})
 			galaxy_graph[id2].append({"to": id1, "days": days})
 
+
 func draw_connections():
 	if connections_node:
 		connections_node.queue_free()
@@ -180,6 +187,14 @@ func print_map():
 					target_name = p.name
 			print("  -> " + target_name + " (" + str(conn.days) + " days)")
 
+
+func get_distance(from_id: String, to_id: String) -> int:
+	for conn in galaxy_graph[from_id]:
+		if to_id == conn.to:
+			print("Distance from ", from_id, " to ", to_id, " is ", conn.days, " days.")
+			return conn.days
+	return 0
+
 func show_planet_connections(planet_id: String):
 	if planet_id in planet_lines:
 		for entry in planet_lines[planet_id]:
@@ -203,6 +218,7 @@ func zoom_to_planet(planet_node: Node2D):
 		zoomed_in = true
 		current_focused_planet = planet_node
 		show_travel_panel(planet_node.planet_data)
+
 func reset_zoom():
 	if camera:
 		# Get the center of the viewport/screen
@@ -241,9 +257,15 @@ func _on_travel_button_pressed():
 			planet_screen.planet = target_planet  # Use the full .tres resource
 			planet_screen.home_planet_data = player_planet
 			planet_screen.player_data = player_data
-			
+			update_player_time(target_planet.id)
 			get_tree().get_root().add_child(planet_screen)
 			hide_travel_panel()
 			reset_zoom()
 		else:
 			print("Error: Could not find planet in all_planets array")
+
+
+func update_player_time(to_planet: String) -> void:
+	player_data.time_tracker.current_day += get_distance(player_data.home_planet_data.id, to_planet)
+	print("Current Day: ", player_data.time_tracker.current_day)
+	print("Days left to next election: ", str(days_until_election - player_data.time_tracker.current_day))

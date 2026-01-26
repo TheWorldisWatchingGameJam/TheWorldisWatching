@@ -5,8 +5,9 @@ extends Node2D
 @onready var planet_options = [$PlanetOption1, $PlanetOption2, $PlanetOption3]
 @onready var election_counter = $ElectionCounter
 @onready var choose_label = $Choose
-@export var days_until_election: int = 20
 
+@export var days_until_election: int = 20
+@export var player_data: PlayerData
 
 
 var selection_phase = true
@@ -33,6 +34,7 @@ func _on_planet_selected(planet_data):
 	# Hide selection screen
 	for option in planet_options:
 		option.visible = false
+
 	
 	# Setup galaxy
 	galaxy_manager.setup_galaxy(planet_data)
@@ -48,3 +50,6 @@ func _on_planet_selected(planet_data):
 func _update_election_counter():
 	election_counter.text = "Days until next election: " + str(galaxy_manager.days_until_election)
 	election_counter.visible = true
+
+
+	

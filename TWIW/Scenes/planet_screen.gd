@@ -13,6 +13,7 @@ extends Control
 @onready var window = $Window
 @onready var event_chosen_label = %EventChosenLabel
 @onready var market_window = load("res://Scenes/market_window.tscn")
+@onready var dialogue_window = load("res://Scenes/dialogue_window.tscn")
 
 signal eventChosen
 
@@ -130,8 +131,24 @@ func _on_event_selected(event: Event) -> void:
 			print("Player cannot afford event cost!")
 			return
 	for cost in event.cost:
-			player_data.player_data_modify(cost)
+		player_data.player_data_modify(cost)
+	resolve_event_effect(event.event_effects)
+
 	emit_signal("eventChosen")
+
+func resolve_event_effect(event_effects: Array[EventEffect]) -> void:
+	for effect in event_effects:
+		player_data.player_data_modify(effect.effect_value_token)
+		if effect.effect_dialogue:
+			var new_dialogue = dialogue_window.instantiate()
+			new_dialogue.dialogue_array = effect.effect_dialogue
+			new_dialogue.dialogueFinished.connect(on_effect_dialogue_finished.bind(new_dialogue))
+			window.hide()
+			get_tree().get_root().add_child(new_dialogue)
+
+func on_effect_dialogue_finished(dialogue_screen: Control) -> void:
+	dialogue_screen.queue_free()
+	window.visible = true
 
 func _on_trade_button_pressed() -> void:
 	var trade_window = load("res://Scenes/trade_window.tscn")

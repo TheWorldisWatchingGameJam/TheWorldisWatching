@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://cuqefho4xwcxd"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_x6vj8"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="2_kv3kb"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="3_nfo3q"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="4_ht7jk"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="5_ongx2"]
+[ext_resource type="Texture2D" uid="uid://b55u3ayg5pm3q" path="res://Assets/CharacterSprites/wilyambfarmstar.png" id="5_xm1hp"]
+
+[sub_resource type="Resource" id="Resource_5c085"]
+script = ExtResource("1_x6vj8")
+cost_type = "Money"
+cost_value = -200
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_7c17k"]
+script = ExtResource("3_nfo3q")
+name = "Wilyam B. Farmstar III"
+dialogue = "Thank you so much for your generous donation to our Great Harvest Festival! "
+sprite = ExtResource("5_xm1hp")
+
+[sub_resource type="Resource" id="Resource_wegxw"]
+script = ExtResource("1_x6vj8")
+cost_type = "Rep"
+cost_value = 10
+on_planet = &"Frez"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_jm83m"]
+script = ExtResource("4_ht7jk")
+effect_value_token = SubResource("Resource_wegxw")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("3_nfo3q")]([SubResource("Resource_7c17k")])
+
+[resource]
+script = ExtResource("5_ongx2")
+event_name = &"Fund Great Harvest Festival"
+event_desc = "Donate money to fund Frez's biggest festival."
+event_button_text = "Fund."
+home_exclusive = false
+event_conditions = Array[ExtResource("2_kv3kb")]([])
+event_dialogue = Array[ExtResource("3_nfo3q")]([])
+event_effects = Array[ExtResource("4_ht7jk")]([SubResource("Resource_jm83m")])
+cost = Array[ExtResource("1_x6vj8")]([SubResource("Resource_5c085")])

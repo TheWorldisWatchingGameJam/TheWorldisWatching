@@ -8,3 +8,4 @@ class_name EventCost
 
 #If cost is of type info or rep, check of which planet the cost should be deducted from
 @export var on_planet: StringName
+@export var on_current_planet: bool

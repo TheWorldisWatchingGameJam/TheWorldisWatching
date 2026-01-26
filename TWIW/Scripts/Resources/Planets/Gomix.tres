@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_y0wg4"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_legbn"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_u6a02"]
-[ext_resource type="Texture2D" uid="uid://dq5x6at4n3ro7" path="res://Sprites/PlanetSprites/polarbeartemp.jpg" id="6_07oj5"]
+[ext_resource type="Texture2D" uid="uid://dq5x6at4n3ro7" path="res://Assets/PlanetSprites/polarbeartemp.jpg" id="6_07oj5"]
 
 [resource]
 script = ExtResource("5_u6a02")
@@ -19,6 +19,7 @@ weapon_prod = 4
 food_demand = 6
 luxury_demand = 2
 weapon_demand = 4
+weapons = 0
 current_relations = Array[ExtResource("2_00vvr")]([])
 current_reputation = Array[ExtResource("3_y0wg4")]([])
 current_info = Array[ExtResource("1_bxaqs")]([])

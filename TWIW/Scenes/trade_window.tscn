@@ -1,4 +1,17 @@
-[gd_scene format=3 uid="uid://bhgplb6tgvin7"]
+[gd_scene load_steps=13 format=3 uid="uid://bhgplb6tgvin7"]
+
+[ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="1_3ak3c"]
+[ext_resource type="LabelSettings" uid="uid://bepmqoip50uru" path="res://Assets/Theme/large_text_generic.tres" id="2_qjv4v"]
+[ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="3_r33sy"]
+[ext_resource type="StyleBox" uid="uid://4b7i8jghbajh" path="res://Assets/Theme/button_hover_stylebox.tres" id="4_t1mfa"]
+[ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="5_cs1t5"]
+[ext_resource type="LabelSettings" uid="uid://nya3oggxmp3m" path="res://Assets/Theme/market_item_label.tres" id="6_43gi5"]
+[ext_resource type="Texture2D" uid="uid://dpi2wodq4jimt" path="res://Assets/ResourceIcons/apple-439397.png" id="7_lggut"]
+[ext_resource type="Theme" uid="uid://kdox7h3lrego" path="res://Assets/Theme/button_theme.tres" id="8_qkj0x"]
+[ext_resource type="Texture2D" uid="uid://cn4sst772m3r1" path="res://Assets/ResourceIcons/Drawing.png" id="9_ppvbw"]
+[ext_resource type="Texture2D" uid="uid://c284smqldiw1q" path="res://Assets/ResourceIcons/diamond-6687408.png" id="9_xb2yc"]
+[ext_resource type="Texture2D" uid="uid://beh8mme8s3pmx" path="res://Assets/ResourceIcons/alien-gun-4780305.png" id="10_lv8kk"]
+[ext_resource type="Texture2D" uid="uid://bcij8aaxvmw7m" path="res://Assets/ResourceIcons/dollar-2719007.png" id="11_m0pl2"]
 
 [node name="TradeWindow" type="Control"]
 layout_mode = 3
@@ -7,3 +20,267 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1700, 800)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -400.0
+offset_right = 850.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_3ak3c")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(1700, 750)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarketNameLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Establish a Trade Route at Opal"
+label_settings = ExtResource("2_qjv4v")
+horizontal_alignment = 1
+
+[node name="AboutButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.133333, 0.00784314, 1)
+theme_override_fonts/font = ExtResource("3_r33sy")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("4_t1mfa")
+theme_override_styles/normal = ExtResource("5_cs1t5")
+text = "?"
+
+[node name="CloseButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.898039, 0.227451, 0.203922, 1)
+theme_override_fonts/font = ExtResource("3_r33sy")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = ExtResource("4_t1mfa")
+theme_override_styles/normal = ExtResource("5_cs1t5")
+text = "X"
+
+[node name="MarketWindow" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1350, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+layout_mode = 2
+text = "You will give:"
+label_settings = ExtResource("6_43gi5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_lggut")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="FoodSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("8_qkj0x")
+text = "Food"
+expand_icon = true
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control3" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("9_xb2yc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="FoodSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("8_qkj0x")
+text = "Luxuries"
+expand_icon = true
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control4" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_lv8kk")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="FoodSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("8_qkj0x")
+text = "Weapons"
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control6" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control2" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("11_m0pl2")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="FoodSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme = ExtResource("8_qkj0x")
+text = "Money"
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control5" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureButton" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+texture_normal = ExtResource("9_ppvbw")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WeaponsSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(360, 50)
+layout_mode = 2
+theme = ExtResource("8_qkj0x")
+text = "Establish Trade Route"
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control3" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
+layout_mode = 2
+text = "You will receive:"
+label_settings = ExtResource("6_43gi5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LuxuriesSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme = ExtResource("8_qkj0x")
+text = "Sell"
+
+[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2

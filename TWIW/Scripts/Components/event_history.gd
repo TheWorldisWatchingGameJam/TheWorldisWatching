@@ -3,4 +3,5 @@ extends Resource
 class_name EventHistoryEntry
 
 @export var event_name: StringName
-@export_enum("Played", "Not Played") var status: String
+@export var on_planet: StringName
+@export var on_day: int
