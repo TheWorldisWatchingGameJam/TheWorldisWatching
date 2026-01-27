@@ -13,6 +13,7 @@ var _total_rep := 0
 
 @export var home_planet_data: PlanetData: set = on_home_planet_data_set
 @export var time_tracker: TimeTracker
+@export var trade_routes: Array[TradeRoute]
 
 @export_range(0, 999999, 1)
 var food: int:
@@ -62,8 +63,7 @@ func can_pay(cost_token: EventCost) -> bool:
 		_:
 			return 0
 
-	
-	
+
 func player_data_modify(cost_token: EventCost) -> void:
 	print("Player resource, " + cost_token.cost_type + ", being modified by ", str(cost_token.cost_value)) 
 	match cost_token.cost_type:

@@ -4,7 +4,7 @@ extends Node
 @export var PlanetNodeScene: PackedScene
 @export var all_planets: Array[PlanetData]
 @export var rocket_texture: Texture2D
-@export var days_until_election: int = 20
+@export var days_until_election: int = 40
 @export var planet_screen_scene: PackedScene
 @export var player_data: PlayerData
 
