@@ -80,8 +80,8 @@ sprite = ExtResource("6_ca1bv")
 
 [resource]
 script = ExtResource("5_40q7l")
-event_name = &"Meet with x"
-event_desc = "What does he want?"
+event_name = &"Meet with Wilyam B. Farmstar"
+event_desc = "Wilyam B. Farmstar is holding a gathering. What could he want?"
 event_button_text = ""
 home_exclusive = false
 event_conditions = Array[ExtResource("2_28sb3")]([])

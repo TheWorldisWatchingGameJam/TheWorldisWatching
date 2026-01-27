@@ -3,6 +3,7 @@ extends Control
 var planet: PlanetData 
 var player_data: PlayerData
 var home_planet_data: PlanetData
+var ai_data: AIData
 
 @export var event_name_label_settings: LabelSettings
 @export var event_desc_label_settings: LabelSettings

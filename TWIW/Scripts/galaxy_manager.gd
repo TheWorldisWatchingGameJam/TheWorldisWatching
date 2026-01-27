@@ -7,6 +7,7 @@ extends Node
 @export var days_until_election: int = 40
 @export var planet_screen_scene: PackedScene
 @export var player_data: PlayerData
+@export var ai_data: AIData
 
 #camera variables
 @onready var camera: Camera2D = get_node("../MapCamera")
@@ -16,6 +17,7 @@ extends Node
 # Variables
 var selected_planets: Array[PlanetData] = []
 var player_planet: PlanetData = null
+var player_current_location: PlanetData = null
 var galaxy_graph: Dictionary = {}
 var planet_positions: Dictionary = {}
 var connections_node: Node2D = null
@@ -30,6 +32,8 @@ var max_distance: float = 0.0
 
 func _ready():
 	add_to_group("galaxy_manager")
+	if camera:
+		default_zoom = camera.zoom
 
 # Player planet selection
 func get_3_random_planets() -> Array:
@@ -39,9 +43,9 @@ func get_3_random_planets() -> Array:
 
 func setup_galaxy(chosen_planet: PlanetData):
 	player_planet = chosen_planet
+	player_current_location = chosen_planet
 	selected_planets = [player_planet]
 
-	# Assign player home planet
 	player_data.home_planet_data = player_planet
 
 	var remaining = all_planets.duplicate()
@@ -52,12 +56,17 @@ func setup_galaxy(chosen_planet: PlanetData):
 			selected_planets.append(planet)
 			count += 1
 
-	# Initialize player's reputation with selected planets to zero
 	player_data.initialize_reputation_values(selected_planets)
+	
+	# Initialize AI reputation for only the 5 OTHER planets (not home)
+	if ai_data:
+		var ai_planets = selected_planets.filter(func(p): return p.id != player_planet.id)
+		ai_data.initialize_leaders(ai_planets)
 
 	draw_galaxy_random()
 	generate_graph_and_draw()
 	print_map()
+
 
 func draw_galaxy_random():
 	for child in get_tree().get_root().get_children():
@@ -66,7 +75,7 @@ func draw_galaxy_random():
 
 	planet_positions.clear()
 	var positions: Array = []
-	var min_distance_spacing = 300  # Renamed to avoid conflict
+	var min_distance_spacing = 300
 	var max_attempts = 50
 
 	var screen_size = get_viewport().get_visible_rect().size
@@ -199,10 +208,16 @@ func print_map():
 			print("  -> " + target_name + " (" + str(conn.days) + " days)")
 
 func get_distance(from_id: String, to_id: String) -> int:
+	if from_id not in galaxy_graph:
+		print("ERROR: ", from_id, " not in galaxy_graph!")
+		return 0
+	
 	for conn in galaxy_graph[from_id]:
 		if to_id == conn.to:
 			print("Distance from ", from_id, " to ", to_id, " is ", conn.days, " days.")
 			return conn.days
+	
+	print("ERROR: No connection from ", from_id, " to ", to_id)
 	return 0
 
 func show_planet_connections(planet_id: String):
@@ -271,6 +286,25 @@ func _on_travel_button_pressed():
 			print("Error: Could not find planet in all_planets array")
 
 func update_player_time(to_planet: String) -> void:
-	player_data.time_tracker.current_day += get_distance(player_data.home_planet_data.id, to_planet)
+	# Get travel days from current location
+	var days_traveled = get_distance(player_current_location.id, to_planet)
+	
+	# Advance days and apply AI rep changes each day
+	for i in range(days_traveled):
+		player_data.time_tracker.current_day += 1
+		
+		# Apply daily AI rep changes
+		if ai_data:
+			ai_data.apply_daily_rep_change()
+	
+	# Update current location
+	for planet in selected_planets:
+		if planet.id == to_planet:
+			player_current_location = planet
+			break
+	
+	print("Traveled ", days_traveled, " days to ", to_planet)
 	print("Current Day: ", player_data.time_tracker.current_day)
 	print("Days left to next election: ", str(days_until_election - player_data.time_tracker.current_day))
+	if ai_data:
+		print("AI Reps: ", ai_data.get_all_reps())

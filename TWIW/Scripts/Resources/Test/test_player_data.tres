@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=14 format=3 uid="uid://dgvksy7yjscfo"]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=15 format=3 uid="uid://dgvksy7yjscfo"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_l3eed"]
 [ext_resource type="Script" path="res://Scripts/Components/player_data.gd" id="1_myrfh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_4vo74"]
 [ext_resource type="Script" path="res://Scripts/Components/event_history.gd" id="7_t6qs5"]
 [ext_resource type="Script" path="res://Scripts/Components/time_tracker.gd" id="8_rl5dj"]
+[ext_resource type="Script" path="res://Scripts/Components/trade_route.gd" id="9_2srp2"]
 
 [sub_resource type="Resource" id="Resource_43d60"]
 script = ExtResource("3_cco1b")
@@ -53,6 +54,7 @@ history = Array[ExtResource("7_t6qs5")]([SubResource("Resource_k7s0l")])
 script = ExtResource("1_myrfh")
 home_planet_data = SubResource("Resource_335xq")
 time_tracker = SubResource("Resource_3yxoi")
+trade_routes = Array[ExtResource("9_2srp2")]([])
 food = 90
 luxuries = 100
 weapons = 100
