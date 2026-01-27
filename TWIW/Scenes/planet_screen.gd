@@ -309,3 +309,6 @@ func _on_threaten_button_pressed() -> void:
 func _on_event_chosen() -> void:
 	planet_window.hide()
 	event_chosen_label.visible = true
+
+func _on_leave_button_pressed() -> void:
+	self.queue_free()

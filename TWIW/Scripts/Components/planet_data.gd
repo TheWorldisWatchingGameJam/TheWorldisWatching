@@ -65,6 +65,20 @@ func modify_reputation(planet_name: StringName, rep_value: int) -> void:
 			print("currentReputationChanged signal emitted.")
 			emit_signal("currentReputationChanged")
 
+func modify_production(production_type: String, value: int) -> void:
+	match production_type:
+		"Food":
+			food_prod += value
+			print("Food production being modified by ", value)
+		"Luxuries":
+			luxury_prod += value
+			print("Luxury production being modified by ", value)
+		"Weapons":
+			weapon_prod += value
+			print("Weapons production being modified by ", value)
+		_:
+			print("Production value type not found.")
+
 func modify_relations(planet_name: StringName, relation: String) -> void:
 	for x in current_relations:
 		if x.planet_name == planet_name:

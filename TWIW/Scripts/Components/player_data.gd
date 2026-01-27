@@ -119,11 +119,54 @@ func initialize_time_tracker() -> void:
 	time_tracker.dayPassed.connect(simulate_day)
 
 func simulate_day() -> void:
-	print("Day Simulated")
+	print("Day Simulating...")
 	execute_trade_routes(trade_routes)
-	
-	
+
+
 func execute_trade_routes(routes: Array[TradeRoute]):
+	print("-==Trade Routes Being Executed==-")
+	var expired_routes: Array[TradeRoute]
 	for route in routes:
-		pass
+		print("Executing route to ", route.to_planet)
+		print("Route Export: ", route.export.cost_value, " ", route.export.cost_type)
+		print("Route Import: ", route.import.cost_value, " ", route.import.cost_type)
+
+		if route.current_lifetime == route.max_duration:
+			expired_routes.append(route)
+			print("Route expired.")
+			continue
+		if route.executed == true:
+			route.current_lifetime += 1
+			print("Route has already been executed. Trade route lifetime: ", str(route.current_lifetime))
+			player_data_modify(route.import)
+			apply_rep_bonus(route)
+			if route.current_lifetime == route.max_duration:
+				expired_routes.append(route)
+				print("Route expired.")
+			continue
+		if route.executed == false:
+			home_planet_data.modify_production(route.export.cost_type, route.export.cost_value)
+			print("Route has not been executed. Executing...")
+			player_data_modify(route.import)
+			apply_rep_bonus(route)
+			route.executed = true
+	#After iteration remove expired routes
+	for route in expired_routes:
+		routes.erase(route)
+
+func apply_rep_bonus(route: TradeRoute) -> void:
+	var rep_bonus = EventCost.new()
+	rep_bonus.cost_type = "Rep"
+	rep_bonus.on_planet = route.to_planet.name
+
+	match route.export.cost_type:
+		"Food":
+			if route.to_planet.food_demand > 3:
+				rep_bonus.cost_value = 1
+		"Luxuries":
+			rep_bonus.cost_value = 2
+		"Weapons":
+			if route.to_planet.weapon_demand > 2:
+				rep_bonus.cost_value = 1
+	player_data_modify(rep_bonus)
 	
