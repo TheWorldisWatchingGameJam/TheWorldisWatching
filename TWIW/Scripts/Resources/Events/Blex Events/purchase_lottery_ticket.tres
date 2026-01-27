@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Event" load_steps=20 format=3 uid="uid://b2e5qey6jngbp"]
+[gd_resource type="Resource" script_class="Event" load_steps=21 format=3 uid="uid://b2e5qey6jngbp"]
 
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_cdinn"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_rsuoj"]
 [ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="2_vbyia"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="3_8aq3a"]
@@ -96,9 +97,10 @@ effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_2xr6b")])
 script = ExtResource("5_xnkeq")
 event_name = &"Purchase Lottery Ticket"
 event_desc = "SMALL CHANCE TO WIN BIG"
-event_button_text = ""
+event_button_text = "Purchase"
 home_exclusive = false
 event_conditions = Array[ExtResource("2_vbyia")]([SubResource("Resource_5uagn")])
 event_dialogue = Array[ExtResource("3_8aq3a")]([])
 event_effects = Array[ExtResource("4_5j675")]([SubResource("Resource_bvsj1"), SubResource("Resource_fcupu"), SubResource("Resource_newk4"), SubResource("Resource_bdjh4")])
+choices = Array[ExtResource("1_cdinn")]([])
 cost = Array[ExtResource("1_rsuoj")]([SubResource("Resource_j845h")])

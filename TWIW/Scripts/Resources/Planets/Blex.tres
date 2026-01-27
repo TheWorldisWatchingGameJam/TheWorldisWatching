@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://dbac38xsd7l2k"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://bha42xdgt1wit"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_k8x0i"]
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_skv75"]
@@ -16,11 +16,11 @@ sprite = ExtResource("7_j0e1l")
 desc = ""
 major_export = ""
 food_prod = 2
-luxury_prod = 6
-weapon_prod = 4
-food_demand = 6
+luxury_prod = 3
+weapon_prod = 2
+food_demand = 2
 luxury_demand = 2
-weapon_demand = 4
+weapon_demand = 3
 weapons = 0
 current_relations = Array[ExtResource("2_skv75")]([])
 current_reputation = Array[ExtResource("3_syww1")]([])

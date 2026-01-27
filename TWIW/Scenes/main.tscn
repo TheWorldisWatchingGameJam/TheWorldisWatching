@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dfixd4skh3ig7"]
+[gd_scene load_steps=27 format=3 uid="uid://dfixd4skh3ig7"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ektus"]
 [ext_resource type="Script" path="res://Scenes/PlanetOption.gd" id="2_1an38"]
@@ -10,14 +10,23 @@
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="4_h3u51"]
 [ext_resource type="Resource" uid="uid://b4kf7erwn6muh" path="res://Scripts/Resources/Planets/Frez.tres" id="5_6araa"]
 [ext_resource type="Resource" uid="uid://d1r5bocod2xw1" path="res://Scripts/Resources/Planets/Huldar.tres" id="6_325so"]
-[ext_resource type="Resource" uid="uid://dbac38xsd7l2k" path="res://Scripts/Resources/Planets/Blex.tres" id="6_cbulc"]
+[ext_resource type="Resource" uid="uid://bha42xdgt1wit" path="res://Scripts/Resources/Planets/Blex.tres" id="6_cbulc"]
 [ext_resource type="Resource" uid="uid://f0quaynyrmg" path="res://Scripts/Resources/Planets/Opal.tres" id="7_ynkjw"]
 [ext_resource type="Resource" uid="uid://b0wugdfli82wd" path="res://Scripts/Resources/Planets/Verp.tres" id="8_oyrie"]
 [ext_resource type="Resource" uid="uid://cda2udbfuiixi" path="res://Scripts/Resources/Planets/Gomix.tres" id="10_bkkx6"]
 [ext_resource type="Texture2D" uid="uid://bmoikfaf0lc2g" path="res://Assets/rocketship_temp.jpg" id="11_q3y5o"]
 [ext_resource type="PackedScene" uid="uid://cmcx2y2kmefbe" path="res://Scenes/planet_screen.tscn" id="13_ssfxd"]
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="14_c3rc7"]
+[ext_resource type="Script" path="res://Scripts/Components/ai_data.gd" id="15_7cmk1"]
 [ext_resource type="AudioStream" uid="uid://dcrvqt7dqo3wg" path="res://Assets/Audio/menu.wav" id="16_urgrp"]
+
+[sub_resource type="Resource" id="Resource_kyq7c"]
+script = ExtResource("15_7cmk1")
+daily_rep_min = -2
+daily_rep_max = 5
+min_rep = -500
+max_rep = 500
+starting_rep = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l35hw"]
 size = Vector2(150.435, 154.034)
@@ -57,6 +66,7 @@ all_planets = Array[ExtResource("4_h3u51")]([ExtResource("6_cbulc"), ExtResource
 rocket_texture = ExtResource("11_q3y5o")
 planet_screen_scene = ExtResource("13_ssfxd")
 player_data = ExtResource("14_c3rc7")
+ai_data = SubResource("Resource_kyq7c")
 
 [node name="GalaxyMap" type="Node2D" parent="GalaxyManager"]
 
