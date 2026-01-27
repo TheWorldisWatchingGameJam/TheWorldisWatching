@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://bha42xdgt1wit"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://dbac38xsd7l2k"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_k8x0i"]
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_skv75"]

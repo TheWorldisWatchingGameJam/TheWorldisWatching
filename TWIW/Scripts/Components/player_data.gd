@@ -103,3 +103,17 @@ func initialize_reputation_values(planets: Array[PlanetData]) -> void:
 	for planet in home_planet_data.current_reputation:
 		total_rep += planet.reputation
 	update_total_rep()
+
+func initialize_time_tracker() -> void:
+	time_tracker = TimeTracker.new()
+	time_tracker.dayPassed.connect(simulate_day)
+
+func simulate_day() -> void:
+	print("Day Simulated")
+	execute_trade_routes(trade_routes)
+	
+	
+func execute_trade_routes(routes: Array[TradeRoute]):
+	for route in routes:
+		pass
+	

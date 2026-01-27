@@ -15,6 +15,7 @@ var home_planet_data: PlanetData
 @onready var event_chosen_label = %EventChosenLabel
 @onready var market_window = load("res://Scenes/market_window.tscn")
 @onready var dialogue_window = load("res://Scenes/dialogue_window.tscn")
+@onready var trade_window = load("res://Scenes/trade_window.tscn")
 
 var current_dialogue_window: Control = null
 var current_choice_panel: Control = null
@@ -24,8 +25,18 @@ signal eventChosen
 func _ready() -> void:
 	await get_tree().process_frame
 	initialize_market_window()
+	initialize_trade_window()
 	display_options(random_options(3))
 	threaten_button.disabled = false
+	
+
+func initialize_trade_window() -> void:
+	trade_window = trade_window.instantiate()
+	trade_window.tradeWindowClosed.connect(on_trade_window_closed)
+	trade_window.player_data = player_data
+	trade_window.planet = planet
+	trade_window.hide()
+	self.add_child(trade_window)
 
 func initialize_market_window() -> void:
 	market_window = market_window.instantiate()
@@ -273,8 +284,12 @@ func on_effect_dialogue_finished() -> void:
 	window.visible = true
 
 func _on_trade_button_pressed() -> void:
-	var trade_window = load("res://Scenes/trade_window.tscn")
-	trade_window.instantiate()
+	window.hide()
+	trade_window.visible = true
+
+func on_trade_window_closed() -> void:
+	trade_window.hide()
+	window.visible = true
 
 func _on_market_button_pressed() -> void:
 	window.hide()

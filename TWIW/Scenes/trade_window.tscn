@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhgplb6tgvin7"]
+[gd_scene load_steps=16 format=3 uid="uid://bhgplb6tgvin7"]
 
 [ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="1_3ak3c"]
+[ext_resource type="Script" path="res://Scenes/trade_window.gd" id="1_845e0"]
+[ext_resource type="Resource" uid="uid://f0quaynyrmg" path="res://Scripts/Resources/Planets/Opal.tres" id="2_qblwu"]
 [ext_resource type="LabelSettings" uid="uid://bepmqoip50uru" path="res://Assets/Theme/large_text_generic.tres" id="2_qjv4v"]
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="3_r33sy"]
+[ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="3_sj26n"]
 [ext_resource type="StyleBox" uid="uid://4b7i8jghbajh" path="res://Assets/Theme/button_hover_stylebox.tres" id="4_t1mfa"]
 [ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="5_cs1t5"]
 [ext_resource type="LabelSettings" uid="uid://nya3oggxmp3m" path="res://Assets/Theme/market_item_label.tres" id="6_43gi5"]
@@ -20,6 +23,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_845e0")
+planet = ExtResource("2_qblwu")
+player_data = ExtResource("3_sj26n")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(1700, 800)
@@ -114,11 +120,27 @@ texture = ExtResource("7_lggut")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="FoodSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer"]
+[node name="FoodNumberButton" type="OptionButton" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("8_qkj0x")
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "1"
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="FoodTradeButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("8_qkj0x")
+toggle_mode = true
 text = "Food"
 expand_icon = true
 
@@ -140,10 +162,27 @@ texture = ExtResource("9_xb2yc")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="FoodSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer2"]
+[node name="LuxuriesNumberButton" type="OptionButton" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("8_qkj0x")
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "1"
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="LuxuriesTradeButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("8_qkj0x")
+toggle_mode = true
 text = "Luxuries"
 expand_icon = true
 
@@ -165,10 +204,27 @@ texture = ExtResource("10_lv8kk")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="FoodSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer3"]
+[node name="WeaponsNumberButton" type="OptionButton" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("8_qkj0x")
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "1"
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+
+[node name="WeaponsTradeButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("8_qkj0x")
+toggle_mode = true
 text = "Weapons"
 
 [node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer3"]
@@ -180,6 +236,7 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Control2" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer4"]
@@ -189,10 +246,12 @@ texture = ExtResource("11_m0pl2")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="FoodSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer4"]
+[node name="MoneyTradeButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("8_qkj0x")
+toggle_mode = true
 text = "Money"
 
 [node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer4"]
@@ -230,7 +289,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="WeaponsSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/HBoxContainer"]
+[node name="EstablishTradeButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(360, 50)
 layout_mode = 2
 theme = ExtResource("8_qkj0x")
@@ -258,24 +318,19 @@ vertical_alignment = 1
 [node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="LuxuriesSellButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/HBoxContainer"]
+[node name="ImportLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-theme = ExtResource("8_qkj0x")
-text = "Sell"
-
-[node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/HBoxContainer"]
-layout_mode = 2
 size_flags_horizontal = 3
+label_settings = ExtResource("2_qjv4v")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Control2" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
 layout_mode = 2
@@ -284,3 +339,13 @@ size_flags_vertical = 3
 [node name="Control2" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer/FoodNumberButton" to="." method="_on_food_number_button_item_selected"]
+[connection signal="toggled" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer/FoodTradeButton" to="." method="_on_food_trade_button_toggled"]
+[connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer2/LuxuriesNumberButton" to="." method="_on_luxuries_number_button_item_selected"]
+[connection signal="toggled" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer2/LuxuriesTradeButton" to="." method="_on_luxuries_trade_button_toggled"]
+[connection signal="item_selected" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer3/WeaponsNumberButton" to="." method="_on_weapons_number_button_item_selected"]
+[connection signal="toggled" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer3/WeaponsTradeButton" to="." method="_on_weapons_trade_button_toggled"]
+[connection signal="toggled" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer4/MoneyTradeButton" to="." method="_on_money_trade_button_toggled"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/HBoxContainer/EstablishTradeButton" to="." method="_on_establish_trade_button_pressed"]
