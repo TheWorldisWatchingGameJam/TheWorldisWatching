@@ -29,7 +29,7 @@ effect_dialogue = Array[ExtResource("3_nhrk5")]([])
 
 [sub_resource type="Resource" id="Resource_u2s7s"]
 script = ExtResource("1_h0gvf")
-cost_type = "Weapons"
+cost_type = "WeaponProd"
 cost_value = -999
 on_planet = &""
 on_current_planet = false
@@ -82,7 +82,7 @@ sprite = ExtResource("6_ca1bv")
 script = ExtResource("5_40q7l")
 event_name = &"Meet with Wilyam B. Farmstar"
 event_desc = "Wilyam B. Farmstar is holding a gathering. What could he want?"
-event_button_text = ""
+event_button_text = "Meet"
 home_exclusive = false
 event_conditions = Array[ExtResource("2_28sb3")]([])
 event_dialogue = Array[ExtResource("3_nhrk5")]([SubResource("Resource_v7cbq")])

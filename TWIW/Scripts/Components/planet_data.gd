@@ -76,6 +76,28 @@ func get_reputation(from_planet: StringName) -> int:
 			return x.reputation
 	return 0
 
+func can_pay_production_cost(cost: EventCost) -> bool:
+	match cost.cost_type:
+		"FoodProd":
+			return food_prod + cost.cost_value >= 0
+		"LuxuryProd":
+			return luxury_prod + cost.cost_value >= 0
+		"WeaponProd":
+			return weapon_prod + cost.cost_value >= 0
+		_:
+			return false
+
+func apply_production_cost(cost: EventCost) -> void:
+	match cost.cost_type:
+		"FoodProd":
+			food_prod += cost.cost_value
+		"LuxuryProd":
+			luxury_prod += cost.cost_value
+		"WeaponProd":
+			weapon_prod += cost.cost_value
+		_:
+			return
+
 func threaten(player_weapon_value: int) -> EventCost:
 	print("Player Threatens Planet.")
 	if player_weapon_value - weapons >= max_threaten_reward.cost_value:
