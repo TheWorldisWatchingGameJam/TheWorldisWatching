@@ -102,5 +102,4 @@ func initialize_reputation_values(planets: Array[PlanetData]) -> void:
 	#connect signals to update_total_rep
 	for planet in home_planet_data.current_reputation:
 		total_rep += planet.reputation
-		home_planet_data.currentReputationChanged.connect(update_total_rep)
 	update_total_rep()

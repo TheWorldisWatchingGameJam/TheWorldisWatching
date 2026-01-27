@@ -1,10 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmcx2y2kmefbe"]
+[gd_scene load_steps=13 format=3 uid="uid://cmcx2y2kmefbe"]
 
 [ext_resource type="Script" path="res://Scenes/planet_screen.gd" id="1_i27ir"]
-[ext_resource type="Resource" uid="uid://b4kf7erwn6muh" path="res://Scripts/Resources/Planets/Frez.tres" id="2_12eta"]
 [ext_resource type="Texture2D" uid="uid://bq70p4u11in48" path="res://Assets/mountainous-5942962_1920.jpg" id="2_o2vp4"]
 [ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Assets/Theme/event_name_label_settings.tres" id="3_eddby"]
-[ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="3_v6rpu"]
 [ext_resource type="LabelSettings" uid="uid://b2jya7wkh1jay" path="res://Assets/Theme/event_desc_label_settings.tres" id="5_0i3g7"]
 [ext_resource type="PackedScene" uid="uid://dkelrugrmtsdk" path="res://Scenes/player_ui.tscn" id="5_h8kr8"]
 [ext_resource type="LabelSettings" uid="uid://bepmqoip50uru" path="res://Assets/Theme/large_text_generic.tres" id="6_fwpuq"]
@@ -31,8 +29,6 @@ offset_bottom = 1080.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_i27ir")
-planet = ExtResource("2_12eta")
-player_data = ExtResource("3_v6rpu")
 event_name_label_settings = ExtResource("3_eddby")
 event_desc_label_settings = ExtResource("5_0i3g7")
 

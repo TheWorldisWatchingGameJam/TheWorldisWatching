@@ -15,6 +15,8 @@ class_name Event
 @export var event_conditions: Array[EventCondition]
 @export var event_dialogue: Array[DialogueItem]
 @export var event_effects: Array[EventEffect]
+@export var choices: Array[EventChoice] = []
+
 
 #Event cost
 @export_group("Event Cost")
