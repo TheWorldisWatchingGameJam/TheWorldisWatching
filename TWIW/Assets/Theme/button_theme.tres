@@ -8,8 +8,20 @@
 [resource]
 default_font_size = 30
 Button/colors/font_color = Color(0.000228075, 0.132305, 0.00591678, 1)
+Button/colors/font_focus_color = Color(0, 0.133333, 0.00784314, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/fonts/font = ExtResource("1_rl7x1")
 Button/styles/hover = ExtResource("2_gef0a")
 Button/styles/normal = ExtResource("3_m3mrt")
 Label/fonts/font = ExtResource("1_rl7x1")
+OptionButton/colors/font_color = Color(0, 0.133333, 0.00784314, 1)
+OptionButton/colors/font_focus_color = Color(0, 0.133333, 0.00784314, 1)
+OptionButton/colors/font_hover_color = Color(0, 0.133333, 0.00784314, 1)
+OptionButton/colors/font_hover_pressed_color = Color(0, 0.133333, 0.00784314, 1)
+OptionButton/colors/font_pressed_color = Color(1, 1, 1, 1)
+OptionButton/constants/align_to_largest_stylebox = 1
+OptionButton/constants/arrow_margin = 18
+OptionButton/constants/h_separation = 0
+OptionButton/constants/modulate_arrow = 2
+OptionButton/constants/outline_size = 0
 PanelContainer/styles/panel = ExtResource("4_uocx7")

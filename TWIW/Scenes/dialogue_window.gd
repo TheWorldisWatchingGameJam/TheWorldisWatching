@@ -17,12 +17,15 @@ func _ready() -> void:
 		if dialogue.name:
 			name_label.text = dialogue.name
 			name_container.visible = true
+		else:
+			name_container.visible = false
 		if dialogue.sprite: 
 			character_sprite.texture = dialogue.sprite
 		dialogue_label.text = dialogue.dialogue 
 		await self.dialogueClicked
 		counter += 1
 		if counter >= dialogue_array.size():
+			name_container.visible = false
 			emit_signal("dialogueFinished")
 
 func _on_dialogue_container_gui_input(event: InputEvent) -> void:

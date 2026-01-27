@@ -13,6 +13,7 @@ signal currentReputationChanged
 
 #Planet production values
 @export_group("Planet Production")
+@export_enum("Food", "Luxuries", "Weapons") var major_export: String
 @export var food_prod: int
 @export var luxury_prod: int
 @export var weapon_prod: int
@@ -89,3 +90,15 @@ func threaten(player_weapon_value: int) -> EventCost:
 			threaten_reward.cost_value = player_weapon_value - weapons
 			print("Player gets max reward of: ", threaten_reward.cost_value, " ", threaten_reward.cost_type)
 			return threaten_reward
+
+func get_production(resource_type: String) -> int:
+	print("Checking player's ", resource_type, " production.")
+	match resource_type:
+		"Food": 
+			return food_prod
+		"Luxuries":
+			return luxury_prod
+		"Weapons":
+			return weapon_prod
+		_:
+			return 0

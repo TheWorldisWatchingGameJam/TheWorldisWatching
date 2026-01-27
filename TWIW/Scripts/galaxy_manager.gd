@@ -35,6 +35,7 @@ func _ready():
 func get_3_random_planets() -> Array:
 	var shuffled = all_planets.duplicate()
 	shuffled.shuffle()
+	print(shuffled)
 	return [shuffled[0], shuffled[1], shuffled[2]]
 
 func setup_galaxy(chosen_planet: PlanetData):
@@ -54,6 +55,8 @@ func setup_galaxy(chosen_planet: PlanetData):
 
 	# Initialize player's reputation with selected planets to zero
 	player_data.initialize_reputation_values(selected_planets)
+	# Initialize player's time tracker
+	player_data.initialize_time_tracker()
 
 	draw_galaxy_random()
 	generate_graph_and_draw()
@@ -271,6 +274,7 @@ func _on_travel_button_pressed():
 			print("Error: Could not find planet in all_planets array")
 
 func update_player_time(to_planet: String) -> void:
-	player_data.time_tracker.current_day += get_distance(player_data.home_planet_data.id, to_planet)
+	for i in range(get_distance(player_data.home_planet_data.id, to_planet)):
+		player_data.time_tracker.current_day += 1
 	print("Current Day: ", player_data.time_tracker.current_day)
 	print("Days left to next election: ", str(days_until_election - player_data.time_tracker.current_day))
