@@ -9,5 +9,5 @@ class_name TradeRoute
 @export var export: EventCost #what player gives
 
 @export var executed := false
-@export var max_duration: int = 15
+@export var max_duration: int = 10
 @export var current_lifetime: int

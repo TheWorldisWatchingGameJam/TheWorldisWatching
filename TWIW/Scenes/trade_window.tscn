@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bhgplb6tgvin7"]
+[gd_scene load_steps=27 format=3 uid="uid://bhgplb6tgvin7"]
 
 [ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="1_3ak3c"]
 [ext_resource type="Script" path="res://Scenes/trade_window.gd" id="1_845e0"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="3_r33sy"]
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="3_sj26n"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_3xf7p"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="4_fm32l"]
 [ext_resource type="StyleBox" uid="uid://4b7i8jghbajh" path="res://Assets/Theme/button_hover_stylebox.tres" id="4_t1mfa"]
 [ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="5_cs1t5"]
 [ext_resource type="LabelSettings" uid="uid://nya3oggxmp3m" path="res://Assets/Theme/market_item_label.tres" id="6_43gi5"]
@@ -16,6 +17,13 @@
 [ext_resource type="Texture2D" uid="uid://c284smqldiw1q" path="res://Assets/ResourceIcons/diamond-6687408.png" id="9_xb2yc"]
 [ext_resource type="Texture2D" uid="uid://beh8mme8s3pmx" path="res://Assets/ResourceIcons/alien-gun-4780305.png" id="10_lv8kk"]
 [ext_resource type="Texture2D" uid="uid://bcij8aaxvmw7m" path="res://Assets/ResourceIcons/dollar-2719007.png" id="11_m0pl2"]
+
+[sub_resource type="Resource" id="Resource_bo7wd"]
+script = ExtResource("4_fm32l")
+cost_type = "Food"
+cost_value = -5
+on_planet = &""
+on_current_planet = false
 
 [sub_resource type="Resource" id="Resource_xyaai"]
 script = ExtResource("4_3xf7p")
@@ -30,7 +38,7 @@ dialogue = "Because you must supply your merchants with food rations, it takes 5
 [sub_resource type="Resource" id="Resource_7odkx"]
 script = ExtResource("4_3xf7p")
 name = ""
-dialogue = "Trade routes last for 15 turns, and you may only have one trade route per planet."
+dialogue = "Trade routes last for 10 days, and you may only have one trade route per planet."
 
 [sub_resource type="Resource" id="Resource_pxytj"]
 script = ExtResource("4_3xf7p")
@@ -67,7 +75,7 @@ grow_vertical = 2
 script = ExtResource("1_845e0")
 player_data = ExtResource("3_sj26n")
 planet = ExtResource("2_qblwu")
-food_cost_for_trade_route = 5
+food_cost_for_trade_route = SubResource("Resource_bo7wd")
 trade_tutorial = Array[ExtResource("4_3xf7p")]([SubResource("Resource_xyaai"), SubResource("Resource_d5ons"), SubResource("Resource_7odkx"), SubResource("Resource_pxytj"), SubResource("Resource_xevdp"), SubResource("Resource_tu27c")])
 no_cost_type_message = Array[ExtResource("4_3xf7p")]([SubResource("Resource_4xmki")])
 not_enough_production_message = Array[ExtResource("4_3xf7p")]([SubResource("Resource_yfkxg")])

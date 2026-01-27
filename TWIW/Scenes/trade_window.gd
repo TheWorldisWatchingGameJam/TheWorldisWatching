@@ -2,7 +2,7 @@ extends Control
 
 @export var player_data: PlayerData
 @export var planet: PlanetData: set = planet_data_set
-@export var food_cost_for_trade_route: int
+@export var food_cost_for_trade_route: EventCost
 @export var trade_tutorial: Array[DialogueItem]
 @export var no_cost_type_message: Array[DialogueItem]
 @export var not_enough_production_message: Array[DialogueItem]
@@ -151,6 +151,7 @@ func _on_establish_trade_button_pressed() -> void:
 	
 
 	player_data.trade_routes.append(new_trade_route) 
+	player_data.player_data_modify(food_cost_for_trade_route)
 	trade_route_established_label.text = str("Trade Route Already Established.\nExporting: ", str(export.cost_value * -1), " ", export.cost_type, "\nImporting: ", import.cost_value, " ", import.cost_type)
 	trade_window.hide()
 	trade_route_established_label.visible = true

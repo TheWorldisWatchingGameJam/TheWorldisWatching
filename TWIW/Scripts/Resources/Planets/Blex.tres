@@ -14,6 +14,7 @@ id = "planet_6"
 name = &"Blex"
 sprite = ExtResource("7_j0e1l")
 desc = ""
+major_export = ""
 food_prod = 2
 luxury_prod = 6
 weapon_prod = 4
