@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_q1n0u"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_fvv0p"]
 [ext_resource type="Resource" uid="uid://cuqefho4xwcxd" path="res://Scripts/Resources/Events/Frez Events/fund_great_harvest_festival.tres" id="6_7sefl"]
-[ext_resource type="Resource" uid="uid://6gphrtaw3t0c" path="res://Scripts/Resources/Events/Frez Events/pacifist_gathering.tres" id="7_j7yk2"]
+[ext_resource type="Resource" path="res://Scripts/Resources/Events/Frez Events/pacifist_gathering.tres" id="7_j7yk2"]
 [ext_resource type="Texture2D" uid="uid://dhx2b30rqhvkw" path="res://Assets/PlanetSprites/Frez.webp" id="8_tal5m"]
 
 [resource]
@@ -15,6 +15,7 @@ id = "planet_1"
 name = &"Frez"
 sprite = ExtResource("8_tal5m")
 desc = ""
+major_export = ""
 food_prod = 4
 luxury_prod = 2
 weapon_prod = 0

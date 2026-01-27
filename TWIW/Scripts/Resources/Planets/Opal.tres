@@ -24,6 +24,7 @@ id = "planet_4"
 name = &"Opal"
 sprite = ExtResource("10_2i0hb")
 desc = ""
+major_export = ""
 food_prod = 2
 luxury_prod = 6
 weapon_prod = 4
