@@ -80,14 +80,15 @@ func player_data_modify(cost_token: EventCost) -> void:
 			for item in home_planet_data.current_reputation:
 				print("Reputation at ", item.planet_name, " is ", item.reputation)
 		"FoodProd":
-			home_planet_data.food_prod += cost_token.cost_value
+			home_planet_data.apply_production_cost(cost_token)
 			print("New Food Production: ", home_planet_data.food_prod)
 		"LuxuryProd":
-			home_planet_data.luxury_prod += cost_token.cost_value
+			home_planet_data.apply_production_cost(cost_token)
 			print("New Luxury Production: ", home_planet_data.luxury_prod)
 		"WeaponProd":
-			home_planet_data.weapon_prod += cost_token.cost_value
+			home_planet_data.apply_production_cost(cost_token)
 			print("New Weapon Production: ", home_planet_data.weapon_prod)
+
 	print("=== END MODIFY PLAYER DATA ===\n")
 
 

@@ -90,13 +90,17 @@ func can_pay_production_cost(cost: EventCost) -> bool:
 func apply_production_cost(cost: EventCost) -> void:
 	match cost.cost_type:
 		"FoodProd":
-			food_prod += cost.cost_value
+			food_prod = max(food_prod + cost.cost_value, 0)
+			print("New Food Production: ", food_prod)
 		"LuxuryProd":
-			luxury_prod += cost.cost_value
+			luxury_prod = max(luxury_prod + cost.cost_value, 0)
+			print("New Luxury Production: ", luxury_prod)
 		"WeaponProd":
-			weapon_prod += cost.cost_value
+			weapon_prod = max(weapon_prod + cost.cost_value, 0)
+			print("New Weapon Production: ", weapon_prod)
 		_:
 			return
+
 
 func threaten(player_weapon_value: int) -> EventCost:
 	print("Player Threatens Planet.")
