@@ -15,8 +15,8 @@
 [ext_resource type="Resource" uid="uid://f0quaynyrmg" path="res://Scripts/Resources/Planets/Opal.tres" id="7_ynkjw"]
 [ext_resource type="Resource" uid="uid://b0wugdfli82wd" path="res://Scripts/Resources/Planets/Verp.tres" id="8_oyrie"]
 [ext_resource type="Resource" uid="uid://cda2udbfuiixi" path="res://Scripts/Resources/Planets/Gomix.tres" id="10_bkkx6"]
-[ext_resource type="Texture2D" uid="uid://bmoikfaf0lc2g" path="res://Assets/rocketship_temp.jpg" id="11_q3y5o"]
 [ext_resource type="PackedScene" uid="uid://cmcx2y2kmefbe" path="res://Scenes/planet_screen.tscn" id="13_ssfxd"]
+[ext_resource type="Texture2D" uid="uid://bg32pkdagrggp" path="res://Assets/ResourceIcons/rocketship.png" id="13_u642g"]
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="14_c3rc7"]
 [ext_resource type="Script" path="res://Scripts/Components/ai_data.gd" id="15_7cmk1"]
 [ext_resource type="AudioStream" uid="uid://dcrvqt7dqo3wg" path="res://Assets/Audio/menu.wav" id="16_urgrp"]
@@ -72,7 +72,7 @@ horizontal_alignment = 1
 script = ExtResource("2_mqygn")
 PlanetNodeScene = ExtResource("3_071my")
 all_planets = Array[ExtResource("4_h3u51")]([ExtResource("6_cbulc"), ExtResource("5_6araa"), ExtResource("10_bkkx6"), ExtResource("6_325so"), ExtResource("7_ynkjw"), ExtResource("8_oyrie")])
-rocket_texture = ExtResource("11_q3y5o")
+rocket_texture = ExtResource("13_u642g")
 planet_screen_scene = ExtResource("13_ssfxd")
 player_data = ExtResource("14_c3rc7")
 ai_data = SubResource("Resource_kyq7c")

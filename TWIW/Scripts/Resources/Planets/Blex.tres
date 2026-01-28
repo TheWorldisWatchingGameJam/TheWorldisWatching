@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=10 format=3 uid="uid://bha42xdgt1wit"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=10 format=3 uid="uid://dbac38xsd7l2k"]
 
 [ext_resource type="Texture2D" uid="uid://cvob7e6gy4k3t" path="res://Assets/BGs/Blex.png" id="1_3va0k"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_k8x0i"]

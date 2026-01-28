@@ -532,6 +532,7 @@ func _show_blackjack_result(dialogues: Array[DialogueItem], continue_game: bool,
 		# Game over: wait for dialogue to finish, then clean up
 		if current_dialogue_window.has_signal("dialogueFinished"):
 			await current_dialogue_window.dialogueFinished
+		current_dialogue_window.hide()
 		blackjack_active = false
 		window.visible = true
 		emit_signal("eventChosen")

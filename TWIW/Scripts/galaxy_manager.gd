@@ -18,6 +18,7 @@ extends Node
 var selected_planets: Array[PlanetData] = []
 var player_planet: PlanetData = null
 var player_current_location: PlanetData = null
+var rocket_current_location: Area2D = null
 var galaxy_graph: Dictionary = {}
 var planet_positions: Dictionary = {}
 var connections_node: Node2D = null
@@ -111,9 +112,11 @@ func draw_galaxy_random():
 
 		# Connect signal immediately
 		planet_node.planet_clicked.connect(_on_planet_clicked)
-
+		
+		#Set rocket location
 		if planet.id == player_planet.id:
-			planet_node.set_as_home_planet(rocket_texture)
+			planet_node.set_as_rocket_location(rocket_texture)
+			rocket_current_location = planet_node
 
 		get_tree().get_root().add_child(planet_node)
 
@@ -281,6 +284,12 @@ func _on_travel_button_pressed():
 			planet_screen.planet = target_planet
 			planet_screen.home_planet_data = player_planet
 			planet_screen.player_data = player_data
+			
+			rocket_current_location.remove_as_rocket_location()
+			current_focused_planet.set_as_rocket_location(rocket_texture)
+			rocket_current_location = current_focused_planet
+			
+			
 			update_player_time(target_planet.id)
 			get_tree().get_root().add_child(planet_screen)
 			hide_travel_panel()
