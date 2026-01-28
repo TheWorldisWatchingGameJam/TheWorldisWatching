@@ -19,28 +19,28 @@ var _total_rep := 0
 var food: int:
 	get: return _food
 	set(value):
-		_food = value
+		_food = max(value, 0)
 		emit_signal("playerDataChanged")
 
 @export_range(0, 999999, 1)
 var luxuries: int:
 	get: return _luxuries
 	set(value):
-		_luxuries = value
+		_luxuries = max(value, 0)
 		emit_signal("playerDataChanged")
 
 @export_range(0, 999999, 1)
 var weapons: int:
 	get: return _weapons
 	set(value):
-		_weapons = value
+		_weapons = max(value, 0)
 		emit_signal("playerDataChanged")
 
 @export_range(0, 999999, 1)
 var money: int:
 	get: return _money
 	set(value):
-		_money = value
+		_money = max(value, 0)
 		emit_signal("playerDataChanged")
 
 @export_range(0, 999999, 1)
