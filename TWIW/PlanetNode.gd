@@ -1,6 +1,7 @@
 extends Area2D
 
-signal planet_clicked(planet_node)  # Changed to emit the node itself
+signal planet_clicked(planet_node: Area2D)  # Changed to emit the node itself
+signal player_en_route(planet_node: Area2D) 
 
 @export var planet_sprite: Sprite2D
 @export var collision: CollisionShape2D
@@ -16,10 +17,11 @@ func set_planet(p_data):
 	planet_sprite.texture = p_data.sprite
 	_resize_sprite_and_collision()
 
-func set_as_home_planet(rocket_texture: Texture2D):
+func set_as_rocket_location(rocket_texture: Texture2D):
 	rocket_sprite.texture = rocket_texture
 	rocket_sprite.centered = true
 	rocket_sprite.visible = true
+	rocket_sprite.scale = Vector2(0.5, 0.5)
 	
 	var planet_radius = TARGET_SIZE.y * 0.5
 	var rocket_half_height = rocket_sprite.texture.get_size().y * rocket_sprite.scale.y * 0.5
@@ -27,6 +29,10 @@ func set_as_home_planet(rocket_texture: Texture2D):
 		0,
 		-planet_radius - rocket_half_height + 5
 	)
+
+func remove_as_rocket_location():
+	rocket_sprite.texture = null
+	rocket_sprite.visible = false
 
 func _ready():
 	input_pickable = true
