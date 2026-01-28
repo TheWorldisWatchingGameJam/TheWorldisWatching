@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=7 format=3 uid="uid://db4amh5hapn0r"]
+[gd_resource type="Resource" script_class="Event" load_steps=9 format=3 uid="uid://db4amh5hapn0r"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_0hct7"]
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_efi20"]
@@ -7,14 +7,26 @@
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="4_ye4ll"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="5_570qx"]
 
+[sub_resource type="Resource" id="Resource_xjnxh"]
+script = ExtResource("1_0hct7")
+cost_type = "Money"
+cost_value = -50
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_lnf2u"]
+script = ExtResource("3_fosu5")
+name = "[BLACKJACK]"
+dialogue = "[BLACKJACK]"
+
 [resource]
 script = ExtResource("5_570qx")
-event_name = &""
-event_desc = ""
-event_button_text = ""
+event_name = &"Blackhole Jack"
+event_desc = "Care for a game of blackjack? $50 buy-in."
+event_button_text = "Play ($50)"
 home_exclusive = false
 event_conditions = Array[ExtResource("2_0nvkf")]([])
-event_dialogue = Array[ExtResource("3_fosu5")]([])
+event_dialogue = Array[ExtResource("3_fosu5")]([SubResource("Resource_lnf2u")])
 event_effects = Array[ExtResource("4_ye4ll")]([])
 choices = Array[ExtResource("1_efi20")]([])
-cost = Array[ExtResource("1_0hct7")]([])
+cost = Array[ExtResource("1_0hct7")]([SubResource("Resource_xjnxh")])

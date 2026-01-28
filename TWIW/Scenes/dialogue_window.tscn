@@ -1,20 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cda42r1gvv8am"]
+[gd_scene load_steps=7 format=3 uid="uid://cda42r1gvv8am"]
 
 [ext_resource type="Script" path="res://Scenes/dialogue_window.gd" id="1_vvlpg"]
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_8gimu"]
-[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="2_mcgut"]
 [ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="3_m4032"]
 [ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="3_rei1e"]
-
-[sub_resource type="Resource" id="Resource_jsygn"]
-script = ExtResource("2_mcgut")
-name = "Jeff "
-dialogue = "My name Jeff."
-
-[sub_resource type="Resource" id="Resource_7ohfb"]
-script = ExtResource("2_mcgut")
-name = "John"
-dialogue = "My name John."
 
 [sub_resource type="LabelSettings" id="LabelSettings_7vjws"]
 font = ExtResource("2_8gimu")
@@ -32,7 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vvlpg")
-dialogue_array = Array[ExtResource("2_mcgut")]([SubResource("Resource_jsygn"), SubResource("Resource_7ohfb")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(1920, 1080)

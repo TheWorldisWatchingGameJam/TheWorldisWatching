@@ -22,6 +22,13 @@ var ai_data: AIData
 var current_dialogue_window: Control = null
 var current_choice_panel: Control = null
 
+# Blackjack game state
+var blackjack_active: bool = false
+var blackjack_deck: Array = []
+var blackjack_player_hand: Array = []
+var blackjack_dealer_hand: Array = []
+var blackjack_bet: int = 50
+
 signal eventChosen
 
 func _ready() -> void:
@@ -31,7 +38,6 @@ func _ready() -> void:
 	initialize_trade_window()
 	display_options(random_options(3))
 	threaten_button.disabled = false
-	
 
 func initialize_trade_window() -> void:
 	trade_window = trade_window.instantiate()
@@ -142,15 +148,20 @@ func _on_event_selected(event: Event) -> void:
 	for cost in event.cost:
 		player_data.player_data_modify(cost)
 
-	# Handle dialogue + choices
-	if event.choices.size() > 0:
+	# Always show dialogue/choices if they exist
+	if event.event_dialogue.size() > 0 or event.choices.size() > 0:
 		_show_choice_dialogue(event)
 	else:
 		resolve_event_effect(event.event_effects)
 		emit_signal("eventChosen")
 
 func _show_choice_dialogue(event: Event) -> void:
-	# Remove old dialogue if it exists
+	# Check if this is a blackjack event
+	if event.event_dialogue.size() > 0 and event.event_dialogue[0].dialogue == "[BLACKJACK]":
+		_start_blackjack()
+		return
+	
+	# Normal dialogue handling
 	if current_dialogue_window:
 		current_dialogue_window.queue_free()
 		
@@ -196,22 +207,16 @@ func _show_choice_buttons(choices: Array[EventChoice]) -> void:
 		current_dialogue_window.add_child(current_choice_panel)
 
 func _on_choice_selected(choice: EventChoice) -> void:
-	print("=== CHOICE SELECTED ===")
-	print("Choice: ", choice.choice_text)
-	print("Has ", choice.choice_effects.size(), " effects")
-	
 	# Remove choice buttons
 	if current_choice_panel:
 		current_choice_panel.queue_free()
 		current_choice_panel = null
 
 	# Apply effects immediately
-	print("Applying effects now...")
 	resolve_event_effect(choice.choice_effects)
 	
 	# If the choice has dialogue, show it AFTER effects
 	if choice.choice_dialogue.size() > 0:
-		print("Showing choice dialogue...")
 		if current_dialogue_window and current_dialogue_window.has_method("set_dialogue"):
 			current_dialogue_window.set_dialogue(choice.choice_dialogue)
 			current_dialogue_window.dialogueFinished.connect(func(_unused):
@@ -228,15 +233,10 @@ func _on_choice_selected(choice: EventChoice) -> void:
 			)
 			get_tree().get_root().add_child(current_dialogue_window)
 	else:
-		print("No choice dialogue")
 		emit_signal("eventChosen")
 
 func resolve_event_effect(effects: Array[EventEffect]) -> void:
-	print("=== RESOLVING EFFECTS ===")
-	print("Total effects: ", effects.size())
-	
 	if effects.size() == 0:
-		print("WARNING: No effects to apply!")
 		return
 	
 	var guaranteed_effects = []
@@ -244,15 +244,12 @@ func resolve_event_effect(effects: Array[EventEffect]) -> void:
 
 	for effect in effects:
 		if effect.effect_probability == 0:
-			print("Found guaranteed effect")
 			guaranteed_effects.append(effect)
 		else:
-			print("Found random effect with probability: ", effect.effect_probability)
 			random_effects.append(effect)
 
 	# Apply all guaranteed effects
 	for effect in guaranteed_effects:
-		print("Applying guaranteed effect: ", effect.effect_value_token.cost_type, " = ", effect.effect_value_token.cost_value)
 		player_data.player_data_modify(effect.effect_value_token)
 		if effect.effect_dialogue.size() > 0:
 			var dlg = dialogue_window.instantiate()
@@ -271,7 +268,6 @@ func resolve_event_effect(effects: Array[EventEffect]) -> void:
 		for e in random_effects:
 			cumulative += e.effect_probability
 			if roll < cumulative:
-				print("Applying random effect: ", e.effect_value_token.cost_type, " = ", e.effect_value_token.cost_value)
 				player_data.player_data_modify(e.effect_value_token)
 				if e.effect_dialogue.size() > 0:
 					var dlg = dialogue_window.instantiate()
@@ -280,11 +276,265 @@ func resolve_event_effect(effects: Array[EventEffect]) -> void:
 					window.hide()
 					get_tree().get_root().add_child(dlg)
 				break
-	
-	print("=== EFFECTS APPLIED ===")
 
 func on_effect_dialogue_finished() -> void:
 	window.visible = true
+
+# ============================================
+# BLACKJACK SYSTEM
+# ============================================
+
+func _start_blackjack():
+	blackjack_active = true
+	_create_deck()
+	_shuffle_deck()
+	
+	blackjack_player_hand = []
+	blackjack_dealer_hand = []
+	
+	_deal_card(blackjack_player_hand)
+	_deal_card(blackjack_dealer_hand)
+	_deal_card(blackjack_player_hand)
+	_deal_card(blackjack_dealer_hand)
+	
+	if _calculate_hand(blackjack_player_hand) == 21:
+		_player_blackjack()
+		return
+	
+	_show_blackjack_choices()
+
+func _create_deck():
+	blackjack_deck = []
+	var suits = ["♠", "♥", "♦", "♣"]
+	var ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+	var values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+	
+	for suit in suits:
+		for i in range(ranks.size()):
+			blackjack_deck.append({
+				"rank": ranks[i],
+				"suit": suit,
+				"value": values[i]
+			})
+
+func _shuffle_deck():
+	blackjack_deck.shuffle()
+
+func _deal_card(hand: Array):
+	if blackjack_deck.size() > 0:
+		hand.append(blackjack_deck.pop_back())
+
+func _calculate_hand(hand: Array) -> int:
+	var total = 0
+	var aces = 0
+	
+	for card in hand:
+		total += card.value
+		if card.rank == "A":
+			aces += 1
+	
+	while total > 21 and aces > 0:
+		total -= 10
+		aces -= 1
+	
+	return total
+
+func _hand_to_string(hand: Array, hide_second: bool = false) -> String:
+	var result = ""
+	for i in range(hand.size()):
+		if i == 1 and hide_second:
+			result += "[Hidden] "
+		else:
+			result += hand[i].rank + hand[i].suit + " "
+	return result.strip_edges()
+
+func _show_blackjack_choices():
+	if current_dialogue_window:
+		current_dialogue_window.queue_free()
+	
+	current_dialogue_window = dialogue_window.instantiate()
+	
+	var state_dlg = DialogueItem.new()
+	state_dlg.name = "Dealer"
+	
+	var player_total = _calculate_hand(blackjack_player_hand)
+	state_dlg.dialogue = "Your hand: " + _hand_to_string(blackjack_player_hand) + " (Total: " + str(player_total) + ")\n"
+	state_dlg.dialogue += "Dealer's hand: " + _hand_to_string(blackjack_dealer_hand, true) + "\n\nWhat do you do?"
+	
+	var dlg_array: Array[DialogueItem] = [state_dlg]
+	current_dialogue_window.dialogue_array = dlg_array
+	
+	window.hide()
+	get_tree().get_root().add_child(current_dialogue_window)
+	
+	# Show buttons immediately after adding dialogue window
+	await get_tree().process_frame
+	_create_blackjack_buttons()
+
+func _create_blackjack_buttons():
+	if current_choice_panel:
+		current_choice_panel.queue_free()
+	
+	current_choice_panel = VBoxContainer.new()
+	current_choice_panel.name = "BlackjackChoices"
+	current_choice_panel.size_flags_vertical = Control.SIZE_SHRINK_END
+	current_choice_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	current_choice_panel.add_theme_constant_override("separation", 10)
+	
+	var hit_btn = Button.new()
+	hit_btn.text = "Hit"
+	hit_btn.theme = load("res://Assets/Theme/button_theme.tres")
+	hit_btn.custom_minimum_size = Vector2(200, 50)
+	hit_btn.pressed.connect(_on_blackjack_hit)
+	current_choice_panel.add_child(hit_btn)
+	
+	var stand_btn = Button.new()
+	stand_btn.text = "Stand"
+	stand_btn.theme = load("res://Assets/Theme/button_theme.tres")
+	stand_btn.custom_minimum_size = Vector2(200, 50)
+	stand_btn.pressed.connect(_on_blackjack_stand)
+	current_choice_panel.add_child(stand_btn)
+	
+	if current_dialogue_window:
+		current_dialogue_window.add_child(current_choice_panel)
+
+func _on_blackjack_hit():
+	if current_choice_panel:
+		current_choice_panel.queue_free()
+		current_choice_panel = null
+	
+	_deal_card(blackjack_player_hand)
+	var player_total = _calculate_hand(blackjack_player_hand)
+	
+	var result_dlg = DialogueItem.new()
+	result_dlg.name = "Dealer"
+	result_dlg.dialogue = "You draw: " + blackjack_player_hand[-1].rank + blackjack_player_hand[-1].suit + "\n\n"
+	result_dlg.dialogue += "Your hand: " + _hand_to_string(blackjack_player_hand) + " (Total: " + str(player_total) + ")\n\n"
+	
+	var dlg_array: Array[DialogueItem] = [result_dlg]
+	
+	if player_total > 21:
+		result_dlg.dialogue += "BUST! You lose $" + str(blackjack_bet)
+		_show_blackjack_result(dlg_array, false)
+	elif player_total == 21:
+		result_dlg.dialogue += "You have 21! Auto-standing..."
+		_show_blackjack_result(dlg_array, true, true)
+	else:
+		_show_blackjack_result(dlg_array, true, false)
+
+func _on_blackjack_stand():
+	if current_choice_panel:
+		current_choice_panel.queue_free()
+		current_choice_panel = null
+	
+	_dealer_turn()
+
+func _dealer_turn():
+	var dealer_dialogues: Array[DialogueItem] = []
+	
+	var reveal_dlg = DialogueItem.new()
+	reveal_dlg.name = "Dealer"
+	reveal_dlg.dialogue = "You stand with " + str(_calculate_hand(blackjack_player_hand)) + ".\n\n"
+	reveal_dlg.dialogue += "Dealer reveals: " + _hand_to_string(blackjack_dealer_hand) + " (Total: " + str(_calculate_hand(blackjack_dealer_hand)) + ")"
+	dealer_dialogues.append(reveal_dlg)
+	
+	while _calculate_hand(blackjack_dealer_hand) < 17:
+		_deal_card(blackjack_dealer_hand)
+		var draw_dlg = DialogueItem.new()
+		draw_dlg.name = "Dealer"
+		draw_dlg.dialogue = "Dealer draws: " + blackjack_dealer_hand[-1].rank + blackjack_dealer_hand[-1].suit + "\n\n"
+		draw_dlg.dialogue += "Dealer's hand: " + _hand_to_string(blackjack_dealer_hand) + " (Total: " + str(_calculate_hand(blackjack_dealer_hand)) + ")"
+		dealer_dialogues.append(draw_dlg)
+	
+	_determine_winner(dealer_dialogues)
+
+func _determine_winner(dealer_dialogues: Array[DialogueItem]):
+	var player_total = _calculate_hand(blackjack_player_hand)
+	var dealer_total = _calculate_hand(blackjack_dealer_hand)
+	
+	var result_dlg = DialogueItem.new()
+	result_dlg.name = "Dealer"
+	
+	var payout = 0
+	
+	if dealer_total > 21:
+		result_dlg.dialogue = "\nDealer busts! You win $" + str(blackjack_bet * 2) + "!"
+		payout = blackjack_bet * 2
+	elif player_total > dealer_total:
+		result_dlg.dialogue = "\nYou win $" + str(blackjack_bet * 2) + "!"
+		payout = blackjack_bet * 2
+	elif dealer_total > player_total:
+		result_dlg.dialogue = "\nDealer wins. You lose."
+		payout = 0
+	else:
+		result_dlg.dialogue = "\nPush! Your bet is returned."
+		payout = blackjack_bet
+	
+	dealer_dialogues.append(result_dlg)
+	
+	if payout > 0:
+		var win_cost = EventCost.new()
+		win_cost.cost_type = "Money"
+		win_cost.cost_value = payout
+		player_data.player_data_modify(win_cost)
+	
+	_show_blackjack_result(dealer_dialogues, false)
+
+func _player_blackjack():
+	var dealer_total = _calculate_hand(blackjack_dealer_hand)
+	
+	var dlg = DialogueItem.new()
+	dlg.name = "Dealer"
+	dlg.dialogue = "BLACKJACK!\n\nYour hand: " + _hand_to_string(blackjack_player_hand) + "\n"
+	dlg.dialogue += "Dealer's hand: " + _hand_to_string(blackjack_dealer_hand) + " (Total: " + str(dealer_total) + ")\n\n"
+	
+	if dealer_total == 21:
+		dlg.dialogue += "Dealer also has blackjack! Push - bet returned."
+		var cost = EventCost.new()
+		cost.cost_type = "Money"
+		cost.cost_value = blackjack_bet
+		player_data.player_data_modify(cost)
+	else:
+		dlg.dialogue += "You win $" + str(int(blackjack_bet * 2.5)) + "!"
+		var cost = EventCost.new()
+		cost.cost_type = "Money"
+		cost.cost_value = int(blackjack_bet * 2.5)
+		player_data.player_data_modify(cost)
+	
+	var dlg_array: Array[DialogueItem] = [dlg]
+	_show_blackjack_result(dlg_array, false)
+
+func _show_blackjack_result(dialogues: Array[DialogueItem], continue_game: bool, auto_stand: bool = false):
+	if current_dialogue_window:
+		current_dialogue_window.queue_free()
+	
+	current_dialogue_window = dialogue_window.instantiate()
+	current_dialogue_window.dialogue_array = dialogues
+	
+	get_tree().get_root().add_child(current_dialogue_window)
+	
+	# Wait for the dialogue window to be added to the tree
+	await get_tree().process_frame
+	
+	if continue_game and not auto_stand:
+		# Show hit/stand buttons again after dialogue
+		_create_blackjack_buttons()
+	elif auto_stand:
+		# Auto-stand: wait for dialogue to finish, then dealer plays
+		if current_dialogue_window.has_signal("dialogueFinished"):
+			await current_dialogue_window.dialogueFinished
+		_dealer_turn()
+	else:
+		# Game over: wait for dialogue to finish, then clean up
+		if current_dialogue_window.has_signal("dialogueFinished"):
+			await current_dialogue_window.dialogueFinished
+		blackjack_active = false
+		window.visible = true
+		emit_signal("eventChosen")
+
+# ============================================
+# END BLACKJACK SYSTEM
+# ============================================
 
 func _on_trade_button_pressed() -> void:
 	window.hide()
