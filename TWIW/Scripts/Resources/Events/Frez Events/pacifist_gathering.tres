@@ -12,18 +12,19 @@
 script = ExtResource("3_nhrk5")
 name = "Wilyam B. Farmstar"
 dialogue = "We at Frez Greatly appreciate your sacrifice for the greater good"
+sprite = ExtResource("6_ca1bv")
 
 [sub_resource type="Resource" id="Resource_7menb"]
 script = ExtResource("1_h0gvf")
 cost_type = "Weapons"
 cost_value = 0
-on_planet = &"-999"
+on_planet = &""
 on_current_planet = false
 
 [sub_resource type="Resource" id="Resource_ca8yr"]
 script = ExtResource("4_8nc55")
 effect_value_token = SubResource("Resource_7menb")
-effect_probability = 1
+effect_probability = 0
 effect_dialogue = Array[ExtResource("3_nhrk5")]([])
 
 [sub_resource type="Resource" id="Resource_7h8jx"]
