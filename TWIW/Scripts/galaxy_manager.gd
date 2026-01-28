@@ -306,10 +306,14 @@ func update_player_time(to_planet: String) -> void:
 			player_current_location = planet
 			break
 	
+	#Update election counter
+	days_until_election -= player_data.time_tracker.current_day
+	self.get_parent()._update_election_counter()
+	
 	print("Traveled ", days_traveled, " days to ", to_planet)
 	for i in range(get_distance(player_data.home_planet_data.id, to_planet)):
 		player_data.time_tracker.current_day += 1
 	print("Current Day: ", player_data.time_tracker.current_day)
-	print("Days left to next election: ", str(days_until_election - player_data.time_tracker.current_day))
+	print("Days left to next election: ", str(days_until_election))
 	if ai_data:
 		print("AI Reps: ", ai_data.get_all_reps())

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=7 format=3 uid="uid://cda2udbfuiixi"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://cda2udbfuiixi"]
 
+[ext_resource type="Texture2D" uid="uid://daul6l825l837" path="res://Assets/BGs/Gomix.png" id="1_7gtlo"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_bxaqs"]
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_00vvr"]
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_y0wg4"]
@@ -12,6 +13,7 @@ script = ExtResource("5_u6a02")
 id = "planet_2"
 name = &"Gomix"
 sprite = ExtResource("6_cf77y")
+bg = ExtResource("1_7gtlo")
 desc = ""
 major_export = ""
 food_prod = 3

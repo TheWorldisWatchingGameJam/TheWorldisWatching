@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=7 format=3 uid="uid://b0wugdfli82wd"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://b0wugdfli82wd"]
 
+[ext_resource type="Texture2D" uid="uid://5giba85nylsd" path="res://Assets/BGs/Verp.png" id="1_a8jsj"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_ol3aw"]
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_k1j0k"]
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_3a0u1"]
@@ -12,6 +13,7 @@ script = ExtResource("5_w5tab")
 id = "planet_5"
 name = &"Verp"
 sprite = ExtResource("6_s3enc")
+bg = ExtResource("1_a8jsj")
 desc = ""
 major_export = ""
 food_prod = 2

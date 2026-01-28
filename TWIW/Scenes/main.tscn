@@ -1,16 +1,17 @@
-[gd_scene load_steps=27 format=3 uid="uid://dfixd4skh3ig7"]
+[gd_scene load_steps=28 format=3 uid="uid://dfixd4skh3ig7"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ektus"]
 [ext_resource type="Script" path="res://Scenes/PlanetOption.gd" id="2_1an38"]
+[ext_resource type="Texture2D" uid="uid://bvx8262od2u8v" path="res://Assets/BGs/galaxybg.png" id="2_iuy13"]
 [ext_resource type="LabelSettings" uid="uid://bepmqoip50uru" path="res://Assets/Theme/large_text_generic.tres" id="2_jv2y6"]
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_kwqtb"]
 [ext_resource type="Script" path="res://Scripts/galaxy_manager.gd" id="2_mqygn"]
-[ext_resource type="PackedScene" uid="uid://bchhcro7px8l6" path="res://Scenes/planet_node.tscn" id="3_071my"]
+[ext_resource type="PackedScene" uid="uid://bchhcro7px8l6" path="res://Scripts/Scenes/planet_node.tscn" id="3_071my"]
 [ext_resource type="Texture2D" uid="uid://d1pg65rmosvlv" path="res://icon.svg" id="3_mfgap"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="4_h3u51"]
 [ext_resource type="Resource" uid="uid://b4kf7erwn6muh" path="res://Scripts/Resources/Planets/Frez.tres" id="5_6araa"]
 [ext_resource type="Resource" uid="uid://d1r5bocod2xw1" path="res://Scripts/Resources/Planets/Huldar.tres" id="6_325so"]
-[ext_resource type="Resource" uid="uid://bha42xdgt1wit" path="res://Scripts/Resources/Planets/Blex.tres" id="6_cbulc"]
+[ext_resource type="Resource" uid="uid://dbac38xsd7l2k" path="res://Scripts/Resources/Planets/Blex.tres" id="6_cbulc"]
 [ext_resource type="Resource" uid="uid://f0quaynyrmg" path="res://Scripts/Resources/Planets/Opal.tres" id="7_ynkjw"]
 [ext_resource type="Resource" uid="uid://b0wugdfli82wd" path="res://Scripts/Resources/Planets/Verp.tres" id="8_oyrie"]
 [ext_resource type="Resource" uid="uid://cda2udbfuiixi" path="res://Scripts/Resources/Planets/Gomix.tres" id="10_bkkx6"]
@@ -49,6 +50,14 @@ font = ExtResource("2_kwqtb")
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ektus")
 days_until_election = 40
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.14802, 0.326744, 0.46502, 1)
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 1925.0
+offset_bottom = 1087.0
+texture = ExtResource("2_iuy13")
 
 [node name="Choose" type="Label" parent="."]
 offset_left = 480.0
