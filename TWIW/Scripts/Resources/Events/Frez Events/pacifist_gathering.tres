@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=19 format=3 uid="uid://6gphrtaw3t0c"]
+[gd_resource type="Resource" script_class="Event" load_steps=9 format=3 uid="uid://cnvhix2s2efbn"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_h0gvf"]
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_psl1o"]
@@ -87,5 +87,5 @@ home_exclusive = false
 event_conditions = Array[ExtResource("2_28sb3")]([])
 event_dialogue = Array[ExtResource("3_nhrk5")]([SubResource("Resource_v7cbq")])
 event_effects = Array[ExtResource("4_8nc55")]([])
-choices = Array[ExtResource("1_psl1o")]([SubResource("Resource_j4fv4"), SubResource("Resource_xopdn")])
+choices = Array[ExtResource("1_psl1o")]([])
 cost = Array[ExtResource("1_h0gvf")]([])

@@ -124,7 +124,7 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-tooltip_text = "Establish a trade route for 15 days."
+tooltip_text = "Establish a trade route to this planet."
 theme = ExtResource("9_q7m5n")
 theme_override_font_sizes/font_size = 30
 text = "Trade"
@@ -152,6 +152,23 @@ tooltip_text = "Demand resources from planet by threatening them with Weapons. Y
 theme = SubResource("Theme_mnncx")
 text = "Threaten"
 
+[node name="Control" type="Control" parent="Window/HBoxContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeaveButton" type="Button" parent="Window/HBoxContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+tooltip_text = "Leave planet and return to galaxy map."
+theme = ExtResource("9_q7m5n")
+theme_override_font_sizes/font_size = 30
+text = "Leave Planet"
+
+[node name="Control3" type="Control" parent="Window/HBoxContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
 [node name="Control2" type="Control" parent="Window/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -163,3 +180,4 @@ layout_mode = 1
 [connection signal="pressed" from="Window/HBoxContainer/VBoxContainer/VBoxContainer2/TradeButton" to="." method="_on_trade_button_pressed"]
 [connection signal="pressed" from="Window/HBoxContainer/VBoxContainer/VBoxContainer2/MarketButton" to="." method="_on_market_button_pressed"]
 [connection signal="pressed" from="Window/HBoxContainer/VBoxContainer/VBoxContainer2/ThreatenButton" to="." method="_on_threaten_button_pressed"]
+[connection signal="pressed" from="Window/HBoxContainer/VBoxContainer/VBoxContainer2/LeaveButton" to="." method="_on_leave_button_pressed"]
