@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=15 format=3 uid="uid://dgvksy7yjscfo"]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=14 format=3 uid="uid://dgvksy7yjscfo"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_l3eed"]
 [ext_resource type="Script" path="res://Scripts/Components/player_data.gd" id="1_myrfh"]
@@ -40,16 +40,10 @@ event_pool = Array[ExtResource("4_f27hi")]([])
 live_events = Array[ExtResource("4_f27hi")]([])
 event_history = Array[ExtResource("4_f27hi")]([])
 
-[sub_resource type="Resource" id="Resource_k7s0l"]
-script = ExtResource("7_t6qs5")
-event_name = &""
-on_planet = &""
-on_day = 0
-
 [sub_resource type="Resource" id="Resource_3yxoi"]
 script = ExtResource("8_rl5dj")
 current_day = 0
-history = Array[ExtResource("7_t6qs5")]([SubResource("Resource_k7s0l")])
+history = Array[ExtResource("7_t6qs5")]([])
 
 [resource]
 script = ExtResource("1_myrfh")
