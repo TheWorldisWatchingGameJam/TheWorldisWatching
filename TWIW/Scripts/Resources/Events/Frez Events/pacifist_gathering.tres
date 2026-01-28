@@ -8,12 +8,6 @@
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="5_40q7l"]
 [ext_resource type="Texture2D" uid="uid://b55u3ayg5pm3q" path="res://Assets/CharacterSprites/wilyambfarmstar.png" id="6_ca1bv"]
 
-[sub_resource type="Resource" id="Resource_kbybj"]
-script = ExtResource("3_nhrk5")
-name = "Wilyam B. Farmstar"
-dialogue = "We at Frez Greatly appreciate your sacrifice for the greater good"
-sprite = ExtResource("6_ca1bv")
-
 [sub_resource type="Resource" id="Resource_7menb"]
 script = ExtResource("1_h0gvf")
 cost_type = "Weapons"
@@ -40,6 +34,12 @@ effect_value_token = SubResource("Resource_7h8jx")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("3_nhrk5")]([])
 
+[sub_resource type="Resource" id="Resource_kbybj"]
+script = ExtResource("3_nhrk5")
+name = "Wilyam B. Farmstar"
+dialogue = "We at Frez Greatly appreciate your sacrifice for the greater good"
+sprite = ExtResource("6_ca1bv")
+
 [sub_resource type="Resource" id="Resource_jqaxt"]
 script = ExtResource("1_h0gvf")
 cost_type = "Rep"
@@ -51,12 +51,11 @@ on_current_planet = false
 script = ExtResource("4_8nc55")
 effect_value_token = SubResource("Resource_jqaxt")
 effect_probability = 0
-effect_dialogue = Array[ExtResource("3_nhrk5")]([])
+effect_dialogue = Array[ExtResource("3_nhrk5")]([SubResource("Resource_kbybj")])
 
 [sub_resource type="Resource" id="Resource_oad5d"]
 script = ExtResource("1_psl1o")
 choice_text = "We Will Gladly GIVE Up Our Weapons"
-choice_dialogue = Array[ExtResource("3_nhrk5")]([SubResource("Resource_kbybj")])
 choice_effects = Array[ExtResource("4_8nc55")]([SubResource("Resource_ca8yr"), SubResource("Resource_ehve4"), SubResource("Resource_yt8wf")])
 
 [sub_resource type="Resource" id="Resource_wut6t"]
@@ -76,12 +75,11 @@ on_current_planet = false
 script = ExtResource("4_8nc55")
 effect_value_token = SubResource("Resource_ytaww")
 effect_probability = 0
-effect_dialogue = Array[ExtResource("3_nhrk5")]([])
+effect_dialogue = Array[ExtResource("3_nhrk5")]([SubResource("Resource_wut6t")])
 
 [sub_resource type="Resource" id="Resource_gv0jh"]
 script = ExtResource("1_psl1o")
 choice_text = "I'm afraid we must Decline, as we need these weapons"
-choice_dialogue = Array[ExtResource("3_nhrk5")]([SubResource("Resource_wut6t")])
 choice_effects = Array[ExtResource("4_8nc55")]([SubResource("Resource_wpo86")])
 
 [sub_resource type="Resource" id="Resource_v7cbq"]
