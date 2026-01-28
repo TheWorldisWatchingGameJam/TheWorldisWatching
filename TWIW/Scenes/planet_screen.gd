@@ -29,7 +29,7 @@ var blackjack_active: bool = false
 var blackjack_deck: Array = []
 var blackjack_player_hand: Array = []
 var blackjack_dealer_hand: Array = []
-var blackjack_bet: int = 50
+var blackjack_bet: int = 100
 
 signal eventChosen
 
