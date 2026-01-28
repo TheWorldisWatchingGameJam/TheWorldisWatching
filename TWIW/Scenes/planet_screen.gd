@@ -236,6 +236,120 @@ func _on_choice_selected(choice: EventChoice) -> void:
 		print("No choice dialogue")
 		emit_signal("eventChosen")
 
+# ============================================
+# EFFECT REQUIREMENTS SYSTEM
+# ============================================
+
+func check_effect_requirements(effect: EventEffect) -> bool:
+	# If no requirements property exists or empty, effect always passes
+	if not "requirements" in effect:
+		return true
+	if effect.requirements == null or effect.requirements.size() == 0:
+		return true
+	
+	# All requirements must be met (AND logic)
+	for req in effect.requirements:
+		if not _check_requirement(req):
+			print("Requirement not met: ", req)
+			return false
+	
+	return true
+
+func _check_requirement(req) -> bool:
+	if not "requirement_type" in req:
+		return true
+	
+	match req.requirement_type:
+		0: # PLAYER_RESOURCE
+			return _check_player_resource_req(req)
+		1: # PLANET_COMPARISON
+			return _check_planet_comparison_req(req)
+		2: # REPUTATION
+			return _check_reputation_req(req)
+		3: # TIME
+			return _check_time_req(req)
+		4: # RANDOM_CHANCE
+			return _check_random_chance_req(req)
+	
+	return false
+
+func _check_player_resource_req(req) -> bool:
+	var player_value = 0
+	
+	match req.resource_type:
+		"Food":
+			player_value = player_data.food
+		"Money":
+			player_value = player_data.money
+		"Weapons":
+			player_value = player_data.weapons
+		"Luxuries":
+			player_value = player_data.luxuries
+	
+	return _compare_values(player_value, req.compare_value, req.comparison)
+
+func _check_planet_comparison_req(req) -> bool:
+	var player_value = 0
+	var planet_value = 0
+	
+	# Get player resource
+	match req.resource_type:
+		"Food":
+			player_value = player_data.food
+		"Money":
+			player_value = player_data.money
+		"Weapons":
+			player_value = player_data.weapons
+		"Luxuries":
+			player_value = player_data.luxuries
+	
+	# Get planet resource
+	if "planet_resource_type" in req:
+		match req.planet_resource_type:
+			"Weapons":
+				planet_value = planet.weapons if "weapons" in planet else 0
+			"Food":
+				planet_value = planet.food if "food" in planet else 0
+	
+	print("Player ", req.resource_type, ": ", player_value, " vs Planet ", req.planet_resource_type, ": ", planet_value)
+	return _compare_values(player_value, planet_value, req.comparison)
+
+func _check_reputation_req(req) -> bool:
+	if not player_data.home_planet_data:
+		return false
+	
+	var rep = player_data.home_planet_data.get_reputation(req.target_planet_name)
+	return _compare_values(rep, req.reputation_threshold, req.comparison)
+
+func _check_time_req(req) -> bool:
+	var current_day = player_data.time_tracker.current_day
+	return _compare_values(current_day, req.day_threshold, req.comparison)
+
+func _check_random_chance_req(req) -> bool:
+	var roll = randi_range(1, 100)
+	return roll <= req.chance_percentage
+
+func _compare_values(value_a: int, value_b: int, operator: int) -> bool:
+	match operator:
+		0: # GREATER_THAN
+			return value_a > value_b
+		1: # LESS_THAN
+			return value_a < value_b
+		2: # EQUAL_TO
+			return value_a == value_b
+		3: # GREATER_OR_EQUAL
+			return value_a >= value_b
+		4: # LESS_OR_EQUAL
+			return value_a <= value_b
+		5: # NOT_EQUAL
+			return value_a != value_b
+	
+	return false
+
+# ============================================
+# END EFFECT REQUIREMENTS SYSTEM
+# ============================================
+
 func resolve_effects(effects: Array[EventEffect]) -> void:
 	print("=== RESOLVING EFFECTS ===")
 	print("Total effects: ", effects.size())
@@ -243,10 +357,23 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 	if effects.size() == 0:
 		return
 	
+	# Filter effects by requirements
+	var valid_effects = []
+	for effect in effects:
+		if check_effect_requirements(effect):
+			print("Effect passed requirements")
+			valid_effects.append(effect)
+		else:
+			print("Effect failed requirements")
+	
+	if valid_effects.size() == 0:
+		print("No valid effects met requirements!")
+		return
+	
 	var guaranteed_effects = []
 	var random_effects = []
 
-	for effect in effects:
+	for effect in valid_effects:
 		if effect.effect_probability == 0:
 			guaranteed_effects.append(effect)
 		else:

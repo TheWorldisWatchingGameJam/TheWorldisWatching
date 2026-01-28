@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="Event" load_steps=15 format=3 uid="uid://dfrwdpdp4dygr"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_6mk5r"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_asc48"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_xlxmx"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_jqkdp"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_jykd5"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_dylwe"]
+[ext_resource type="Texture2D" uid="uid://bxss0srd0kdyl" path="res://Assets/CharacterSprites/emperorShayRimizio.webp" id="6_l8lkh"]
+
+[sub_resource type="Resource" id="Resource_fitr3"]
+script = ExtResource("2_asc48")
+cost_type = "Food"
+cost_value = -20
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_6yuee"]
+script = ExtResource("3_xlxmx")
+war_event = false
+condition_type = "Food"
+condition_value = 20
+on_planet = &""
+
+[sub_resource type="Resource" id="Resource_cwxc1"]
+script = ExtResource("2_asc48")
+cost_type = "Weapons"
+cost_value = 10
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_m1c1q"]
+script = ExtResource("5_jykd5")
+effect_value_token = SubResource("Resource_cwxc1")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_jqkdp")]([])
+
+[sub_resource type="Resource" id="Resource_d1d21"]
+script = ExtResource("4_jqkdp")
+name = "Emperor Shay Rimizio"
+dialogue = "We appreciate your donation. Here are some weapons"
+sprite = ExtResource("6_l8lkh")
+
+[sub_resource type="Resource" id="Resource_7slc3"]
+script = ExtResource("2_asc48")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Huldar"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_jboow"]
+script = ExtResource("5_jykd5")
+effect_value_token = SubResource("Resource_7slc3")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_jqkdp")]([SubResource("Resource_d1d21")])
+
+[resource]
+script = ExtResource("6_dylwe")
+event_name = &"Sponsor Imperial Banquet"
+event_desc = "Donate Food for Huldar's Banquet"
+event_button_text = "Donate (-20 Food)"
+home_exclusive = false
+event_conditions = Array[ExtResource("3_xlxmx")]([SubResource("Resource_6yuee")])
+event_dialogue = Array[ExtResource("4_jqkdp")]([])
+event_effects = Array[ExtResource("5_jykd5")]([SubResource("Resource_m1c1q"), SubResource("Resource_jboow")])
+choices = Array[ExtResource("1_6mk5r")]([])
+cost = Array[ExtResource("2_asc48")]([SubResource("Resource_fitr3")])

@@ -1,0 +1,119 @@
+[gd_resource type="Resource" script_class="Event" load_steps=21 format=3 uid="uid://ctmu04fxcrr1o"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_mi35n"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_nk3mq"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_tqk2u"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_1emco"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_n0aem"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_838s5"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="6_dhojb"]
+[ext_resource type="Texture2D" uid="uid://bxss0srd0kdyl" path="res://Assets/CharacterSprites/emperorShayRimizio.webp" id="6_di7d0"]
+
+[sub_resource type="Resource" id="Resource_88buy"]
+script = ExtResource("2_nk3mq")
+cost_type = "Food"
+cost_value = -20
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_yd5y0"]
+script = ExtResource("4_1emco")
+name = "Emperor Shay Remizio"
+dialogue = "Victory! You have great warriors!"
+sprite = ExtResource("6_di7d0")
+
+[sub_resource type="Resource" id="Resource_xq3lh"]
+script = ExtResource("2_nk3mq")
+cost_type = "Rep"
+cost_value = 10
+on_planet = &"Huldar"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_m17cx"]
+script = ExtResource("6_dhojb")
+requirement_type = 1
+comparison = 0
+resource_type = "Weapons"
+compare_value = 0
+planet_resource_type = "Weapons"
+target_planet_name = ""
+reputation_threshold = 0
+day_threshold = 0
+chance_percentage = 0
+
+[sub_resource type="Resource" id="Resource_tw4pu"]
+script = ExtResource("5_n0aem")
+effect_value_token = SubResource("Resource_xq3lh")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_1emco")]([SubResource("Resource_yd5y0")])
+requirements = Array[ExtResource("6_dhojb")]([SubResource("Resource_m17cx")])
+
+[sub_resource type="Resource" id="Resource_d16vu"]
+script = ExtResource("2_nk3mq")
+cost_type = "Money"
+cost_value = 200
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_u0qa5"]
+script = ExtResource("6_dhojb")
+requirement_type = 1
+comparison = 0
+resource_type = "Weapons"
+compare_value = 0
+planet_resource_type = "Weapons"
+target_planet_name = ""
+reputation_threshold = 0
+day_threshold = 0
+chance_percentage = 0
+
+[sub_resource type="Resource" id="Resource_nmjmu"]
+script = ExtResource("5_n0aem")
+effect_value_token = SubResource("Resource_d16vu")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_1emco")]([])
+requirements = Array[ExtResource("6_dhojb")]([SubResource("Resource_u0qa5")])
+
+[sub_resource type="Resource" id="Resource_nmk56"]
+script = ExtResource("4_1emco")
+name = "Emperor Shay Remizio"
+dialogue = "Unfortunately your soldiers were defeated! Do not fret, it is a hard  contest, as we have the finest soldiers!"
+sprite = ExtResource("6_di7d0")
+
+[sub_resource type="Resource" id="Resource_0tpls"]
+script = ExtResource("2_nk3mq")
+cost_type = ""
+cost_value = 0
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_8xrdq"]
+script = ExtResource("6_dhojb")
+requirement_type = 0
+comparison = 4
+resource_type = "Weapons"
+compare_value = 0
+planet_resource_type = "Weapons"
+target_planet_name = ""
+reputation_threshold = 0
+day_threshold = 0
+chance_percentage = 0
+
+[sub_resource type="Resource" id="Resource_a3b10"]
+script = ExtResource("5_n0aem")
+effect_value_token = SubResource("Resource_0tpls")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_1emco")]([SubResource("Resource_nmk56")])
+requirements = Array[ExtResource("6_dhojb")]([SubResource("Resource_8xrdq")])
+
+[resource]
+script = ExtResource("6_838s5")
+event_name = &"Compete in Combat Exhibition"
+event_desc = "Show off the skills of your planet's combatants. You must send food rations for your warriors If you succeed you will be rewarded"
+event_button_text = "Compete (20 food)"
+home_exclusive = false
+event_conditions = Array[ExtResource("3_tqk2u")]([])
+event_dialogue = Array[ExtResource("4_1emco")]([])
+event_effects = Array[ExtResource("5_n0aem")]([SubResource("Resource_tw4pu"), SubResource("Resource_nmjmu"), SubResource("Resource_a3b10")])
+choices = Array[ExtResource("1_mi35n")]([])
+cost = Array[ExtResource("2_nk3mq")]([SubResource("Resource_88buy")])
