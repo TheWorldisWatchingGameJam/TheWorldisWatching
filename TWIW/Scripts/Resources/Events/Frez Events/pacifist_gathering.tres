@@ -17,7 +17,7 @@ sprite = ExtResource("6_ca1bv")
 [sub_resource type="Resource" id="Resource_7menb"]
 script = ExtResource("1_h0gvf")
 cost_type = "Weapons"
-cost_value = 0
+cost_value = -999
 on_planet = &""
 on_current_planet = false
 
