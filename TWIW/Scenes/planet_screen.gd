@@ -18,9 +18,11 @@ var ai_data: AIData
 @onready var market_window = load("res://Scenes/market_window.tscn")
 @onready var dialogue_window = load("res://Scenes/dialogue_window.tscn")
 @onready var trade_window = load("res://Scenes/trade_window.tscn")
+@onready var choice_panel = %ChoicePanel
+@onready var selector = %Selector
 
 var current_dialogue_window: Control = null
-var current_choice_panel: Control = null
+
 
 signal eventChosen
 
@@ -31,6 +33,7 @@ func _ready() -> void:
 	initialize_trade_window()
 	display_options(random_options(3))
 	threaten_button.disabled = false
+	choice_panel.hide()
 	
 
 func initialize_trade_window() -> void:
@@ -141,46 +144,33 @@ func _on_event_selected(event: Event) -> void:
 			return
 	for cost in event.cost:
 		player_data.player_data_modify(cost)
-
+	emit_signal("eventChosen")
 	# Handle dialogue + choices
 	if event.choices.size() > 0:
-		_show_choice_dialogue(event)
+		_initiate_choice_event(event)
 	else:
-		resolve_event_effect(event.event_effects)
-		emit_signal("eventChosen")
+		resolve_effects(event.event_effects)
 
-func _show_choice_dialogue(event: Event) -> void:
+
+func _initiate_choice_event(event: Event) -> void:
 	# Remove old dialogue if it exists
 	if current_dialogue_window:
 		current_dialogue_window.queue_free()
 		
 	current_dialogue_window = dialogue_window.instantiate()
 	current_dialogue_window.dialogue_array = event.event_dialogue
-	current_dialogue_window.dialogueFinished.connect(_on_event_dialogue_finished.bind(event))
+	current_dialogue_window.dialogueFinished.connect(_on_choice_dialogue_finished.bind(event))
 	window.hide()
-	get_tree().get_root().add_child(current_dialogue_window)
+	self.add_child(current_dialogue_window)
 
-func _on_event_dialogue_finished(event: Event) -> void:
+func _on_choice_dialogue_finished(event: Event) -> void:
 	if event.choices.size() > 0:
 		_show_choice_buttons(event.choices)
 	else:
-		resolve_event_effect(event.event_effects)
+		resolve_effects(event.event_effects)
 		emit_signal("eventChosen")
 
 func _show_choice_buttons(choices: Array[EventChoice]) -> void:
-	# Remove old choice panel if it exists
-	if current_choice_panel:
-		current_choice_panel.queue_free()
-	
-	if current_dialogue_window and current_dialogue_window.has_method("clear_dialogue"):
-		current_dialogue_window.clear_dialogue()
-	
-	current_choice_panel = VBoxContainer.new()
-	current_choice_panel.name = "ChoicePanel"
-	current_choice_panel.size_flags_vertical = Control.SIZE_SHRINK_END
-	current_choice_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	current_choice_panel.add_theme_constant_override("separation", 10)
-
 	for choice in choices:
 		var btn = Button.new()
 		btn.text = choice.choice_text
@@ -189,49 +179,48 @@ func _show_choice_buttons(choices: Array[EventChoice]) -> void:
 		btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		btn.size_flags_vertical = Control.SIZE_SHRINK_END
 		btn.pressed.connect(_on_choice_selected.bind(choice))
-		current_choice_panel.add_child(btn)
+		selector.add_child(btn)
 
-	# Add choice panel to the dialogue window instead of root
-	if current_dialogue_window:
-		current_dialogue_window.add_child(current_choice_panel)
+	choice_panel.get_parent().move_child(choice_panel, -1)
+
+	choice_panel.visible = true
 
 func _on_choice_selected(choice: EventChoice) -> void:
 	print("=== CHOICE SELECTED ===")
 	print("Choice: ", choice.choice_text)
 	print("Has ", choice.choice_effects.size(), " effects")
 	
-	# Remove choice buttons
-	if current_choice_panel:
-		current_choice_panel.queue_free()
-		current_choice_panel = null
+	current_dialogue_window.queue_free()
+	choice_panel.hide()
 
 	# Apply effects immediately
 	print("Applying effects now...")
-	resolve_event_effect(choice.choice_effects)
-	
-	# If the choice has dialogue, show it AFTER effects
-	if choice.choice_dialogue.size() > 0:
-		print("Showing choice dialogue...")
-		if current_dialogue_window and current_dialogue_window.has_method("set_dialogue"):
-			current_dialogue_window.set_dialogue(choice.choice_dialogue)
-			current_dialogue_window.dialogueFinished.connect(func(_unused):
-				emit_signal("eventChosen")
-			, CONNECT_ONE_SHOT)
-		else:
-			if current_dialogue_window:
-				current_dialogue_window.queue_free()
-			
-			current_dialogue_window = dialogue_window.instantiate()
-			current_dialogue_window.dialogue_array = choice.choice_dialogue
-			current_dialogue_window.dialogueFinished.connect(func(_unused):
-				emit_signal("eventChosen")
-			)
-			get_tree().get_root().add_child(current_dialogue_window)
-	else:
-		print("No choice dialogue")
-		emit_signal("eventChosen")
+	resolve_effects(choice.choice_effects)
+	#
+	## If the choice has dialogue, show it AFTER effects
+	#if choice.choice_dialogue.size() > 0:
+		#print("Showing choice dialogue...")
+		#if current_dialogue_window and current_dialogue_window.has_method("set_dialogue"):
+			#print("Setting dialogue...")
+			#current_dialogue_window.set_dialogue(choice.choice_dialogue)
+			#current_dialogue_window.dialogueFinished.connect(func(_unused):
+				#emit_signal("eventChosen")
+			#, CONNECT_ONE_SHOT)
+		#else:
+			#if current_dialogue_window:
+				#current_dialogue_window.queue_free()
+			#
+			#current_dialogue_window = dialogue_window.instantiate()
+			#current_dialogue_window.dialogue_array = choice.choice_dialogue
+			#current_dialogue_window.dialogueFinished.connect(func(_unused):
+				#emit_signal("eventChosen")
+			#)
+			#get_tree().get_root().add_child(current_dialogue_window)
+	#else:
+		#print("No choice dialogue")
+		#emit_signal("eventChosen")
 
-func resolve_event_effect(effects: Array[EventEffect]) -> void:
+func resolve_effects(effects: Array[EventEffect]) -> void:
 	print("=== RESOLVING EFFECTS ===")
 	print("Total effects: ", effects.size())
 	
@@ -255,11 +244,12 @@ func resolve_event_effect(effects: Array[EventEffect]) -> void:
 		print("Applying guaranteed effect: ", effect.effect_value_token.cost_type, " = ", effect.effect_value_token.cost_value)
 		player_data.player_data_modify(effect.effect_value_token)
 		if effect.effect_dialogue.size() > 0:
+			print("Choice effect dialogue detected.")
 			var dlg = dialogue_window.instantiate()
 			dlg.dialogue_array = effect.effect_dialogue
-			dlg.dialogueFinished.connect(on_effect_dialogue_finished)
+			dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg))
 			window.hide()
-			get_tree().get_root().add_child(dlg)
+			self.add_child(dlg)
 
 	# Pick one effect randomly from the remaining probabilistic ones
 	if random_effects.size() > 0:
@@ -276,14 +266,14 @@ func resolve_event_effect(effects: Array[EventEffect]) -> void:
 				if e.effect_dialogue.size() > 0:
 					var dlg = dialogue_window.instantiate()
 					dlg.dialogue_array = e.effect_dialogue
-					dlg.dialogueFinished.connect(on_effect_dialogue_finished)
-					window.hide()
+					dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg))
 					get_tree().get_root().add_child(dlg)
 				break
 	
 	print("=== EFFECTS APPLIED ===")
 
-func on_effect_dialogue_finished() -> void:
+func on_effect_dialogue_finished(dialogue_window: Control) -> void:
+	dialogue_window.hide()
 	window.visible = true
 
 func _on_trade_button_pressed() -> void:
