@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=9 format=3 uid="uid://cnvhix2s2efbn"]
+[gd_resource type="Resource" script_class="Event" load_steps=9 format=3 uid="uid://b7r8oaqbv0cmx"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_h0gvf"]
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_psl1o"]

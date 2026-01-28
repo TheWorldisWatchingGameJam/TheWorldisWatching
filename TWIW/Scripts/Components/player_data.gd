@@ -77,6 +77,7 @@ func player_data_modify(cost_token: EventCost) -> void:
 			money += cost_token.cost_value
 		"Rep":
 			home_planet_data.modify_reputation(cost_token.on_planet, cost_token.cost_value)
+			update_total_rep()
 			for item in home_planet_data.current_reputation:
 				print("Reputation at ", item.planet_name, " is ", item.reputation)
 		"FoodProd":
@@ -122,6 +123,28 @@ func initialize_time_tracker() -> void:
 func simulate_day() -> void:
 	print("Day Simulating...")
 	execute_trade_routes(trade_routes)
+	produce_goods(home_planet_data)
+	
+
+func produce_goods(planet_data: PlanetData) -> void:
+	print("===Producing Goods===")
+	var food_token = EventCost.new()
+	food_token.cost_type = "Food"
+	food_token.cost_value += planet_data.food_prod
+	print("Producing ", str(food_token.cost_value), " ", food_token.cost_type)
+	player_data_modify(food_token)
+	
+	var luxury_token = EventCost.new()
+	luxury_token.cost_type = "Luxuries"
+	luxury_token.cost_value += planet_data.luxury_prod
+	print("Producing ", str(luxury_token.cost_value), " ", luxury_token.cost_type)
+	player_data_modify(luxury_token)
+	
+	var weapon_token = EventCost.new()
+	weapon_token.cost_type = "Weapons"
+	weapon_token.cost_value += planet_data.weapon_prod
+	print("Producing ", str(weapon_token.cost_value), " ", weapon_token.cost_type)
+	player_data_modify(weapon_token)
 
 
 func execute_trade_routes(routes: Array[TradeRoute]):
@@ -143,11 +166,15 @@ func execute_trade_routes(routes: Array[TradeRoute]):
 			apply_rep_bonus(route)
 			if route.current_lifetime == route.max_duration:
 				expired_routes.append(route)
+				var route_refund = EventCost.new()
+				route_refund.cost_type = route.export.cost_type
+				route_refund.cost_value = route.export.cost_value * -1
+				player_data_modify(route_refund)
 				print("Route expired.")
 			continue
 		if route.executed == false:
-			home_planet_data.modify_production(route.export.cost_type, route.export.cost_value)
 			print("Route has not been executed. Executing...")
+			player_data_modify(route.export)
 			player_data_modify(route.import)
 			apply_rep_bonus(route)
 			route.executed = true
@@ -161,12 +188,12 @@ func apply_rep_bonus(route: TradeRoute) -> void:
 	rep_bonus.on_planet = route.to_planet.name
 
 	match route.export.cost_type:
-		"Food":
+		"FoodProd":
 			if route.to_planet.food_demand > 3:
 				rep_bonus.cost_value = 1
-		"Luxuries":
+		"LuxuryProd":
 			rep_bonus.cost_value = 2
-		"Weapons":
+		"WeaponProd":
 			if route.to_planet.weapon_demand > 2:
 				rep_bonus.cost_value = 1
 	player_data_modify(rep_bonus)

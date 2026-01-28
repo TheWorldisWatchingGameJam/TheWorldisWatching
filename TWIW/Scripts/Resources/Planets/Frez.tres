@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=9 format=3 uid="uid://b4kf7erwn6muh"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=10 format=3 uid="uid://b4kf7erwn6muh"]
 
+[ext_resource type="Texture2D" uid="uid://d3iwyepsogcfd" path="res://Assets/BGs/Frez.png" id="1_lic45"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_rb1px"]
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_r0xra"]
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_hwu0p"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_q1n0u"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_fvv0p"]
 [ext_resource type="Resource" uid="uid://cuqefho4xwcxd" path="res://Scripts/Resources/Events/Frez Events/fund_great_harvest_festival.tres" id="6_7sefl"]
-[ext_resource type="Resource" path="res://Scripts/Resources/Events/Frez Events/pacifist_gathering.tres" id="7_j7yk2"]
+[ext_resource type="Resource" uid="uid://cnvhix2s2efbn" path="res://Scripts/Resources/Events/Frez Events/pacifist_gathering.tres" id="7_j7yk2"]
 [ext_resource type="Texture2D" uid="uid://dhx2b30rqhvkw" path="res://Assets/PlanetSprites/Frez.webp" id="8_tal5m"]
 
 [resource]
@@ -14,6 +15,7 @@ script = ExtResource("5_fvv0p")
 id = "planet_1"
 name = &"Frez"
 sprite = ExtResource("8_tal5m")
+bg = ExtResource("1_lic45")
 desc = ""
 major_export = ""
 food_prod = 4

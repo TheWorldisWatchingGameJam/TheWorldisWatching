@@ -9,6 +9,7 @@ signal currentReputationChanged
 @export var id: String
 @export var name: StringName
 @export var sprite: Texture2D
+@export var bg: Texture2D
 @export_multiline var desc: String
 
 #Planet production values

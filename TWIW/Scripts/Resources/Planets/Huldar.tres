@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=7 format=3 uid="uid://d1r5bocod2xw1"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://d1r5bocod2xw1"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_p50pw"]
+[ext_resource type="Texture2D" uid="uid://c3fslapq8tkbs" path="res://Assets/BGs/Huldar.png" id="1_qhhoy"]
 [ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="2_swagv"]
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_e581v"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_m4vwl"]
@@ -12,6 +13,7 @@ script = ExtResource("5_vlwws")
 id = "planet_3"
 name = &"Huldar"
 sprite = ExtResource("6_tbbdo")
+bg = ExtResource("1_qhhoy")
 desc = ""
 major_export = ""
 food_prod = 2

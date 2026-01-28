@@ -53,7 +53,7 @@ func initialize_trade_window(planet: PlanetData) -> void:
 	#Check if player already has a trade route to this planet
 	for route in player_data.trade_routes:
 		if route.to_planet == planet:
-				trade_route_established_label.text = str("Trade Route Already Established.\nExporting: ", str(route.export.cost_value * -1), " ", route.export.cost_type, "\nImporting: ", route.import.cost_value, " ", route.import.cost_type)
+				trade_route_established_label.text = str("Trade Route Already Established.\nExporting: ", str(route.export.cost_value * -1), " ", prod_to_item_name(route.export.cost_type), "\nImporting: ", route.import.cost_value, " ", route.import.cost_type)
 				trade_window.hide()
 				trade_route_established_label.visible = true
 				return
@@ -72,7 +72,7 @@ func initialize_trade_window(planet: PlanetData) -> void:
 func _on_food_trade_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		hide_all_buttons_except([food_number_button, food_trade_button])
-		export.cost_type = "Food"
+		export.cost_type = "FoodProd"
 		print("Export cost type set to: ", export.cost_type)
 		update_import_label()
 	else:
@@ -81,7 +81,7 @@ func _on_food_trade_button_toggled(toggled_on: bool) -> void:
 func _on_luxuries_trade_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		hide_all_buttons_except([luxuries_number_button, luxuries_trade_button])
-		export.cost_type = "Luxuries"
+		export.cost_type = "LuxuryProd"
 		print("Export cost type set to: ", export.cost_type)
 		update_import_label()
 	else:
@@ -90,7 +90,7 @@ func _on_luxuries_trade_button_toggled(toggled_on: bool) -> void:
 func _on_weapons_trade_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		hide_all_buttons_except([weapons_number_button, weapons_trade_button])
-		export.cost_type = "Weapons"
+		export.cost_type = "WeaponProd"
 		print("Export cost type set to: ", export.cost_type)
 		update_import_label()
 	else:
@@ -128,7 +128,7 @@ func _on_establish_trade_button_pressed() -> void:
 		self.add_child(info_window)
 		return
 		
-	if player_data.home_planet_data.get_production(export.cost_type) < (export.cost_value * -1):
+	if not player_data.home_planet_data.can_pay_production_cost(export):
 		print("Exported items exceed player's home planet production!")
 		var info_window = load("res://Scenes/dialogue_window.tscn").instantiate()
 		info_window.dialogue_array = not_enough_production_message
@@ -152,20 +152,20 @@ func _on_establish_trade_button_pressed() -> void:
 
 	player_data.trade_routes.append(new_trade_route) 
 	player_data.player_data_modify(food_cost_for_trade_route)
-	trade_route_established_label.text = str("Trade Route Already Established.\nExporting: ", str(export.cost_value * -1), " ", export.cost_type, "\nImporting: ", import.cost_value, " ", import.cost_type)
+	trade_route_established_label.text = str("Trade Route Already Established.\nExporting: ", str(export.cost_value * -1), " ", prod_to_item_name(export.cost_type), "\nImporting: ", import.cost_value, " ", import.cost_type)
 	trade_window.hide()
 	trade_route_established_label.visible = true
 
 
 func construct_import_token() -> EventCost:
 	match export.cost_type:
-		"Food":
+		"FoodProd":
 			import.cost_type = "Money"
 			import.cost_value = food_demand * (export.cost_value * -1)
-		"Luxuries":
+		"LuxuryProd":
 			import.cost_type = "Money"
 			import.cost_value = luxury_demand * (export.cost_value  * -1)
-		"Weapons":
+		"WeaponProd":
 			import.cost_type = "Money"
 			import.cost_value = weapon_demand * (export.cost_value * -1)
 		"Money":
@@ -207,3 +207,15 @@ func _on_about_button_pressed() -> void:
 
 func close_tutorial_dialogue(window: Control) -> void:
 	window.queue_free()
+
+
+func prod_to_item_name(itemprod: String) -> String:
+	match itemprod:
+		"FoodProd":
+			return "Food"
+		"LuxuryProd":
+			return "Luxuries"
+		"WeaponProd":
+			return "Weapons"
+		_:
+			return ""

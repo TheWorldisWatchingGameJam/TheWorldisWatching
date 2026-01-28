@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmcx2y2kmefbe"]
+[gd_scene load_steps=12 format=3 uid="uid://cmcx2y2kmefbe"]
 
 [ext_resource type="Script" path="res://Scenes/planet_screen.gd" id="1_i27ir"]
-[ext_resource type="Texture2D" uid="uid://bq70p4u11in48" path="res://Assets/mountainous-5942962_1920.jpg" id="2_o2vp4"]
 [ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Assets/Theme/event_name_label_settings.tres" id="3_eddby"]
 [ext_resource type="LabelSettings" uid="uid://b2jya7wkh1jay" path="res://Assets/Theme/event_desc_label_settings.tres" id="5_0i3g7"]
 [ext_resource type="PackedScene" uid="uid://dkelrugrmtsdk" path="res://Scenes/player_ui.tscn" id="5_h8kr8"]
@@ -32,12 +31,11 @@ script = ExtResource("1_i27ir")
 event_name_label_settings = ExtResource("3_eddby")
 event_desc_label_settings = ExtResource("5_0i3g7")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 1
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = ExtResource("2_o2vp4")
 expand_mode = 1
 
 [node name="Window" type="PanelContainer" parent="."]

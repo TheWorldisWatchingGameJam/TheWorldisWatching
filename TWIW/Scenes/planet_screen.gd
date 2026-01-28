@@ -8,6 +8,7 @@ var ai_data: AIData
 @export var event_name_label_settings: LabelSettings
 @export var event_desc_label_settings: LabelSettings
 
+@onready var background = $Background
 @onready var planet_window = %PlanetWindow
 @onready var trade_button = %TradeButton
 @onready var market_button = %MarketButton
@@ -25,6 +26,7 @@ signal eventChosen
 
 func _ready() -> void:
 	await get_tree().process_frame
+	background.texture = planet.bg
 	initialize_market_window()
 	initialize_trade_window()
 	display_options(random_options(3))
