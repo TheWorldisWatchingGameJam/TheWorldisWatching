@@ -218,8 +218,13 @@ func _on_choice_selected(choice: EventChoice) -> void:
 	print("Applying effects now...")
 	resolve_effects(choice.choice_effects)
 	
-	# If the choice has dialogue, show it AFTER effects
-	if choice.choice_dialogue.size() > 0:
+	# Check if choice_dialogue exists and has content using has() method
+	var has_dialogue = false
+	if "choice_dialogue" in choice:
+		if choice.choice_dialogue != null and choice.choice_dialogue.size() > 0:
+			has_dialogue = true
+	
+	if has_dialogue:
 		print("Showing choice dialogue...")
 		current_dialogue_window = dialogue_window.instantiate()
 		current_dialogue_window.dialogue_array = choice.choice_dialogue
@@ -366,43 +371,42 @@ func _show_blackjack_choices():
 	current_dialogue_window.dialogue_array = dlg_array
 	
 	window.hide()
-	get_tree().get_root().add_child(current_dialogue_window)
+	self.add_child(current_dialogue_window)
 	
 	# Show buttons immediately after adding dialogue window
 	await get_tree().process_frame
 	_create_blackjack_buttons()
 
 func _create_blackjack_buttons():
-	if current_choice_panel:
-		current_choice_panel.queue_free()
-	
-	current_choice_panel = VBoxContainer.new()
-	current_choice_panel.name = "BlackjackChoices"
-	current_choice_panel.size_flags_vertical = Control.SIZE_SHRINK_END
-	current_choice_panel.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	current_choice_panel.add_theme_constant_override("separation", 10)
+	# Clear existing buttons in selector
+	for child in selector.get_children():
+		child.queue_free()
 	
 	var hit_btn = Button.new()
 	hit_btn.text = "Hit"
 	hit_btn.theme = load("res://Assets/Theme/button_theme.tres")
 	hit_btn.custom_minimum_size = Vector2(200, 50)
+	hit_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	hit_btn.size_flags_vertical = Control.SIZE_SHRINK_END
 	hit_btn.pressed.connect(_on_blackjack_hit)
-	current_choice_panel.add_child(hit_btn)
+	selector.add_child(hit_btn)
 	
 	var stand_btn = Button.new()
 	stand_btn.text = "Stand"
 	stand_btn.theme = load("res://Assets/Theme/button_theme.tres")
 	stand_btn.custom_minimum_size = Vector2(200, 50)
+	stand_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	stand_btn.size_flags_vertical = Control.SIZE_SHRINK_END
 	stand_btn.pressed.connect(_on_blackjack_stand)
-	current_choice_panel.add_child(stand_btn)
+	selector.add_child(stand_btn)
 	
-	if current_dialogue_window:
-		current_dialogue_window.add_child(current_choice_panel)
+	# Show the choice panel
+	choice_panel.get_parent().move_child(choice_panel, -1)
+	choice_panel.visible = true
 
 func _on_blackjack_hit():
-	if current_choice_panel:
-		current_choice_panel.queue_free()
-		current_choice_panel = null
+	# Hide choice panel
+	choice_panel.hide()
 	
 	_deal_card(blackjack_player_hand)
 	var player_total = _calculate_hand(blackjack_player_hand)
@@ -424,9 +428,8 @@ func _on_blackjack_hit():
 		_show_blackjack_result(dlg_array, true, false)
 
 func _on_blackjack_stand():
-	if current_choice_panel:
-		current_choice_panel.queue_free()
-		current_choice_panel = null
+	# Hide choice panel
+	choice_panel.hide()
 	
 	_dealer_turn()
 
@@ -512,7 +515,7 @@ func _show_blackjack_result(dialogues: Array[DialogueItem], continue_game: bool,
 	current_dialogue_window = dialogue_window.instantiate()
 	current_dialogue_window.dialogue_array = dialogues
 	
-	get_tree().get_root().add_child(current_dialogue_window)
+	self.add_child(current_dialogue_window)
 	
 	# Wait for the dialogue window to be added to the tree
 	await get_tree().process_frame
