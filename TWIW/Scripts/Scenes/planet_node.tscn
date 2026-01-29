@@ -4,8 +4,10 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_33w5r"]
 
-[node name="PlanetNode" type="Area2D"]
+[node name="PlanetNode" type="Area2D" node_paths=PackedStringArray("sprite", "label")]
 script = ExtResource("1_hylc5")
+sprite = NodePath("Sprite2D")
+label = NodePath("Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
