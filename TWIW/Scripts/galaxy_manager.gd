@@ -333,6 +333,7 @@ func update_player_time(to_planet: String) -> void:
 	for planet in selected_planets:
 		if planet.id == to_planet:
 			player_current_location = planet
+			player_data.current_location = player_current_location.name
 			break
 	
 	#Update election counter

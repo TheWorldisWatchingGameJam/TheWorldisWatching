@@ -14,6 +14,7 @@ var _total_rep := 0
 @export var home_planet_data: PlanetData: set = on_home_planet_data_set
 @export var time_tracker: TimeTracker
 @export var trade_routes: Array[TradeRoute]
+@export var current_location: String
 
 @export_range(0, 999999, 1)
 var food: int:
@@ -76,7 +77,10 @@ func player_data_modify(cost_token: EventCost) -> void:
 		"Money":
 			money += cost_token.cost_value
 		"Rep":
-			home_planet_data.modify_reputation(cost_token.on_planet, cost_token.cost_value)
+			if cost_token.on_current_planet:
+				home_planet_data.modify_reputation(current_location, cost_token.cost_value)
+			else:
+				home_planet_data.modify_reputation(cost_token.on_planet, cost_token.cost_value)
 			update_total_rep()
 			for item in home_planet_data.current_reputation:
 				print("Reputation at ", item.planet_name, " is ", item.reputation)
