@@ -23,13 +23,14 @@ var ai_data: AIData
 
 var current_dialogue_window: Control = null
 var current_choice_panel: Control = null
+var current_event: Event = null
 
 # Blackjack game state
 var blackjack_active: bool = false
 var blackjack_deck: Array = []
 var blackjack_player_hand: Array = []
 var blackjack_dealer_hand: Array = []
-var blackjack_bet: int = 50
+var blackjack_bet: int = 100
 
 signal eventChosen
 signal playerLeftPlanet
@@ -61,17 +62,201 @@ func initialize_market_window() -> void:
 
 #Roll for x random events of given planet
 func random_options(number_of_options: int) -> Array[Event]:
-	var events = planet.roll_events(number_of_options)
+	var all_events = planet.roll_events(number_of_options * 5)  # Get even more events to filter and avoid duplicates
+	var valid_events: Array[Event] = []
+	var priority_events: Array[Event] = []
+	var seen_events: Dictionary = {}  # Track events to prevent duplicates
+	
 	print("Generating Events for Planet: " + planet.name)
-	print("---EVENTS---")
-	for event in events:
-		if event:
-			print(event.event_name)
-	return events
+	print("---EVENTS (with condition filtering)---")
+	
+	# Filter events that meet conditions and separate priority events
+	for event in all_events:
+		if not event:
+			continue
+		
+		var event_key = ""
+		if "event_id" in event and event.event_id != "":
+			event_key = event.event_id
+		elif "event_name" in event:
+			event_key = event.event_name
+		
+		# Skip if we've already seen this event
+		if event_key != "" and seen_events.has(event_key):
+			print(event.event_name + " [DUPLICATE - SKIPPED]")
+			continue
+		
+		if check_event_conditions(event):
+			# Mark this event as seen
+			if event_key != "":
+				seen_events[event_key] = true
+			
+			# Check if event is marked as priority
+			if "is_priority" in event and event.is_priority:
+				priority_events.append(event)
+				print(event.event_name + " [VALID - PRIORITY]")
+			else:
+				valid_events.append(event)
+				print(event.event_name + " [VALID]")
+		else:
+			print(event.event_name + " [FILTERED OUT - conditions not met]")
+	
+	# Build result: priority events first, then fill with regular events
+	var result: Array[Event] = []
+	
+	# Add all priority events first
+	for priority_event in priority_events:
+		if result.size() < number_of_options:
+			result.append(priority_event)
+	
+	# Fill remaining slots with regular events
+	for event in valid_events:
+		if result.size() < number_of_options:
+			result.append(event)
+	
+	# If we don't have enough events, add null placeholders
+	while result.size() < number_of_options:
+		result.append(null)
+		print("Added placeholder for slot ", result.size())
+	
+	return result
+
+# ============================================
+# EVENT CONDITION SYSTEM (for filtering events)
+# ============================================
+
+func check_event_conditions(event: Event) -> bool:
+	# If event has no event_conditions property or it's empty, event is valid
+	if not "event_conditions" in event:
+		return true
+	if event.event_conditions == null or event.event_conditions.size() == 0:
+		return true
+	
+	# All conditions must be met (AND logic)
+	for condition in event.event_conditions:
+		if not _check_event_condition(condition):
+			print("Event condition not met for: ", event.event_name)
+			return false
+	
+	return true
+
+func _check_event_condition(condition: EventCondition) -> bool:
+	print("--- Checking Event Condition ---")
+	
+	# Check war event requirement
+	if "war_event" in condition and condition.war_event:
+		print("War event check (not implemented, passing)")
+		# You'll need to implement war state checking
+		# For now, returning true - replace with actual war state check
+		pass
+	
+	# Check event history requirement
+	if "event_history_requirement" in condition and condition.event_history_requirement != null:
+		print("Event history check...")
+		var history_req = condition.event_history_requirement
+		
+		# FIXED: Use correct property names
+		if "required_event_id" in history_req and history_req.required_event_id != "":
+			var event_id = history_req.required_event_id
+			var has_completed = player_data.has_completed_event(event_id)
+			
+			print("  Required event: ", event_id)
+			print("  Player has completed: ", has_completed)
+			
+			# Check if must_have_completed matches the actual completion status
+			if "must_have_completed" in history_req:
+				var required_status = history_req.must_have_completed
+				if has_completed != required_status:
+					print("  FAILED: Event completion mismatch (wanted ", required_status, ", got ", has_completed, ")")
+					return false
+			
+			# If a specific choice is required, check that too
+			if "required_choice_id" in history_req and history_req.required_choice_id != "":
+				var choice_id = history_req.required_choice_id
+				if not player_data.has_made_choice(event_id, choice_id):
+					print("  FAILED: Required choice '", choice_id, "' was not made")
+					return false
+				print("  PASSED: Required choice '", choice_id, "' was made")
+			
+			print("  PASSED: Event history requirement met")
+	
+	# Check relation requirement
+	if "relation_requirement" in condition and condition.relation_requirement != null:
+		print("Relation check (not implemented, passing)")
+		# You'll need to implement relation checking
+		# For now, returning true - replace with actual relation check
+		pass
+	
+	# Check resource conditions (Food, Luxuries, Weapons, Money, Rep, Info)
+	if "condition_type" in condition and condition.condition_type != "":
+		print("Has condition_type: ", condition.condition_type)
+		return _check_resource_condition(condition)
+	
+	print("No specific condition type found, passing")
+	return true
+
+func _check_resource_condition(condition: EventCondition) -> bool:
+	var player_value = 0
+	
+	print("=== CHECKING RESOURCE CONDITION ===")
+	print("Condition Type: ", condition.condition_type)
+	print("Condition Value Required: ", condition.condition_value)
+	
+	match condition.condition_type:
+		"Food":
+			player_value = player_data.food
+			print("Player Food: ", player_value)
+		"Money":
+			player_value = player_data.money
+			print("Player Money: ", player_value)
+		"Weapons":
+			player_value = player_data.weapons
+			print("Player Weapons: ", player_value)
+		"Luxuries":
+			player_value = player_data.luxuries
+			print("Player Luxuries: ", player_value)
+		"Rep":
+			# Check reputation with specific planet
+			print("Checking Rep condition...")
+			print("on_planet property exists: ", "on_planet" in condition)
+			if "on_planet" in condition:
+				print("on_planet value: ", condition.on_planet)
+			
+			if "on_planet" in condition and condition.on_planet != "":
+				if player_data.home_planet_data:
+					player_value = player_data.home_planet_data.get_reputation(condition.on_planet)
+					print("Player Rep with ", condition.on_planet, ": ", player_value)
+				else:
+					print("ERROR: player_data.home_planet_data is null!")
+					return false
+			else:
+				print("ERROR: Rep condition requires on_planet to be set")
+				return false
+		"Info":
+			# Check if player has info about specific planet
+			# You'll need to implement info checking based on your game logic
+			# For now, returning true - replace with actual info check
+			print("Info condition - returning true (not implemented)")
+			return true
+	
+	# Compare player's value with condition requirement
+	var result = player_value >= condition.condition_value
+	print("Comparison: ", player_value, " >= ", condition.condition_value, " = ", result)
+	print("=================================")
+	return result
+
+# ============================================
+# END EVENT CONDITION SYSTEM
+# ============================================
 
 #Display the events rolled
 func display_options(events: Array[Event]) -> void:
 	for event in events:
+		# Handle null events (no more available)
+		if event == null:
+			_display_no_events_card()
+			continue
+			
 		#Create event container
 		var event_container = VBoxContainer.new()
 		event_container.custom_minimum_size = Vector2(400,0)
@@ -143,6 +328,62 @@ func display_options(events: Array[Event]) -> void:
 		event_container.add_child(button)
 		button.pressed.connect(_on_event_selected.bind(event))
 
+func _display_no_events_card() -> void:
+	#Create event container
+	var event_container = VBoxContainer.new()
+	event_container.custom_minimum_size = Vector2(400,0)
+	event_container.add_theme_constant_override(&"separation", 20)
+	planet_window.add_child(event_container)
+	
+	#Display placeholder name
+	var event_name_label_container = PanelContainer.new()
+	event_name_label_container.custom_minimum_size = Vector2(400,60)
+	event_name_label_container.theme = load("res://Assets/Theme/button_theme.tres")
+	event_container.add_child(event_name_label_container)
+	var event_name_label = Label.new()
+	event_name_label.text = "No Events Available"
+	event_name_label.label_settings = event_name_label_settings
+	event_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	event_name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	event_name_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	event_name_label.custom_minimum_size = Vector2(400,0)
+	event_name_label_container.add_child(event_name_label)
+	
+	#Display placeholder description
+	var event_desc_label_container = PanelContainer.new()
+	event_desc_label_container.theme = load("res://Assets/Theme/button_theme.tres")
+	event_desc_label_container.custom_minimum_size = Vector2(400,200)
+	event_container.add_child(event_desc_label_container)
+	var event_desc_label_spacer_container_v = VBoxContainer.new()
+	event_desc_label_container.add_child(event_desc_label_spacer_container_v)
+	var event_desc_label_spacer_t = Control.new()
+	event_desc_label_spacer_t.custom_minimum_size = Vector2(0, 10)
+	event_desc_label_spacer_container_v.add_child(event_desc_label_spacer_t)
+	var event_desc_label_spacer_container_h = HBoxContainer.new()
+	event_desc_label_spacer_container_v.add_child(event_desc_label_spacer_container_h)
+	var event_desc_label_spacer_l = Control.new()
+	event_desc_label_spacer_l.custom_minimum_size = Vector2(10, 0)
+	event_desc_label_spacer_container_h.add_child(event_desc_label_spacer_l)
+	var event_desc_label = Label.new()
+	event_desc_label.text = "No other events are available at the moment. Try visiting other planets or completing certain events to unlock more opportunities here."
+	event_desc_label.label_settings = event_desc_label_settings
+	event_desc_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	event_desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	event_desc_label.custom_minimum_size = Vector2(400,0)
+	event_desc_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	event_desc_label_spacer_container_h.add_child(event_desc_label)
+	var event_desc_label_spacer_r = Control.new()
+	event_desc_label_spacer_r.custom_minimum_size = Vector2(10, 0)
+	event_desc_label_spacer_container_h.add_child(event_desc_label_spacer_r)
+	var event_desc_label_spacer_b = Control.new()
+	event_desc_label_spacer_b.custom_minimum_size = Vector2(0, 10)
+	event_desc_label_spacer_container_v.add_child(event_desc_label_spacer_b)
+	
+	#Add spacer
+	var spacer = Control.new()
+	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	event_container.add_child(spacer)
+
 func _on_event_selected(event: Event) -> void:
 	# Pay cost first
 	for cost in event.cost:
@@ -152,12 +393,25 @@ func _on_event_selected(event: Event) -> void:
 	for cost in event.cost:
 		player_data.player_data_modify(cost)
 
-	# Always show dialogue/choices if they exist
-	if event.event_dialogue.size() > 0 or event.choices.size() > 0:
+	# Record event completion (without choice for now, will be updated if choice is made)
+	if "event_id" in event and event.event_id != "":
+		player_data.record_event_completion(event.event_id, "")
+		print("Recorded event completion: ", event.event_id)
+
+	# Check if event has dialogue
+	if event.event_dialogue.size() > 0:
+		# Event has dialogue - show it (will handle choices/effects after dialogue)
 		_show_choice_dialogue(event)
+	elif event.choices.size() > 0:
+		# No dialogue but has choices - show them directly
+		_show_choice_buttons(event.choices)
 	else:
-		resolve_effects(event.event_effects)
-		emit_signal("eventChosen")
+		# No dialogue or choices, just apply effects and finish
+		if event.event_effects.size() > 0:
+			resolve_effects(event.event_effects)
+		else:
+			# No effects either, just signal completion
+			emit_signal("eventChosen")
 
 func _show_choice_dialogue(event: Event) -> void:
 	# Check if this is a blackjack event
@@ -169,6 +423,9 @@ func _show_choice_dialogue(event: Event) -> void:
 	_initiate_choice_event(event)
 
 func _initiate_choice_event(event: Event) -> void:
+	# Store current event so we can record choices
+	current_event = event
+	
 	# Remove old dialogue if it exists
 	if current_dialogue_window:
 		current_dialogue_window.queue_free()
@@ -181,9 +438,18 @@ func _initiate_choice_event(event: Event) -> void:
 
 func _on_choice_dialogue_finished(event: Event) -> void:
 	if event.choices.size() > 0:
+		# Has choices - show choice buttons (keep dialogue window open)
 		_show_choice_buttons(event.choices)
-	else:
+	elif event.event_effects.size() > 0:
+		# No choices but has effects - apply them (dialogue window gets hidden/shown by effects)
 		resolve_effects(event.event_effects)
+	else:
+		# No choices and no effects - clean up and signal completion
+		print("Dialogue finished, no choices or effects, event complete")
+		if current_dialogue_window:
+			current_dialogue_window.queue_free()
+			current_dialogue_window = null
+		window.visible = true
 		emit_signal("eventChosen")
 
 func _show_choice_buttons(choices: Array[EventChoice]) -> void:
@@ -200,7 +466,7 @@ func _show_choice_buttons(choices: Array[EventChoice]) -> void:
 		btn.size_flags_vertical = Control.SIZE_SHRINK_END
 		btn.pressed.connect(_on_choice_selected.bind(choice))
 		selector.add_child(btn)
-
+	
 	choice_panel.get_parent().move_child(choice_panel, -1)
 	choice_panel.visible = true
 
@@ -208,6 +474,12 @@ func _on_choice_selected(choice: EventChoice) -> void:
 	print("=== CHOICE SELECTED ===")
 	print("Choice: ", choice.choice_text)
 	print("Has ", choice.choice_effects.size(), " effects")
+	
+	# Record the choice made (update the event completion with the choice_id)
+	if current_event and "event_id" in current_event and current_event.event_id != "":
+		if "choice_id" in choice and choice.choice_id != "":
+			player_data.record_event_completion(current_event.event_id, choice.choice_id)
+			print("Recorded choice: ", current_event.event_id, " -> ", choice.choice_id)
 	
 	# Hide dialogue and choice panel
 	if current_dialogue_window:
@@ -219,7 +491,7 @@ func _on_choice_selected(choice: EventChoice) -> void:
 	print("Applying effects now...")
 	resolve_effects(choice.choice_effects)
 	
-	# Check if choice_dialogue exists and has content using has() method
+	# Check if choice_dialogue exists and has content
 	var has_dialogue = false
 	if "choice_dialogue" in choice:
 		if choice.choice_dialogue != null and choice.choice_dialogue.size() > 0:
@@ -237,17 +509,147 @@ func _on_choice_selected(choice: EventChoice) -> void:
 		print("No choice dialogue")
 		emit_signal("eventChosen")
 
+# ============================================
+# EFFECT REQUIREMENTS SYSTEM
+# ============================================
+
+func check_effect_requirements(effect: EventEffect) -> bool:
+	# If no requirements property exists or empty, effect always passes
+	if not "requirements" in effect:
+		return true
+	if effect.requirements == null or effect.requirements.size() == 0:
+		return true
+	
+	# All requirements must be met (AND logic)
+	for req in effect.requirements:
+		if not _check_requirement(req):
+			print("Requirement not met: ", req)
+			return false
+	
+	return true
+
+func _check_requirement(req) -> bool:
+	if not "requirement_type" in req:
+		return true
+	
+	match req.requirement_type:
+		0: # PLAYER_RESOURCE
+			return _check_player_resource_req(req)
+		1: # PLANET_COMPARISON
+			return _check_planet_comparison_req(req)
+		2: # REPUTATION
+			return _check_reputation_req(req)
+		3: # TIME
+			return _check_time_req(req)
+		4: # RANDOM_CHANCE
+			return _check_random_chance_req(req)
+	
+	return false
+
+func _check_player_resource_req(req) -> bool:
+	var player_value = 0
+	
+	match req.resource_type:
+		"Food":
+			player_value = player_data.food
+		"Money":
+			player_value = player_data.money
+		"Weapons":
+			player_value = player_data.weapons
+		"Luxuries":
+			player_value = player_data.luxuries
+	
+	return _compare_values(player_value, req.compare_value, req.comparison)
+
+func _check_planet_comparison_req(req) -> bool:
+	var player_value = 0
+	var planet_value = 0
+	
+	# Get player resource
+	match req.resource_type:
+		"Food":
+			player_value = player_data.food
+		"Money":
+			player_value = player_data.money
+		"Weapons":
+			player_value = player_data.weapons
+		"Luxuries":
+			player_value = player_data.luxuries
+	
+	# Get planet resource
+	if "planet_resource_type" in req:
+		match req.planet_resource_type:
+			"Weapons":
+				planet_value = planet.weapons if "weapons" in planet else 0
+			"Food":
+				planet_value = planet.food if "food" in planet else 0
+	
+	print("Player ", req.resource_type, ": ", player_value, " vs Planet ", req.planet_resource_type, ": ", planet_value)
+	return _compare_values(player_value, planet_value, req.comparison)
+
+func _check_reputation_req(req) -> bool:
+	if not player_data.home_planet_data:
+		return false
+	
+	var rep = player_data.home_planet_data.get_reputation(req.target_planet_name)
+	return _compare_values(rep, req.reputation_threshold, req.comparison)
+
+func _check_time_req(req) -> bool:
+	var current_day = player_data.time_tracker.current_day
+	return _compare_values(current_day, req.day_threshold, req.comparison)
+
+func _check_random_chance_req(req) -> bool:
+	var roll = randi_range(1, 100)
+	return roll <= req.chance_percentage
+
+func _compare_values(value_a: int, value_b: int, operator: int) -> bool:
+	match operator:
+		0: # GREATER_THAN
+			return value_a > value_b
+		1: # LESS_THAN
+			return value_a < value_b
+		2: # EQUAL_TO
+			return value_a == value_b
+		3: # GREATER_OR_EQUAL
+			return value_a >= value_b
+		4: # LESS_OR_EQUAL
+			return value_a <= value_b
+		5: # NOT_EQUAL
+			return value_a != value_b
+	
+	return false
+
+# ============================================
+# END EFFECT REQUIREMENTS SYSTEM
+# ============================================
+
 func resolve_effects(effects: Array[EventEffect]) -> void:
 	print("=== RESOLVING EFFECTS ===")
 	print("Total effects: ", effects.size())
 	
 	if effects.size() == 0:
+		print("No effects to resolve")
+		return
+	
+	# Filter effects by requirements
+	var valid_effects = []
+	for effect in effects:
+		if check_effect_requirements(effect):
+			print("Effect passed requirements")
+			valid_effects.append(effect)
+		else:
+			print("Effect failed requirements")
+	
+	if valid_effects.size() == 0:
+		print("No valid effects met requirements!")
+		emit_signal("eventChosen")
 		return
 	
 	var guaranteed_effects = []
 	var random_effects = []
+	var has_dialogue = false  # Track if any effect has dialogue
 
-	for effect in effects:
+	for effect in valid_effects:
 		if effect.effect_probability == 0:
 			guaranteed_effects.append(effect)
 		else:
@@ -258,6 +660,7 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 		player_data.player_data_modify(effect.effect_value_token)
 		if effect.effect_dialogue.size() > 0:
 			print("Effect dialogue detected.")
+			has_dialogue = true
 			var dlg = dialogue_window.instantiate()
 			dlg.dialogue_array = effect.effect_dialogue
 			dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg))
@@ -276,16 +679,24 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 			if roll < cumulative:
 				player_data.player_data_modify(e.effect_value_token)
 				if e.effect_dialogue.size() > 0:
+					has_dialogue = true
 					var dlg = dialogue_window.instantiate()
 					dlg.dialogue_array = e.effect_dialogue
 					dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg))
 					window.hide()
 					self.add_child(dlg)
 				break
+	
+	# If no dialogue was shown, signal completion immediately
+	if not has_dialogue:
+		print("No effect dialogue, completing event")
+		emit_signal("eventChosen")
 
 func on_effect_dialogue_finished(dialogue_window_ref: Control) -> void:
 	dialogue_window_ref.queue_free()
 	window.visible = true
+	# Signal event completion after effect dialogue is done
+	emit_signal("eventChosen")
 
 # ============================================
 # BLACKJACK SYSTEM
@@ -533,7 +944,6 @@ func _show_blackjack_result(dialogues: Array[DialogueItem], continue_game: bool,
 		# Game over: wait for dialogue to finish, then clean up
 		if current_dialogue_window.has_signal("dialogueFinished"):
 			await current_dialogue_window.dialogueFinished
-		current_dialogue_window.hide()
 		blackjack_active = false
 		window.visible = true
 		emit_signal("eventChosen")

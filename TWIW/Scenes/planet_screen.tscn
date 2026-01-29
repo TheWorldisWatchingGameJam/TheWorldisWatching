@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cmcx2y2kmefbe"]
 
-[ext_resource type="Script" path="res://Scenes/planet_screen 2.gd" id="1_h7ydv"]
+[ext_resource type="Script" path="res://Scenes/planet_screen.gd" id="1_h7ydv"]
 [ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Assets/Theme/event_name_label_settings.tres" id="3_eddby"]
 [ext_resource type="LabelSettings" uid="uid://b2jya7wkh1jay" path="res://Assets/Theme/event_desc_label_settings.tres" id="5_0i3g7"]
 [ext_resource type="PackedScene" uid="uid://dkelrugrmtsdk" path="res://Scenes/player_ui.tscn" id="5_h8kr8"]
