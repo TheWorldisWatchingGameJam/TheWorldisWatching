@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyoqgnde87rpb"]
+
+[ext_resource type="Script" path="res://Scenes/game_over.gd" id="1_auf5o"]
+[ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_ygi5d"]
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="3_fkekg"]
+[ext_resource type="Theme" uid="uid://kdox7h3lrego" path="res://Assets/Theme/button_theme.tres" id="4_3hoky"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fwn3m"]
+font = ExtResource("2_ygi5d")
+font_size = 200
+
+[sub_resource type="LabelSettings" id="LabelSettings_aoryk"]
+font = ExtResource("3_fkekg")
+font_size = 50
+
+[node name="GameOver" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_auf5o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_fwn3m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "You couldn't gather enough reputation."
+label_settings = SubResource("LabelSettings_aoryk")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_3hoky")
+text = "Try Again?"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

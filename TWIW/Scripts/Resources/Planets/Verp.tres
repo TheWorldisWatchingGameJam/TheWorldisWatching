@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://b0wugdfli82wd"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=9 format=3 uid="uid://b0wugdfli82wd"]
 
 [ext_resource type="Texture2D" uid="uid://5giba85nylsd" path="res://Assets/BGs/Verp.png" id="1_a8jsj"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_ol3aw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_3a0u1"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_qejpo"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_w5tab"]
+[ext_resource type="Texture2D" uid="uid://c4hl02p77egfv" path="res://Assets/CharacterSprites/leynardeuxmacdonald.png" id="6_ac3mm"]
 [ext_resource type="Texture2D" uid="uid://6lkrssl20f46" path="res://Assets/PlanetSprites/Verp.webp" id="6_s3enc"]
 
 [resource]
@@ -29,3 +30,6 @@ current_info = Array[ExtResource("1_ol3aw")]([])
 event_pool = Array[ExtResource("4_qejpo")]([])
 live_events = Array[ExtResource("4_qejpo")]([])
 event_history = Array[ExtResource("4_qejpo")]([])
+leader_name = "Leynardeux MacDonald"
+voted_off = false
+leader_sprite = ExtResource("6_ac3mm")

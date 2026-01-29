@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://b72joh82fp4cm"]
+
+[ext_resource type="Script" path="res://Scenes/election_screen.gd" id="1_kjeuq"]
+[ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="1_syji6"]
+[ext_resource type="Theme" uid="uid://kdox7h3lrego" path="res://Assets/Theme/button_theme.tres" id="4_4jg0j"]
+
+[node name="ElectionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kjeuq")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1700, 800)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_syji6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="ContestantCardContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1650, 0)
+layout_mode = 2
+
+[node name="NextButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_4jg0j")
+text = "Next"
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

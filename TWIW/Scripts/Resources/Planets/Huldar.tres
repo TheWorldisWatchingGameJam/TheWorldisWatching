@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://d1r5bocod2xw1"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=9 format=3 uid="uid://d1r5bocod2xw1"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_p50pw"]
 [ext_resource type="Texture2D" uid="uid://c3fslapq8tkbs" path="res://Assets/BGs/Huldar.png" id="1_qhhoy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_e581v"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_m4vwl"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_vlwws"]
+[ext_resource type="Texture2D" uid="uid://dbtioogvbvdo8" path="res://Assets/CharacterSprites/emperorshayrimizio.png" id="6_bosoj"]
 [ext_resource type="Texture2D" uid="uid://bxn5xlpergrfo" path="res://Assets/PlanetSprites/Huldar.webp" id="6_tbbdo"]
 
 [resource]
@@ -29,3 +30,6 @@ current_info = Array[ExtResource("1_p50pw")]([])
 event_pool = Array[ExtResource("4_m4vwl")]([])
 live_events = Array[ExtResource("4_m4vwl")]([])
 event_history = Array[ExtResource("4_m4vwl")]([])
+leader_name = "Emperor Shay Rimizio"
+voted_off = false
+leader_sprite = ExtResource("6_bosoj")

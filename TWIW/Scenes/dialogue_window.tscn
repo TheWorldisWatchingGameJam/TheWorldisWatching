@@ -2,16 +2,18 @@
 
 [ext_resource type="Script" path="res://Scenes/dialogue_window.gd" id="1_vvlpg"]
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_8gimu"]
+[ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="2_x2uff"]
 [ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="3_m4032"]
-[ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="3_rei1e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7vjws"]
 font = ExtResource("2_8gimu")
 font_size = 55
+font_color = Color(0, 0.133333, 0.00784314, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_c883e"]
 font = ExtResource("3_m4032")
 font_size = 49
+font_color = Color(0, 0.133333, 0.00784314, 1)
 
 [node name="DialogueWindow" type="Control"]
 layout_mode = 3
@@ -39,7 +41,7 @@ layout_mode = 2
 [node name="NameContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(500, 140)
 layout_mode = 2
-theme_override_styles/panel = ExtResource("3_rei1e")
+theme_override_styles/panel = ExtResource("2_x2uff")
 metadata/_edit_use_anchors_ = true
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer/NameContainer"]
@@ -57,10 +59,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="DialogueContainer" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 350)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_styles/panel = ExtResource("3_rei1e")
+theme_override_styles/panel = ExtResource("2_x2uff")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/DialogueContainer"]
 layout_mode = 2

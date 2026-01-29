@@ -13,12 +13,12 @@
 [sub_resource type="Resource" id="Resource_43d60"]
 script = ExtResource("3_cco1b")
 planet_name = &"Opal"
-reputation = 0
+reputation = 100
 
 [sub_resource type="Resource" id="Resource_pnvqw"]
 script = ExtResource("3_cco1b")
 planet_name = &"Frez"
-reputation = 0
+reputation = 100
 
 [sub_resource type="Resource" id="Resource_335xq"]
 script = ExtResource("5_4vo74")
@@ -39,6 +39,8 @@ current_info = Array[ExtResource("1_l3eed")]([])
 event_pool = Array[ExtResource("4_f27hi")]([])
 live_events = Array[ExtResource("4_f27hi")]([])
 event_history = Array[ExtResource("4_f27hi")]([])
+leader_name = ""
+voted_off = false
 
 [sub_resource type="Resource" id="Resource_3yxoi"]
 script = ExtResource("8_rl5dj")

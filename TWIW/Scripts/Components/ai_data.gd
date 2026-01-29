@@ -56,6 +56,15 @@ func get_rep(planet_name: String) -> int:
 func get_all_reps() -> Dictionary:
 	return leader_rep.duplicate()
 
+func get_lowest_rep() -> String:
+	print("Planet with lowest rep is ", str(leader_rep.find_key(leader_rep.values().min())))
+	return leader_rep.find_key(leader_rep.values().min())
+
+func remove_planet_from_race(planet_name: String) -> void:
+	print("Removing ", planet_name, " from race.")
+	leader_rep.erase(planet_name)
+
+
 func set_rep(planet_name: String, value: int) -> void:
 	if not leader_rep.has(planet_name):
 		return

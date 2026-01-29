@@ -38,6 +38,8 @@ current_info = Array[ExtResource("2_ccbj7")]([])
 event_pool = Array[ExtResource("5_0741h")]([])
 live_events = Array[ExtResource("5_0741h")]([])
 event_history = Array[ExtResource("5_0741h")]([])
+leader_name = ""
+voted_off = false
 
 [node name="MarketWindow" type="Control"]
 layout_mode = 3

@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://mymp60r3rac0"]
+
+[ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="1_i5bdm"]
+[ext_resource type="Script" path="res://Scenes/contestant_card.gd" id="1_q5d5n"]
+[ext_resource type="Texture2D" uid="uid://b55u3ayg5pm3q" path="res://Assets/CharacterSprites/wilyambfarmstar.png" id="2_bgtvm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nqwn4"]
+font = ExtResource("1_i5bdm")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_g8av6"]
+font = ExtResource("1_i5bdm")
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_b26vh"]
+font = ExtResource("1_i5bdm")
+font_size = 200
+
+[node name="ContestantCard" type="PanelContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_q5d5n")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 225)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="ContestantTextRect" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+texture = ExtResource("2_bgtvm")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "Wilyam B. Farmstar III"
+label_settings = SubResource("LabelSettings_nqwn4")
+autowrap_mode = 2
+
+[node name="Control3" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RepLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Total Rep: 110"
+label_settings = SubResource("LabelSettings_g8av6")
+
+[node name="Control4" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="VotedOffLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "VOTED OFF"
+label_settings = SubResource("LabelSettings_b26vh")
+horizontal_alignment = 1
+vertical_alignment = 1

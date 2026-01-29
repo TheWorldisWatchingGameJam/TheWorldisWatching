@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=8 format=3 uid="uid://cda2udbfuiixi"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=9 format=3 uid="uid://cda2udbfuiixi"]
 
 [ext_resource type="Texture2D" uid="uid://daul6l825l837" path="res://Assets/BGs/Gomix.png" id="1_7gtlo"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_bxaqs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_legbn"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_u6a02"]
 [ext_resource type="Texture2D" uid="uid://dsm5cu8wvmxit" path="res://Assets/PlanetSprites/Gomix.webp" id="6_cf77y"]
+[ext_resource type="Texture2D" uid="uid://c0epffn3546xd" path="res://Assets/CharacterSprites/mykahthefaithful.png" id="6_htesx"]
 
 [resource]
 script = ExtResource("5_u6a02")
@@ -29,3 +30,6 @@ current_info = Array[ExtResource("1_bxaqs")]([])
 event_pool = Array[ExtResource("4_legbn")]([])
 live_events = Array[ExtResource("4_legbn")]([])
 event_history = Array[ExtResource("4_legbn")]([])
+leader_name = "Mykah the Faithful"
+voted_off = false
+leader_sprite = ExtResource("6_htesx")
