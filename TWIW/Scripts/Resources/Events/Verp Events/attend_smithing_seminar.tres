@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=12 format=3 uid="uid://b45mgvy6aqw2a"]
+[gd_resource type="Resource" script_class="Event" load_steps=13 format=3 uid="uid://b45mgvy6aqw2a"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_7o8he"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_rwhwm"]
@@ -14,6 +14,13 @@ cost_type = "Money"
 cost_value = -500
 on_planet = &""
 on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_lge2s"]
+script = ExtResource("3_prtvx")
+war_event = false
+condition_type = "Rep"
+condition_value = 25
+on_planet = &"Verp"
 
 [sub_resource type="Resource" id="Resource_nkcbc"]
 script = ExtResource("4_q44pw")
@@ -40,7 +47,7 @@ event_name = &"Attend Smithing Seminar"
 event_desc = "Learn about how to produce weapons from the best of th best"
 event_button_text = "Attend ($500)"
 home_exclusive = false
-event_conditions = Array[ExtResource("3_prtvx")]([])
+event_conditions = Array[ExtResource("3_prtvx")]([SubResource("Resource_lge2s")])
 event_dialogue = Array[ExtResource("4_q44pw")]([])
 event_effects = Array[ExtResource("5_e67cu")]([SubResource("Resource_xbdr5")])
 choices = Array[ExtResource("1_7o8he")]([])
