@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dfixd4skh3ig7"]
+[gd_scene load_steps=30 format=3 uid="uid://dfixd4skh3ig7"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ektus"]
 [ext_resource type="Script" path="res://Scenes/PlanetOption.gd" id="2_1an38"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="14_c3rc7"]
 [ext_resource type="Script" path="res://Scripts/Components/ai_data.gd" id="15_7cmk1"]
 [ext_resource type="AudioStream" uid="uid://dcrvqt7dqo3wg" path="res://Assets/Audio/menu.wav" id="16_urgrp"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="17_qamgo"]
 
 [sub_resource type="Resource" id="Resource_kyq7c"]
 script = ExtResource("15_7cmk1")
@@ -28,6 +29,11 @@ daily_rep_max = 5
 min_rep = -500
 max_rep = 500
 starting_rep = 0
+
+[sub_resource type="Resource" id="Resource_wp2ac"]
+script = ExtResource("17_qamgo")
+name = ""
+dialogue = "You just traveled to this planet!"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l35hw"]
 size = Vector2(150.435, 154.034)
@@ -76,6 +82,7 @@ rocket_texture = ExtResource("13_u642g")
 planet_screen_scene = ExtResource("13_ssfxd")
 player_data = ExtResource("14_c3rc7")
 ai_data = SubResource("Resource_kyq7c")
+planet_return_error_message = Array[ExtResource("17_qamgo")]([SubResource("Resource_wp2ac")])
 
 [node name="GalaxyMap" type="Node2D" parent="GalaxyManager"]
 

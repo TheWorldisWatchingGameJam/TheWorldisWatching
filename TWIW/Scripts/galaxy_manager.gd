@@ -11,6 +11,7 @@ extends Node
 @export var planet_screen_scene: PackedScene
 @export var player_data: PlayerData
 @export var ai_data: AIData
+@export var planet_return_error_message: Array[DialogueItem]
 
 #camera variables
 @onready var camera: Camera2D = get_node("../MapCamera")
@@ -34,6 +35,8 @@ var current_focused_planet = null
 
 var min_distance: float = 0.0
 var max_distance: float = 0.0
+
+var planet_just_left: String
 
 func _ready():
 	add_to_group("galaxy_manager")
@@ -282,8 +285,19 @@ func _on_travel_button_pressed():
 			if planet.id == current_focused_planet.planet_data.id:
 				target_planet = planet
 				break
-		
+
 		if target_planet:
+			#Check if its the planet that the player just left
+			if target_planet.name == planet_just_left:
+				print("Player just left this planet! Attempting to open window...")
+				reset_zoom()
+				var dialogue_window = load("res://Scenes/dialogue_window.tscn").instantiate()
+				dialogue_window.dialogue_array = planet_return_error_message
+				dialogue_window.dialogueFinished.connect(_on_dialogue_finished.bind(dialogue_window))
+				get_tree().get_root().add_child(dialogue_window)
+				return
+			
+			
 			var planet_screen = planet_screen_scene.instantiate()
 			planet_screen.planet = target_planet
 			planet_screen.home_planet_data = player_planet
@@ -332,8 +346,9 @@ func update_player_time(to_planet: String) -> void:
 		print("AI Reps: ", ai_data.get_all_reps())
 
 
-func _on_player_leaves_planet() -> void:
-	print("Player Left Planet.")
+func _on_player_leaves_planet(planet_name: String) -> void:
+	planet_just_left = planet_name
+	print("Player Left Planet ", planet_just_left)
 	
 	if days_until_election <= 0:
 		var election_screen = load("res://Scenes/election_screen.tscn").instantiate()
@@ -362,6 +377,9 @@ func _on_player_leaves_planet() -> void:
 		election_screen.run_vote()
 		await election_screen.cardAnimationFinished
 
+
+func _on_dialogue_finished(window: Control) -> void:
+	window.queue_free()
 
 func player_lost() -> void:
 	var game_over_screen = load("res://Scenes/game_over.tscn").instantiate()

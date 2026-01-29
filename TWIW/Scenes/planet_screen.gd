@@ -33,7 +33,7 @@ var blackjack_dealer_hand: Array = []
 var blackjack_bet: int = 100
 
 signal eventChosen
-signal playerLeftPlanet
+signal playerLeftPlanet(planet_name: String)
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -979,5 +979,5 @@ func _on_event_chosen() -> void:
 	event_chosen_label.visible = true
 
 func _on_leave_button_pressed() -> void:
-	emit_signal("playerLeftPlanet")
+	playerLeftPlanet.emit(planet.name)
 	self.queue_free()
