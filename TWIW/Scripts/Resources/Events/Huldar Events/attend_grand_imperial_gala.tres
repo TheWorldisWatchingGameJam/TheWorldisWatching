@@ -36,9 +36,12 @@ effect_dialogue = Array[ExtResource("4_o8ghb")]([SubResource("Resource_d1fvg")])
 
 [resource]
 script = ExtResource("6_dt0hs")
+event_id = ""
 event_name = &"Attend Grand Imperial Gala"
 event_desc = "Huldar's annual Imperial Gala. An opportunity to show off your planet's extravagant wealth."
 event_button_text = "Attend ($500)"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_ec045")]([])
 event_dialogue = Array[ExtResource("4_o8ghb")]([])

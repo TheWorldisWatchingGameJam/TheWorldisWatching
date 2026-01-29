@@ -73,9 +73,12 @@ dialogue = "\"Ah, your eminence! I am but an honest wholesaler of gems. I have h
 
 [resource]
 script = ExtResource("6_56d8n")
+event_id = ""
 event_name = &"Approach Local Jeweler"
 event_desc = "What is he selling?"
 event_button_text = "Approach"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_7cdoc")]([])
 event_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_5ldsy")])

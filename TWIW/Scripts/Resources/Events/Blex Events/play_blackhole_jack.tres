@@ -21,9 +21,12 @@ dialogue = "[BLACKJACK]"
 
 [resource]
 script = ExtResource("5_570qx")
+event_id = ""
 event_name = &"Blackhole Jack"
 event_desc = "Care for a game of blackjack? $50 buy-in."
 event_button_text = "Play ($100)"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("2_0nvkf")]([])
 event_dialogue = Array[ExtResource("3_fosu5")]([SubResource("Resource_lnf2u")])

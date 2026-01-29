@@ -95,9 +95,12 @@ effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_2xr6b")])
 
 [resource]
 script = ExtResource("5_xnkeq")
+event_id = ""
 event_name = &"Purchase Lottery Ticket"
 event_desc = "SMALL CHANCE TO WIN BIG"
 event_button_text = "Purchase"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("2_vbyia")]([SubResource("Resource_5uagn")])
 event_dialogue = Array[ExtResource("3_8aq3a")]([])

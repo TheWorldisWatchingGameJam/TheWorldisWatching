@@ -43,9 +43,12 @@ effect_dialogue = Array[ExtResource("4_catem")]([SubResource("Resource_nkcbc")])
 
 [resource]
 script = ExtResource("7_pkttt")
+event_id = ""
 event_name = &"Attend Farming Seminar"
 event_desc = "Learn about Farming from the best"
 event_button_text = "Attend ($500)"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_sgb5q")]([SubResource("Resource_unl1k")])
 event_dialogue = Array[ExtResource("4_catem")]([])

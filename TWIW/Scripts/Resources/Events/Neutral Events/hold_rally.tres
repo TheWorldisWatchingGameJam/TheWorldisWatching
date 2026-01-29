@@ -53,10 +53,13 @@ effect_dialogue = Array[ExtResource("2_4h3hu")]([SubResource("Resource_7184t")])
 
 [resource]
 script = ExtResource("4_0l56e")
+event_id = ""
 event_name = &"Rally"
 event_desc = "Fund a rally at this planet."
 event_icon_texture = ExtResource("5_3hj5b")
 event_button_text = "Fund. ($50)"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_6af2o")]([])
 event_dialogue = Array[ExtResource("2_4h3hu")]([])

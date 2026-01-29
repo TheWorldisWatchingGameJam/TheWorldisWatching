@@ -29,10 +29,13 @@ effect_dialogue = Array[ExtResource("2_lvbli")]([])
 
 [resource]
 script = ExtResource("5_qrk80")
+event_id = ""
 event_name = &"Visit Opal Mountain"
 event_desc = "Fund an expedition to Opal's legendary landmark for a chance of finding precious gems. The more tools you have, the better your chances of striking it big."
 event_icon_texture = ExtResource("5_5xvcf")
 event_button_text = "Fund."
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_wy2vh")]([])
 event_dialogue = Array[ExtResource("2_lvbli")]([])

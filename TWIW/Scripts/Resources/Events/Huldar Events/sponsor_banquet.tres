@@ -56,9 +56,12 @@ effect_dialogue = Array[ExtResource("4_jqkdp")]([SubResource("Resource_d1d21")])
 
 [resource]
 script = ExtResource("6_dylwe")
+event_id = ""
 event_name = &"Sponsor Imperial Banquet"
 event_desc = "Donate Food for Huldar's Banquet"
 event_button_text = "Donate (-20 Food)"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_xlxmx")]([SubResource("Resource_6yuee")])
 event_dialogue = Array[ExtResource("4_jqkdp")]([])
