@@ -60,13 +60,128 @@ func initialize_market_window() -> void:
 
 #Roll for x random events of given planet
 func random_options(number_of_options: int) -> Array[Event]:
-	var events = planet.roll_events(number_of_options)
+	var all_events = planet.roll_events(number_of_options * 3)  # Get extra events to filter
+	var valid_events: Array[Event] = []
+	
 	print("Generating Events for Planet: " + planet.name)
-	print("---EVENTS---")
-	for event in events:
-		if event:
-			print(event.event_name)
-	return events
+	print("---EVENTS (with condition filtering)---")
+	
+	# Filter events that meet conditions
+	for event in all_events:
+		if event and check_event_conditions(event):
+			valid_events.append(event)
+			print(event.event_name + " [VALID]")
+		elif event:
+			print(event.event_name + " [FILTERED OUT - conditions not met]")
+	
+	# Return only the requested number of valid events
+	var result: Array[Event] = []
+	for i in range(min(number_of_options, valid_events.size())):
+		result.append(valid_events[i])
+	
+	return result
+
+# Event Conditions
+func check_event_conditions(event: Event) -> bool:
+	# If event has no event_conditions property or it's empty, event is valid
+	if not "event_conditions" in event:
+		return true
+	if event.event_conditions == null or event.event_conditions.size() == 0:
+		return true
+	
+	# All conditions must be met (AND logic)
+	for condition in event.event_conditions:
+		if not _check_event_condition(condition):
+			print("Event condition not met for: ", event.event_name)
+			return false
+	
+	return true
+
+func _check_event_condition(condition: EventCondition) -> bool:
+	print("--- Checking Event Condition ---")
+	
+	# Check war event requirement
+	if "war_event" in condition and condition.war_event:
+		print("War event check (not implemented, passing)")
+		# You'll need to implement war state checking
+		# For now, returning true - replace with actual war state check
+		pass
+	
+	# Check event history requirement
+	if "event_history_requirement" in condition and condition.event_history_requirement != null:
+		print("Event history check (not implemented, passing)")
+		# You'll need to implement event history checking
+		# For now, returning true - replace with actual history check
+		pass
+	
+	# Check relation requirement
+	if "relation_requirement" in condition and condition.relation_requirement != null:
+		print("Relation check (not implemented, passing)")
+		# You'll need to implement relation checking
+		# For now, returning true - replace with actual relation check
+		pass
+	
+	# Check resource conditions (Food, Luxuries, Weapons, Money, Rep, Info)
+	if "condition_type" in condition and condition.condition_type != "":
+		print("Has condition_type: ", condition.condition_type)
+		return _check_resource_condition(condition)
+	
+	print("No specific condition type found, passing")
+	return true
+
+func _check_resource_condition(condition: EventCondition) -> bool:
+	var player_value = 0
+	
+	print("=== CHECKING RESOURCE CONDITION ===")
+	print("Condition Type: ", condition.condition_type)
+	print("Condition Value Required: ", condition.condition_value)
+	
+	match condition.condition_type:
+		"Food":
+			player_value = player_data.food
+			print("Player Food: ", player_value)
+		"Money":
+			player_value = player_data.money
+			print("Player Money: ", player_value)
+		"Weapons":
+			player_value = player_data.weapons
+			print("Player Weapons: ", player_value)
+		"Luxuries":
+			player_value = player_data.luxuries
+			print("Player Luxuries: ", player_value)
+		"Rep":
+			# Check reputation with specific planet
+			print("Checking Rep condition...")
+			print("on_planet property exists: ", "on_planet" in condition)
+			if "on_planet" in condition:
+				print("on_planet value: ", condition.on_planet)
+			
+			if "on_planet" in condition and condition.on_planet != "":
+				if player_data.home_planet_data:
+					player_value = player_data.home_planet_data.get_reputation(condition.on_planet)
+					print("Player Rep with ", condition.on_planet, ": ", player_value)
+				else:
+					print("ERROR: player_data.home_planet_data is null!")
+					return false
+			else:
+				print("ERROR: Rep condition requires on_planet to be set")
+				return false
+		"Info":
+			# Check if player has info about specific planet
+			# You'll need to implement info checking based on your game logic
+			# For now, returning true - replace with actual info check
+			print("Info condition - returning true (not implemented)")
+			return true
+	
+	# Compare player's value with condition requirement
+	var result = player_value >= condition.condition_value
+	print("Comparison: ", player_value, " >= ", condition.condition_value, " = ", result)
+	print("=================================")
+	return result
+
+# ============================================
+# END EVENT CONDITION SYSTEM
+# ============================================
 
 #Display the events rolled
 func display_options(events: Array[Event]) -> void:
