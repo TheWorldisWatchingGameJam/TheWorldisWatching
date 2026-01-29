@@ -52,6 +52,7 @@ script = ExtResource("1_myrfh")
 home_planet_data = SubResource("Resource_335xq")
 time_tracker = SubResource("Resource_3yxoi")
 trade_routes = Array[ExtResource("9_fqa25")]([])
+current_location = ""
 food = 90
 luxuries = 100
 weapons = 100

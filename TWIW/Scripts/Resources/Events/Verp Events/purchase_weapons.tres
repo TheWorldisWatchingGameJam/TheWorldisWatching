@@ -61,9 +61,12 @@ effect_dialogue = Array[ExtResource("4_7uord")]([SubResource("Resource_5b5ce")])
 
 [resource]
 script = ExtResource("6_wec10")
+event_id = ""
 event_name = &"Purchase Weapons from Local Smith"
 event_desc = "Purchase Weapons from one of the locals. Verp has the finest of weapons"
 event_button_text = "Purchase ($200)"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_5ex24")]([SubResource("Resource_67i6k"), SubResource("Resource_4dec7")])
 event_dialogue = Array[ExtResource("4_7uord")]([])

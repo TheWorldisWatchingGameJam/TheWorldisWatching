@@ -43,9 +43,12 @@ effect_dialogue = Array[ExtResource("4_40itv")]([SubResource("Resource_umk6d")])
 
 [resource]
 script = ExtResource("6_dtk5b")
+event_id = ""
 event_name = &"Donate Food"
 event_desc = "While Opal is rich in luxuries, they are in need of food."
 event_button_text = "Donate (20)"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_5b0sh")]([SubResource("Resource_1eiqi")])
 event_dialogue = Array[ExtResource("4_40itv")]([])
