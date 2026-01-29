@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="Event" load_steps=19 format=3 uid="uid://d24up0642eqrc"]
+[gd_resource type="Resource" script_class="Event" load_steps=18 format=3 uid="uid://d24up0642eqrc"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_mqk17"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_3rr4p"]
 [ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_7cdoc"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_lr66i"]
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_l8xns"]
-[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="5_p3rsc"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_56d8n"]
 
 [sub_resource type="Resource" id="Resource_6lrm6"]
@@ -20,7 +19,6 @@ script = ExtResource("5_l8xns")
 effect_value_token = SubResource("Resource_6lrm6")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_lr66i")]([])
-requirements = Array[ExtResource("5_p3rsc")]([])
 
 [sub_resource type="Resource" id="Resource_6y87w"]
 script = ExtResource("4_lr66i")
@@ -39,7 +37,6 @@ script = ExtResource("5_l8xns")
 effect_value_token = SubResource("Resource_njhjx")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_6y87w")])
-requirements = Array[ExtResource("5_p3rsc")]([])
 
 [sub_resource type="Resource" id="Resource_xe4rm"]
 script = ExtResource("1_mqk17")
@@ -63,7 +60,6 @@ script = ExtResource("5_l8xns")
 effect_value_token = SubResource("Resource_d0m1x")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_bbpjo")])
-requirements = Array[ExtResource("5_p3rsc")]([])
 
 [sub_resource type="Resource" id="Resource_ahrfv"]
 script = ExtResource("1_mqk17")
@@ -77,12 +73,10 @@ dialogue = "\"Ah, your eminence! I am but an honest wholesaler of gems. I have h
 
 [resource]
 script = ExtResource("6_56d8n")
-event_id = ""
 event_name = &"Approach Local Jeweler"
 event_desc = "What is he selling?"
 event_button_text = "Approach"
 home_exclusive = false
-is_priority = false
 event_conditions = Array[ExtResource("3_7cdoc")]([])
 event_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_5ldsy")])
 event_effects = Array[ExtResource("5_l8xns")]([])

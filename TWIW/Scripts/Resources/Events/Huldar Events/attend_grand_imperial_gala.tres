@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=14 format=3 uid="uid://bvy13tedh3n02"]
+[gd_resource type="Resource" script_class="Event" load_steps=12 format=3 uid="uid://bvy13tedh3n02"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_3amr3"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_4thqp"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_o8ghb"]
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_1b71p"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_dt0hs"]
-[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="6_eae44"]
 [ext_resource type="Texture2D" uid="uid://bxss0srd0kdyl" path="res://Assets/CharacterSprites/emperorShayRimizio.webp" id="6_wkr8u"]
 
 [sub_resource type="Resource" id="Resource_qixx7"]
@@ -29,33 +28,18 @@ cost_value = 10
 on_planet = &"Huldar"
 on_current_planet = false
 
-[sub_resource type="Resource" id="Resource_kglvo"]
-script = ExtResource("6_eae44")
-requirement_type = 0
-comparison = 3
-resource_type = "Luxuries"
-compare_value = 100
-planet_resource_type = "Weapons"
-target_planet_name = ""
-reputation_threshold = 0
-day_threshold = 0
-chance_percentage = 50
-
 [sub_resource type="Resource" id="Resource_omds8"]
 script = ExtResource("5_1b71p")
 effect_value_token = SubResource("Resource_p8hod")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_o8ghb")]([SubResource("Resource_d1fvg")])
-requirements = Array[ExtResource("6_eae44")]([SubResource("Resource_kglvo")])
 
 [resource]
 script = ExtResource("6_dt0hs")
-event_id = ""
 event_name = &"Attend Grand Imperial Gala"
 event_desc = "Huldar's annual Imperial Gala. An opportunity to show off your planet's extravagant wealth."
 event_button_text = "Attend ($500)"
 home_exclusive = false
-is_priority = false
 event_conditions = Array[ExtResource("3_ec045")]([])
 event_dialogue = Array[ExtResource("4_o8ghb")]([])
 event_effects = Array[ExtResource("5_1b71p")]([SubResource("Resource_omds8")])

@@ -6,7 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://bepmqoip50uru" path="res://Assets/Theme/large_text_generic.tres" id="2_jv2y6"]
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_kwqtb"]
 [ext_resource type="Script" path="res://Scripts/galaxy_manager.gd" id="2_mqygn"]
-[ext_resource type="PackedScene" uid="uid://bchhcro7px8l6" path="res://Scenes/planet_node.tscn" id="3_071my"]
+[ext_resource type="PackedScene" uid="uid://bchhcro7px8l6" path="res://Scripts/Scenes/planet_node.tscn" id="3_071my"]
 [ext_resource type="Texture2D" uid="uid://d1pg65rmosvlv" path="res://icon.svg" id="3_mfgap"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="4_h3u51"]
 [ext_resource type="Resource" uid="uid://b4kf7erwn6muh" path="res://Scripts/Resources/Planets/Frez.tres" id="5_6araa"]

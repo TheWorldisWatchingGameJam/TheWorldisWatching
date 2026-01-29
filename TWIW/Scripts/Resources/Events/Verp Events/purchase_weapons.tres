@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="Event" load_steps=16 format=3 uid="uid://ccai03ex57i7"]
+[gd_resource type="Resource" script_class="Event" load_steps=15 format=3 uid="uid://ccai03ex57i7"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_nn78a"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_xxxtd"]
 [ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_5ex24"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_7uord"]
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_gm046"]
-[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="6_hq74l"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_wec10"]
 
 [sub_resource type="Resource" id="Resource_luk1k"]
@@ -41,7 +40,6 @@ script = ExtResource("5_gm046")
 effect_value_token = SubResource("Resource_dnx6i")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_7uord")]([])
-requirements = Array[ExtResource("6_hq74l")]([])
 
 [sub_resource type="Resource" id="Resource_5b5ce"]
 script = ExtResource("4_7uord")
@@ -60,16 +58,13 @@ script = ExtResource("5_gm046")
 effect_value_token = SubResource("Resource_ch30v")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_7uord")]([SubResource("Resource_5b5ce")])
-requirements = Array[ExtResource("6_hq74l")]([])
 
 [resource]
 script = ExtResource("6_wec10")
-event_id = ""
 event_name = &"Purchase Weapons from Local Smith"
 event_desc = "Purchase Weapons from one of the locals. Verp has the finest of weapons"
 event_button_text = "Purchase ($200)"
 home_exclusive = false
-is_priority = false
 event_conditions = Array[ExtResource("3_5ex24")]([SubResource("Resource_67i6k"), SubResource("Resource_4dec7")])
 event_dialogue = Array[ExtResource("4_7uord")]([])
 event_effects = Array[ExtResource("5_gm046")]([SubResource("Resource_67wam"), SubResource("Resource_2niia")])
