@@ -60,28 +60,70 @@ func initialize_market_window() -> void:
 
 #Roll for x random events of given planet
 func random_options(number_of_options: int) -> Array[Event]:
-	var all_events = planet.roll_events(number_of_options * 3)  # Get extra events to filter
+	var all_events = planet.roll_events(number_of_options * 5)  # Get even more events to filter and avoid duplicates
 	var valid_events: Array[Event] = []
+	var priority_events: Array[Event] = []
+	var seen_events: Dictionary = {}  # Track events to prevent duplicates
 	
 	print("Generating Events for Planet: " + planet.name)
 	print("---EVENTS (with condition filtering)---")
 	
-	# Filter events that meet conditions
+	# Filter events that meet conditions and separate priority events
 	for event in all_events:
-		if event and check_event_conditions(event):
-			valid_events.append(event)
-			print(event.event_name + " [VALID]")
-		elif event:
+		if not event:
+			continue
+		
+		# Create a unique key for this event (prefer event_id, fallback to event_name)
+		var event_key = ""
+		if "event_id" in event and event.event_id != "":
+			event_key = event.event_id
+		elif "event_name" in event:
+			event_key = event.event_name
+		
+		# Skip if we've already seen this event
+		if event_key != "" and seen_events.has(event_key):
+			print(event.event_name + " [DUPLICATE - SKIPPED]")
+			continue
+		
+		if check_event_conditions(event):
+			# Mark this event as seen
+			if event_key != "":
+				seen_events[event_key] = true
+			
+			# Check if event is marked as priority
+			if "is_priority" in event and event.is_priority:
+				priority_events.append(event)
+				print(event.event_name + " [VALID - PRIORITY]")
+			else:
+				valid_events.append(event)
+				print(event.event_name + " [VALID]")
+		else:
 			print(event.event_name + " [FILTERED OUT - conditions not met]")
 	
-	# Return only the requested number of valid events
+	# Build result: priority events first, then fill with regular events
 	var result: Array[Event] = []
-	for i in range(min(number_of_options, valid_events.size())):
-		result.append(valid_events[i])
+	
+	# Add all priority events first
+	for priority_event in priority_events:
+		if result.size() < number_of_options:
+			result.append(priority_event)
+	
+	# Fill remaining slots with regular events
+	for event in valid_events:
+		if result.size() < number_of_options:
+			result.append(event)
+	
+	# If we don't have enough events, add null placeholders
+	while result.size() < number_of_options:
+		result.append(null)
+		print("Added placeholder for slot ", result.size())
 	
 	return result
 
-# Event Conditions
+# ============================================
+# EVENT CONDITION SYSTEM (for filtering events)
+# ============================================
+
 func check_event_conditions(event: Event) -> bool:
 	# If event has no event_conditions property or it's empty, event is valid
 	if not "event_conditions" in event:
@@ -109,10 +151,31 @@ func _check_event_condition(condition: EventCondition) -> bool:
 	
 	# Check event history requirement
 	if "event_history_requirement" in condition and condition.event_history_requirement != null:
-		print("Event history check (not implemented, passing)")
-		# You'll need to implement event history checking
-		# For now, returning true - replace with actual history check
-		pass
+		print("Event history check...")
+		var history_req = condition.event_history_requirement
+		
+		if "required_event_id" in history_req and history_req.required_event_id != "":
+			var event_id = history_req.required_event_id
+			var has_completed = player_data.has_completed_event(event_id)
+			
+			print("  Required event: ", event_id)
+			print("  Player has completed: ", has_completed)
+			
+			# Check if must_have_completed matches the actual completion status
+			if "must_have_completed" in history_req:
+				if history_req.must_have_completed != has_completed:
+					print("  FAILED: Event completion requirement not met")
+					return false
+			
+			# If a specific choice is required, check that too
+			if "required_choice_id" in history_req and history_req.required_choice_id != "":
+				var choice_id = history_req.required_choice_id
+				if not player_data.has_made_choice(event_id, choice_id):
+					print("  FAILED: Required choice '", choice_id, "' was not made")
+					return false
+				print("  PASSED: Required choice '", choice_id, "' was made")
+			
+			print("  PASSED: Event history requirement met")
 	
 	# Check relation requirement
 	if "relation_requirement" in condition and condition.relation_requirement != null:
@@ -186,6 +249,11 @@ func _check_resource_condition(condition: EventCondition) -> bool:
 #Display the events rolled
 func display_options(events: Array[Event]) -> void:
 	for event in events:
+		# Handle null events (no more available)
+		if event == null:
+			_display_no_events_card()
+			continue
+			
 		#Create event container
 		var event_container = VBoxContainer.new()
 		event_container.custom_minimum_size = Vector2(400,0)
@@ -257,6 +325,62 @@ func display_options(events: Array[Event]) -> void:
 		event_container.add_child(button)
 		button.pressed.connect(_on_event_selected.bind(event))
 
+func _display_no_events_card() -> void:
+	#Create event container
+	var event_container = VBoxContainer.new()
+	event_container.custom_minimum_size = Vector2(400,0)
+	event_container.add_theme_constant_override(&"separation", 20)
+	planet_window.add_child(event_container)
+	
+	#Display placeholder name
+	var event_name_label_container = PanelContainer.new()
+	event_name_label_container.custom_minimum_size = Vector2(400,60)
+	event_name_label_container.theme = load("res://Assets/Theme/button_theme.tres")
+	event_container.add_child(event_name_label_container)
+	var event_name_label = Label.new()
+	event_name_label.text = "No Events Available"
+	event_name_label.label_settings = event_name_label_settings
+	event_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	event_name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	event_name_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	event_name_label.custom_minimum_size = Vector2(400,0)
+	event_name_label_container.add_child(event_name_label)
+	
+	#Display placeholder description
+	var event_desc_label_container = PanelContainer.new()
+	event_desc_label_container.theme = load("res://Assets/Theme/button_theme.tres")
+	event_desc_label_container.custom_minimum_size = Vector2(400,200)
+	event_container.add_child(event_desc_label_container)
+	var event_desc_label_spacer_container_v = VBoxContainer.new()
+	event_desc_label_container.add_child(event_desc_label_spacer_container_v)
+	var event_desc_label_spacer_t = Control.new()
+	event_desc_label_spacer_t.custom_minimum_size = Vector2(0, 10)
+	event_desc_label_spacer_container_v.add_child(event_desc_label_spacer_t)
+	var event_desc_label_spacer_container_h = HBoxContainer.new()
+	event_desc_label_spacer_container_v.add_child(event_desc_label_spacer_container_h)
+	var event_desc_label_spacer_l = Control.new()
+	event_desc_label_spacer_l.custom_minimum_size = Vector2(10, 0)
+	event_desc_label_spacer_container_h.add_child(event_desc_label_spacer_l)
+	var event_desc_label = Label.new()
+	event_desc_label.text = "No other events are available at the moment. Try visiting other planets or completing certain events to unlock more opportunities here."
+	event_desc_label.label_settings = event_desc_label_settings
+	event_desc_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	event_desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	event_desc_label.custom_minimum_size = Vector2(400,0)
+	event_desc_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	event_desc_label_spacer_container_h.add_child(event_desc_label)
+	var event_desc_label_spacer_r = Control.new()
+	event_desc_label_spacer_r.custom_minimum_size = Vector2(10, 0)
+	event_desc_label_spacer_container_h.add_child(event_desc_label_spacer_r)
+	var event_desc_label_spacer_b = Control.new()
+	event_desc_label_spacer_b.custom_minimum_size = Vector2(0, 10)
+	event_desc_label_spacer_container_v.add_child(event_desc_label_spacer_b)
+	
+	#Add spacer
+	var spacer = Control.new()
+	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	event_container.add_child(spacer)
+
 func _on_event_selected(event: Event) -> void:
 	# Pay cost first
 	for cost in event.cost:
@@ -265,6 +389,10 @@ func _on_event_selected(event: Event) -> void:
 			return
 	for cost in event.cost:
 		player_data.player_data_modify(cost)
+
+	# Record event completion (without choice for now, will be updated if choice is made)
+	if "event_id" in event and event.event_id != "":
+		player_data.record_event_completion(event.event_id, "")
 
 	# Always show dialogue/choices if they exist
 	if event.event_dialogue.size() > 0 or event.choices.size() > 0:
@@ -282,7 +410,13 @@ func _show_choice_dialogue(event: Event) -> void:
 	# Normal dialogue handling - initiate choice event
 	_initiate_choice_event(event)
 
+# Store the current event for choice recording
+var current_event: Event = null
+
 func _initiate_choice_event(event: Event) -> void:
+	# Store current event so we can record choices
+	current_event = event
+	
 	# Remove old dialogue if it exists
 	if current_dialogue_window:
 		current_dialogue_window.queue_free()
@@ -322,6 +456,12 @@ func _on_choice_selected(choice: EventChoice) -> void:
 	print("=== CHOICE SELECTED ===")
 	print("Choice: ", choice.choice_text)
 	print("Has ", choice.choice_effects.size(), " effects")
+	
+	# Record the choice made (update the event completion with the choice_id)
+	if current_event and "event_id" in current_event and current_event.event_id != "":
+		if "choice_id" in choice and choice.choice_id != "":
+			player_data.record_event_completion(current_event.event_id, choice.choice_id)
+			print("Recorded choice: ", current_event.event_id, " -> ", choice.choice_id)
 	
 	# Hide dialogue and choice panel
 	if current_dialogue_window:

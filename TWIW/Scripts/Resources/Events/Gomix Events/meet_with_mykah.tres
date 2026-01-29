@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Event" load_steps=10 format=3 uid="uid://d2lqwrr1xvma0"]
+[gd_resource type="Resource" script_class="Event" load_steps=12 format=3 uid="uid://d2lqwrr1xvma0"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_lqc6o"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_cmnsk"]
 [ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_o04ki"]
 [ext_resource type="Script" path="res://Scripts/Components/event_history.gd" id="4_r0s6q"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="5_0tuqd"]
+[ext_resource type="Texture2D" uid="uid://cxwknmu1taim3" path="res://Assets/CharacterSprites/mykah.webp" id="6_cauxx"]
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="6_tvpg4"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="7_xkibg"]
 
@@ -13,6 +14,7 @@ script = ExtResource("4_r0s6q")
 event_name = &""
 on_planet = &""
 on_day = 0
+must_have_completed = true
 
 [sub_resource type="Resource" id="Resource_g03si"]
 script = ExtResource("3_o04ki")
@@ -22,14 +24,21 @@ condition_type = ""
 condition_value = 0
 on_planet = &""
 
+[sub_resource type="Resource" id="Resource_es3rp"]
+script = ExtResource("5_0tuqd")
+name = "Mykah"
+dialogue = "Hello! I am glad you have decided to ally with us. Gomix is very pleased"
+sprite = ExtResource("6_cauxx")
+
 [resource]
 script = ExtResource("7_xkibg")
 event_name = &"Meet with Mykah"
-event_desc = ""
-event_button_text = ""
+event_desc = "Ally with Mykah, who worships the God Gomix"
+event_button_text = "Ally with Mykah"
 home_exclusive = false
+is_priority = true
 event_conditions = Array[ExtResource("3_o04ki")]([SubResource("Resource_g03si")])
-event_dialogue = Array[ExtResource("5_0tuqd")]([])
+event_dialogue = Array[ExtResource("5_0tuqd")]([SubResource("Resource_es3rp")])
 event_effects = Array[ExtResource("6_tvpg4")]([])
 choices = Array[ExtResource("1_lqc6o")]([])
 cost = Array[ExtResource("2_cmnsk")]([])
