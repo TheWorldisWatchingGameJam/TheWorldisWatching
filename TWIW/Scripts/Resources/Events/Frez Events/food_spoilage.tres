@@ -49,10 +49,13 @@ effect_dialogue = Array[ExtResource("4_gjgxt")]([SubResource("Resource_81pd1")])
 
 [resource]
 script = ExtResource("6_350j5")
+event_id = ""
 event_name = &"Food Spoilage"
 event_desc = "Frez has produced too much 
 food and some of it is spoiling! Help them out and buy some food?"
 event_button_text = "Buy Food ($200)"
+is_priority = false
+one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_wj103")]([])
 event_dialogue = Array[ExtResource("4_gjgxt")]([])
