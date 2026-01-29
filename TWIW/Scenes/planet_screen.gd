@@ -395,7 +395,7 @@ func _on_event_selected(event: Event) -> void:
 			dialogue_window.dialogueFinished.connect(_info_window_finished.bind(dialogue_window))
 			self.add_child(dialogue_window)
 			return
-			return
+
 	for cost in event.cost:
 		player_data.player_data_modify(cost)
 

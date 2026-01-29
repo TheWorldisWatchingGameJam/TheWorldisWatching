@@ -10,6 +10,7 @@ var _luxuries := 0
 var _weapons := 0
 var _money := 0
 var _total_rep := 0
+var completed_events: Dictionary = {}
 
 @export var home_planet_data: PlanetData: set = on_home_planet_data_set
 @export var time_tracker: TimeTracker
@@ -202,3 +203,15 @@ func apply_rep_bonus(route: TradeRoute) -> void:
 				rep_bonus.cost_value = 1
 	player_data_modify(rep_bonus)
 	
+
+func record_event_completion(event_id: String, choice_id: String = "") -> void:
+	completed_events[event_id] = choice_id
+	print("Event recorded: ", event_id, " with choice: ", choice_id)
+
+func has_completed_event(event_id: String) -> bool:
+	return completed_events.has(event_id)
+
+func has_made_choice(event_id: String, choice_id: String) -> bool:
+	if not completed_events.has(event_id):
+		return false
+	return completed_events[event_id] == choice_id

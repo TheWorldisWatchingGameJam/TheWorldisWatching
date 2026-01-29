@@ -9,15 +9,17 @@
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="6_tvpg4"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="7_xkibg"]
 
-[sub_resource type="Resource" id="Resource_oragw"]
+[sub_resource type="Resource" id="Resource_inivn"]
 script = ExtResource("4_r0s6q")
-event_name = &""
+required_event_id = "meet_mahkus"
+required_choice_id = ""
+must_have_completed = false
 on_planet = &""
 on_day = 0
 
-[sub_resource type="Resource" id="Resource_g03si"]
+[sub_resource type="Resource" id="Resource_37uex"]
 script = ExtResource("3_o04ki")
-event_history_requirement = SubResource("Resource_oragw")
+event_history_requirement = SubResource("Resource_inivn")
 war_event = false
 condition_type = ""
 condition_value = 0
@@ -31,11 +33,13 @@ sprite = ExtResource("6_cauxx")
 
 [resource]
 script = ExtResource("7_xkibg")
+event_id = "meet_mykah"
 event_name = &"Meet with Mykah"
 event_desc = "Ally with Mykah, who worships the God Gomix"
 event_button_text = "Ally with Mykah"
+is_priority = true
 home_exclusive = false
-event_conditions = Array[ExtResource("3_o04ki")]([SubResource("Resource_g03si")])
+event_conditions = Array[ExtResource("3_o04ki")]([SubResource("Resource_37uex")])
 event_dialogue = Array[ExtResource("5_0tuqd")]([SubResource("Resource_es3rp")])
 event_effects = Array[ExtResource("6_tvpg4")]([])
 choices = Array[ExtResource("1_lqc6o")]([])
