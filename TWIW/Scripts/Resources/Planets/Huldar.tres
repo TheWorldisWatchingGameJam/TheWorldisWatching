@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=12 format=3 uid="uid://d1r5bocod2xw1"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=14 format=3 uid="uid://d1r5bocod2xw1"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_p50pw"]
 [ext_resource type="Texture2D" uid="uid://c3fslapq8tkbs" path="res://Assets/BGs/Huldar.png" id="1_qhhoy"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bxn5xlpergrfo" path="res://Assets/PlanetSprites/Huldar.webp" id="6_tbbdo"]
 [ext_resource type="Resource" uid="uid://ctmu04fxcrr1o" path="res://Scripts/Resources/Events/Huldar Events/compete_in_combat_exhibition.tres" id="7_facmb"]
 [ext_resource type="Resource" uid="uid://dfrwdpdp4dygr" path="res://Scripts/Resources/Events/Huldar Events/sponsor_banquet.tres" id="8_uuc0c"]
+[ext_resource type="Resource" uid="uid://87aqduay7cwr" path="res://Scripts/Resources/Events/Huldar Events/gather_army.tres" id="9_dxkjt"]
+[ext_resource type="Resource" uid="uid://ff6jrw4eow2o" path="res://Scripts/Resources/Events/Huldar Events/gather_forces.tres" id="10_0yecs"]
 
 [resource]
 script = ExtResource("5_vlwws")
@@ -30,7 +32,7 @@ weapons = 0
 current_relations = Array[ExtResource("2_swagv")]([])
 current_reputation = Array[ExtResource("3_e581v")]([])
 current_info = Array[ExtResource("1_p50pw")]([])
-event_pool = Array[ExtResource("4_m4vwl")]([ExtResource("6_os51l"), ExtResource("7_facmb"), ExtResource("8_uuc0c")])
+event_pool = Array[ExtResource("4_m4vwl")]([ExtResource("6_os51l"), ExtResource("7_facmb"), ExtResource("8_uuc0c"), ExtResource("9_dxkjt"), ExtResource("10_0yecs")])
 live_events = Array[ExtResource("4_m4vwl")]([])
 event_history = Array[ExtResource("4_m4vwl")]([])
 leader_name = "Emperor Shay Rimizio"

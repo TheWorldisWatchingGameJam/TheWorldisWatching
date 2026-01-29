@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="Event" load_steps=10 format=3 uid="uid://87aqduay7cwr"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_x4jfj"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_q6c5q"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_tkwps"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_4xkw1"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_3eckv"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_3id8v"]
+
+[sub_resource type="Resource" id="Resource_yqibq"]
+script = ExtResource("4_4xkw1")
+name = "Huldar General"
+dialogue = "We are here to serve SIR!"
+
+[sub_resource type="Resource" id="Resource_8l4k5"]
+script = ExtResource("2_q6c5q")
+cost_type = "Weapons"
+cost_value = 20
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_ia3u7"]
+script = ExtResource("5_3eckv")
+effect_value_token = SubResource("Resource_8l4k5")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_4xkw1")]([SubResource("Resource_yqibq")])
+
+[resource]
+script = ExtResource("6_3id8v")
+event_id = "gather_army"
+event_name = &"Gather Army"
+event_desc = "Gather your troops and instantly gain a large amount of weapons (Gets weaker after first use)"
+event_button_text = "Gather"
+is_priority = true
+one_time_event = true
+home_exclusive = true
+event_conditions = Array[ExtResource("3_tkwps")]([])
+event_dialogue = Array[ExtResource("4_4xkw1")]([])
+event_effects = Array[ExtResource("5_3eckv")]([SubResource("Resource_ia3u7")])
+choices = Array[ExtResource("1_x4jfj")]([])
+cost = Array[ExtResource("2_q6c5q")]([])

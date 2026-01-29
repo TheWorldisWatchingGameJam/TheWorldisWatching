@@ -22,7 +22,7 @@ dialogue = "Quarry established. Luxury production has increased."
 [sub_resource type="Resource" id="Resource_too57"]
 script = ExtResource("2_ecxfi")
 cost_type = "LuxuryProd"
-cost_value = 2
+cost_value = 1
 on_planet = &""
 on_current_planet = false
 
