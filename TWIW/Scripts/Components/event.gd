@@ -4,6 +4,7 @@ class_name Event
 
 #Event descriptors
 @export_group("Event Description")
+@export var event_id:String
 @export var event_name: StringName
 @export_multiline var event_desc: String
 @export var event_icon_texture: Texture2D

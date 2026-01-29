@@ -74,7 +74,6 @@ func random_options(number_of_options: int) -> Array[Event]:
 		if not event:
 			continue
 		
-		# Create a unique key for this event (prefer event_id, fallback to event_name)
 		var event_key = ""
 		if "event_id" in event and event.event_id != "":
 			event_key = event.event_id
@@ -155,6 +154,7 @@ func _check_event_condition(condition: EventCondition) -> bool:
 		print("Event history check...")
 		var history_req = condition.event_history_requirement
 		
+		# FIXED: Use correct property names
 		if "required_event_id" in history_req and history_req.required_event_id != "":
 			var event_id = history_req.required_event_id
 			var has_completed = player_data.has_completed_event(event_id)
@@ -164,8 +164,9 @@ func _check_event_condition(condition: EventCondition) -> bool:
 			
 			# Check if must_have_completed matches the actual completion status
 			if "must_have_completed" in history_req:
-				if history_req.must_have_completed != has_completed:
-					print("  FAILED: Event completion requirement not met")
+				var required_status = history_req.must_have_completed
+				if has_completed != required_status:
+					print("  FAILED: Event completion mismatch (wanted ", required_status, ", got ", has_completed, ")")
 					return false
 			
 			# If a specific choice is required, check that too
@@ -394,6 +395,7 @@ func _on_event_selected(event: Event) -> void:
 	# Record event completion (without choice for now, will be updated if choice is made)
 	if "event_id" in event and event.event_id != "":
 		player_data.record_event_completion(event.event_id, "")
+		print("Recorded event completion: ", event.event_id)
 
 	# Check if event has dialogue
 	if event.event_dialogue.size() > 0:

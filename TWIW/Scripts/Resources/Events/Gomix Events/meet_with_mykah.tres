@@ -11,10 +11,11 @@
 
 [sub_resource type="Resource" id="Resource_oragw"]
 script = ExtResource("4_r0s6q")
-event_name = &"Meet with Mahkus"
+required_event_id = "gomix_leader_choice_2"
 on_planet = &""
 on_day = 0
 must_have_completed = false
+required_choice_id = ""
 
 [sub_resource type="Resource" id="Resource_g03si"]
 script = ExtResource("3_o04ki")
@@ -32,6 +33,7 @@ sprite = ExtResource("6_cauxx")
 
 [resource]
 script = ExtResource("7_xkibg")
+event_id = "gomix_leader_choice_1"
 event_name = &"Meet with Mykah"
 event_desc = "Ally with Mykah, who worships the God Gomix"
 event_button_text = "Ally with Mykah"
