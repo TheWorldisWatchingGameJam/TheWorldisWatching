@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=10 format=3 uid="uid://dinerntw1rsen"]
+[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://dinerntw1rsen"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_72kst"]
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_g1t47"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_0l56e"]
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="4_g815u"]
 [ext_resource type="Texture2D" uid="uid://c6epef4omjj1h" path="res://Assets/EventIcons/hold_rally.png" id="5_3hj5b"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="6_r73pk"]
 
 [sub_resource type="Resource" id="Resource_inw5d"]
 script = ExtResource("1_72kst")
@@ -19,6 +20,7 @@ on_current_planet = false
 script = ExtResource("4_g815u")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("2_4h3hu")]([])
+requirements = Array[ExtResource("6_r73pk")]([])
 
 [resource]
 script = ExtResource("4_0l56e")

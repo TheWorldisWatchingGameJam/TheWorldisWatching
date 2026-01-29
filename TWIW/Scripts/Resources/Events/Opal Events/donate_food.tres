@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="Event" load_steps=14 format=3 uid="uid://2885m8g0m2ru"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_bvvf7"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_hqioi"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_5b0sh"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_40itv"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_d810k"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_dtk5b"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="6_e6706"]
+[ext_resource type="Texture2D" uid="uid://cn6yeau3fj6pd" path="res://Assets/CharacterSprites/jeevintKaJeemit.webp" id="6_r1iqu"]
+
+[sub_resource type="Resource" id="Resource_8s7ue"]
+script = ExtResource("2_hqioi")
+cost_type = "Food"
+cost_value = -20
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_1eiqi"]
+script = ExtResource("3_5b0sh")
+war_event = false
+condition_type = "Food"
+condition_value = 20
+on_planet = &""
+
+[sub_resource type="Resource" id="Resource_umk6d"]
+script = ExtResource("4_40itv")
+name = "Jeevint KaJeemit"
+dialogue = "Thank you!"
+sprite = ExtResource("6_r1iqu")
+
+[sub_resource type="Resource" id="Resource_kiegb"]
+script = ExtResource("2_hqioi")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Opal"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_2rha7"]
+script = ExtResource("5_d810k")
+effect_value_token = SubResource("Resource_kiegb")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_40itv")]([SubResource("Resource_umk6d")])
+requirements = Array[ExtResource("6_e6706")]([])
+
+[resource]
+script = ExtResource("6_dtk5b")
+event_name = &"Donate Food"
+event_desc = "While Opal is rich in luxuries, they are in need of food."
+event_button_text = "Donate (20)"
+home_exclusive = false
+event_conditions = Array[ExtResource("3_5b0sh")]([SubResource("Resource_1eiqi")])
+event_dialogue = Array[ExtResource("4_40itv")]([])
+event_effects = Array[ExtResource("5_d810k")]([SubResource("Resource_2rha7")])
+choices = Array[ExtResource("1_bvvf7")]([])
+cost = Array[ExtResource("2_hqioi")]([SubResource("Resource_8s7ue")])

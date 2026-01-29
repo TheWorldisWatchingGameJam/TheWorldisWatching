@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="Event" load_steps=19 format=3 uid="uid://d24up0642eqrc"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_mqk17"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_3rr4p"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_7cdoc"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_lr66i"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_l8xns"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="5_p3rsc"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_56d8n"]
+
+[sub_resource type="Resource" id="Resource_6lrm6"]
+script = ExtResource("2_3rr4p")
+cost_type = "Money"
+cost_value = -400
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_irlqa"]
+script = ExtResource("5_l8xns")
+effect_value_token = SubResource("Resource_6lrm6")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_lr66i")]([])
+requirements = Array[ExtResource("5_p3rsc")]([])
+
+[sub_resource type="Resource" id="Resource_6y87w"]
+script = ExtResource("4_lr66i")
+name = "Local Jeweler"
+dialogue = "Come again!"
+
+[sub_resource type="Resource" id="Resource_njhjx"]
+script = ExtResource("2_3rr4p")
+cost_type = "Luxuries"
+cost_value = 50
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_siaf0"]
+script = ExtResource("5_l8xns")
+effect_value_token = SubResource("Resource_njhjx")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_6y87w")])
+requirements = Array[ExtResource("5_p3rsc")]([])
+
+[sub_resource type="Resource" id="Resource_xe4rm"]
+script = ExtResource("1_mqk17")
+choice_text = "Buy Gems ($400)"
+choice_effects = Array[ExtResource("5_l8xns")]([SubResource("Resource_irlqa"), SubResource("Resource_siaf0")])
+
+[sub_resource type="Resource" id="Resource_bbpjo"]
+script = ExtResource("4_lr66i")
+name = ""
+dialogue = "Bye! Come again!"
+
+[sub_resource type="Resource" id="Resource_d0m1x"]
+script = ExtResource("2_3rr4p")
+cost_type = "Money"
+cost_value = 0
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_mjve3"]
+script = ExtResource("5_l8xns")
+effect_value_token = SubResource("Resource_d0m1x")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_bbpjo")])
+requirements = Array[ExtResource("5_p3rsc")]([])
+
+[sub_resource type="Resource" id="Resource_ahrfv"]
+script = ExtResource("1_mqk17")
+choice_text = "Leave"
+choice_effects = Array[ExtResource("5_l8xns")]([SubResource("Resource_mjve3")])
+
+[sub_resource type="Resource" id="Resource_5ldsy"]
+script = ExtResource("4_lr66i")
+name = "Local Jeweler"
+dialogue = "\"Ah, your eminence! I am but an honest wholesaler of gems. I have here some of the finest precious gems that Opal has to offer. At a discounted rate of course...\""
+
+[resource]
+script = ExtResource("6_56d8n")
+event_name = &"Approach Local Jeweler"
+event_desc = "What is he selling?"
+event_button_text = "Approach"
+home_exclusive = false
+event_conditions = Array[ExtResource("3_7cdoc")]([])
+event_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_5ldsy")])
+event_effects = Array[ExtResource("5_l8xns")]([])
+choices = Array[ExtResource("1_mqk17")]([SubResource("Resource_xe4rm"), SubResource("Resource_ahrfv")])
+cost = Array[ExtResource("2_3rr4p")]([])

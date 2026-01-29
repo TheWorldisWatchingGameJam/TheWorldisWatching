@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="Event" load_steps=14 format=3 uid="uid://ptkemcbm6tko"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_w4kcw"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_fkspf"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_sgb5q"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_catem"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_ybe0k"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="6_khigv"]
+[ext_resource type="Texture2D" uid="uid://b55u3ayg5pm3q" path="res://Assets/CharacterSprites/wilyambfarmstar.png" id="6_tmbph"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="7_pkttt"]
+
+[sub_resource type="Resource" id="Resource_0xqy1"]
+script = ExtResource("2_fkspf")
+cost_type = "Money"
+cost_value = -500
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_unl1k"]
+script = ExtResource("3_sgb5q")
+war_event = false
+condition_type = "Rep"
+condition_value = 25
+on_planet = &"Frez"
+
+[sub_resource type="Resource" id="Resource_nkcbc"]
+script = ExtResource("4_catem")
+name = "Wilyam B. Farmstar"
+dialogue = "We hope you learned lots about farming (+! Food Prod)"
+sprite = ExtResource("6_tmbph")
+
+[sub_resource type="Resource" id="Resource_wf5jx"]
+script = ExtResource("2_fkspf")
+cost_type = "FoodProd"
+cost_value = 1
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_xbdr5"]
+script = ExtResource("5_ybe0k")
+effect_value_token = SubResource("Resource_wf5jx")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_catem")]([SubResource("Resource_nkcbc")])
+requirements = Array[ExtResource("6_khigv")]([])
+
+[resource]
+script = ExtResource("7_pkttt")
+event_name = &"Attend Farming Seminar"
+event_desc = "Learn about Farming from the best"
+event_button_text = "Attend ($500)"
+home_exclusive = false
+event_conditions = Array[ExtResource("3_sgb5q")]([SubResource("Resource_unl1k")])
+event_dialogue = Array[ExtResource("4_catem")]([])
+event_effects = Array[ExtResource("5_ybe0k")]([SubResource("Resource_xbdr5")])
+choices = Array[ExtResource("1_w4kcw")]([])
+cost = Array[ExtResource("2_fkspf")]([SubResource("Resource_0xqy1")])

@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Event" load_steps=12 format=3 uid="uid://b6x3djmmkrwtf"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_i8pn6"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_plnwf"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_m8s4b"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_kp038"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_bdk88"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_5ykl5"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="6_j4e13"]
+
+[sub_resource type="Resource" id="Resource_074dd"]
+script = ExtResource("2_plnwf")
+cost_type = "Weapons"
+cost_value = 30
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_y2w5i"]
+script = ExtResource("4_kp038")
+name = "Local Smith"
+dialogue = "Thank you!"
+
+[sub_resource type="Resource" id="Resource_fqceo"]
+script = ExtResource("2_plnwf")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Verp"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_4x1ox"]
+script = ExtResource("5_bdk88")
+effect_value_token = SubResource("Resource_fqceo")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_kp038")]([SubResource("Resource_y2w5i")])
+requirements = Array[ExtResource("6_j4e13")]([])
+
+[resource]
+script = ExtResource("6_5ykl5")
+event_name = &"Donate Weapons"
+event_desc = "Send over some weapons so the local blacksmiths can study and improve their craft."
+event_button_text = "Donate (-30)"
+home_exclusive = false
+event_conditions = Array[ExtResource("3_m8s4b")]([])
+event_dialogue = Array[ExtResource("4_kp038")]([])
+event_effects = Array[ExtResource("5_bdk88")]([SubResource("Resource_4x1ox")])
+choices = Array[ExtResource("1_i8pn6")]([])
+cost = Array[ExtResource("2_plnwf")]([SubResource("Resource_074dd")])

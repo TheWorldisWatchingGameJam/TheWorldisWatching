@@ -1,0 +1,109 @@
+[gd_resource type="Resource" script_class="Event" load_steps=22 format=3 uid="uid://sincjusw6kco"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_j0edp"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_o4rmm"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_wg5wk"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_7pt5p"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_3ikwc"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_w4l0s"]
+
+[sub_resource type="Resource" id="Resource_jwp24"]
+script = ExtResource("4_7pt5p")
+name = ""
+dialogue = "Heads! You Win!"
+
+[sub_resource type="Resource" id="Resource_37agq"]
+script = ExtResource("2_o4rmm")
+cost_type = "Money"
+cost_value = 200
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_tylxx"]
+script = ExtResource("5_3ikwc")
+effect_value_token = SubResource("Resource_37agq")
+effect_probability = 50
+effect_dialogue = Array[ExtResource("4_7pt5p")]([SubResource("Resource_jwp24")])
+
+[sub_resource type="Resource" id="Resource_3m0t7"]
+script = ExtResource("4_7pt5p")
+name = ""
+dialogue = "Tails! Yoou Lose!"
+
+[sub_resource type="Resource" id="Resource_756id"]
+script = ExtResource("2_o4rmm")
+cost_type = "Money"
+cost_value = 0
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_kflji"]
+script = ExtResource("5_3ikwc")
+effect_value_token = SubResource("Resource_756id")
+effect_probability = 50
+effect_dialogue = Array[ExtResource("4_7pt5p")]([SubResource("Resource_3m0t7")])
+
+[sub_resource type="Resource" id="Resource_6dphr"]
+script = ExtResource("1_j0edp")
+choice_text = "Heads"
+choice_effects = Array[ExtResource("5_3ikwc")]([SubResource("Resource_tylxx"), SubResource("Resource_kflji")])
+
+[sub_resource type="Resource" id="Resource_abe8h"]
+script = ExtResource("4_7pt5p")
+name = ""
+dialogue = "Tails! You Win!"
+
+[sub_resource type="Resource" id="Resource_8cs0f"]
+script = ExtResource("2_o4rmm")
+cost_type = "Money"
+cost_value = 200
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_f1vm7"]
+script = ExtResource("5_3ikwc")
+effect_value_token = SubResource("Resource_8cs0f")
+effect_probability = 50
+effect_dialogue = Array[ExtResource("4_7pt5p")]([SubResource("Resource_abe8h")])
+
+[sub_resource type="Resource" id="Resource_jdbkv"]
+script = ExtResource("4_7pt5p")
+name = ""
+dialogue = "Heads! You Lose!"
+
+[sub_resource type="Resource" id="Resource_d6jla"]
+script = ExtResource("2_o4rmm")
+cost_type = "Money"
+cost_value = 0
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_oydho"]
+script = ExtResource("5_3ikwc")
+effect_value_token = SubResource("Resource_d6jla")
+effect_probability = 50
+effect_dialogue = Array[ExtResource("4_7pt5p")]([SubResource("Resource_jdbkv")])
+
+[sub_resource type="Resource" id="Resource_v5r4v"]
+script = ExtResource("1_j0edp")
+choice_text = "Tails"
+choice_effects = Array[ExtResource("5_3ikwc")]([SubResource("Resource_f1vm7"), SubResource("Resource_oydho")])
+
+[sub_resource type="Resource" id="Resource_cwdv8"]
+script = ExtResource("2_o4rmm")
+cost_type = "Money"
+cost_value = -100
+on_planet = &""
+on_current_planet = false
+
+[resource]
+script = ExtResource("6_w4l0s")
+event_name = &"Bet on Coinflip"
+event_desc = "Heads or Tails?"
+event_button_text = "Play ($100)"
+home_exclusive = false
+event_conditions = Array[ExtResource("3_wg5wk")]([])
+event_dialogue = Array[ExtResource("4_7pt5p")]([])
+event_effects = Array[ExtResource("5_3ikwc")]([])
+choices = Array[ExtResource("1_j0edp")]([SubResource("Resource_6dphr"), SubResource("Resource_v5r4v")])
+cost = Array[ExtResource("2_o4rmm")]([SubResource("Resource_cwdv8")])
