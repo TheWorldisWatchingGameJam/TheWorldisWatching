@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_0xqy1"]
 script = ExtResource("2_fkspf")
 cost_type = "Money"
-cost_value = -500
+cost_value = -300
 on_planet = &""
 on_current_planet = false
 
@@ -46,7 +46,7 @@ script = ExtResource("7_pkttt")
 event_id = ""
 event_name = &"Attend Farming Seminar"
 event_desc = "Learn about Farming from the best"
-event_button_text = "Attend ($500)"
+event_button_text = "Attend ($300)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
