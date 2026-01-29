@@ -4,7 +4,10 @@ extends Node
 @export var PlanetNodeScene: PackedScene
 @export var all_planets: Array[PlanetData]
 @export var rocket_texture: Texture2D
+@export var default_days_until_election: int = 40
 @export var days_until_election: int = 40
+@export var day_in_election_cycle: int = 0
+@export var election_cycles: int = 0
 @export var planet_screen_scene: PackedScene
 @export var player_data: PlayerData
 @export var ai_data: AIData
@@ -13,6 +16,7 @@ extends Node
 @onready var camera: Camera2D = get_node("../MapCamera")
 @onready var travel_panel: Control = get_node("../UI/PlanetTravelPanel")
 @onready var travel_button: Button = get_node("../UI/PlanetTravelPanel/VBoxContainer/TravelButton")
+
 
 # Variables
 var selected_planets: Array[PlanetData] = []
@@ -284,10 +288,12 @@ func _on_travel_button_pressed():
 			planet_screen.planet = target_planet
 			planet_screen.home_planet_data = player_planet
 			planet_screen.player_data = player_data
+			planet_screen.playerLeftPlanet.connect(_on_player_leaves_planet)
 			
 			rocket_current_location.remove_as_rocket_location()
 			current_focused_planet.set_as_rocket_location(rocket_texture)
 			rocket_current_location = current_focused_planet
+			
 			
 			
 			update_player_time(target_planet.id)
@@ -316,7 +322,7 @@ func update_player_time(to_planet: String) -> void:
 			break
 	
 	#Update election counter
-	days_until_election -= player_data.time_tracker.current_day
+	days_until_election = default_days_until_election - (player_data.time_tracker.current_day - (default_days_until_election * election_cycles))
 	self.get_parent()._update_election_counter()
 	
 	print("Traveled ", days_traveled, " days to ", to_planet)
@@ -324,3 +330,50 @@ func update_player_time(to_planet: String) -> void:
 	print("Days left to next election: ", str(days_until_election))
 	if ai_data:
 		print("AI Reps: ", ai_data.get_all_reps())
+
+
+func _on_player_leaves_planet() -> void:
+	print("Player Left Planet.")
+	
+	if days_until_election <= 0:
+		var election_screen = load("res://Scenes/election_screen.tscn").instantiate()
+		election_screen.selected_planets = selected_planets
+		election_screen.player_data = player_data
+		election_screen.update_election_screen(ai_data)
+		get_tree().get_root().add_child(election_screen)
+		election_screen.playerLost.connect(player_lost)
+		
+		
+		election_cycles += 1
+		days_until_election = default_days_until_election - (player_data.time_tracker.current_day - (default_days_until_election * election_cycles))
+		self.get_parent()._update_election_counter()
+		print("Now on election cycle ", election_cycles)
+		
+		#Check for last election
+		if election_cycles == (selected_planets.size() - 1):
+			if ai_data.get_rep(ai_data.get_lowest_rep()) <= player_data.total_rep:
+				player_won()
+				return
+			else:
+				player_lost()
+				return
+		
+		
+		election_screen.run_vote()
+		await election_screen.cardAnimationFinished
+
+
+func player_lost() -> void:
+	var game_over_screen = load("res://Scenes/game_over.tscn").instantiate()
+	game_over_screen.tryAgainButtonPressed.connect(_on_try_again_pressed)
+	get_tree().get_root().add_child(game_over_screen)
+	print("Player lost game.")
+	
+func player_won() -> void: 
+	var win_screen = load("res://Scenes/win.tscn").instantiate()
+	win_screen.tryAgainButtonPressed.connect(_on_try_again_pressed)
+	get_tree().get_root().add_child(win_screen)
+	print("Player won game.")
+
+func _on_try_again_pressed() -> void:
+	print("Try Again Button Pressed.")

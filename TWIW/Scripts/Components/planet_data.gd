@@ -42,6 +42,10 @@ signal currentReputationChanged
 @export var live_events: Array[Event]
 @export var event_history: Array[Event]
 
+@export_group("Leader Info")
+@export var leader_name: String
+@export var voted_off: bool
+@export var leader_sprite: Texture2D
 
 func roll_events(number_of_events: int) -> Array[Event]:
 	var list: Array[Event]

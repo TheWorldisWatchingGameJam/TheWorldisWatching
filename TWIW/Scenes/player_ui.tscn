@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkelrugrmtsdk"]
+[gd_scene load_steps=12 format=3 uid="uid://dkelrugrmtsdk"]
 
 [ext_resource type="Texture2D" uid="uid://dpi2wodq4jimt" path="res://Assets/ResourceIcons/apple-439397.png" id="1_28p4k"]
 [ext_resource type="Script" path="res://Scenes/player_ui.gd" id="1_mjph3"]
@@ -6,12 +6,15 @@
 [ext_resource type="LabelSettings" uid="uid://ds0mouqpjhvx6" path="res://Assets/Theme/ui_value_label_settings.tres" id="2_ve04h"]
 [ext_resource type="LabelSettings" uid="uid://bxjm6iqnx2ici" path="res://Assets/Theme/mod_label_settings.tres" id="3_jwgte"]
 [ext_resource type="Texture2D" uid="uid://c284smqldiw1q" path="res://Assets/ResourceIcons/diamond-6687408.png" id="3_mvrxx"]
-[ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="3_sqrpk"]
+[ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="4_mwc4d"]
 [ext_resource type="Texture2D" uid="uid://beh8mme8s3pmx" path="res://Assets/ResourceIcons/alien-gun-4780305.png" id="4_yrif5"]
 [ext_resource type="Texture2D" uid="uid://bcij8aaxvmw7m" path="res://Assets/ResourceIcons/dollar-2719007.png" id="5_d7crd"]
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="10_y6l0u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_082ji"]
+font = ExtResource("10_y6l0u")
 font_size = 40
+font_color = Color(0, 0.133333, 0.00784314, 1)
 
 [node name="PlayerUi" type="Control"]
 custom_minimum_size = Vector2(1920, 80)
@@ -31,7 +34,7 @@ custom_minimum_size = Vector2(1920, 80)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_styles/panel = ExtResource("3_sqrpk")
+theme_override_styles/panel = ExtResource("4_mwc4d")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -48,6 +51,7 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
 [node name="FoodIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0, 0.133333, 0.00784314, 1)
 layout_mode = 2
 tooltip_text = "Food"
 texture = ExtResource("1_28p4k")
@@ -67,6 +71,7 @@ custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 
 [node name="LuxuryIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0, 0.133333, 0.00784314, 1)
 layout_mode = 2
 tooltip_text = "Luxuries"
 texture = ExtResource("3_mvrxx")
@@ -86,6 +91,7 @@ custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 
 [node name="WeaponsIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0, 0.133333, 0.00784314, 1)
 layout_mode = 2
 tooltip_text = "Weapons"
 texture = ExtResource("4_yrif5")
@@ -105,6 +111,7 @@ custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 
 [node name="MoneyIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+self_modulate = Color(0, 0.133333, 0.00784314, 1)
 layout_mode = 2
 tooltip_text = "Money"
 texture = ExtResource("5_d7crd")

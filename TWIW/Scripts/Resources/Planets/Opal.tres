@@ -1,3 +1,4 @@
+[gd_resource type="Resource" script_class="PlanetData" load_steps=14 format=3 uid="uid://f0quaynyrmg"]
 [gd_resource type="Resource" script_class="PlanetData" load_steps=15 format=3 uid="uid://f0quaynyrmg"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="1_25gqv"]
@@ -10,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://d2ed0hntvxxlc" path="res://Scripts/Resources/Events/Opal Events/visit_opal_mountain.tres" id="6_ywsmr"]
 [ext_resource type="Resource" uid="uid://dinerntw1rsen" path="res://Scripts/Resources/Events/Neutral Events/hold_rally.tres" id="7_6lloy"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="8_ihskw"]
+[ext_resource type="Texture2D" uid="uid://b18g6bixm7eyo" path="res://Assets/CharacterSprites/jeevintkajeemit.png" id="9_2iwie"]
 [ext_resource type="Resource" uid="uid://2885m8g0m2ru" path="res://Scripts/Resources/Events/Opal Events/donate_food.tres" id="9_jfv2k"]
 [ext_resource type="Texture2D" uid="uid://eckrwpp0gi2i" path="res://Assets/PlanetSprites/Opal.webp" id="10_2i0hb"]
 [ext_resource type="Resource" uid="uid://d24up0642eqrc" path="res://Scripts/Resources/Events/Opal Events/approach_local_jeweler.tres" id="10_v2ngc"]
@@ -43,3 +45,6 @@ current_info = Array[ExtResource("1_atbtt")]([])
 event_pool = Array[ExtResource("1_25gqv")]([ExtResource("5_2e7u1"), ExtResource("6_ywsmr"), ExtResource("7_6lloy"), ExtResource("9_jfv2k"), ExtResource("10_v2ngc")])
 live_events = Array[ExtResource("1_25gqv")]([])
 event_history = Array[ExtResource("1_25gqv")]([])
+leader_name = "Jeevint KaJeemit"
+voted_off = false
+leader_sprite = ExtResource("9_2iwie")
