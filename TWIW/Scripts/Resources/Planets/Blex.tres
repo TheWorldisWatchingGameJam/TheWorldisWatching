@@ -1,5 +1,4 @@
 [gd_resource type="Resource" script_class="PlanetData" load_steps=11 format=3 uid="uid://dbac38xsd7l2k"]
-[gd_resource type="Resource" script_class="PlanetData" load_steps=11 format=3 uid="uid://bha42xdgt1wit"]
 
 [ext_resource type="Texture2D" uid="uid://cvob7e6gy4k3t" path="res://Assets/BGs/Blex.png" id="1_3va0k"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_k8x0i"]
@@ -11,7 +10,6 @@
 [ext_resource type="Resource" uid="uid://db4amh5hapn0r" path="res://Scripts/Resources/Events/Blex Events/play_blackhole_jack.tres" id="7_fiond"]
 [ext_resource type="Texture2D" uid="uid://um3xpam1bcfr" path="res://Assets/PlanetSprites/Blex.webp" id="7_j0e1l"]
 [ext_resource type="Texture2D" uid="uid://bvscmh8x1ue6o" path="res://Assets/CharacterSprites/khevynfram.png" id="8_ywsn1"]
-[ext_resource type="Resource" uid="uid://sincjusw6kco" path="res://Scripts/Resources/Events/Blex Events/bet_on_coinflip.tres" id="8_nnnhp"]
 
 [resource]
 script = ExtResource("5_fu0gs")
@@ -31,7 +29,7 @@ weapons = 0
 current_relations = Array[ExtResource("2_skv75")]([])
 current_reputation = Array[ExtResource("3_syww1")]([])
 current_info = Array[ExtResource("1_k8x0i")]([])
-event_pool = Array[ExtResource("4_5qy3j")]([ExtResource("5_yqb73"), ExtResource("7_fiond"), ExtResource("8_nnnhp")])
+event_pool = Array[ExtResource("4_5qy3j")]([ExtResource("5_yqb73"), ExtResource("7_fiond")])
 live_events = Array[ExtResource("4_5qy3j")]([])
 event_history = Array[ExtResource("4_5qy3j")]([])
 leader_name = "Khevyn \"The Father\" Fram"

@@ -1,5 +1,4 @@
 [gd_resource type="Resource" script_class="PlanetData" load_steps=11 format=3 uid="uid://b4kf7erwn6muh"]
-[gd_resource type="Resource" script_class="PlanetData" load_steps=12 format=3 uid="uid://b4kf7erwn6muh"]
 
 [ext_resource type="Texture2D" uid="uid://d3iwyepsogcfd" path="res://Assets/BGs/Frez.png" id="1_lic45"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_rb1px"]
@@ -10,9 +9,7 @@
 [ext_resource type="Resource" uid="uid://cuqefho4xwcxd" path="res://Scripts/Resources/Events/Frez Events/fund_great_harvest_festival.tres" id="6_7sefl"]
 [ext_resource type="Resource" uid="uid://cnvhix2s2efbn" path="res://Scripts/Resources/Events/Frez Events/pacifist_gathering.tres" id="7_j7yk2"]
 [ext_resource type="Texture2D" uid="uid://b55u3ayg5pm3q" path="res://Assets/CharacterSprites/wilyambfarmstar.png" id="8_51vu0"]
-[ext_resource type="Resource" uid="uid://dhse6ldm6coxo" path="res://Scripts/Resources/Events/Frez Events/food_spoilage.tres" id="8_krkx4"]
 [ext_resource type="Texture2D" uid="uid://dhx2b30rqhvkw" path="res://Assets/PlanetSprites/Frez.webp" id="8_tal5m"]
-[ext_resource type="Resource" uid="uid://ptkemcbm6tko" path="res://Scripts/Resources/Events/Frez Events/attend_farming_seminar.tres" id="9_upned"]
 
 [resource]
 script = ExtResource("5_fvv0p")
@@ -32,7 +29,7 @@ weapons = 0
 current_relations = Array[ExtResource("2_r0xra")]([])
 current_reputation = Array[ExtResource("3_hwu0p")]([])
 current_info = Array[ExtResource("1_rb1px")]([])
-event_pool = Array[ExtResource("4_q1n0u")]([ExtResource("6_7sefl"), ExtResource("7_j7yk2"), ExtResource("8_krkx4"), ExtResource("9_upned")])
+event_pool = Array[ExtResource("4_q1n0u")]([ExtResource("6_7sefl"), ExtResource("7_j7yk2")])
 live_events = Array[ExtResource("4_q1n0u")]([])
 event_history = Array[ExtResource("4_q1n0u")]([])
 leader_name = "Wilyam B. Farmstar III"

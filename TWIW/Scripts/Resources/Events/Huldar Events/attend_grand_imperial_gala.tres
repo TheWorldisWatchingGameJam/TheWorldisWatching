@@ -50,10 +50,12 @@ requirements = Array[ExtResource("6_eae44")]([SubResource("Resource_kglvo")])
 
 [resource]
 script = ExtResource("6_dt0hs")
+event_id = ""
 event_name = &"Attend Grand Imperial Gala"
 event_desc = "Huldar's annual Imperial Gala. An opportunity to show off your planet's extravagant wealth."
 event_button_text = "Attend ($500)"
 home_exclusive = false
+is_priority = false
 event_conditions = Array[ExtResource("3_ec045")]([])
 event_dialogue = Array[ExtResource("4_o8ghb")]([])
 event_effects = Array[ExtResource("5_1b71p")]([SubResource("Resource_omds8")])

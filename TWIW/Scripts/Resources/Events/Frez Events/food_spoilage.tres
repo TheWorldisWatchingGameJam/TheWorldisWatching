@@ -52,6 +52,7 @@ requirements = Array[ExtResource("6_0bdmg")]([])
 
 [resource]
 script = ExtResource("6_350j5")
+event_id = ""
 event_name = &"Food Spoilage"
 event_desc = "Frez has produced too much 
 food and some of it is spoiling! Help them out and buy some food?"

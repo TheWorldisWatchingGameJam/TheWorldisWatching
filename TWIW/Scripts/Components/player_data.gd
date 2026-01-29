@@ -14,7 +14,6 @@ var _total_rep := 0
 @export var home_planet_data: PlanetData: set = on_home_planet_data_set
 @export var time_tracker: TimeTracker
 @export var trade_routes: Array[TradeRoute]
-@export var completed_events: Array[String] = []  # Stores names of completed events
 
 @export_range(0, 999999, 1)
 var food: int:
@@ -199,16 +198,3 @@ func apply_rep_bonus(route: TradeRoute) -> void:
 				rep_bonus.cost_value = 1
 	player_data_modify(rep_bonus)
 	
-func record_event_completion(event_name: String, choice_id: String = "") -> void:
-	if event_name.is_empty():
-		print("Warning: Tried to record empty event name")
-		return
-	
-	if not completed_events.has(event_name):
-		completed_events.append(event_name)
-		print("Recorded completion of event: ", event_name)
-	else:
-		print("Event already completed: ", event_name)
-
-func has_completed_event(event_id: String) -> bool:
-	return completed_events.has(event_id)

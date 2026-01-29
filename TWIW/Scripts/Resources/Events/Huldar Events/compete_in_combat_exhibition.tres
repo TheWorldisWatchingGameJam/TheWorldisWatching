@@ -108,10 +108,12 @@ requirements = Array[ExtResource("6_dhojb")]([SubResource("Resource_8xrdq")])
 
 [resource]
 script = ExtResource("6_838s5")
+event_id = ""
 event_name = &"Compete in Combat Exhibition"
 event_desc = "Show off the skills of your planet's combatants. You must send food rations for your warriors If you succeed you will be rewarded"
 event_button_text = "Compete (20 food)"
 home_exclusive = false
+is_priority = false
 event_conditions = Array[ExtResource("3_tqk2u")]([])
 event_dialogue = Array[ExtResource("4_1emco")]([])
 event_effects = Array[ExtResource("5_n0aem")]([SubResource("Resource_tw4pu"), SubResource("Resource_nmjmu"), SubResource("Resource_a3b10")])

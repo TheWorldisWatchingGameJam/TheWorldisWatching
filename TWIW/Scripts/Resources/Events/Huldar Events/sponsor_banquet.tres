@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Event" load_steps=15 format=3 uid="uid://dfrwdpdp4dygr"]
+[gd_resource type="Resource" script_class="Event" load_steps=16 format=3 uid="uid://dfrwdpdp4dygr"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_6mk5r"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_asc48"]
 [ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_xlxmx"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_jqkdp"]
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_jykd5"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect_requirement.gd" id="6_6evia"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_dylwe"]
 [ext_resource type="Texture2D" uid="uid://bxss0srd0kdyl" path="res://Assets/CharacterSprites/emperorShayRimizio.webp" id="6_l8lkh"]
 
@@ -34,6 +35,7 @@ script = ExtResource("5_jykd5")
 effect_value_token = SubResource("Resource_cwxc1")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_jqkdp")]([])
+requirements = Array[ExtResource("6_6evia")]([])
 
 [sub_resource type="Resource" id="Resource_d1d21"]
 script = ExtResource("4_jqkdp")
@@ -53,13 +55,16 @@ script = ExtResource("5_jykd5")
 effect_value_token = SubResource("Resource_7slc3")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_jqkdp")]([SubResource("Resource_d1d21")])
+requirements = Array[ExtResource("6_6evia")]([])
 
 [resource]
 script = ExtResource("6_dylwe")
+event_id = ""
 event_name = &"Sponsor Imperial Banquet"
 event_desc = "Donate Food for Huldar's Banquet"
 event_button_text = "Donate (-20 Food)"
 home_exclusive = false
+is_priority = false
 event_conditions = Array[ExtResource("3_xlxmx")]([SubResource("Resource_6yuee")])
 event_dialogue = Array[ExtResource("4_jqkdp")]([])
 event_effects = Array[ExtResource("5_jykd5")]([SubResource("Resource_m1c1q"), SubResource("Resource_jboow")])

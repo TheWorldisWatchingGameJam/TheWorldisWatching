@@ -36,10 +36,12 @@ requirements = Array[ExtResource("6_j4e13")]([])
 
 [resource]
 script = ExtResource("6_5ykl5")
+event_id = ""
 event_name = &"Donate Weapons"
 event_desc = "Send over some weapons so the local blacksmiths can study and improve their craft."
 event_button_text = "Donate (-30)"
 home_exclusive = false
+is_priority = false
 event_conditions = Array[ExtResource("3_m8s4b")]([])
 event_dialogue = Array[ExtResource("4_kp038")]([])
 event_effects = Array[ExtResource("5_bdk88")]([SubResource("Resource_4x1ox")])

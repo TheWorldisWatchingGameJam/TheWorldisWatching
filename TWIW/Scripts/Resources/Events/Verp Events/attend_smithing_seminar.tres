@@ -43,10 +43,12 @@ requirements = Array[ExtResource("6_21f11")]([])
 
 [resource]
 script = ExtResource("6_dps8n")
+event_id = ""
 event_name = &"Attend Smithing Seminar"
 event_desc = "Learn about how to produce weapons from the best of th best"
 event_button_text = "Attend ($500)"
 home_exclusive = false
+is_priority = false
 event_conditions = Array[ExtResource("3_prtvx")]([SubResource("Resource_lge2s")])
 event_dialogue = Array[ExtResource("4_q44pw")]([])
 event_effects = Array[ExtResource("5_e67cu")]([SubResource("Resource_xbdr5")])
