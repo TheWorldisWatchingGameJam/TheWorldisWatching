@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=10 format=3 uid="uid://dinerntw1rsen"]
+[gd_resource type="Resource" script_class="Event" load_steps=15 format=3 uid="uid://dinerntw1rsen"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_72kst"]
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_g1t47"]
@@ -11,24 +11,55 @@
 [sub_resource type="Resource" id="Resource_inw5d"]
 script = ExtResource("1_72kst")
 cost_type = "Money"
-cost_value = 300
+cost_value = 50
 on_planet = &""
 on_current_planet = false
 
+[sub_resource type="Resource" id="Resource_t3l46"]
+script = ExtResource("2_4h3hu")
+name = ""
+dialogue = "You held a successful rally! Reputation at this planet slightly increased."
+
+[sub_resource type="Resource" id="Resource_gru5u"]
+script = ExtResource("1_72kst")
+cost_type = "Rep"
+cost_value = 3
+on_planet = &""
+on_current_planet = true
+
 [sub_resource type="Resource" id="Resource_qhfaw"]
 script = ExtResource("4_g815u")
-effect_probability = 0
-effect_dialogue = Array[ExtResource("2_4h3hu")]([])
+effect_value_token = SubResource("Resource_gru5u")
+effect_probability = 70
+effect_dialogue = Array[ExtResource("2_4h3hu")]([SubResource("Resource_t3l46")])
+
+[sub_resource type="Resource" id="Resource_7184t"]
+script = ExtResource("2_4h3hu")
+name = ""
+dialogue = "Your rally was VERY successful! Your reputation on this planet as increased."
+
+[sub_resource type="Resource" id="Resource_1vcy7"]
+script = ExtResource("1_72kst")
+cost_type = "Rep"
+cost_value = 6
+on_planet = &""
+on_current_planet = true
+
+[sub_resource type="Resource" id="Resource_rb3ak"]
+script = ExtResource("4_g815u")
+effect_value_token = SubResource("Resource_1vcy7")
+effect_probability = 30
+effect_dialogue = Array[ExtResource("2_4h3hu")]([SubResource("Resource_7184t")])
 
 [resource]
 script = ExtResource("4_0l56e")
 event_name = &"Rally"
 event_desc = "Fund a rally at this planet."
 event_icon_texture = ExtResource("5_3hj5b")
-event_button_text = "Fund."
+event_button_text = "Fund. ($50)"
 home_exclusive = false
 event_conditions = Array[ExtResource("3_6af2o")]([])
 event_dialogue = Array[ExtResource("2_4h3hu")]([])
-event_effects = Array[ExtResource("4_g815u")]([SubResource("Resource_qhfaw")])
+event_effects = Array[ExtResource("4_g815u")]([SubResource("Resource_qhfaw"), SubResource("Resource_rb3ak")])
 choices = Array[ExtResource("1_g1t47")]([])
 cost = Array[ExtResource("1_72kst")]([SubResource("Resource_inw5d")])
