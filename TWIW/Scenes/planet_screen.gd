@@ -431,8 +431,13 @@ func _on_choice_dialogue_finished(event: Event) -> void:
 	if event.choices.size() > 0:
 		_show_choice_buttons(event.choices)
 	else:
-		resolve_effects(event.event_effects)
-		emit_signal("eventChosen")
+		# Event has no choices, so apply effects and finish
+		if event.event_effects.size() > 0:
+			resolve_effects(event.event_effects)
+		else:
+			# No effects either, just signal completion
+			print("No effects to apply, event complete")
+			emit_signal("eventChosen")
 
 func _show_choice_buttons(choices: Array[EventChoice]) -> void:
 	# Clear existing buttons in selector
@@ -610,6 +615,7 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 	print("Total effects: ", effects.size())
 	
 	if effects.size() == 0:
+		print("No effects to resolve")
 		return
 	
 	# Filter effects by requirements
@@ -627,6 +633,7 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 	
 	var guaranteed_effects = []
 	var random_effects = []
+	var has_dialogue = false  # Track if any effect has dialogue
 
 	for effect in valid_effects:
 		if effect.effect_probability == 0:
@@ -639,6 +646,7 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 		player_data.player_data_modify(effect.effect_value_token)
 		if effect.effect_dialogue.size() > 0:
 			print("Effect dialogue detected.")
+			has_dialogue = true
 			var dlg = dialogue_window.instantiate()
 			dlg.dialogue_array = effect.effect_dialogue
 			dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg))
@@ -657,12 +665,18 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 			if roll < cumulative:
 				player_data.player_data_modify(e.effect_value_token)
 				if e.effect_dialogue.size() > 0:
+					has_dialogue = true
 					var dlg = dialogue_window.instantiate()
 					dlg.dialogue_array = e.effect_dialogue
 					dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg))
 					window.hide()
 					self.add_child(dlg)
 				break
+	
+	# If no dialogue was shown, signal completion immediately
+	if not has_dialogue:
+		print("No effect dialogue, completing event")
+		emit_signal("eventChosen")
 
 func on_effect_dialogue_finished(dialogue_window_ref: Control) -> void:
 	dialogue_window_ref.queue_free()
