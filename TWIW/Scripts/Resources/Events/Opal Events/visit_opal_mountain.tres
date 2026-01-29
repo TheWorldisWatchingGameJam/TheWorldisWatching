@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://d2ed0hntvxxlc"]
+[gd_resource type="Resource" script_class="Event" load_steps=12 format=3 uid="uid://d2ed0hntvxxlc"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_fbod0"]
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_y8qhl"]
@@ -22,8 +22,16 @@ cost_value = -30
 on_planet = &""
 on_current_planet = false
 
+[sub_resource type="Resource" id="Resource_wijhp"]
+script = ExtResource("1_fbod0")
+cost_type = ""
+cost_value = 0
+on_planet = &""
+on_current_planet = false
+
 [sub_resource type="Resource" id="Resource_p86fe"]
 script = ExtResource("4_ishxj")
+effect_value_token = SubResource("Resource_wijhp")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("2_lvbli")]([])
 
