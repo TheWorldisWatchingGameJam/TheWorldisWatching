@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_inw5d"]
 script = ExtResource("1_72kst")
 cost_type = "Money"
-cost_value = 50
+cost_value = -50
 on_planet = &""
 on_current_planet = false
 

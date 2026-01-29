@@ -127,6 +127,14 @@ func random_options(number_of_options: int) -> Array[Event]:
 # ============================================
 
 func check_event_conditions(event: Event) -> bool:
+
+	# Check if event is home exclusive
+	if "home_exclusive" in event and event.home_exclusive:
+		print("Home exclusive event detected.")
+		if player_data.home_planet_data.name != player_data.current_location:
+			print("Cannot display ", event.event_name, ". It is a home exclusive event!")
+			return false
+	
 	# Check if this is a one-time event that has already been completed
 	if "one_time_event" in event and event.one_time_event:
 		if "event_id" in event and event.event_id != "":
