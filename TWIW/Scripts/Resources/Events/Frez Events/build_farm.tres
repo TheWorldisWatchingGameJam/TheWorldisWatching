@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://b416bl5cpbwc8"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_yrphs"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_toguu"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_5p1f3"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_4nlet"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_eshga"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_vxdfr"]
+
+[sub_resource type="Resource" id="Resource_sjfq5"]
+script = ExtResource("2_toguu")
+cost_type = "Money"
+cost_value = -100
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_x7rgq"]
+script = ExtResource("4_4nlet")
+name = ""
+dialogue = "Farm successfully built"
+
+[sub_resource type="Resource" id="Resource_wvoea"]
+script = ExtResource("2_toguu")
+cost_type = "FoodProd"
+cost_value = 1
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_cs055"]
+script = ExtResource("5_eshga")
+effect_value_token = SubResource("Resource_wvoea")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_4nlet")]([SubResource("Resource_x7rgq")])
+
+[resource]
+script = ExtResource("6_vxdfr")
+event_id = "build_farm"
+event_name = &"Build a Farm"
+event_desc = "Build a farm for +1 food production"
+event_button_text = "Build ($100)"
+is_priority = true
+one_time_event = false
+home_exclusive = true
+event_conditions = Array[ExtResource("3_5p1f3")]([])
+event_dialogue = Array[ExtResource("4_4nlet")]([])
+event_effects = Array[ExtResource("5_eshga")]([SubResource("Resource_cs055")])
+choices = Array[ExtResource("1_yrphs")]([])
+cost = Array[ExtResource("2_toguu")]([SubResource("Resource_sjfq5")])
