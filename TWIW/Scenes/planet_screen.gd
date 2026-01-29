@@ -7,6 +7,7 @@ var ai_data: AIData
 
 @export var event_name_label_settings: LabelSettings
 @export var event_desc_label_settings: LabelSettings
+@export var cannot_afford_event_message: Array[DialogueItem]
 
 @onready var background = $Background
 @onready var planet_window = %PlanetWindow
@@ -321,7 +322,7 @@ func display_options(events: Array[Event]) -> void:
 		var button = Button.new()
 		button.text = event.event_button_text
 		button.theme = load("res://Assets/Theme/button_theme.tres")
-		button.add_theme_font_size_override("font_size", 25)
+		button.add_theme_font_size_override("font_size", 27)
 		button.custom_minimum_size = Vector2(150, 40)
 		button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 		button.size_flags_vertical = Control.SIZE_SHRINK_END
@@ -389,6 +390,11 @@ func _on_event_selected(event: Event) -> void:
 	for cost in event.cost:
 		if not player_data.can_pay(cost):
 			print("Player cannot afford event cost!")
+			var dialogue_window = load("res://Scenes/dialogue_window.tscn").instantiate()
+			dialogue_window.dialogue_array = cannot_afford_event_message
+			dialogue_window.dialogueFinished.connect(_info_window_finished.bind(dialogue_window))
+			self.add_child(dialogue_window)
+			return
 			return
 	for cost in event.cost:
 		player_data.player_data_modify(cost)
@@ -945,6 +951,7 @@ func _show_blackjack_result(dialogues: Array[DialogueItem], continue_game: bool,
 		if current_dialogue_window.has_signal("dialogueFinished"):
 			await current_dialogue_window.dialogueFinished
 		blackjack_active = false
+		current_dialogue_window.queue_free()
 		window.visible = true
 		emit_signal("eventChosen")
 
@@ -952,6 +959,9 @@ func _show_blackjack_result(dialogues: Array[DialogueItem], continue_game: bool,
 # END BLACKJACK SYSTEM
 # ============================================
 
+func _info_window_finished(window: Control) -> void:
+	window.queue_free()
+	
 func _on_trade_button_pressed() -> void:
 	window.hide()
 	trade_window.visible = true
