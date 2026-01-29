@@ -1,12 +1,28 @@
-[gd_resource type="Resource" script_class="Event" load_steps=9 format=3 uid="uid://2p108a8evwqk"]
+[gd_resource type="Resource" script_class="Event" load_steps=12 format=3 uid="uid://2p108a8evwqk"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_ah503"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_c6ux8"]
 [ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_krfgf"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_1108r"]
+[ext_resource type="Script" path="res://Scripts/Components/event_history.gd" id="4_jwj66"]
 [ext_resource type="Texture2D" uid="uid://1pckqqvdfvyd" path="res://Assets/CharacterSprites/mahkus.webp" id="5_3hxp4"]
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_x2fhc"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_2y675"]
+
+[sub_resource type="Resource" id="Resource_fw15a"]
+script = ExtResource("4_jwj66")
+event_name = &"Meet with Mykah"
+on_planet = &""
+on_day = 0
+must_have_completed = true
+
+[sub_resource type="Resource" id="Resource_70ob2"]
+script = ExtResource("3_krfgf")
+event_history_requirement = SubResource("Resource_fw15a")
+war_event = false
+condition_type = ""
+condition_value = 0
+on_planet = &""
 
 [sub_resource type="Resource" id="Resource_34yju"]
 script = ExtResource("4_1108r")
@@ -21,7 +37,7 @@ event_desc = "Ally with Mahkus, who worships the God  Ibora"
 event_button_text = "Ally with Mahkus"
 home_exclusive = false
 is_priority = true
-event_conditions = Array[ExtResource("3_krfgf")]([])
+event_conditions = Array[ExtResource("3_krfgf")]([SubResource("Resource_70ob2")])
 event_dialogue = Array[ExtResource("4_1108r")]([SubResource("Resource_34yju")])
 event_effects = Array[ExtResource("5_x2fhc")]([])
 choices = Array[ExtResource("1_ah503")]([])

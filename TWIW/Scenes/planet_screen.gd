@@ -23,6 +23,7 @@ var ai_data: AIData
 
 var current_dialogue_window: Control = null
 var current_choice_panel: Control = null
+var current_event: Event = null
 
 # Blackjack game state
 var blackjack_active: bool = false
@@ -394,12 +395,20 @@ func _on_event_selected(event: Event) -> void:
 	if "event_id" in event and event.event_id != "":
 		player_data.record_event_completion(event.event_id, "")
 
-	# Always show dialogue/choices if they exist
-	if event.event_dialogue.size() > 0 or event.choices.size() > 0:
+	# Check if event has dialogue
+	if event.event_dialogue.size() > 0:
+		# Event has dialogue - show it (will handle choices/effects after dialogue)
 		_show_choice_dialogue(event)
+	elif event.choices.size() > 0:
+		# No dialogue but has choices - show them directly
+		_show_choice_buttons(event.choices)
 	else:
-		resolve_effects(event.event_effects)
-		emit_signal("eventChosen")
+		# No dialogue or choices, just apply effects and finish
+		if event.event_effects.size() > 0:
+			resolve_effects(event.event_effects)
+		else:
+			# No effects either, just signal completion
+			emit_signal("eventChosen")
 
 func _show_choice_dialogue(event: Event) -> void:
 	# Check if this is a blackjack event
@@ -409,9 +418,6 @@ func _show_choice_dialogue(event: Event) -> void:
 	
 	# Normal dialogue handling - initiate choice event
 	_initiate_choice_event(event)
-
-# Store the current event for choice recording
-var current_event: Event = null
 
 func _initiate_choice_event(event: Event) -> void:
 	# Store current event so we can record choices
@@ -429,15 +435,19 @@ func _initiate_choice_event(event: Event) -> void:
 
 func _on_choice_dialogue_finished(event: Event) -> void:
 	if event.choices.size() > 0:
+		# Has choices - show choice buttons (keep dialogue window open)
 		_show_choice_buttons(event.choices)
+	elif event.event_effects.size() > 0:
+		# No choices but has effects - apply them (dialogue window gets hidden/shown by effects)
+		resolve_effects(event.event_effects)
 	else:
-		# Event has no choices, so apply effects and finish
-		if event.event_effects.size() > 0:
-			resolve_effects(event.event_effects)
-		else:
-			# No effects either, just signal completion
-			print("No effects to apply, event complete")
-			emit_signal("eventChosen")
+		# No choices and no effects - clean up and signal completion
+		print("Dialogue finished, no choices or effects, event complete")
+		if current_dialogue_window:
+			current_dialogue_window.queue_free()
+			current_dialogue_window = null
+		window.visible = true
+		emit_signal("eventChosen")
 
 func _show_choice_buttons(choices: Array[EventChoice]) -> void:
 	# Clear existing buttons in selector
@@ -453,7 +463,7 @@ func _show_choice_buttons(choices: Array[EventChoice]) -> void:
 		btn.size_flags_vertical = Control.SIZE_SHRINK_END
 		btn.pressed.connect(_on_choice_selected.bind(choice))
 		selector.add_child(btn)
-
+	
 	choice_panel.get_parent().move_child(choice_panel, -1)
 	choice_panel.visible = true
 
@@ -478,7 +488,7 @@ func _on_choice_selected(choice: EventChoice) -> void:
 	print("Applying effects now...")
 	resolve_effects(choice.choice_effects)
 	
-	# Check if choice_dialogue exists and has content using has() method
+	# Check if choice_dialogue exists and has content
 	var has_dialogue = false
 	if "choice_dialogue" in choice:
 		if choice.choice_dialogue != null and choice.choice_dialogue.size() > 0:
@@ -629,6 +639,7 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 	
 	if valid_effects.size() == 0:
 		print("No valid effects met requirements!")
+		emit_signal("eventChosen")
 		return
 	
 	var guaranteed_effects = []
@@ -681,6 +692,8 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 func on_effect_dialogue_finished(dialogue_window_ref: Control) -> void:
 	dialogue_window_ref.queue_free()
 	window.visible = true
+	# Signal event completion after effect dialogue is done
+	emit_signal("eventChosen")
 
 # ============================================
 # BLACKJACK SYSTEM
@@ -928,7 +941,6 @@ func _show_blackjack_result(dialogues: Array[DialogueItem], continue_game: bool,
 		# Game over: wait for dialogue to finish, then clean up
 		if current_dialogue_window.has_signal("dialogueFinished"):
 			await current_dialogue_window.dialogueFinished
-		current_dialogue_window.hide()
 		blackjack_active = false
 		window.visible = true
 		emit_signal("eventChosen")
