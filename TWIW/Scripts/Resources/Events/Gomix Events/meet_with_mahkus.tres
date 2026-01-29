@@ -38,6 +38,7 @@ event_name = &"Meet with Mahkus"
 event_desc = "Ally with Mahkus, who worships the God  Ibora"
 event_button_text = "Ally with Mahkus"
 is_priority = true
+one_time_event = true
 home_exclusive = false
 event_conditions = Array[ExtResource("3_krfgf")]([SubResource("Resource_70ob2")])
 event_dialogue = Array[ExtResource("4_1108r")]([SubResource("Resource_34yju")])

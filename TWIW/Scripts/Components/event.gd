@@ -10,6 +10,7 @@ class_name Event
 @export var event_icon_texture: Texture2D
 @export var event_button_text: String
 @export var is_priority: bool = false
+@export var one_time_event: bool = false
 
 #Event execution
 @export_group("Event Execution")

@@ -38,6 +38,7 @@ event_name = &"Meet with Mykah"
 event_desc = "Ally with Mykah, who worships the God Gomix"
 event_button_text = "Ally with Mykah"
 is_priority = true
+one_time_event = true
 home_exclusive = false
 event_conditions = Array[ExtResource("3_o04ki")]([SubResource("Resource_37uex")])
 event_dialogue = Array[ExtResource("5_0tuqd")]([SubResource("Resource_es3rp")])

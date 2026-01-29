@@ -127,6 +127,13 @@ func random_options(number_of_options: int) -> Array[Event]:
 # ============================================
 
 func check_event_conditions(event: Event) -> bool:
+	# Check if this is a one-time event that has already been completed
+	if "one_time_event" in event and event.one_time_event:
+		if "event_id" in event and event.event_id != "":
+			if player_data.has_completed_event(event.event_id):
+				print("One-time event already completed: ", event.event_name)
+				return false
+	
 	# If event has no event_conditions property or it's empty, event is valid
 	if not "event_conditions" in event:
 		return true
