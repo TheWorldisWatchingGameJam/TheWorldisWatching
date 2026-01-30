@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=17 format=3 uid="uid://f0quaynyrmg"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=23 format=3 uid="uid://f0quaynyrmg"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="1_25gqv"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_atbtt"]
@@ -15,13 +15,42 @@
 [ext_resource type="Texture2D" uid="uid://eckrwpp0gi2i" path="res://Assets/PlanetSprites/Opal.webp" id="10_2i0hb"]
 [ext_resource type="Resource" uid="uid://d24up0642eqrc" path="res://Scripts/Resources/Events/Opal Events/approach_local_jeweler.tres" id="10_fx055"]
 [ext_resource type="Resource" uid="uid://jok3wnjbp4l1" path="res://Scripts/Resources/Events/Opal Events/establish_quarry.tres" id="11_8t2st"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="16_k0csq"]
 
 [sub_resource type="Resource" id="Resource_roi81"]
 script = ExtResource("8_ihskw")
 cost_type = "Luxuries"
-cost_value = 5
+cost_value = 40
 on_planet = &""
 on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_b1eu8"]
+script = ExtResource("16_k0csq")
+name = "Jeevint KaJeemit"
+dialogue = "We Opalites will not yield! Especially to an army of your size."
+sprite = ExtResource("9_2iwie")
+
+[sub_resource type="Resource" id="Resource_4ee6o"]
+script = ExtResource("16_k0csq")
+name = ""
+dialogue = "Threat attempt failed. Insufficient Weapons."
+
+[sub_resource type="Resource" id="Resource_17h1a"]
+script = ExtResource("16_k0csq")
+name = "Jeevint KaJeemit"
+dialogue = "Do not harm us Opalites! "
+sprite = ExtResource("9_2iwie")
+
+[sub_resource type="Resource" id="Resource_i771i"]
+script = ExtResource("16_k0csq")
+name = "Jeevint KaJeemit"
+dialogue = "Here, just take what you want and leave!"
+sprite = ExtResource("9_2iwie")
+
+[sub_resource type="Resource" id="Resource_4w0v3"]
+script = ExtResource("16_k0csq")
+name = ""
+dialogue = "Threat attempt succeeded."
 
 [resource]
 script = ExtResource("2_6bee7")
@@ -37,8 +66,10 @@ weapon_prod = 1
 food_demand = 5
 luxury_demand = 0
 weapon_demand = 2
-weapons = 30
+weapons = 0
 max_threaten_reward = SubResource("Resource_roi81")
+threaten_fail_message = Array[ExtResource("16_k0csq")]([SubResource("Resource_b1eu8"), SubResource("Resource_4ee6o")])
+threaten_success_message = Array[ExtResource("16_k0csq")]([SubResource("Resource_17h1a"), SubResource("Resource_i771i"), SubResource("Resource_4w0v3")])
 current_relations = Array[ExtResource("2_htv20")]([])
 current_reputation = Array[ExtResource("3_6c5ua")]([])
 current_info = Array[ExtResource("1_atbtt")]([])

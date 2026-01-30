@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=14 format=3 uid="uid://dgvksy7yjscfo"]
+[gd_resource type="Resource" script_class="PlayerData" load_steps=15 format=3 uid="uid://dgvksy7yjscfo"]
 
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_l3eed"]
 [ext_resource type="Script" path="res://Scripts/Components/player_data.gd" id="1_myrfh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="3_cco1b"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_f27hi"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_4vo74"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="6_lewml"]
 [ext_resource type="Script" path="res://Scripts/Components/event_history.gd" id="7_t6qs5"]
 [ext_resource type="Script" path="res://Scripts/Components/time_tracker.gd" id="8_rl5dj"]
 [ext_resource type="Script" path="res://Scripts/Components/trade_route.gd" id="9_fqa25"]
@@ -33,6 +34,8 @@ food_demand = 2
 luxury_demand = 2
 weapon_demand = 2
 weapons = 0
+threaten_fail_message = Array[ExtResource("6_lewml")]([])
+threaten_success_message = Array[ExtResource("6_lewml")]([])
 current_relations = Array[ExtResource("2_5vccm")]([])
 current_reputation = Array[ExtResource("3_cco1b")]([SubResource("Resource_43d60"), SubResource("Resource_pnvqw")])
 current_info = Array[ExtResource("1_l3eed")]([])
@@ -56,6 +59,6 @@ current_location = ""
 all_planets = Array[ExtResource("5_4vo74")]([])
 food = 90
 luxuries = 100
-weapons = 100
+weapons = 0
 money = 500
 total_rep = 0

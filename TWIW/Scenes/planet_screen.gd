@@ -1051,10 +1051,26 @@ func on_market_window_closed() -> void:
 	window.visible = true
 
 func _on_threaten_button_pressed() -> void:
-	player_data.player_data_modify(planet.threaten(player_data.weapons))
-	threaten_button.disabled = true
-	player_data.home_planet_data.modify_reputation(planet.name, -5)
+	var threaten_reward = planet.threaten(player_data.weapons)
+	player_data.home_planet_data.modify_reputation(planet.name, -4)
 	print("Player reputation at ", planet.name, " is now at ", player_data.home_planet_data.get_reputation(planet.name))
+
+	if threaten_reward == null:
+		var dialogue_window = load("res://Scenes/dialogue_window.tscn").instantiate()
+		dialogue_window.dialogue_array = planet.threaten_fail_message
+		dialogue_window.dialogueFinished.connect(_info_window_finished.bind(dialogue_window))
+		self.add_child(dialogue_window)
+		threaten_button.disabled = true
+		return
+	
+	else:
+		player_data.player_data_modify(threaten_reward)
+		var dialogue_window = load("res://Scenes/dialogue_window.tscn").instantiate()
+		dialogue_window.dialogue_array = planet.threaten_success_message
+		dialogue_window.dialogueFinished.connect(_info_window_finished.bind(dialogue_window))
+		self.add_child(dialogue_window)
+		threaten_button.disabled = true
+		print("Player reputation at ", planet.name, " is now at ", player_data.home_planet_data.get_reputation(planet.name))
 
 func _on_event_chosen() -> void:
 	planet_window.hide()

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=14 format=3 uid="uid://b4kf7erwn6muh"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=22 format=3 uid="uid://b4kf7erwn6muh"]
 
 [ext_resource type="Texture2D" uid="uid://d3iwyepsogcfd" path="res://Assets/BGs/Frez.png" id="1_lic45"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_rb1px"]
@@ -13,6 +13,43 @@
 [ext_resource type="Texture2D" uid="uid://dhx2b30rqhvkw" path="res://Assets/PlanetSprites/Frez.webp" id="8_tal5m"]
 [ext_resource type="Resource" uid="uid://ptkemcbm6tko" path="res://Scripts/Resources/Events/Frez Events/attend_farming_seminar.tres" id="9_xjf4g"]
 [ext_resource type="Resource" uid="uid://b416bl5cpbwc8" path="res://Scripts/Resources/Events/Frez Events/build_farm.tres" id="10_q1gwv"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="12_i1dvh"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="15_v3po4"]
+
+[sub_resource type="Resource" id="Resource_xv22o"]
+script = ExtResource("12_i1dvh")
+cost_type = "Food"
+cost_value = 40
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_7txwj"]
+script = ExtResource("15_v3po4")
+name = "Wilyam B. Farmstar III"
+dialogue = "Violence is not permitted here on Frez. Leave, now."
+sprite = ExtResource("8_51vu0")
+
+[sub_resource type="Resource" id="Resource_e7jwy"]
+script = ExtResource("15_v3po4")
+name = ""
+dialogue = "Threat attempt failed. Insufficient weapons."
+
+[sub_resource type="Resource" id="Resource_7idyt"]
+script = ExtResource("15_v3po4")
+name = "Wilyam B. Farmstar III"
+dialogue = "Take what you want, warmonger."
+sprite = ExtResource("8_51vu0")
+
+[sub_resource type="Resource" id="Resource_ftayf"]
+script = ExtResource("15_v3po4")
+name = "Wilyam B. Farmstar III"
+dialogue = "The galaxy is better off without people like you."
+sprite = ExtResource("8_51vu0")
+
+[sub_resource type="Resource" id="Resource_tijp7"]
+script = ExtResource("15_v3po4")
+name = ""
+dialogue = "Threat attempt suceeded."
 
 [resource]
 script = ExtResource("5_fvv0p")
@@ -29,6 +66,9 @@ food_demand = 0
 luxury_demand = 5
 weapon_demand = 0
 weapons = 0
+max_threaten_reward = SubResource("Resource_xv22o")
+threaten_fail_message = Array[ExtResource("15_v3po4")]([SubResource("Resource_7txwj"), SubResource("Resource_e7jwy")])
+threaten_success_message = Array[ExtResource("15_v3po4")]([SubResource("Resource_7idyt"), SubResource("Resource_ftayf"), SubResource("Resource_tijp7")])
 current_relations = Array[ExtResource("2_r0xra")]([])
 current_reputation = Array[ExtResource("3_hwu0p")]([])
 current_info = Array[ExtResource("1_rb1px")]([])

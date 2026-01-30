@@ -1,6 +1,9 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=11 format=3 uid="uid://d1r5bocod2xw1"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=23 format=3 uid="uid://d1r5bocod2xw1"]
 
 [ext_resource type="Texture2D" uid="uid://c3fslapq8tkbs" path="res://Assets/BGs/Huldar.png" id="1_qhhoy"]
+[ext_resource type="Script" path="res://Scripts/Components/info.gd" id="2_ahpji"]
+[ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="3_ahjdv"]
+[ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="4_0q04l"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="4_m4vwl"]
 [ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="5_vlwws"]
 [ext_resource type="Texture2D" uid="uid://dbtioogvbvdo8" path="res://Assets/CharacterSprites/emperorshayrimizio.png" id="6_bosoj"]
@@ -10,6 +13,49 @@
 [ext_resource type="Resource" uid="uid://dfrwdpdp4dygr" path="res://Scripts/Resources/Events/Huldar Events/sponsor_banquet.tres" id="8_uuc0c"]
 [ext_resource type="Resource" uid="uid://87aqduay7cwr" path="res://Scripts/Resources/Events/Huldar Events/gather_army.tres" id="9_dxkjt"]
 [ext_resource type="Resource" uid="uid://ff6jrw4eow2o" path="res://Scripts/Resources/Events/Huldar Events/gather_forces.tres" id="10_0yecs"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="12_4kg8q"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="15_iwuj7"]
+
+[sub_resource type="Resource" id="Resource_ydr0v"]
+script = ExtResource("12_4kg8q")
+cost_type = "Weapons"
+cost_value = 30
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_wxmdd"]
+script = ExtResource("15_iwuj7")
+name = "Emperor Shay Rimizio"
+dialogue = "BAHAHAHA! HAHAHA! AAAAHAHHAHAAHA!"
+sprite = ExtResource("6_bosoj")
+
+[sub_resource type="Resource" id="Resource_yibr4"]
+script = ExtResource("15_iwuj7")
+name = "Emperor Shay Rimizio"
+dialogue = "You and what army? You might just be denser than a black hole if you really think Huldarians would yield to you."
+sprite = ExtResource("6_bosoj")
+
+[sub_resource type="Resource" id="Resource_m5yhf"]
+script = ExtResource("15_iwuj7")
+name = ""
+dialogue = "Threat attempt failed. Insufficient weapons."
+
+[sub_resource type="Resource" id="Resource_6qcb5"]
+script = ExtResource("15_iwuj7")
+name = "Emperor Shay Rimizio"
+dialogue = "You... you are idiocy and insolence personified."
+sprite = ExtResource("6_bosoj")
+
+[sub_resource type="Resource" id="Resource_jay0c"]
+script = ExtResource("15_iwuj7")
+name = "Emperor Shay Rimizio"
+dialogue = "Take what you want. You will regret this..."
+sprite = ExtResource("6_bosoj")
+
+[sub_resource type="Resource" id="Resource_0kqy2"]
+script = ExtResource("15_iwuj7")
+name = ""
+dialogue = "Threat attempt succeeded."
 
 [resource]
 script = ExtResource("5_vlwws")
@@ -17,21 +63,24 @@ id = "planet_3"
 name = &"Huldar"
 sprite = ExtResource("6_tbbdo")
 bg = ExtResource("1_qhhoy")
-desc = null
-major_export = null
-food_prod = 2
+desc = ""
+major_export = ""
+food_prod = 3
 luxury_prod = 2
-weapon_prod = 4
+weapon_prod = 2
 food_demand = 1
 luxury_demand = 3
 weapon_demand = 3
-weapons = null
-current_relations = null
-current_reputation = null
-current_info = null
+weapons = 0
+max_threaten_reward = SubResource("Resource_ydr0v")
+threaten_fail_message = Array[ExtResource("15_iwuj7")]([SubResource("Resource_wxmdd"), SubResource("Resource_yibr4"), SubResource("Resource_m5yhf")])
+threaten_success_message = Array[ExtResource("15_iwuj7")]([SubResource("Resource_6qcb5"), SubResource("Resource_jay0c"), SubResource("Resource_0kqy2")])
+current_relations = Array[ExtResource("3_ahjdv")]([])
+current_reputation = Array[ExtResource("4_0q04l")]([])
+current_info = Array[ExtResource("2_ahpji")]([])
 event_pool = Array[ExtResource("4_m4vwl")]([ExtResource("6_os51l"), ExtResource("7_facmb"), ExtResource("8_uuc0c"), ExtResource("9_dxkjt"), ExtResource("10_0yecs")])
-live_events = null
-event_history = null
+live_events = Array[ExtResource("4_m4vwl")]([])
+event_history = Array[ExtResource("4_m4vwl")]([])
 leader_name = "Emperor Shay Rimizio"
-voted_off = null
+voted_off = false
 leader_sprite = ExtResource("6_bosoj")
