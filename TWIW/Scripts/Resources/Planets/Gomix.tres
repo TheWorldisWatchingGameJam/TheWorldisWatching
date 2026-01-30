@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=18 format=3 uid="uid://cda2udbfuiixi"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=20 format=3 uid="uid://cda2udbfuiixi"]
 
 [ext_resource type="Texture2D" uid="uid://daul6l825l837" path="res://Assets/BGs/Gomix.png" id="1_7gtlo"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_bxaqs"]
@@ -24,6 +24,16 @@ cost_value = 30
 on_planet = &""
 on_current_planet = false
 
+[sub_resource type="Resource" id="Resource_q4m0w"]
+script = ExtResource("16_u3yxb")
+name = ""
+dialogue = "Threat attempt failed. Insufficient weapons."
+
+[sub_resource type="Resource" id="Resource_oqwvi"]
+script = ExtResource("16_u3yxb")
+name = ""
+dialogue = "Threat attempt succeeded."
+
 [resource]
 script = ExtResource("5_u6a02")
 id = "planet_2"
@@ -40,8 +50,8 @@ luxury_demand = 1
 weapon_demand = 4
 weapons = 0
 max_threaten_reward = SubResource("Resource_5avlc")
-threaten_fail_message = Array[ExtResource("16_u3yxb")]([])
-threaten_success_message = Array[ExtResource("16_u3yxb")]([])
+threaten_fail_message = Array[ExtResource("16_u3yxb")]([SubResource("Resource_q4m0w")])
+threaten_success_message = Array[ExtResource("16_u3yxb")]([SubResource("Resource_oqwvi")])
 current_relations = Array[ExtResource("2_00vvr")]([])
 current_reputation = Array[ExtResource("3_y0wg4")]([])
 current_info = Array[ExtResource("1_bxaqs")]([])
