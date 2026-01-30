@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="Event" load_steps=14 format=3 uid="uid://dmolbamwb7pjo"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_8l6ch"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_raioi"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_fw5ka"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_hy3n6"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_wswde"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_r5qtr"]
+
+[sub_resource type="Resource" id="Resource_lcrhi"]
+script = ExtResource("2_raioi")
+cost_type = "Money"
+cost_value = 100
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_dgyqj"]
+script = ExtResource("4_hy3n6")
+name = ""
+dialogue = "The crowd did not take your response well..."
+
+[sub_resource type="Resource" id="Resource_afiox"]
+script = ExtResource("4_hy3n6")
+name = ""
+dialogue = "Your reputation on this planet has decreased."
+
+[sub_resource type="Resource" id="Resource_bpjiq"]
+script = ExtResource("2_raioi")
+cost_type = "Rep"
+cost_value = -4
+on_planet = &""
+on_current_planet = true
+
+[sub_resource type="Resource" id="Resource_nniq5"]
+script = ExtResource("5_wswde")
+effect_value_token = SubResource("Resource_bpjiq")
+effect_probability = 30
+effect_dialogue = Array[ExtResource("4_hy3n6")]([SubResource("Resource_dgyqj"), SubResource("Resource_afiox")])
+effect_delay = 0
+
+[sub_resource type="Resource" id="Resource_0wt1g"]
+script = ExtResource("2_raioi")
+cost_type = "Rep"
+cost_value = 4
+on_planet = &""
+on_current_planet = true
+
+[sub_resource type="Resource" id="Resource_h8tcw"]
+script = ExtResource("5_wswde")
+effect_value_token = SubResource("Resource_0wt1g")
+effect_probability = 70
+effect_dialogue = Array[ExtResource("4_hy3n6")]([])
+effect_delay = 0
+
+[resource]
+script = ExtResource("6_r5qtr")
+event_id = ""
+event_name = &"Address Controversy"
+event_desc = "Fund a press conference to address a local controversy. There is a chance your response may be taken poorly."
+event_button_text = "Fund. ($100)"
+is_priority = false
+one_time_event = false
+home_exclusive = false
+non_home_exclusive = false
+event_conditions = Array[ExtResource("3_fw5ka")]([])
+event_dialogue = Array[ExtResource("4_hy3n6")]([])
+event_effects = Array[ExtResource("5_wswde")]([SubResource("Resource_nniq5"), SubResource("Resource_h8tcw")])
+choices = Array[ExtResource("1_8l6ch")]([])
+cost = Array[ExtResource("2_raioi")]([SubResource("Resource_lcrhi")])
