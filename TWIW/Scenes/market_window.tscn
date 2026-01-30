@@ -1,45 +1,19 @@
-[gd_scene load_steps=20 format=3 uid="uid://beey8odn5tdhc"]
+[gd_scene load_steps=15 format=3 uid="uid://beey8odn5tdhc"]
 
 [ext_resource type="LabelSettings" uid="uid://bepmqoip50uru" path="res://Assets/Theme/large_text_generic.tres" id="1_apgy1"]
 [ext_resource type="Script" path="res://Scenes/market_window.gd" id="1_i4yx0"]
-[ext_resource type="Script" path="res://Scripts/Components/info.gd" id="2_ccbj7"]
+[ext_resource type="Resource" uid="uid://b0wugdfli82wd" path="res://Scripts/Resources/Planets/Verp.tres" id="2_jtco7"]
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_lflus"]
 [ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="3_3gm5i"]
 [ext_resource type="StyleBox" uid="uid://4b7i8jghbajh" path="res://Assets/Theme/button_hover_stylebox.tres" id="3_devy4"]
-[ext_resource type="Script" path="res://Scripts/Components/relation.gd" id="3_e8f6k"]
 [ext_resource type="Texture2D" uid="uid://dpi2wodq4jimt" path="res://Assets/ResourceIcons/apple-439397.png" id="3_edvab"]
-[ext_resource type="Script" path="res://Scripts/Components/reputation.gd" id="4_iu3d3"]
 [ext_resource type="Texture2D" uid="uid://c284smqldiw1q" path="res://Assets/ResourceIcons/diamond-6687408.png" id="4_xvkky"]
-[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="5_0741h"]
 [ext_resource type="Texture2D" uid="uid://beh8mme8s3pmx" path="res://Assets/ResourceIcons/alien-gun-4780305.png" id="5_meayt"]
-[ext_resource type="Script" path="res://Scripts/Components/planet_data.gd" id="6_dpc1y"]
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="7_47h0k"]
 [ext_resource type="LabelSettings" uid="uid://nya3oggxmp3m" path="res://Assets/Theme/market_item_label.tres" id="7_a5q74"]
 [ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="7_gudhw"]
 [ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Assets/Theme/event_name_label_settings.tres" id="8_gxlmt"]
 [ext_resource type="Theme" uid="uid://kdox7h3lrego" path="res://Assets/Theme/button_theme.tres" id="16_dx66a"]
-
-[sub_resource type="Resource" id="Resource_72e1c"]
-script = ExtResource("6_dpc1y")
-id = ""
-name = &""
-desc = ""
-major_export = ""
-food_prod = 0
-luxury_prod = 0
-weapon_prod = 0
-food_demand = 5
-luxury_demand = 5
-weapon_demand = 0
-weapons = 0
-current_relations = Array[ExtResource("3_e8f6k")]([])
-current_reputation = Array[ExtResource("4_iu3d3")]([])
-current_info = Array[ExtResource("2_ccbj7")]([])
-event_pool = Array[ExtResource("5_0741h")]([])
-live_events = Array[ExtResource("5_0741h")]([])
-event_history = Array[ExtResource("5_0741h")]([])
-leader_name = ""
-voted_off = false
 
 [node name="MarketWindow" type="Control"]
 layout_mode = 3
@@ -49,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i4yx0")
-planet = SubResource("Resource_72e1c")
+planet = ExtResource("2_jtco7")
 player_data = ExtResource("7_47h0k")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

@@ -41,9 +41,23 @@ func _ready() -> void:
 	background.texture = planet.bg
 	initialize_market_window()
 	initialize_trade_window()
+	check_for_delayed_effects(player_data)
 	display_options(random_options(3))
 	threaten_button.disabled = false
 	choice_panel.hide()
+
+func check_for_delayed_effects(player_data: PlayerData) -> void:
+	var delayed_effects_to_resolve: Array[EventEffect]
+	for effect in player_data.delayed_effects:
+		if effect.delay_current_time >= effect.effect_delay:
+			print("Delayed effect has reached maturity; resolving effect of modifying ", effect.effect_value_token.cost_type, " by ", effect.effect_value_token.cost_value)
+			delayed_effects_to_resolve.append(effect)
+	for effect in delayed_effects_to_resolve:
+		player_data.delayed_effects.erase(effect)
+	print("Current delayed effects: ", player_data.delayed_effects)
+	resolve_effects(delayed_effects_to_resolve)
+
+
 
 func initialize_trade_window() -> void:
 	trade_window = trade_window.instantiate()
@@ -440,6 +454,7 @@ func _on_event_selected(event: Event) -> void:
 			resolve_effects(event.event_effects)
 		else:
 			# No effects either, just signal completion
+			print("Event effects size is 0.")
 			emit_signal("eventChosen")
 
 func _show_choice_dialogue(event: Event) -> void:
@@ -660,8 +675,10 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 		print("No effects to resolve")
 		return
 	
+		
+	
 	# Filter effects by requirements
-	var valid_effects = []
+	var valid_effects: Array[EventEffect] = []
 	for effect in effects:
 		if check_effect_requirements(effect):
 			print("Effect passed requirements")
@@ -673,6 +690,21 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 		print("No valid effects met requirements!")
 		emit_signal("eventChosen")
 		return
+		
+	# Check for fresh delayed effects, add to player_data, and remove from contention
+	var delayed_effects: Array[EventEffect] = []
+	for effect in valid_effects:
+		print("Effect has current delay of ", effect.delay_current_time)
+		if effect.effect_delay > 0 and effect.delay_current_time == 0:
+			print("Delayed effect to modify ", effect.effect_value_token.cost_type, " by ", effect.effect_value_token.cost_value, " detected.")
+			delayed_effects.append(effect)
+	for effect in delayed_effects:
+		var new_effect: EventEffect = effect.duplicate()
+		print("Adding new_effect to modify ", new_effect.effect_value_token.cost_type, " by ", new_effect.effect_value_token.cost_value, " to player's delayed effects tracker...")
+		player_data.delayed_effects.append(new_effect)
+		print("Current delayed effects: ", player_data.delayed_effects)
+		valid_effects.erase(effect)
+	
 	
 	var guaranteed_effects = []
 	var random_effects = []
@@ -692,7 +724,7 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 			has_dialogue = true
 			var dlg = dialogue_window.instantiate()
 			dlg.dialogue_array = effect.effect_dialogue
-			dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg))
+			dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg, effect))
 			window.hide()
 			self.add_child(dlg)
 
@@ -711,19 +743,27 @@ func resolve_effects(effects: Array[EventEffect]) -> void:
 					has_dialogue = true
 					var dlg = dialogue_window.instantiate()
 					dlg.dialogue_array = e.effect_dialogue
-					dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg))
+					dlg.dialogueFinished.connect(on_effect_dialogue_finished.bind(dlg, e))
 					window.hide()
 					self.add_child(dlg)
 				break
+
+	# Return early to avoid sending eventChosen signal if resolved event effect is a delayed effect
+	for effect in valid_effects:
+		if effect.effect_delay > 0:
+			return
 	
 	# If no dialogue was shown, signal completion immediately
 	if not has_dialogue:
 		print("No effect dialogue, completing event")
 		emit_signal("eventChosen")
 
-func on_effect_dialogue_finished(dialogue_window_ref: Control) -> void:
+func on_effect_dialogue_finished(dialogue_window_ref: Control, event_effect: EventEffect) -> void:
 	dialogue_window_ref.queue_free()
 	window.visible = true
+	# Return early to avoid sending eventChosen signal if event is a delayed effect
+	if event_effect.effect_delay > 0:
+		return
 	# Signal event completion after effect dialogue is done
 	emit_signal("eventChosen")
 

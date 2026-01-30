@@ -11,11 +11,14 @@ var _weapons := 0
 var _money := 0
 var _total_rep := 0
 var completed_events: Dictionary = {}
+var delayed_effects: Array[EventEffect]
 
 @export var home_planet_data: PlanetData: set = on_home_planet_data_set
 @export var time_tracker: TimeTracker
 @export var trade_routes: Array[TradeRoute]
 @export var current_location: String
+
+
 
 @export_range(0, 999999, 1)
 var food: int:
@@ -127,9 +130,14 @@ func initialize_time_tracker() -> void:
 
 func simulate_day() -> void:
 	print("Day Simulating...")
+	#UPDATE DELAYED EFFECTS HERE
+	update_delayed_effect_time(delayed_effects)
 	execute_trade_routes(trade_routes)
 	produce_goods(home_planet_data)
-	
+
+func update_delayed_effect_time(effect_array: Array[EventEffect]) -> void:
+	for effect in effect_array:
+		effect.delay_current_time += 1
 
 func produce_goods(planet_data: PlanetData) -> void:
 	print("===Producing Goods===")

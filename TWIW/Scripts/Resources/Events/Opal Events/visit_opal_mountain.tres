@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=12 format=3 uid="uid://d2ed0hntvxxlc"]
+[gd_resource type="Resource" script_class="Event" load_steps=19 format=3 uid="uid://d2ed0hntvxxlc"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="1_fbod0"]
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_y8qhl"]
@@ -11,14 +11,26 @@
 [sub_resource type="Resource" id="Resource_mw65e"]
 script = ExtResource("1_fbod0")
 cost_type = "Money"
-cost_value = -100
+cost_value = -50
 on_planet = &""
 on_current_planet = false
 
 [sub_resource type="Resource" id="Resource_8errm"]
 script = ExtResource("1_fbod0")
-cost_type = "Food"
-cost_value = -30
+cost_type = "Weapons"
+cost_value = -10
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_ofjao"]
+script = ExtResource("2_lvbli")
+name = ""
+dialogue = "Your expedition team encounters a small vein of gemstones. Luxuries have increased by 10."
+
+[sub_resource type="Resource" id="Resource_se1ke"]
+script = ExtResource("1_fbod0")
+cost_type = "Luxuries"
+cost_value = 10
 on_planet = &""
 on_current_planet = false
 
@@ -31,22 +43,58 @@ on_current_planet = false
 
 [sub_resource type="Resource" id="Resource_p86fe"]
 script = ExtResource("4_ishxj")
-effect_value_token = SubResource("Resource_wijhp")
-effect_probability = 0
-effect_dialogue = Array[ExtResource("2_lvbli")]([])
+effect_value_token = SubResource("Resource_se1ke")
+effect_probability = 10
+effect_dialogue = Array[ExtResource("2_lvbli")]([SubResource("Resource_ofjao")])
+
+[sub_resource type="Resource" id="Resource_mfc6f"]
+script = ExtResource("2_lvbli")
+name = ""
+dialogue = "Your expedition team encounters a decent vein of gemstones. Luxuries have increased by 20."
+
+[sub_resource type="Resource" id="Resource_bntgt"]
+script = ExtResource("1_fbod0")
+cost_type = "Luxuries"
+cost_value = 20
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_m1xjt"]
+script = ExtResource("4_ishxj")
+effect_value_token = SubResource("Resource_bntgt")
+effect_probability = 60
+effect_dialogue = Array[ExtResource("2_lvbli")]([SubResource("Resource_mfc6f")])
+
+[sub_resource type="Resource" id="Resource_ggbmy"]
+script = ExtResource("2_lvbli")
+name = ""
+dialogue = "Your expedition team encounters a large vein of gemstones! Luxuries have increased by 30!"
+
+[sub_resource type="Resource" id="Resource_mgxd7"]
+script = ExtResource("1_fbod0")
+cost_type = "Luxuries"
+cost_value = 30
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_t8l2w"]
+script = ExtResource("4_ishxj")
+effect_value_token = SubResource("Resource_mgxd7")
+effect_probability = 30
+effect_dialogue = Array[ExtResource("2_lvbli")]([SubResource("Resource_ggbmy")])
 
 [resource]
 script = ExtResource("5_qrk80")
 event_id = ""
 event_name = &"Visit Opal Mountain"
-event_desc = "Fund an expedition to Opal's legendary landmark for a chance of finding precious gems. The more tools you have, the better your chances of striking it big."
+event_desc = "Fund and supply an expedition to Opal's legendary landmark for a chance of finding precious gems. "
 event_icon_texture = ExtResource("5_5xvcf")
-event_button_text = "Fund."
+event_button_text = "Send. ($50, 10 Weapons)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
 event_conditions = Array[ExtResource("3_wy2vh")]([])
 event_dialogue = Array[ExtResource("2_lvbli")]([])
-event_effects = Array[ExtResource("4_ishxj")]([SubResource("Resource_p86fe")])
+event_effects = Array[ExtResource("4_ishxj")]([SubResource("Resource_p86fe"), SubResource("Resource_m1xjt"), SubResource("Resource_t8l2w")])
 choices = Array[ExtResource("1_y8qhl")]([])
 cost = Array[ExtResource("1_fbod0")]([SubResource("Resource_mw65e"), SubResource("Resource_8errm")])

@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://d1ljl4p748x0m"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_76vdp"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_8dgyh"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_i40x6"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_qpicm"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_oc657"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_p4w1b"]
+
+[sub_resource type="Resource" id="Resource_xa8vf"]
+script = ExtResource("2_8dgyh")
+cost_type = "Money"
+cost_value = -100
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_uynyn"]
+script = ExtResource("4_qpicm")
+name = ""
+dialogue = "New farmland cultivated. Food production increased by 1."
+
+[sub_resource type="Resource" id="Resource_iiehi"]
+script = ExtResource("2_8dgyh")
+cost_type = "FoodProd"
+cost_value = 1
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_6xjo8"]
+script = ExtResource("5_oc657")
+effect_value_token = SubResource("Resource_iiehi")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_qpicm")]([SubResource("Resource_uynyn")])
+
+[resource]
+script = ExtResource("6_p4w1b")
+event_id = ""
+event_name = &"Cultivate Farmland"
+event_desc = "Cultivate farmland on your home planet to increase food production."
+event_button_text = "Cultivate. ($100)"
+is_priority = false
+one_time_event = true
+home_exclusive = true
+event_conditions = Array[ExtResource("3_i40x6")]([])
+event_dialogue = Array[ExtResource("4_qpicm")]([])
+event_effects = Array[ExtResource("5_oc657")]([SubResource("Resource_6xjo8")])
+choices = Array[ExtResource("1_76vdp")]([])
+cost = Array[ExtResource("2_8dgyh")]([SubResource("Resource_xa8vf")])
