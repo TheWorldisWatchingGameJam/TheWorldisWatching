@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=13 format=3 uid="uid://b0wugdfli82wd"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=14 format=3 uid="uid://b0wugdfli82wd"]
 
 [ext_resource type="Texture2D" uid="uid://5giba85nylsd" path="res://Assets/BGs/Verp.png" id="1_a8jsj"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_ol3aw"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://b6x3djmmkrwtf" path="res://Scripts/Resources/Events/Verp Events/donate_weapons.tres" id="7_wkgrv"]
 [ext_resource type="Resource" uid="uid://ccai03ex57i7" path="res://Scripts/Resources/Events/Verp Events/purchase_weapons.tres" id="8_tmt7v"]
 [ext_resource type="Resource" uid="uid://c8evlh55qpiwl" path="res://Scripts/Resources/Events/Verp Events/send_apprentices.tres" id="9_bxpbc"]
+[ext_resource type="Resource" uid="uid://dcwbu3w1ovvcw" path="res://Scripts/Resources/Events/Verp Events/meet_leynardeux_macdonald.tres" id="10_qwa4l"]
 
 [resource]
 script = ExtResource("5_w5tab")
@@ -31,7 +32,7 @@ weapons = 0
 current_relations = Array[ExtResource("2_k1j0k")]([])
 current_reputation = Array[ExtResource("3_3a0u1")]([])
 current_info = Array[ExtResource("1_ol3aw")]([])
-event_pool = Array[ExtResource("4_qejpo")]([ExtResource("6_u1pkg"), ExtResource("7_wkgrv"), ExtResource("8_tmt7v"), ExtResource("9_bxpbc")])
+event_pool = Array[ExtResource("4_qejpo")]([ExtResource("6_u1pkg"), ExtResource("7_wkgrv"), ExtResource("8_tmt7v"), ExtResource("9_bxpbc"), ExtResource("10_qwa4l")])
 live_events = Array[ExtResource("4_qejpo")]([])
 event_history = Array[ExtResource("4_qejpo")]([])
 leader_name = "Leynardeux MacDonald"

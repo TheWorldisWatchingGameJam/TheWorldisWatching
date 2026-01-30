@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_inw5d"]
 script = ExtResource("1_72kst")
 cost_type = "Money"
-cost_value = -50
+cost_value = -150
 on_planet = &""
 on_current_planet = false
 
@@ -23,7 +23,7 @@ dialogue = "You held a successful rally! Reputation at this planet slightly incr
 [sub_resource type="Resource" id="Resource_gru5u"]
 script = ExtResource("1_72kst")
 cost_type = "Rep"
-cost_value = 3
+cost_value = 2
 on_planet = &""
 on_current_planet = true
 

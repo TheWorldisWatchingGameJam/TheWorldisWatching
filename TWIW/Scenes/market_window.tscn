@@ -1,6 +1,5 @@
-[gd_scene load_steps=15 format=3 uid="uid://beey8odn5tdhc"]
+[gd_scene load_steps=13 format=3 uid="uid://beey8odn5tdhc"]
 
-[ext_resource type="LabelSettings" uid="uid://bepmqoip50uru" path="res://Assets/Theme/large_text_generic.tres" id="1_apgy1"]
 [ext_resource type="Script" path="res://Scenes/market_window.gd" id="1_i4yx0"]
 [ext_resource type="Resource" uid="uid://b0wugdfli82wd" path="res://Scripts/Resources/Planets/Verp.tres" id="2_jtco7"]
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_lflus"]
@@ -11,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://beh8mme8s3pmx" path="res://Assets/ResourceIcons/alien-gun-4780305.png" id="5_meayt"]
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="7_47h0k"]
 [ext_resource type="LabelSettings" uid="uid://nya3oggxmp3m" path="res://Assets/Theme/market_item_label.tres" id="7_a5q74"]
-[ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="7_gudhw"]
 [ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Assets/Theme/event_name_label_settings.tres" id="8_gxlmt"]
 [ext_resource type="Theme" uid="uid://kdox7h3lrego" path="res://Assets/Theme/button_theme.tres" id="16_dx66a"]
 
@@ -40,7 +38,7 @@ offset_right = 850.0
 offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("7_gudhw")
+theme_override_styles/panel = ExtResource("3_3gm5i")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 custom_minimum_size = Vector2(1700, 750)
@@ -63,7 +61,7 @@ custom_minimum_size = Vector2(1500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Welcome to the Opal Market!"
-label_settings = ExtResource("1_apgy1")
+label_settings = ExtResource("7_a5q74")
 horizontal_alignment = 1
 
 [node name="CloseButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
@@ -88,6 +86,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+self_modulate = Color(0, 0.133333, 0.00784314, 1)
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 texture = ExtResource("3_edvab")
@@ -144,6 +143,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
+self_modulate = Color(0, 0.133333, 0.00784314, 1)
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 texture = ExtResource("4_xvkky")
@@ -199,6 +199,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
+self_modulate = Color(0, 0.133333, 0.00784314, 1)
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 texture = ExtResource("5_meayt")

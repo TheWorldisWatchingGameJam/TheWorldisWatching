@@ -1,0 +1,119 @@
+[gd_resource type="Resource" script_class="Event" load_steps=23 format=3 uid="uid://dcwbu3w1ovvcw"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_y7fyg"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_pioit"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_02qcw"]
+[ext_resource type="Texture2D" uid="uid://c4hl02p77egfv" path="res://Assets/CharacterSprites/leynardeuxmacdonald.png" id="4_3qv8g"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_r53wc"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_axg6q"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_wgswo"]
+
+[sub_resource type="Resource" id="Resource_llg85"]
+script = ExtResource("2_pioit")
+cost_type = "Rep"
+cost_value = 2
+on_planet = &"Verp"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_v7vs1"]
+script = ExtResource("5_axg6q")
+effect_value_token = SubResource("Resource_llg85")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_r53wc")]([])
+effect_delay = 0
+
+[sub_resource type="Resource" id="Resource_s8cy3"]
+script = ExtResource("4_r53wc")
+name = ""
+dialogue = "Looks like the blacksmith-in-training was a prodigy! Weapon production has increased by 1."
+
+[sub_resource type="Resource" id="Resource_vadi5"]
+script = ExtResource("2_pioit")
+cost_type = "WeaponProd"
+cost_value = 1
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_0jtef"]
+script = ExtResource("5_axg6q")
+effect_value_token = SubResource("Resource_vadi5")
+effect_probability = 70
+effect_dialogue = Array[ExtResource("4_r53wc")]([SubResource("Resource_s8cy3")])
+effect_delay = 0
+
+[sub_resource type="Resource" id="Resource_7dsti"]
+script = ExtResource("4_r53wc")
+name = ""
+dialogue = "Hosting the blacksmith-in-training turned out to be mistake. Weapon production has decreased by 1."
+
+[sub_resource type="Resource" id="Resource_o01q6"]
+script = ExtResource("2_pioit")
+cost_type = "WeaponProd"
+cost_value = -1
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_0nkx2"]
+script = ExtResource("5_axg6q")
+effect_value_token = SubResource("Resource_o01q6")
+effect_probability = 30
+effect_dialogue = Array[ExtResource("4_r53wc")]([SubResource("Resource_7dsti")])
+effect_delay = 0
+
+[sub_resource type="Resource" id="Resource_w8obb"]
+script = ExtResource("1_y7fyg")
+choice_text = "He is welcome to study at our planet."
+choice_effects = Array[ExtResource("5_axg6q")]([SubResource("Resource_v7vs1"), SubResource("Resource_0jtef"), SubResource("Resource_0nkx2")])
+
+[sub_resource type="Resource" id="Resource_m57rc"]
+script = ExtResource("4_r53wc")
+name = "Leynardeux MacDonald"
+dialogue = "Understood."
+sprite = ExtResource("4_3qv8g")
+
+[sub_resource type="Resource" id="Resource_xslfr"]
+script = ExtResource("2_pioit")
+cost_type = "Rep"
+cost_value = -1
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_jookv"]
+script = ExtResource("5_axg6q")
+effect_value_token = SubResource("Resource_xslfr")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_r53wc")]([SubResource("Resource_m57rc")])
+effect_delay = 0
+
+[sub_resource type="Resource" id="Resource_j4gqf"]
+script = ExtResource("1_y7fyg")
+choice_text = "I am afraid we cannot host a student right now."
+choice_effects = Array[ExtResource("5_axg6q")]([SubResource("Resource_jookv")])
+
+[sub_resource type="Resource" id="Resource_ohv1h"]
+script = ExtResource("4_r53wc")
+name = "Leynardeux MacDonald"
+dialogue = "One of the royal blacksmiths is requesting a place to study abroad. We believe your planet would be a great place to do so."
+sprite = ExtResource("4_3qv8g")
+
+[sub_resource type="Resource" id="Resource_otuiq"]
+script = ExtResource("4_r53wc")
+name = "Leynardeux MacDonald"
+dialogue = "Because he is in training, I must warn you that he may end up decreasing your production of weapons."
+sprite = ExtResource("4_3qv8g")
+
+[resource]
+script = ExtResource("6_wgswo")
+event_id = ""
+event_name = &"Meet with Leynardeux MacDonald"
+event_desc = "The legendary blacksmithing champion requests your presence."
+event_button_text = "Meet."
+is_priority = false
+one_time_event = true
+home_exclusive = false
+non_home_exclusive = true
+event_conditions = Array[ExtResource("3_02qcw")]([])
+event_dialogue = Array[ExtResource("4_r53wc")]([SubResource("Resource_ohv1h"), SubResource("Resource_otuiq")])
+event_effects = Array[ExtResource("5_axg6q")]([])
+choices = Array[ExtResource("1_y7fyg")]([SubResource("Resource_w8obb"), SubResource("Resource_j4gqf")])
+cost = Array[ExtResource("2_pioit")]([])

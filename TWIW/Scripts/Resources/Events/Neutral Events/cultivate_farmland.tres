@@ -31,6 +31,7 @@ script = ExtResource("5_oc657")
 effect_value_token = SubResource("Resource_iiehi")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_qpicm")]([SubResource("Resource_uynyn")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("6_p4w1b")
@@ -41,6 +42,7 @@ event_button_text = "Cultivate. ($100)"
 is_priority = false
 one_time_event = true
 home_exclusive = true
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_i40x6")]([])
 event_dialogue = Array[ExtResource("4_qpicm")]([])
 event_effects = Array[ExtResource("5_oc657")]([SubResource("Resource_6xjo8")])
