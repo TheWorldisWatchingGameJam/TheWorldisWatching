@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_guu3f"]
 script = ExtResource("4_s3v0u")
-required_event_id = "fund_liberation_millitia"
+required_event_id = "fund_liberation_militia"
 required_choice_id = ""
 must_have_completed = true
 on_planet = &""
