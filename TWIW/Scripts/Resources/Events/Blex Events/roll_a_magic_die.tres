@@ -1,0 +1,136 @@
+[gd_resource type="Resource" script_class="Event" load_steps=26 format=3 uid="uid://b20gosu1ps3s4"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_b7ath"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_wbp1c"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_ap8yc"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_o7iy1"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_riftl"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_a16sb"]
+
+[sub_resource type="Resource" id="Resource_kgjeb"]
+script = ExtResource("4_o7iy1")
+name = ""
+dialogue = "You rolled a 1! -$100"
+
+[sub_resource type="Resource" id="Resource_7y31y"]
+script = ExtResource("2_wbp1c")
+cost_type = "Money"
+cost_value = -100
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_p7041"]
+script = ExtResource("5_riftl")
+effect_value_token = SubResource("Resource_7y31y")
+effect_probability = 1
+effect_dialogue = Array[ExtResource("4_o7iy1")]([SubResource("Resource_kgjeb")])
+
+[sub_resource type="Resource" id="Resource_k5uap"]
+script = ExtResource("4_o7iy1")
+name = ""
+dialogue = "You rolled a 2! -$50"
+
+[sub_resource type="Resource" id="Resource_2qm8v"]
+script = ExtResource("2_wbp1c")
+cost_type = "Money"
+cost_value = -50
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_82ntf"]
+script = ExtResource("5_riftl")
+effect_value_token = SubResource("Resource_2qm8v")
+effect_probability = 1
+effect_dialogue = Array[ExtResource("4_o7iy1")]([SubResource("Resource_k5uap")])
+
+[sub_resource type="Resource" id="Resource_oryyc"]
+script = ExtResource("4_o7iy1")
+name = ""
+dialogue = "You rolled a 3! +$100"
+
+[sub_resource type="Resource" id="Resource_7ajvg"]
+script = ExtResource("2_wbp1c")
+cost_type = "Money"
+cost_value = 100
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_4yioy"]
+script = ExtResource("5_riftl")
+effect_value_token = SubResource("Resource_7ajvg")
+effect_probability = 1
+effect_dialogue = Array[ExtResource("4_o7iy1")]([SubResource("Resource_oryyc")])
+
+[sub_resource type="Resource" id="Resource_a7e1e"]
+script = ExtResource("4_o7iy1")
+name = ""
+dialogue = "You rolled a 6! +15 rep on this planet"
+
+[sub_resource type="Resource" id="Resource_pfki4"]
+script = ExtResource("2_wbp1c")
+cost_type = "Rep"
+cost_value = 15
+on_planet = &"Blex"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_w14vk"]
+script = ExtResource("5_riftl")
+effect_value_token = SubResource("Resource_pfki4")
+effect_probability = 1
+effect_dialogue = Array[ExtResource("4_o7iy1")]([SubResource("Resource_a7e1e")])
+
+[sub_resource type="Resource" id="Resource_ygpf6"]
+script = ExtResource("4_o7iy1")
+name = ""
+dialogue = "You rolled a 4! +1 Luxury Production"
+
+[sub_resource type="Resource" id="Resource_fijhq"]
+script = ExtResource("4_o7iy1")
+name = ""
+dialogue = ""
+
+[sub_resource type="Resource" id="Resource_vokny"]
+script = ExtResource("2_wbp1c")
+cost_type = "LuxuryProd"
+cost_value = 1
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_voomu"]
+script = ExtResource("5_riftl")
+effect_value_token = SubResource("Resource_vokny")
+effect_probability = 1
+effect_dialogue = Array[ExtResource("4_o7iy1")]([SubResource("Resource_ygpf6"), SubResource("Resource_fijhq")])
+
+[sub_resource type="Resource" id="Resource_822hd"]
+script = ExtResource("4_o7iy1")
+name = ""
+dialogue = "You Rolled a 5! +$400"
+
+[sub_resource type="Resource" id="Resource_ltagv"]
+script = ExtResource("2_wbp1c")
+cost_type = "Money"
+cost_value = 400
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_j5cn7"]
+script = ExtResource("5_riftl")
+effect_value_token = SubResource("Resource_ltagv")
+effect_probability = 1
+effect_dialogue = Array[ExtResource("4_o7iy1")]([SubResource("Resource_822hd")])
+
+[resource]
+script = ExtResource("6_a16sb")
+event_id = "roll_magic_die"
+event_name = &"Roll a Magic Die"
+event_desc = "What's gonna happen?"
+event_button_text = "Roll"
+is_priority = true
+one_time_event = false
+home_exclusive = true
+event_conditions = Array[ExtResource("3_ap8yc")]([])
+event_dialogue = Array[ExtResource("4_o7iy1")]([])
+event_effects = Array[ExtResource("5_riftl")]([SubResource("Resource_p7041"), SubResource("Resource_82ntf"), SubResource("Resource_4yioy"), SubResource("Resource_w14vk"), SubResource("Resource_voomu"), SubResource("Resource_j5cn7")])
+choices = Array[ExtResource("1_b7ath")]([])
+cost = Array[ExtResource("2_wbp1c")]([])
