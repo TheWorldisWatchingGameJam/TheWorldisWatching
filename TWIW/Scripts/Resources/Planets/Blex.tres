@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=14 format=3 uid="uid://dbac38xsd7l2k"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=22 format=3 uid="uid://dbac38xsd7l2k"]
 
 [ext_resource type="Texture2D" uid="uid://cvob7e6gy4k3t" path="res://Assets/BGs/Blex.png" id="1_3va0k"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_k8x0i"]
@@ -13,6 +13,44 @@
 [ext_resource type="Texture2D" uid="uid://bvscmh8x1ue6o" path="res://Assets/CharacterSprites/khevynfram.png" id="8_ywsn1"]
 [ext_resource type="Resource" uid="uid://b20gosu1ps3s4" path="res://Scripts/Resources/Events/Blex Events/roll_a_magic_die.tres" id="9_0fxvf"]
 [ext_resource type="Resource" uid="uid://b4yhoqigdqpa1" path="res://Scripts/Resources/Events/Blex Events/meet_khevin_fram.tres" id="10_swav2"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="12_bul1j"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="15_dyf1y"]
+
+[sub_resource type="Resource" id="Resource_ns3tc"]
+script = ExtResource("12_bul1j")
+cost_type = "Luxuries"
+cost_value = 30
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_82eo2"]
+script = ExtResource("15_dyf1y")
+name = "Khevyn \"The Father\"  Fram"
+dialogue = "You think you can come into MY streets and just do as you please? "
+sprite = ExtResource("8_ywsn1")
+
+[sub_resource type="Resource" id="Resource_bpy6s"]
+script = ExtResource("15_dyf1y")
+name = "Khevyn \"The Father\"  Fram"
+dialogue = "Nah, get your galactic stinkface off my planet before me and my pals roll dice to see who gets to punch a whole in your ship first."
+sprite = ExtResource("8_ywsn1")
+
+[sub_resource type="Resource" id="Resource_864ff"]
+script = ExtResource("15_dyf1y")
+name = ""
+dialogue = "Threat attempt failed. Insufficient weapons."
+
+[sub_resource type="Resource" id="Resource_fix7l"]
+script = ExtResource("15_dyf1y")
+name = "Khevyn \"The Father\"  Fram"
+dialogue = "What are you some kind of wild animal?"
+sprite = ExtResource("8_ywsn1")
+
+[sub_resource type="Resource" id="Resource_hf3dr"]
+script = ExtResource("15_dyf1y")
+name = "Khevyn \"The Father\"  Fram"
+dialogue = "Fine, take what you please. Just get off my planet."
+sprite = ExtResource("8_ywsn1")
 
 [resource]
 script = ExtResource("5_fu0gs")
@@ -29,6 +67,9 @@ food_demand = 2
 luxury_demand = 2
 weapon_demand = 3
 weapons = 0
+max_threaten_reward = SubResource("Resource_ns3tc")
+threaten_fail_message = Array[ExtResource("15_dyf1y")]([SubResource("Resource_82eo2"), SubResource("Resource_bpy6s"), SubResource("Resource_864ff")])
+threaten_success_message = Array[ExtResource("15_dyf1y")]([SubResource("Resource_fix7l"), SubResource("Resource_hf3dr")])
 current_relations = Array[ExtResource("2_skv75")]([])
 current_reputation = Array[ExtResource("3_syww1")]([])
 current_info = Array[ExtResource("1_k8x0i")]([])

@@ -24,7 +24,7 @@ effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_afmqa"]
 script = ExtResource("3_jbudn")
-name = "Khevin Fram"
+name = "Khevin \"The Father\" Fram"
 dialogue = "Wow! Red you lucky dog. You win!"
 sprite = ExtResource("6_rx5i7")
 
@@ -83,7 +83,7 @@ choice_effects = Array[ExtResource("2_8h2jv")]([SubResource("Resource_5u5vi"), S
 
 [sub_resource type="Resource" id="Resource_ngoqv"]
 script = ExtResource("3_jbudn")
-name = "Khevin Fram"
+name = "Khevin \"The Father\" Fram"
 dialogue = "Ah! what a shame"
 sprite = ExtResource("6_rx5i7")
 
@@ -115,7 +115,7 @@ on_planet = &""
 
 [sub_resource type="Resource" id="Resource_t1cs4"]
 script = ExtResource("3_jbudn")
-name = "Khevin Fram"
+name = "Khevin \"The Father\" Fram"
 dialogue = "Let's Play a Game. $500. If I pull a red card from this deck you win, if I pull black then I win. whaddya say?"
 sprite = ExtResource("6_rx5i7")
 

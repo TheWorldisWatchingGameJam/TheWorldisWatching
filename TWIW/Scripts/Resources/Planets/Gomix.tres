@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=15 format=3 uid="uid://cda2udbfuiixi"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=18 format=3 uid="uid://cda2udbfuiixi"]
 
 [ext_resource type="Texture2D" uid="uid://daul6l825l837" path="res://Assets/BGs/Gomix.png" id="1_7gtlo"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_bxaqs"]
@@ -14,6 +14,15 @@
 [ext_resource type="Resource" uid="uid://bl8fxvgpmrgc7" path="res://Scripts/Resources/Events/Gomix Events/fund_republic_army.tres" id="9_g6gh8"]
 [ext_resource type="Resource" uid="uid://bm1ppr2wo8ftx" path="res://Scripts/Resources/Events/Gomix Events/call_upon_gomix.tres" id="10_m2ehd"]
 [ext_resource type="Resource" uid="uid://cvyy6cr4fx73x" path="res://Scripts/Resources/Events/Gomix Events/call_upon_iborah.tres" id="11_r2p04"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="13_3poxw"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="16_u3yxb"]
+
+[sub_resource type="Resource" id="Resource_5avlc"]
+script = ExtResource("13_3poxw")
+cost_type = "Weapons"
+cost_value = 30
+on_planet = &""
+on_current_planet = false
 
 [resource]
 script = ExtResource("5_u6a02")
@@ -23,13 +32,16 @@ sprite = ExtResource("6_cf77y")
 bg = ExtResource("1_7gtlo")
 desc = ""
 major_export = ""
-food_prod = 3
-luxury_prod = 2
+food_prod = 2
+luxury_prod = 1
 weapon_prod = 3
 food_demand = 2
 luxury_demand = 1
 weapon_demand = 4
 weapons = 0
+max_threaten_reward = SubResource("Resource_5avlc")
+threaten_fail_message = Array[ExtResource("16_u3yxb")]([])
+threaten_success_message = Array[ExtResource("16_u3yxb")]([])
 current_relations = Array[ExtResource("2_00vvr")]([])
 current_reputation = Array[ExtResource("3_y0wg4")]([])
 current_info = Array[ExtResource("1_bxaqs")]([])

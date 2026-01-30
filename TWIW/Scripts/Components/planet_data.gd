@@ -30,6 +30,9 @@ signal currentReputationChanged
 @export_group("Planet Threaten Event")
 @export var weapons: int
 @export var max_threaten_reward: EventCost
+@export var threaten_fail_message: Array[DialogueItem]
+@export var threaten_success_message: Array[DialogueItem]
+
 
 #Planet relation values
 @export_group("Planet Relations")
@@ -124,18 +127,14 @@ func apply_production_cost(cost: EventCost) -> void:
 
 func threaten(player_weapon_value: int) -> EventCost:
 	print("Player Threatens Planet.")
-	if player_weapon_value - weapons >= max_threaten_reward.cost_value:
-		print("Player gets max reward of: ", max_threaten_reward.cost_value, " ", max_threaten_reward.cost_type)
-		return max_threaten_reward
-	else: 
-		if player_weapon_value <= 0:
-			print("Player does not have enough Weapons to threaten this planet.")
-			return null
-		else:
-			var threaten_reward = max_threaten_reward
-			threaten_reward.cost_value = player_weapon_value - weapons
-			print("Player gets max reward of: ", threaten_reward.cost_value, " ", threaten_reward.cost_type)
-			return threaten_reward
+	if player_weapon_value <= weapons:
+		print("Player does not have enough Weapons to threaten this planet.")
+		return null
+	else:
+		var threaten_reward = max_threaten_reward
+		threaten_reward.cost_value = clampi(int((player_weapon_value - weapons) * 2), 1, max_threaten_reward.cost_value)
+		print("Player gets reward of: ", threaten_reward.cost_value, " ", threaten_reward.cost_type)
+		return threaten_reward
 
 func get_production(resource_type: String) -> int:
 	print("Checking player's ", resource_type, " production.")

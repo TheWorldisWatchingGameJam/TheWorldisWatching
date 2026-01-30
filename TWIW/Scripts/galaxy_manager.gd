@@ -330,6 +330,27 @@ func update_player_time(to_planet: String) -> void:
 		if ai_data:
 			ai_data.apply_daily_rep_change()
 	
+		# Apply weapon changes
+		print("=== WEAPON SIMULATION ===")
+		for planet in selected_planets:
+			print("Simulating weapon gain for planet: ", planet.name)
+			if planet.name != player_data.home_planet_data.name:
+				if planet.weapon_prod > 0:
+					randomize()
+					var sim_weapon_gain = planet.weapon_prod + randi_range(-1, 1)
+					planet.weapons += sim_weapon_gain
+					print(planet.name, " producing ", sim_weapon_gain, " weapons...")
+					print(planet.name, " now at ", planet.weapons, " weapons.")
+					if randi_range(1, 10) == 1:
+						planet.weapons -= planet.weapon_prod * 2
+						print("Planet Weapon Spend Simulated.")
+						print(planet.name, " now at ", planet.weapons, " weapons.")
+				else:
+					print(planet.name, " does not produce weapons.")
+			else:
+				print(planet.name, " is player's home planet.")
+		print("=== WEAPON SIMULATION END ===")
+		
 	# Update current location
 	for planet in selected_planets:
 		if planet.id == to_planet:
