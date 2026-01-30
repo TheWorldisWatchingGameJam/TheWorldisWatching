@@ -98,6 +98,7 @@ event_button_text = "Meet"
 is_priority = false
 one_time_event = true
 home_exclusive = false
+non_home_exclusive = true
 event_conditions = Array[ExtResource("2_28sb3")]([])
 event_dialogue = Array[ExtResource("3_nhrk5")]([SubResource("Resource_v7cbq")])
 event_effects = Array[ExtResource("4_8nc55")]([])

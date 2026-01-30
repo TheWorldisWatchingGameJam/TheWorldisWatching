@@ -141,6 +141,10 @@ func check_event_conditions(event: Event) -> bool:
 			if player_data.has_completed_event(event.event_id):
 				print("One-time event already completed: ", event.event_name)
 				return false
+	if "non_home_exclusive" in event and event.non_home_exclusive:
+		if planet.name == player_data.home_planet_data.name:
+			print("Non-home exclusive event on home planet: ", event.event_name)
+			return false
 	
 	# If event has no event_conditions property or it's empty, event is valid
 	if not "event_conditions" in event:

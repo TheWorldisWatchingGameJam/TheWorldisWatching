@@ -15,6 +15,7 @@ class_name Event
 #Event execution
 @export_group("Event Execution")
 @export var home_exclusive: bool
+@export var non_home_exclusive: bool = false
 @export var event_conditions: Array[EventCondition]
 @export var event_dialogue: Array[DialogueItem]
 @export var event_effects: Array[EventEffect]
