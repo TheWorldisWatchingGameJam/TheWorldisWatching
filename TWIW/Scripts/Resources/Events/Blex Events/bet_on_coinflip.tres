@@ -105,6 +105,7 @@ event_button_text = "Play ($100)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_wg5wk")]([])
 event_dialogue = Array[ExtResource("4_7pt5p")]([])
 event_effects = Array[ExtResource("5_3ikwc")]([])

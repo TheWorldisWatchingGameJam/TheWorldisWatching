@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=11 format=3 uid="uid://cda2udbfuiixi"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=15 format=3 uid="uid://cda2udbfuiixi"]
 
 [ext_resource type="Texture2D" uid="uid://daul6l825l837" path="res://Assets/BGs/Gomix.png" id="1_7gtlo"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_bxaqs"]
@@ -10,6 +10,10 @@
 [ext_resource type="Resource" uid="uid://2p108a8evwqk" path="res://Scripts/Resources/Events/Gomix Events/meet_with_mahkus.tres" id="6_dc0iy"]
 [ext_resource type="Texture2D" uid="uid://c0epffn3546xd" path="res://Assets/CharacterSprites/mykahthefaithful.png" id="6_htesx"]
 [ext_resource type="Resource" uid="uid://d2lqwrr1xvma0" path="res://Scripts/Resources/Events/Gomix Events/meet_with_mykah.tres" id="7_q50pi"]
+[ext_resource type="Resource" uid="uid://bhxqdhxgl482a" path="res://Scripts/Resources/Events/Gomix Events/fund_liberation_militia.tres" id="8_fwfm1"]
+[ext_resource type="Resource" uid="uid://bl8fxvgpmrgc7" path="res://Scripts/Resources/Events/Gomix Events/fund_republic_army.tres" id="9_g6gh8"]
+[ext_resource type="Resource" uid="uid://bm1ppr2wo8ftx" path="res://Scripts/Resources/Events/Gomix Events/call_upon_gomix.tres" id="10_m2ehd"]
+[ext_resource type="Resource" uid="uid://cvyy6cr4fx73x" path="res://Scripts/Resources/Events/Gomix Events/call_upon_iborah.tres" id="11_r2p04"]
 
 [resource]
 script = ExtResource("5_u6a02")
@@ -29,7 +33,7 @@ weapons = 0
 current_relations = Array[ExtResource("2_00vvr")]([])
 current_reputation = Array[ExtResource("3_y0wg4")]([])
 current_info = Array[ExtResource("1_bxaqs")]([])
-event_pool = Array[ExtResource("4_legbn")]([ExtResource("6_dc0iy"), ExtResource("7_q50pi")])
+event_pool = Array[ExtResource("4_legbn")]([ExtResource("6_dc0iy"), ExtResource("7_q50pi"), ExtResource("8_fwfm1"), ExtResource("9_g6gh8"), ExtResource("10_m2ehd"), ExtResource("11_r2p04")])
 live_events = Array[ExtResource("4_legbn")]([])
 event_history = Array[ExtResource("4_legbn")]([])
 leader_name = "Mykah the Faithful"

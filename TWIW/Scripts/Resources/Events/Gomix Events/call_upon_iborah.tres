@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="Event" load_steps=13 format=3 uid="uid://cvyy6cr4fx73x"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_0m2j3"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_qvt1h"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_dxw0k"]
+[ext_resource type="Script" path="res://Scripts/Components/event_history.gd" id="4_8kelt"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="5_dr7g7"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="6_cc7ag"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="7_x2qcr"]
+
+[sub_resource type="Resource" id="Resource_guu3f"]
+script = ExtResource("4_8kelt")
+required_event_id = "fund_republic_army"
+required_choice_id = ""
+must_have_completed = true
+on_planet = &""
+on_day = 0
+
+[sub_resource type="Resource" id="Resource_btji0"]
+script = ExtResource("3_dxw0k")
+event_history_requirement = SubResource("Resource_guu3f")
+war_event = false
+condition_type = ""
+condition_value = 0
+on_planet = &""
+
+[sub_resource type="Resource" id="Resource_8ql3j"]
+script = ExtResource("5_dr7g7")
+name = "Iborah"
+dialogue = "Thank you for supporting my followers. I will reward you with all the food so you may never hunger"
+
+[sub_resource type="Resource" id="Resource_hx3vc"]
+script = ExtResource("2_qvt1h")
+cost_type = "Food"
+cost_value = 300
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_ltuvc"]
+script = ExtResource("6_cc7ag")
+effect_value_token = SubResource("Resource_hx3vc")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("5_dr7g7")]([SubResource("Resource_8ql3j")])
+
+[resource]
+script = ExtResource("7_x2qcr")
+event_id = "fund_liberation_militia"
+event_name = &"Call Upon Iborah"
+event_desc = "With the war over, you cacn now call upon the great god Iborah for assistance one time."
+event_button_text = "Call"
+is_priority = true
+one_time_event = true
+home_exclusive = true
+non_home_exclusive = false
+event_conditions = Array[ExtResource("3_dxw0k")]([SubResource("Resource_btji0")])
+event_dialogue = Array[ExtResource("5_dr7g7")]([])
+event_effects = Array[ExtResource("6_cc7ag")]([SubResource("Resource_ltuvc")])
+choices = Array[ExtResource("1_0m2j3")]([])
+cost = Array[ExtResource("2_qvt1h")]([])

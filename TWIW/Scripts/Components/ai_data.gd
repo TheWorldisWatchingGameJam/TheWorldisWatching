@@ -1,11 +1,11 @@
 extends Resource
 class_name AIData
 
-@export var daily_rep_min: int = -2
+@export var daily_rep_min: int = -1
 @export var daily_rep_max: int = 5
 
-@export var min_rep: int = -500
-@export var max_rep: int = 500
+@export var min_rep: int = -600
+@export var max_rep: int = 600
 
 @export var starting_rep: int = 0
 

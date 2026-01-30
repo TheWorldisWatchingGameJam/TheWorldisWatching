@@ -22,7 +22,7 @@ dialogue = "Quarry established. Luxury production has increased."
 [sub_resource type="Resource" id="Resource_too57"]
 script = ExtResource("2_ecxfi")
 cost_type = "LuxuryProd"
-cost_value = 2
+cost_value = 1
 on_planet = &""
 on_current_planet = false
 
@@ -38,8 +38,8 @@ event_id = ""
 event_name = &"Establish Quarry"
 event_desc = "Establish a quarry on the mineral-rich hills of Opal."
 event_button_text = "Establish. ($100)"
-is_priority = false
-one_time_event = true
+is_priority = true
+one_time_event = false
 home_exclusive = true
 event_conditions = Array[ExtResource("3_x8fk2")]([])
 event_dialogue = Array[ExtResource("4_0kfvs")]([])

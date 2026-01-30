@@ -76,8 +76,10 @@ func initialize_market_window() -> void:
 	self.add_child(market_window)
 
 #Roll for x random events of given planet
+#Roll for x random events of given planet
 func random_options(number_of_options: int) -> Array[Event]:
-	var all_events = planet.roll_events(number_of_options * 5)  # Get even more events to filter and avoid duplicates
+	# Get ALL events from the planet's event_pool
+	var all_events = planet.event_pool if "event_pool" in planet else []
 	var valid_events: Array[Event] = []
 	var priority_events: Array[Event] = []
 	var seen_events: Dictionary = {}  # Track events to prevent duplicates
@@ -116,15 +118,18 @@ func random_options(number_of_options: int) -> Array[Event]:
 		else:
 			print(event.event_name + " [FILTERED OUT - conditions not met]")
 	
-	# Build result: priority events first, then fill with regular events
+	# Now we have filtered lists - randomly select from them
 	var result: Array[Event] = []
 	
-	# Add all priority events first
+	# Add all priority events first (they always show)
 	for priority_event in priority_events:
 		if result.size() < number_of_options:
 			result.append(priority_event)
 	
-	# Fill remaining slots with regular events
+	# Shuffle the valid events and pick randomly
+	valid_events.shuffle()
+	
+	# Fill remaining slots with randomly selected valid events
 	for event in valid_events:
 		if result.size() < number_of_options:
 			result.append(event)
@@ -135,7 +140,6 @@ func random_options(number_of_options: int) -> Array[Event]:
 		print("Added placeholder for slot ", result.size())
 	
 	return result
-
 # ============================================
 # EVENT CONDITION SYSTEM (for filtering events)
 # ============================================
@@ -155,6 +159,10 @@ func check_event_conditions(event: Event) -> bool:
 			if player_data.has_completed_event(event.event_id):
 				print("One-time event already completed: ", event.event_name)
 				return false
+	if "non_home_exclusive" in event and event.non_home_exclusive:
+		if planet.name == player_data.home_planet_data.name:
+			print("Non-home exclusive event on home planet: ", event.event_name)
+			return false
 	
 	# If event has no event_conditions property or it's empty, event is valid
 	if not "event_conditions" in event:
