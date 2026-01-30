@@ -61,17 +61,17 @@ func _on_weapons_sell_button_pressed() -> void:
 
 func calculate_prices(planet: PlanetData) -> void:
 	if planet.food_demand > 0:
-		var new_food_price = planet.food_demand + [-2, -1].pick_random()
+		var new_food_price = (int((float(planet.food_demand)/5) * 20)) + [-1, 0, 0, +1].pick_random()
 		if new_food_price <= 0:
 			new_food_price = 1
 		food_price = new_food_price
 	if planet.luxury_demand > 0:
-		var new_luxuries_price = planet.luxury_demand + [-2, -1].pick_random()
+		var new_luxuries_price = (int((float(planet.luxury_demand)/5) * 20)) + [-1, 0, 0, +1].pick_random()
 		if new_luxuries_price <= 0:
 			new_luxuries_price = 1
 		luxuries_price = new_luxuries_price
 	if planet.weapon_demand > 0:
-		var new_weapons_price = planet.weapon_demand + [-2, -1].pick_random()
+		var new_weapons_price = (int((float(planet.weapon_demand)/5) * 20)) + [-1, 0, 0, +1].pick_random()
 		if new_weapons_price <= 0:
 			new_weapons_price = 1
 		weapons_price = new_weapons_price
