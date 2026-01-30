@@ -41,7 +41,7 @@ sprite = ExtResource("7_ajtb2")
 [sub_resource type="Resource" id="Resource_q4h12"]
 script = ExtResource("2_nd451")
 cost_type = "Rep"
-cost_value = 40
+cost_value = 30
 on_planet = &"Gomix"
 on_current_planet = false
 
