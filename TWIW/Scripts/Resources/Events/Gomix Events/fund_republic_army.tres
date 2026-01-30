@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="Event" load_steps=15 format=3 uid="uid://bl8fxvgpmrgc7"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_e37p2"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_nd451"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_6i784"]
+[ext_resource type="Script" path="res://Scripts/Components/event_history.gd" id="4_0em6c"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_p415w"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_vjuwj"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_eqhkj"]
+[ext_resource type="Texture2D" uid="uid://1pckqqvdfvyd" path="res://Assets/CharacterSprites/mahkus.webp" id="7_ajtb2"]
+
+[sub_resource type="Resource" id="Resource_lr48h"]
+script = ExtResource("2_nd451")
+cost_type = "Weapons"
+cost_value = -200
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_v6c0e"]
+script = ExtResource("4_0em6c")
+required_event_id = "meet_mahkus"
+required_choice_id = ""
+must_have_completed = true
+on_planet = &""
+on_day = 0
+
+[sub_resource type="Resource" id="Resource_a04yb"]
+script = ExtResource("3_6i784")
+event_history_requirement = SubResource("Resource_v6c0e")
+war_event = false
+condition_type = ""
+condition_value = 0
+on_planet = &""
+
+[sub_resource type="Resource" id="Resource_0qa1t"]
+script = ExtResource("4_p415w")
+name = "Mahkus"
+dialogue = "Thanks to you! The war is over! We are forever in your debt."
+sprite = ExtResource("7_ajtb2")
+
+[sub_resource type="Resource" id="Resource_q4h12"]
+script = ExtResource("2_nd451")
+cost_type = "Rep"
+cost_value = 40
+on_planet = &"Gomix"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_8k3mb"]
+script = ExtResource("5_vjuwj")
+effect_value_token = SubResource("Resource_q4h12")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_p415w")]([SubResource("Resource_0qa1t")])
+
+[resource]
+script = ExtResource("6_eqhkj")
+event_id = "fund_republic_army"
+event_name = &"Fund Republic Army"
+event_desc = "We need aid to win the war against the Gomix believers! Fight with us and lend us your weapons."
+event_button_text = "Fund (200 weapons)"
+is_priority = true
+one_time_event = true
+home_exclusive = false
+non_home_exclusive = false
+event_conditions = Array[ExtResource("3_6i784")]([SubResource("Resource_a04yb")])
+event_dialogue = Array[ExtResource("4_p415w")]([])
+event_effects = Array[ExtResource("5_vjuwj")]([SubResource("Resource_8k3mb")])
+choices = Array[ExtResource("1_e37p2")]([])
+cost = Array[ExtResource("2_nd451")]([SubResource("Resource_lr48h")])

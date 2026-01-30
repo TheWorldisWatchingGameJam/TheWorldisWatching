@@ -40,6 +40,7 @@ event_button_text = "Ally with Mahkus"
 is_priority = true
 one_time_event = true
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_krfgf")]([SubResource("Resource_70ob2")])
 event_dialogue = Array[ExtResource("4_1108r")]([SubResource("Resource_34yju")])
 event_effects = Array[ExtResource("5_x2fhc")]([])

@@ -105,7 +105,7 @@ choice_effects = Array[ExtResource("2_8h2jv")]([SubResource("Resource_jwpj7")])
 script = ExtResource("5_ofiw3")
 war_event = false
 condition_type = "Money"
-condition_value = 0
+condition_value = 500
 on_planet = &""
 
 [sub_resource type="Resource" id="Resource_t1cs4"]
