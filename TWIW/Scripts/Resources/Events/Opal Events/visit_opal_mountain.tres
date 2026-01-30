@@ -34,18 +34,12 @@ cost_value = 10
 on_planet = &""
 on_current_planet = false
 
-[sub_resource type="Resource" id="Resource_wijhp"]
-script = ExtResource("1_fbod0")
-cost_type = ""
-cost_value = 0
-on_planet = &""
-on_current_planet = false
-
 [sub_resource type="Resource" id="Resource_p86fe"]
 script = ExtResource("4_ishxj")
 effect_value_token = SubResource("Resource_se1ke")
 effect_probability = 10
 effect_dialogue = Array[ExtResource("2_lvbli")]([SubResource("Resource_ofjao")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_mfc6f"]
 script = ExtResource("2_lvbli")
@@ -64,6 +58,7 @@ script = ExtResource("4_ishxj")
 effect_value_token = SubResource("Resource_bntgt")
 effect_probability = 60
 effect_dialogue = Array[ExtResource("2_lvbli")]([SubResource("Resource_mfc6f")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_ggbmy"]
 script = ExtResource("2_lvbli")
@@ -82,6 +77,7 @@ script = ExtResource("4_ishxj")
 effect_value_token = SubResource("Resource_mgxd7")
 effect_probability = 30
 effect_dialogue = Array[ExtResource("2_lvbli")]([SubResource("Resource_ggbmy")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("5_qrk80")
@@ -93,6 +89,7 @@ event_button_text = "Send. ($50, 10 Weapons)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_wy2vh")]([])
 event_dialogue = Array[ExtResource("2_lvbli")]([])
 event_effects = Array[ExtResource("4_ishxj")]([SubResource("Resource_p86fe"), SubResource("Resource_m1xjt"), SubResource("Resource_t8l2w")])

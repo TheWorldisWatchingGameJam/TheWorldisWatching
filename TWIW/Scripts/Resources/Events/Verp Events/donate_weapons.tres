@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=12 format=3 uid="uid://b6x3djmmkrwtf"]
+[gd_resource type="Resource" script_class="Event" load_steps=13 format=3 uid="uid://b6x3djmmkrwtf"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_i8pn6"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_plnwf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_kp038"]
 [ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_bdk88"]
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_5ykl5"]
+[ext_resource type="Texture2D" uid="uid://c4hl02p77egfv" path="res://Assets/CharacterSprites/leynardeuxmacdonald.png" id="6_du6og"]
 
 [sub_resource type="Resource" id="Resource_074dd"]
 script = ExtResource("2_plnwf")
@@ -23,8 +24,9 @@ on_planet = &""
 
 [sub_resource type="Resource" id="Resource_y2w5i"]
 script = ExtResource("4_kp038")
-name = "Local Smith"
-dialogue = "Thank you!"
+name = "Leynardeux MacDonald"
+dialogue = "Thank you for your donation!"
+sprite = ExtResource("6_du6og")
 
 [sub_resource type="Resource" id="Resource_fqceo"]
 script = ExtResource("2_plnwf")
@@ -38,6 +40,7 @@ script = ExtResource("5_bdk88")
 effect_value_token = SubResource("Resource_fqceo")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_kp038")]([SubResource("Resource_y2w5i")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("6_5ykl5")
@@ -48,6 +51,7 @@ event_button_text = "Donate (-30)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_m8s4b")]([SubResource("Resource_kxmx3")])
 event_dialogue = Array[ExtResource("4_kp038")]([])
 event_effects = Array[ExtResource("5_bdk88")]([SubResource("Resource_4x1ox")])

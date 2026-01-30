@@ -65,6 +65,7 @@ func setup_galaxy(chosen_planet: PlanetData):
 			selected_planets.append(planet)
 			count += 1
 
+	player_data.all_planets = selected_planets
 	player_data.initialize_reputation_values(selected_planets)
 	
 	# Initialize AI reputation for only the 5 OTHER planets (not home)

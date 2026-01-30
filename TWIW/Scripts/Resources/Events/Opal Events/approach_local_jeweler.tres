@@ -19,6 +19,7 @@ script = ExtResource("5_l8xns")
 effect_value_token = SubResource("Resource_6lrm6")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_lr66i")]([])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_6y87w"]
 script = ExtResource("4_lr66i")
@@ -37,6 +38,7 @@ script = ExtResource("5_l8xns")
 effect_value_token = SubResource("Resource_njhjx")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_6y87w")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_xe4rm"]
 script = ExtResource("1_mqk17")
@@ -60,6 +62,7 @@ script = ExtResource("5_l8xns")
 effect_value_token = SubResource("Resource_d0m1x")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_bbpjo")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_ahrfv"]
 script = ExtResource("1_mqk17")
@@ -80,6 +83,7 @@ event_button_text = "Approach"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_7cdoc")]([])
 event_dialogue = Array[ExtResource("4_lr66i")]([SubResource("Resource_5ldsy")])
 event_effects = Array[ExtResource("5_l8xns")]([])

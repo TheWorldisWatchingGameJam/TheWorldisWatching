@@ -26,6 +26,7 @@ on_planet = &"Opal"
 script = ExtResource("4_0dygo")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("2_jvpfw")]([])
+effect_delay = 0
 
 [resource]
 script = ExtResource("6_ysqc4")
@@ -37,6 +38,7 @@ event_button_text = "Purchase ($300)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_odr7l")]([SubResource("Resource_nclsb")])
 event_dialogue = Array[ExtResource("2_jvpfw")]([])
 event_effects = Array[ExtResource("4_0dygo")]([SubResource("Resource_83w77")])

@@ -17,6 +17,8 @@ var delayed_effects: Array[EventEffect]
 @export var time_tracker: TimeTracker
 @export var trade_routes: Array[TradeRoute]
 @export var current_location: String
+@export var all_planets: Array[PlanetData]
+
 
 
 
@@ -97,6 +99,21 @@ func player_data_modify(cost_token: EventCost) -> void:
 		"WeaponProd":
 			home_planet_data.apply_production_cost(cost_token)
 			print("New Weapon Production: ", home_planet_data.weapon_prod)
+		"FoodDemand", "LuxuryDemand", "WeaponDemand":
+			# Apply to all NON-HOME planets
+			if "on_planet" in cost_token and cost_token.on_planet == "All":
+				print("Modifying ", cost_token.cost_type, " by ", cost_token.cost_value, " on ALL non-home planets")
+				debug_print_all_planet_demands()
+				for planet in get_non_home_planets():
+					planet.modify_demand(cost_token.cost_type, cost_token.cost_value)
+				debug_print_all_planet_demands()
+			# Apply to specific planet
+			elif "on_planet" in cost_token and cost_token.on_planet != "":
+				print("Modifying ", cost_token.cost_type, " by ", cost_token.cost_value, " on ", cost_token.on_planet)
+				for planet in all_planets:
+					if planet.name == cost_token.on_planet:
+						planet.modify_demand(cost_token.cost_type, cost_token.cost_value)
+						break
 
 	print("=== END MODIFY PLAYER DATA ===\n")
 
@@ -223,3 +240,29 @@ func has_made_choice(event_id: String, choice_id: String) -> bool:
 	if not completed_events.has(event_id):
 		return false
 	return completed_events[event_id] == choice_id
+
+func get_non_home_planets() -> Array[PlanetData]:
+	var result: Array[PlanetData] = []
+	for planet in all_planets:
+		if planet != home_planet_data:
+			result.append(planet)
+	return result
+
+func debug_print_all_planet_demands() -> void:
+	print("=== PLANET DEMAND STATUS ===")
+	print("Total planets in all_planets array: ", all_planets.size())
+	
+	if all_planets.size() == 0:
+		print("WARNING: all_planets array is EMPTY!")
+	
+	for planet in all_planets:
+		if planet:
+			print(
+				planet.name, 
+				" | Food:", planet.food_demand,
+				" | Luxuries:", planet.luxury_demand,
+				" | Weapons:", planet.weapon_demand
+			)
+		else:
+			print("WARNING: Found null planet in array!")
+	print("============================\n")

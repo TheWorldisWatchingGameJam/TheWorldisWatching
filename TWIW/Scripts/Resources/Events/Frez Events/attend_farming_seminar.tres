@@ -40,6 +40,7 @@ script = ExtResource("5_ybe0k")
 effect_value_token = SubResource("Resource_wf5jx")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_catem")]([SubResource("Resource_nkcbc")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("7_pkttt")
@@ -50,6 +51,7 @@ event_button_text = "Attend ($300)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_sgb5q")]([SubResource("Resource_unl1k")])
 event_dialogue = Array[ExtResource("4_catem")]([])
 event_effects = Array[ExtResource("5_ybe0k")]([SubResource("Resource_xbdr5")])

@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://cayj8vvy5x8qj"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_by6m7"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_apvur"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_0ud6o"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_6da0d"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_vi50k"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_s5ysc"]
+
+[sub_resource type="Resource" id="Resource_xjoqp"]
+script = ExtResource("2_apvur")
+cost_type = "Money"
+cost_value = -100
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_bg3dw"]
+script = ExtResource("4_6da0d")
+name = "Blacksmiths"
+dialogue = "We have honed our craft! (+1 weapon demand on other planets)"
+
+[sub_resource type="Resource" id="Resource_woemw"]
+script = ExtResource("2_apvur")
+cost_type = "WeaponDemand"
+cost_value = 1
+on_planet = &"All"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_baf6k"]
+script = ExtResource("5_vi50k")
+effect_value_token = SubResource("Resource_woemw")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_6da0d")]([SubResource("Resource_bg3dw")])
+effect_delay = 0
+
+[resource]
+script = ExtResource("6_s5ysc")
+event_id = "train_blacksmiths"
+event_name = &"Train Blacksmiths"
+event_desc = "Train Blacksmiths in order to improve your weapon quality"
+event_button_text = "Train ($200)"
+is_priority = true
+one_time_event = false
+home_exclusive = true
+non_home_exclusive = false
+event_conditions = Array[ExtResource("3_0ud6o")]([])
+event_dialogue = Array[ExtResource("4_6da0d")]([])
+event_effects = Array[ExtResource("5_vi50k")]([SubResource("Resource_baf6k")])
+choices = Array[ExtResource("1_by6m7")]([])
+cost = Array[ExtResource("2_apvur")]([SubResource("Resource_xjoqp")])

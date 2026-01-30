@@ -40,6 +40,7 @@ script = ExtResource("5_d810k")
 effect_value_token = SubResource("Resource_kiegb")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_40itv")]([SubResource("Resource_umk6d")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("6_dtk5b")
@@ -50,6 +51,7 @@ event_button_text = "Donate (20)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_5b0sh")]([SubResource("Resource_1eiqi")])
 event_dialogue = Array[ExtResource("4_40itv")]([])
 event_effects = Array[ExtResource("5_d810k")]([SubResource("Resource_2rha7")])

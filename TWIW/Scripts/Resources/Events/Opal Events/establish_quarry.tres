@@ -31,6 +31,7 @@ script = ExtResource("5_xejto")
 effect_value_token = SubResource("Resource_too57")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_0kfvs")]([SubResource("Resource_yyuyr")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("6_po25v")
@@ -41,6 +42,7 @@ event_button_text = "Establish. ($100)"
 is_priority = true
 one_time_event = false
 home_exclusive = true
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_x8fk2")]([])
 event_dialogue = Array[ExtResource("4_0kfvs")]([])
 event_effects = Array[ExtResource("5_xejto")]([SubResource("Resource_3l60u")])

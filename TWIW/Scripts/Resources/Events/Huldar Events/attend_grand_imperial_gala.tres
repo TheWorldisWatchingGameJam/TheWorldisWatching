@@ -33,6 +33,7 @@ script = ExtResource("5_1b71p")
 effect_value_token = SubResource("Resource_p8hod")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_o8ghb")]([SubResource("Resource_d1fvg")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("6_dt0hs")
@@ -43,6 +44,7 @@ event_button_text = "Attend ($500)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_ec045")]([])
 event_dialogue = Array[ExtResource("4_o8ghb")]([])
 event_effects = Array[ExtResource("5_1b71p")]([SubResource("Resource_omds8")])

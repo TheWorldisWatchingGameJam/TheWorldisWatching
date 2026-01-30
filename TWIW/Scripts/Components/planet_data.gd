@@ -19,6 +19,7 @@ signal currentReputationChanged
 @export var luxury_prod: int
 @export var weapon_prod: int
 
+
 #Planet demand values
 @export_group("Planet Demand")
 @export var food_demand: int
@@ -147,3 +148,27 @@ func get_production(resource_type: String) -> int:
 			return weapon_prod
 		_:
 			return 0
+
+# Add this method to PlanetData
+func modify_demand(demand_type: String, value: int) -> void:
+	match demand_type:
+		"FoodDemand":
+			if food_demand > 0:
+				food_demand = max(food_demand + value, 0)
+				print(name, " Food Demand modified by ", value, ". New value: ", food_demand)
+			else:
+				print(name, " Food Demand is 0, skipping modification")
+		"LuxuryDemand":
+			if luxury_demand > 0:
+				luxury_demand = max(luxury_demand + value, 0)
+				print(name, " Luxury Demand modified by ", value, ". New value: ", luxury_demand)
+			else:
+				print(name, " Luxury Demand is 0, skipping modification")
+		"WeaponDemand":
+			if weapon_demand > 0:
+				weapon_demand = max(weapon_demand + value, 0)
+				print(name, " Weapon Demand modified by ", value, ". New value: ", weapon_demand)
+			else:
+				print(name, " Weapon Demand is 0, skipping modification")
+		_:
+			print("Unknown demand type: ", demand_type)
