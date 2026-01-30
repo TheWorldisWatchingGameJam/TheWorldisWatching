@@ -7,10 +7,19 @@ extends Control
 @export var luxuries_price: int
 @export var weapons_price: int
 
+@export var not_enough_resources_message: Array[DialogueItem]
+
 @onready var market_name_label = %MarketNameLabel
 @onready var food_current_price_label = %FoodCurrentPriceLabel
 @onready var luxuries_current_price_label = %LuxuriesCurrentPriceLabel
 @onready var weapons_current_price_label = %WeaponsCurrentPriceLabel
+
+@onready var food_slider_label = %FoodSliderLabel
+@onready var luxury_slider_label = %LuxurySliderLabel
+@onready var weapon_slider_label = %WeaponSliderLabel
+@onready var food_slider = %FoodSlider
+@onready var luxury_slider = %LuxurySlider
+@onready var weapon_slider = %WeaponSlider
 
 
 signal marketWindowClosed
@@ -21,13 +30,22 @@ func _ready() -> void:
 	food_current_price_label.text = str("Current Price: ", food_price)
 	luxuries_current_price_label.text = str("Current Price: ", luxuries_price)
 	weapons_current_price_label.text = str("Current Price: ", weapons_price)
+	
+	food_slider_label.text = str(food_slider.value)
+	luxury_slider_label.text = str(luxury_slider.value)
+	weapon_slider_label.text = str(weapon_slider.value)
+	
 
 
 func _on_food_sell_button_pressed() -> void:
 	var food_cost_token = EventCost.new()
 	food_cost_token.cost_type = "Food"
-	food_cost_token.cost_value = -1
+	food_cost_token.cost_value = food_slider.value * -1
 	if not player_data.can_pay(food_cost_token):
+		var error_message_window = load("res://Scenes/dialogue_window.tscn").instantiate()
+		error_message_window.dialogue_array = not_enough_resources_message
+		self.add_child(error_message_window)
+		error_message_window.dialogueFinished.connect(on_dialogue_finished.bind(error_message_window))
 		print("Not enough food in player inventory.")
 		return
 	player_data.player_data_modify(food_cost_token)
@@ -38,8 +56,12 @@ func _on_food_sell_button_pressed() -> void:
 func _on_luxuries_sell_button_pressed() -> void:
 	var luxury_cost_token = EventCost.new()
 	luxury_cost_token.cost_type = "Luxuries"
-	luxury_cost_token.cost_value = -1
+	luxury_cost_token.cost_value = luxury_slider.value * -1
 	if not player_data.can_pay(luxury_cost_token):
+		var error_message_window = load("res://Scenes/dialogue_window.tscn").instantiate()
+		error_message_window.dialogue_array = not_enough_resources_message
+		self.add_child(error_message_window)
+		error_message_window.dialogueFinished.connect(on_dialogue_finished.bind(error_message_window))
 		print("Not enough luxuries in player inventory.")
 		return
 	player_data.player_data_modify(luxury_cost_token)
@@ -50,8 +72,12 @@ func _on_luxuries_sell_button_pressed() -> void:
 func _on_weapons_sell_button_pressed() -> void:
 	var weapon_cost_token = EventCost.new()
 	weapon_cost_token.cost_type = "Weapons"
-	weapon_cost_token.cost_value = -1
+	weapon_cost_token.cost_value = weapon_slider.value * -1
 	if not player_data.can_pay(weapon_cost_token):
+		var error_message_window = load("res://Scenes/dialogue_window.tscn").instantiate()
+		error_message_window.dialogue_array = not_enough_resources_message
+		self.add_child(error_message_window)
+		error_message_window.dialogueFinished.connect(on_dialogue_finished.bind(error_message_window))
 		print("Not enough weapons in player inventory.")
 		return
 	player_data.player_data_modify(weapon_cost_token)
@@ -79,3 +105,15 @@ func calculate_prices(planet: PlanetData) -> void:
 
 func _on_close_button_pressed() -> void:
 	emit_signal("marketWindowClosed")
+
+func _on_food_slider_value_changed(value: float) -> void:
+	food_slider_label.text = str(value)
+
+func _on_luxury_slider_value_changed(value: float) -> void:
+	luxury_slider_label.text = str(value)
+	
+func _on_weapon_slider_value_changed(value: float) -> void:
+	weapon_slider_label.text = str(value)
+
+func on_dialogue_finished(window: Control) -> void:
+	window.queue_free()

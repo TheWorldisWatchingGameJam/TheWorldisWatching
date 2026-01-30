@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://beey8odn5tdhc"]
+[gd_scene load_steps=17 format=3 uid="uid://beey8odn5tdhc"]
 
 [ext_resource type="Script" path="res://Scenes/market_window.gd" id="1_i4yx0"]
 [ext_resource type="Resource" uid="uid://b0wugdfli82wd" path="res://Scripts/Resources/Planets/Verp.tres" id="2_jtco7"]
@@ -6,12 +6,24 @@
 [ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="3_3gm5i"]
 [ext_resource type="StyleBox" uid="uid://4b7i8jghbajh" path="res://Assets/Theme/button_hover_stylebox.tres" id="3_devy4"]
 [ext_resource type="Texture2D" uid="uid://dpi2wodq4jimt" path="res://Assets/ResourceIcons/apple-439397.png" id="3_edvab"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_b034q"]
 [ext_resource type="Texture2D" uid="uid://c284smqldiw1q" path="res://Assets/ResourceIcons/diamond-6687408.png" id="4_xvkky"]
 [ext_resource type="Texture2D" uid="uid://beh8mme8s3pmx" path="res://Assets/ResourceIcons/alien-gun-4780305.png" id="5_meayt"]
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="7_47h0k"]
 [ext_resource type="LabelSettings" uid="uid://nya3oggxmp3m" path="res://Assets/Theme/market_item_label.tres" id="7_a5q74"]
 [ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Assets/Theme/event_name_label_settings.tres" id="8_gxlmt"]
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="10_7bdig"]
 [ext_resource type="Theme" uid="uid://kdox7h3lrego" path="res://Assets/Theme/button_theme.tres" id="16_dx66a"]
+
+[sub_resource type="Resource" id="Resource_b8bas"]
+script = ExtResource("4_b034q")
+name = ""
+dialogue = "Insufficient resources!"
+
+[sub_resource type="LabelSettings" id="LabelSettings_dqy4e"]
+font = ExtResource("10_7bdig")
+font_size = 30
+font_color = Color(0, 0.133333, 0.00784314, 1)
 
 [node name="MarketWindow" type="Control"]
 layout_mode = 3
@@ -23,6 +35,7 @@ grow_vertical = 2
 script = ExtResource("1_i4yx0")
 planet = ExtResource("2_jtco7")
 player_data = ExtResource("7_47h0k")
+not_enough_resources_message = Array[ExtResource("4_b034q")]([SubResource("Resource_b8bas")])
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(1700, 800)
@@ -113,8 +126,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
+
+[node name="SliderContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
+layout_mode = 2
+
+[node name="FoodSliderLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/SliderContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_dqy4e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FoodSlider" type="HSlider" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/SliderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+value = 1.0
+rounded = true
+scrollable = false
 
 [node name="Button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer"]
 visible = false
@@ -170,12 +205,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
-visible = false
+[node name="SliderContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
 layout_mode = 2
+
+[node name="LuxurySliderLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/SliderContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_dqy4e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LuxurySlider" type="HSlider" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/SliderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+value = 1.0
+rounded = true
+scrollable = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2"]
 layout_mode = 2
@@ -226,12 +279,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control" type="Control" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 125)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
-visible = false
+[node name="SliderContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
 layout_mode = 2
+
+[node name="WeaponSliderLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/SliderContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_dqy4e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponSlider" type="HSlider" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/SliderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+value = 1.0
+rounded = true
+scrollable = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3"]
 layout_mode = 2
@@ -251,6 +322,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="value_changed" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/SliderContainer/FoodSlider" to="." method="_on_food_slider_value_changed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer/HBoxContainer/FoodSellButton" to="." method="_on_food_sell_button_pressed"]
+[connection signal="value_changed" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/SliderContainer/LuxurySlider" to="." method="_on_luxury_slider_value_changed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer2/HBoxContainer/LuxuriesSellButton" to="." method="_on_luxuries_sell_button_pressed"]
+[connection signal="value_changed" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/SliderContainer/WeaponSlider" to="." method="_on_weapon_slider_value_changed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/MarketWindow/VBoxContainer3/HBoxContainer/WeaponsSellButton" to="." method="_on_weapons_sell_button_pressed"]

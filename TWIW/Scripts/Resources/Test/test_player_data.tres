@@ -53,6 +53,7 @@ home_planet_data = SubResource("Resource_335xq")
 time_tracker = SubResource("Resource_3yxoi")
 trade_routes = Array[ExtResource("9_fqa25")]([])
 current_location = ""
+all_planets = Array[ExtResource("5_4vo74")]([])
 food = 90
 luxuries = 100
 weapons = 100

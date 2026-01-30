@@ -45,6 +45,15 @@ func _ready() -> void:
 	display_options(random_options(3))
 	threaten_button.disabled = false
 	choice_panel.hide()
+	disable_buttons_if_home_planet()
+	
+	
+func disable_buttons_if_home_planet() -> void:
+	if planet.name ==  player_data.home_planet_data.name:
+		for button in [trade_button, market_button, threaten_button]:
+			button.disabled = true
+
+
 
 func check_for_delayed_effects(player_data: PlayerData) -> void:
 	var delayed_effects_to_resolve: Array[EventEffect]
