@@ -24,7 +24,7 @@ on_planet = &""
 [sub_resource type="Resource" id="Resource_1pm35"]
 script = ExtResource("3_8aq3a")
 name = ""
-dialogue = "Unlucky! "
+dialogue = "Oh rats! Your lottery ticket was not a winner..."
 
 [sub_resource type="Resource" id="Resource_k0x66"]
 script = ExtResource("1_rsuoj")
@@ -38,11 +38,12 @@ script = ExtResource("4_5j675")
 effect_value_token = SubResource("Resource_k0x66")
 effect_probability = 70
 effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_1pm35")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_jacet"]
 script = ExtResource("3_8aq3a")
 name = ""
-dialogue = "Small Win! Not bad"
+dialogue = "Your lottery ticket won the Small Prize! Not bad!"
 
 [sub_resource type="Resource" id="Resource_lc5yv"]
 script = ExtResource("1_rsuoj")
@@ -56,11 +57,12 @@ script = ExtResource("4_5j675")
 effect_value_token = SubResource("Resource_lc5yv")
 effect_probability = 25
 effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_jacet")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_m6oxd"]
 script = ExtResource("3_8aq3a")
 name = ""
-dialogue = "Alright Big win!"
+dialogue = "Your lottery ticket won the Big Prize! Time to celebrate!"
 
 [sub_resource type="Resource" id="Resource_088kf"]
 script = ExtResource("1_rsuoj")
@@ -74,11 +76,12 @@ script = ExtResource("4_5j675")
 effect_value_token = SubResource("Resource_088kf")
 effect_probability = 4
 effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_m6oxd")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_2xr6b"]
 script = ExtResource("3_8aq3a")
 name = ""
-dialogue = "JACKPOT!!!!!!"
+dialogue = "Your lottery ticket won the JACKPOT!GO CRAZY GO STUPID!!!"
 
 [sub_resource type="Resource" id="Resource_7ltc8"]
 script = ExtResource("1_rsuoj")
@@ -92,6 +95,7 @@ script = ExtResource("4_5j675")
 effect_value_token = SubResource("Resource_7ltc8")
 effect_probability = 1
 effect_dialogue = Array[ExtResource("3_8aq3a")]([SubResource("Resource_2xr6b")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("5_xnkeq")

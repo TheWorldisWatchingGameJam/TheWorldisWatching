@@ -25,13 +25,13 @@ on_planet = &""
 [sub_resource type="Resource" id="Resource_y2w5i"]
 script = ExtResource("4_kp038")
 name = "Leynardeux MacDonald"
-dialogue = "Thank you for your donation!"
-sprite = ExtResource("6_du6og")
+dialogue = "Your generosity does not go unnoticed. Your gifts will go towards the perfection of our craft."
+sprite = ExtResource("6_lngtw")
 
 [sub_resource type="Resource" id="Resource_fqceo"]
 script = ExtResource("2_plnwf")
 cost_type = "Rep"
-cost_value = 5
+cost_value = 7
 on_planet = &"Verp"
 on_current_planet = false
 
@@ -46,8 +46,8 @@ effect_delay = 0
 script = ExtResource("6_5ykl5")
 event_id = ""
 event_name = &"Donate Weapons"
-event_desc = "Send over some weapons so the local blacksmiths can study and improve their craft."
-event_button_text = "Donate (-30)"
+event_desc = "Donate weapon specimens to the Armory Academy, where blacksmiths continually study to improve their craft."
+event_button_text = "Donate. (-30 Weapons)"
 is_priority = false
 one_time_event = false
 home_exclusive = false

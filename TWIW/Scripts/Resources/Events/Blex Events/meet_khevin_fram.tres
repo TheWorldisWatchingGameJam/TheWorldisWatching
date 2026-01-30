@@ -20,6 +20,7 @@ script = ExtResource("2_8h2jv")
 effect_value_token = SubResource("Resource_d24pv")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("3_jbudn")]([])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_afmqa"]
 script = ExtResource("3_jbudn")
@@ -39,6 +40,7 @@ script = ExtResource("2_8h2jv")
 effect_value_token = SubResource("Resource_tvxwf")
 effect_probability = 50
 effect_dialogue = Array[ExtResource("3_jbudn")]([SubResource("Resource_afmqa")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_yft3g"]
 script = ExtResource("3_jbudn")
@@ -58,6 +60,7 @@ script = ExtResource("2_8h2jv")
 effect_value_token = SubResource("Resource_y5eg5")
 effect_probability = 50
 effect_dialogue = Array[ExtResource("3_jbudn")]([SubResource("Resource_yft3g")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_1vi5q"]
 script = ExtResource("4_ewmcp")
@@ -71,6 +74,7 @@ script = ExtResource("2_8h2jv")
 effect_value_token = SubResource("Resource_1vi5q")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("3_jbudn")]([])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_4oylb"]
 script = ExtResource("1_ov52q")
@@ -95,6 +99,7 @@ script = ExtResource("2_8h2jv")
 effect_value_token = SubResource("Resource_357in")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("3_jbudn")]([SubResource("Resource_ngoqv")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_gwidc"]
 script = ExtResource("1_ov52q")
