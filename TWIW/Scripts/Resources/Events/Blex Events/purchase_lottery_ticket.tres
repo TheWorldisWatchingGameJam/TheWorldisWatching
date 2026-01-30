@@ -102,6 +102,7 @@ event_button_text = "Purchase"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("2_vbyia")]([SubResource("Resource_5uagn")])
 event_dialogue = Array[ExtResource("3_8aq3a")]([])
 event_effects = Array[ExtResource("4_5j675")]([SubResource("Resource_bvsj1"), SubResource("Resource_fcupu"), SubResource("Resource_newk4"), SubResource("Resource_bdjh4")])
