@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://c8evlh55qpiwl"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_sybb7"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_d7x2k"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_t0v2x"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_427an"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_0o23i"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_6jfka"]
+
+[sub_resource type="Resource" id="Resource_hl75p"]
+script = ExtResource("2_d7x2k")
+cost_type = "Food"
+cost_value = 40
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_mteba"]
+script = ExtResource("4_427an")
+name = ""
+dialogue = "Your blacksmith apprentices have returned from Verp! Weapon production has increased."
+
+[sub_resource type="Resource" id="Resource_5vi3b"]
+script = ExtResource("2_d7x2k")
+cost_type = "WeaponProd"
+cost_value = 1
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_wxm3f"]
+script = ExtResource("5_0o23i")
+effect_value_token = SubResource("Resource_5vi3b")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_427an")]([SubResource("Resource_mteba")])
+effect_delay = 10
+
+[resource]
+script = ExtResource("6_6jfka")
+event_id = ""
+event_name = &"Send Apprentices"
+event_desc = "Send and supply apprentices to learn from the local blacksmiths. Increases weapon production after 10 days."
+event_button_text = "Send. (40 Food)"
+is_priority = false
+one_time_event = false
+home_exclusive = false
+event_conditions = Array[ExtResource("3_t0v2x")]([])
+event_dialogue = Array[ExtResource("4_427an")]([])
+event_effects = Array[ExtResource("5_0o23i")]([SubResource("Resource_wxm3f")])
+choices = Array[ExtResource("1_sybb7")]([])
+cost = Array[ExtResource("2_d7x2k")]([SubResource("Resource_hl75p")])
