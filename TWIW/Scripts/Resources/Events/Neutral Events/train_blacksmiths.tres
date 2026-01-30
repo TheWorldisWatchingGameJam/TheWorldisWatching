@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://dtt3jv8qwb5tr"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_rtaie"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_lj718"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_y8kej"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_teocn"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_gnqew"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_jeocn"]
+
+[sub_resource type="Resource" id="Resource_l8a4p"]
+script = ExtResource("2_lj718")
+cost_type = "Money"
+cost_value = -100
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_e4m83"]
+script = ExtResource("4_teocn")
+name = ""
+dialogue = "New blacksmiths have been trained. Weapon production increased by 1."
+
+[sub_resource type="Resource" id="Resource_hwlxy"]
+script = ExtResource("2_lj718")
+cost_type = "WeaponProd"
+cost_value = 1
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_kiclh"]
+script = ExtResource("5_gnqew")
+effect_value_token = SubResource("Resource_hwlxy")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_teocn")]([SubResource("Resource_e4m83")])
+effect_delay = 0
+
+[resource]
+script = ExtResource("6_jeocn")
+event_id = ""
+event_name = &"Hire Blacksmiths"
+event_desc = "Hire blacksmiths on your home planet to increase weapon production."
+event_button_text = "Hire. ($100)"
+is_priority = false
+one_time_event = true
+home_exclusive = true
+non_home_exclusive = false
+event_conditions = Array[ExtResource("3_y8kej")]([])
+event_dialogue = Array[ExtResource("4_teocn")]([])
+event_effects = Array[ExtResource("5_gnqew")]([SubResource("Resource_kiclh")])
+choices = Array[ExtResource("1_rtaie")]([])
+cost = Array[ExtResource("2_lj718")]([SubResource("Resource_l8a4p")])

@@ -41,6 +41,7 @@ script = ExtResource("6_cc7ag")
 effect_value_token = SubResource("Resource_hx3vc")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("5_dr7g7")]([SubResource("Resource_8ql3j")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("7_x2qcr")

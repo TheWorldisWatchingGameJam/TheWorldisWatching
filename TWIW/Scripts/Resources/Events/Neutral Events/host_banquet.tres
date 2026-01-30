@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Event" load_steps=11 format=3 uid="uid://bxc4aww5yahdp"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_lsiik"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_txrdi"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_7rmku"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_vkx4t"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_1hetm"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_8nkex"]
+
+[sub_resource type="Resource" id="Resource_n2g43"]
+script = ExtResource("2_txrdi")
+cost_type = "Food"
+cost_value = -20
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_48luv"]
+script = ExtResource("4_vkx4t")
+name = ""
+dialogue = "You hosted a lovely banquet! Repuation on this planet has increased!"
+
+[sub_resource type="Resource" id="Resource_vqgqo"]
+script = ExtResource("2_txrdi")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &""
+on_current_planet = true
+
+[sub_resource type="Resource" id="Resource_wq5bs"]
+script = ExtResource("5_1hetm")
+effect_value_token = SubResource("Resource_vqgqo")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_vkx4t")]([SubResource("Resource_48luv")])
+effect_delay = 0
+
+[resource]
+script = ExtResource("6_8nkex")
+event_id = ""
+event_name = &"Host Banquet"
+event_desc = "Host a banquet for the planet's locals."
+event_button_text = "Host. (30 Food)"
+is_priority = false
+one_time_event = false
+home_exclusive = false
+non_home_exclusive = true
+event_conditions = Array[ExtResource("3_7rmku")]([])
+event_dialogue = Array[ExtResource("4_vkx4t")]([])
+event_effects = Array[ExtResource("5_1hetm")]([SubResource("Resource_wq5bs")])
+choices = Array[ExtResource("1_lsiik")]([])
+cost = Array[ExtResource("2_txrdi")]([SubResource("Resource_n2g43")])

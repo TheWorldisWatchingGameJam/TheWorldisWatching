@@ -27,6 +27,7 @@ script = ExtResource("5_3we0v")
 effect_value_token = SubResource("Resource_5xg00")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_gjgxt")]([])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_81pd1"]
 script = ExtResource("4_gjgxt")
@@ -46,6 +47,7 @@ script = ExtResource("5_3we0v")
 effect_value_token = SubResource("Resource_p6c6v")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_gjgxt")]([SubResource("Resource_81pd1")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("6_350j5")
@@ -57,6 +59,7 @@ event_button_text = "Buy Food ($200)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_wj103")]([])
 event_dialogue = Array[ExtResource("4_gjgxt")]([])
 event_effects = Array[ExtResource("5_3we0v")]([SubResource("Resource_mh4d3"), SubResource("Resource_rbomk")])

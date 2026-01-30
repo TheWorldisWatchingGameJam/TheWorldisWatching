@@ -24,6 +24,7 @@ script = ExtResource("5_3eckv")
 effect_value_token = SubResource("Resource_8l4k5")
 effect_probability = 0
 effect_dialogue = Array[ExtResource("4_4xkw1")]([SubResource("Resource_yqibq")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("6_3id8v")
@@ -34,6 +35,7 @@ event_button_text = "Gather"
 is_priority = true
 one_time_event = true
 home_exclusive = true
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_tkwps")]([])
 event_dialogue = Array[ExtResource("4_4xkw1")]([])
 event_effects = Array[ExtResource("5_3eckv")]([SubResource("Resource_ia3u7")])

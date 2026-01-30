@@ -32,6 +32,7 @@ script = ExtResource("4_g815u")
 effect_value_token = SubResource("Resource_gru5u")
 effect_probability = 70
 effect_dialogue = Array[ExtResource("2_4h3hu")]([SubResource("Resource_t3l46")])
+effect_delay = 0
 
 [sub_resource type="Resource" id="Resource_7184t"]
 script = ExtResource("2_4h3hu")
@@ -50,6 +51,7 @@ script = ExtResource("4_g815u")
 effect_value_token = SubResource("Resource_1vcy7")
 effect_probability = 30
 effect_dialogue = Array[ExtResource("2_4h3hu")]([SubResource("Resource_7184t")])
+effect_delay = 0
 
 [resource]
 script = ExtResource("4_0l56e")
@@ -61,6 +63,7 @@ event_button_text = "Fund. ($50)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_6af2o")]([])
 event_dialogue = Array[ExtResource("2_4h3hu")]([])
 event_effects = Array[ExtResource("4_g815u")]([SubResource("Resource_qhfaw"), SubResource("Resource_rb3ak")])

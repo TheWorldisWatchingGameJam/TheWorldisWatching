@@ -49,6 +49,7 @@ event_button_text = "Attend ($300)"
 is_priority = false
 one_time_event = false
 home_exclusive = false
+non_home_exclusive = false
 event_conditions = Array[ExtResource("3_prtvx")]([SubResource("Resource_lge2s")])
 event_dialogue = Array[ExtResource("4_q44pw")]([])
 event_effects = Array[ExtResource("5_e67cu")]([SubResource("Resource_xbdr5")])
