@@ -29,46 +29,6 @@ cost_value = 50
 on_planet = &""
 on_current_planet = false
 
-[sub_resource type="Resource" id="Resource_ao0i2"]
-script = ExtResource("16_xf2i0")
-name = "Leynardeux MacDonald"
-dialogue = "Your threats, empty."
-sprite = ExtResource("6_ac3mm")
-
-[sub_resource type="Resource" id="Resource_mtx5k"]
-script = ExtResource("16_xf2i0")
-name = "Leynardeux MacDonald"
-dialogue = "Your army, unimpressive."
-sprite = ExtResource("6_ac3mm")
-
-[sub_resource type="Resource" id="Resource_vg5ii"]
-script = ExtResource("16_xf2i0")
-name = "Leynardeux MacDonald"
-dialogue = "Leave before something bad happens to you."
-sprite = ExtResource("6_ac3mm")
-
-[sub_resource type="Resource" id="Resource_bx826"]
-script = ExtResource("16_xf2i0")
-name = ""
-dialogue = "Threat attempt failed. Insufficient weapons."
-
-[sub_resource type="Resource" id="Resource_jig10"]
-script = ExtResource("16_xf2i0")
-name = "Leynardeux MacDonald"
-dialogue = "..."
-sprite = ExtResource("6_ac3mm")
-
-[sub_resource type="Resource" id="Resource_d8hhy"]
-script = ExtResource("16_xf2i0")
-name = "Leynardeux MacDonald"
-dialogue = "We will not forget this."
-sprite = ExtResource("6_ac3mm")
-
-[sub_resource type="Resource" id="Resource_vyf5f"]
-script = ExtResource("16_xf2i0")
-name = ""
-dialogue = "Threat attempt succeeded."
-
 [resource]
 script = ExtResource("5_w5tab")
 id = "planet_5"
@@ -85,8 +45,8 @@ luxury_demand = 1
 weapon_demand = 0
 weapons = 0
 max_threaten_reward = SubResource("Resource_u2ba4")
-threaten_fail_message = Array[ExtResource("16_xf2i0")]([SubResource("Resource_ao0i2"), SubResource("Resource_mtx5k"), SubResource("Resource_vg5ii"), SubResource("Resource_bx826")])
-threaten_success_message = Array[ExtResource("16_xf2i0")]([SubResource("Resource_jig10"), SubResource("Resource_d8hhy"), SubResource("Resource_vyf5f")])
+threaten_fail_message = Array[ExtResource("16_xf2i0")]([])
+threaten_success_message = Array[ExtResource("16_xf2i0")]([])
 current_relations = Array[ExtResource("2_k1j0k")]([])
 current_reputation = Array[ExtResource("3_3a0u1")]([])
 current_info = Array[ExtResource("1_ol3aw")]([])

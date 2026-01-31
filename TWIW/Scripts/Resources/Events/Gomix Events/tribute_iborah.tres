@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="Event" load_steps=14 format=3 uid="uid://c615vvs6rpuxi"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_qj73n"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_aodq5"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_j5kot"]
+[ext_resource type="Script" path="res://Scripts/Components/event_history.gd" id="4_g65jg"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="5_73xol"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="6_srp61"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="7_fk8r6"]
+
+[sub_resource type="Resource" id="Resource_2g3qd"]
+script = ExtResource("2_aodq5")
+cost_type = "Food"
+cost_value = -20
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_ttfpe"]
+script = ExtResource("4_g65jg")
+required_event_id = "meet_mahkus"
+required_choice_id = ""
+must_have_completed = true
+on_planet = &""
+on_day = 0
+
+[sub_resource type="Resource" id="Resource_i5gaf"]
+script = ExtResource("3_j5kot")
+event_history_requirement = SubResource("Resource_ttfpe")
+war_event = false
+condition_type = ""
+condition_value = 0
+on_planet = &""
+
+[sub_resource type="Resource" id="Resource_o4v6i"]
+script = ExtResource("5_73xol")
+name = "Republic Army"
+dialogue = "Hail Iborah"
+
+[sub_resource type="Resource" id="Resource_o6hij"]
+script = ExtResource("2_aodq5")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Gomix"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_go0pr"]
+script = ExtResource("6_srp61")
+effect_value_token = SubResource("Resource_o6hij")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("5_73xol")]([SubResource("Resource_o4v6i")])
+effect_delay = 0
+
+[resource]
+script = ExtResource("7_fk8r6")
+event_id = "tribute_iborah"
+event_name = &"Pay Tribute to Gomix"
+event_desc = "Pay Tribute To Iborah"
+event_button_text = "Tribute 20 food"
+is_priority = false
+one_time_event = false
+home_exclusive = false
+non_home_exclusive = false
+event_conditions = Array[ExtResource("3_j5kot")]([SubResource("Resource_i5gaf")])
+event_dialogue = Array[ExtResource("5_73xol")]([])
+event_effects = Array[ExtResource("6_srp61")]([SubResource("Resource_go0pr")])
+choices = Array[ExtResource("1_qj73n")]([])
+cost = Array[ExtResource("2_aodq5")]([SubResource("Resource_2g3qd")])

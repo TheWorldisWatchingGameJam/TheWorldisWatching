@@ -15,6 +15,8 @@
 [ext_resource type="Resource" uid="uid://bm1ppr2wo8ftx" path="res://Scripts/Resources/Events/Gomix Events/call_upon_gomix.tres" id="10_m2ehd"]
 [ext_resource type="Resource" uid="uid://cvyy6cr4fx73x" path="res://Scripts/Resources/Events/Gomix Events/call_upon_iborah.tres" id="11_r2p04"]
 [ext_resource type="Resource" uid="uid://dmolbamwb7pjo" path="res://Scripts/Resources/Events/Neutral Events/address_controversy.tres" id="12_fabkg"]
+[ext_resource type="Resource" uid="uid://b0y0hjc6k1jgh" path="res://Scripts/Resources/Events/Gomix Events/tribute_gomix.tres" id="12_5030h"]
+[ext_resource type="Resource" uid="uid://c615vvs6rpuxi" path="res://Scripts/Resources/Events/Gomix Events/tribute_iborah.tres" id="13_1a0yo"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="13_3poxw"]
 [ext_resource type="Resource" uid="uid://bhpjg4umgoggk" path="res://Scripts/Resources/Events/Neutral Events/build_mine.tres" id="13_nqkmp"]
 [ext_resource type="Resource" uid="uid://d1ljl4p748x0m" path="res://Scripts/Resources/Events/Neutral Events/cultivate_farmland.tres" id="14_bi8um"]
@@ -60,7 +62,7 @@ threaten_success_message = Array[ExtResource("16_u3yxb")]([SubResource("Resource
 current_relations = Array[ExtResource("2_00vvr")]([])
 current_reputation = Array[ExtResource("3_y0wg4")]([])
 current_info = Array[ExtResource("1_bxaqs")]([])
-event_pool = Array[ExtResource("4_legbn")]([ExtResource("6_dc0iy"), ExtResource("7_q50pi"), ExtResource("8_fwfm1"), ExtResource("9_g6gh8"), ExtResource("10_m2ehd"), ExtResource("11_r2p04"), ExtResource("12_fabkg"), ExtResource("13_nqkmp"), ExtResource("14_bi8um"), ExtResource("15_py46s"), ExtResource("16_8ofnv")])
+event_pool = Array[ExtResource("4_legbn")]([ExtResource("6_dc0iy"), ExtResource("7_q50pi"), ExtResource("8_fwfm1"), ExtResource("9_g6gh8"), ExtResource("10_m2ehd"), ExtResource("11_r2p04"), ExtResource("12_5030h"), ExtResource("13_1a0yo"), ExtResource("12_fabkg"), ExtResource("13_nqkmp"), ExtResource("14_bi8um"), ExtResource("15_py46s"), ExtResource("16_8ofnv")])
 live_events = Array[ExtResource("4_legbn")]([])
 event_history = Array[ExtResource("4_legbn")]([])
 leader_name = "Mykah the Faithful"

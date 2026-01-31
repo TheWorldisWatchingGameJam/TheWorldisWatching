@@ -6,6 +6,7 @@ extends Control
 @export var trade_tutorial: Array[DialogueItem]
 @export var no_cost_type_message: Array[DialogueItem]
 @export var not_enough_production_message: Array[DialogueItem]
+@export var zero_demand_message: Array[DialogueItem]  # NEW: Warning for zero demand trades
 
 @onready var food_trade_button = %FoodTradeButton
 @onready var luxuries_trade_button = %LuxuriesTradeButton
@@ -53,7 +54,7 @@ func initialize_trade_window(planet: PlanetData) -> void:
 	#Check if player already has a trade route to this planet
 	for route in player_data.trade_routes:
 		if route.to_planet == planet:
-				trade_route_established_label.text = str("Trade Route Already Established.\nExporting: ", str(route.export.cost_value * -1), " ", prod_to_item_name(route.export.cost_type), "\nImporting: ", route.import.cost_value, " ", route.import.cost_type)
+				trade_route_established_label.text = str("Trade Route Already Established.\nExporting: ", str(route.export.cost_value * -1), " ", prod_to_item_name(route.export.cost_type), "\nImporting: ", route.import.cost_value, " ", prod_to_item_name(route.import.cost_type))
 				trade_window.hide()
 				trade_route_established_label.visible = true
 				return
@@ -96,16 +97,6 @@ func _on_weapons_trade_button_toggled(toggled_on: bool) -> void:
 	else:
 		reset_all_buttons()
 
-#DISREGARD
-#func _on_money_trade_button_toggled(toggled_on: bool) -> void:
-	#if toggled_on:
-		#hide_all_buttons_except([money_trade_button])
-		#export.cost_type = "Money"
-		#print("Export cost type set to: ", export.cost_type)
-	#else:
-		#reset_all_buttons()
-#DISREGARD
-
 func hide_all_buttons_except(buttons_to_show: Array) -> void:
 	var button_list = all_trade_buttons.duplicate()
 	for button in buttons_to_show:
@@ -135,6 +126,16 @@ func _on_establish_trade_button_pressed() -> void:
 		info_window.dialogueFinished.connect(close_tutorial_dialogue.bind(info_window))
 		self.add_child(info_window)
 		return
+	
+	# Check if the planet has zero demand for what you're offering
+	var demand = _get_demand_for_type(export.cost_type)
+	if demand == 0:
+		print("Planet has zero demand for this resource!")
+		var info_window = load("res://Scenes/dialogue_window.tscn").instantiate()
+		info_window.dialogue_array = zero_demand_message
+		info_window.dialogueFinished.connect(close_tutorial_dialogue.bind(info_window))
+		self.add_child(info_window)
+		return
 		
 	var new_trade_route = TradeRoute.new()
 
@@ -152,47 +153,106 @@ func _on_establish_trade_button_pressed() -> void:
 
 	player_data.trade_routes.append(new_trade_route) 
 	player_data.player_data_modify(food_cost_for_trade_route)
-	trade_route_established_label.text = str("Trade Route Already Established.\nExporting: ", str(export.cost_value * -1), " ", prod_to_item_name(export.cost_type), "\nImporting: ", import.cost_value, " ", import.cost_type)
+	trade_route_established_label.text = str("Trade Route Already Established.\nExporting: ", str(export.cost_value * -1), " ", prod_to_item_name(export.cost_type), "\nImporting: ", import.cost_value, " ", prod_to_item_name(import.cost_type))
 	trade_window.hide()
 	trade_route_established_label.visible = true
 
 
 func construct_import_token() -> EventCost:
-	match export.cost_type:
-		"FoodProd":
-			import.cost_type = "Money"
-			import.cost_value = food_demand * (export.cost_value * -1)
-		"LuxuryProd":
-			import.cost_type = "Money"
-			import.cost_value = luxury_demand * (export.cost_value  * -1)
-		"WeaponProd":
-			import.cost_type = "Money"
-			import.cost_value = weapon_demand * (export.cost_value * -1)
-		"Money":
-			import.cost_type = planet.major_export
-			import.cost_value = 1
+	# Calculate what the AI planet will give in return based on:
+	# 1. What they produce (their major export)
+	# 2. How much they demand what you're offering
+	# 3. Exchange rate based on demand
+	
+	var export_amount = export.cost_value * -1  # Make positive for calculations
+	var import_production_type = _determine_best_import_production()
+	
+	# Calculate exchange rate based on demand
+	var exchange_rate = _calculate_exchange_rate(export.cost_type)
+	
+	import.cost_type = import_production_type
+	import.cost_value = int(export_amount * exchange_rate)
+	
+	print("=== TRADE CALCULATION ===")
+	print("You export: ", export_amount, " ", prod_to_item_name(export.cost_type))
+	print("Their demand for your export: ", _get_demand_for_type(export.cost_type))
+	print("They export: ", import.cost_value, " ", prod_to_item_name(import.cost_type))
+	print("Exchange rate: ", exchange_rate)
+	print("========================")
+	
 	return import
 
 
+func _determine_best_import_production() -> String:
+	# Find what the AI planet produces most of
+	var food_prod = planet.food_prod if "food_prod" in planet else 0
+	var luxury_prod = planet.luxury_prod if "luxury_prod" in planet else 0
+	var weapon_prod = planet.weapon_prod if "weapon_prod" in planet else 0
+	
+	print("AI Planet Production - Food: ", food_prod, " Luxury: ", luxury_prod, " Weapon: ", weapon_prod)
+	
+	# Return the production type they have most of
+	if weapon_prod >= food_prod and weapon_prod >= luxury_prod and weapon_prod > 0:
+		return "WeaponProd"
+	elif luxury_prod >= food_prod and luxury_prod >= weapon_prod and luxury_prod > 0:
+		return "LuxuryProd"
+	elif food_prod > 0:
+		return "FoodProd"
+	else:
+		# Fallback if they produce nothing (shouldn't happen)
+		return "FoodProd"
+
+
+func _calculate_exchange_rate(export_type: String) -> float:
+	# Higher demand = better exchange rate for you
+	# Zero demand = zero exchange (they give you nothing!)
+	# Each point of demand adds 0.1 to the rate
+	
+	var demand = _get_demand_for_type(export_type)
+	
+	# If they have no demand for what you're offering, they won't trade
+	if demand == 0:
+		return 0.0
+	
+	var base_rate = 1.0
+	var demand_bonus = demand * 0.1
+	
+	return base_rate + demand_bonus
+
+
+func _get_demand_for_type(production_type: String) -> int:
+	match production_type:
+		"FoodProd":
+			return food_demand
+		"LuxuryProd":
+			return luxury_demand
+		"WeaponProd":
+			return weapon_demand
+		_:
+			return 1
+
+
 func update_import_label() -> void:
-		import = construct_import_token()
-		import_label.text = str(str(import.cost_value), " ", import.cost_type)
+	import = construct_import_token()
+	import_label.text = str(str(import.cost_value), " ", prod_to_item_name(import.cost_type))
 
 
 func _on_food_number_button_item_selected(index: int) -> void:
 	export.cost_value = int(food_number_button.get_item_text(index)) * -1
 	print("Export value set to: ", str(export.cost_value))
-
+	update_import_label()
 
 
 func _on_luxuries_number_button_item_selected(index: int) -> void:
 	export.cost_value = int(luxuries_number_button.get_item_text(index)) * -1
 	print("Export value set to: ", str(export.cost_value))
+	update_import_label()
 
 
 func _on_weapons_number_button_item_selected(index: int) -> void:
 	export.cost_value = int(weapons_number_button.get_item_text(index)) * -1
 	print("Export value set to: ", str(export.cost_value))
+	update_import_label()
 
 
 func _on_close_button_pressed() -> void:
