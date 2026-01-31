@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=22 format=3 uid="uid://dbac38xsd7l2k"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=27 format=3 uid="uid://dbac38xsd7l2k"]
 
 [ext_resource type="Texture2D" uid="uid://cvob7e6gy4k3t" path="res://Assets/BGs/Blex.png" id="1_3va0k"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_k8x0i"]
@@ -13,8 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://bvscmh8x1ue6o" path="res://Assets/CharacterSprites/khevynfram.png" id="8_ywsn1"]
 [ext_resource type="Resource" uid="uid://b20gosu1ps3s4" path="res://Scripts/Resources/Events/Blex Events/roll_a_magic_die.tres" id="9_0fxvf"]
 [ext_resource type="Resource" uid="uid://b4yhoqigdqpa1" path="res://Scripts/Resources/Events/Blex Events/meet_khevin_fram.tres" id="10_swav2"]
+[ext_resource type="Resource" uid="uid://d1ljl4p748x0m" path="res://Scripts/Resources/Events/Neutral Events/cultivate_farmland.tres" id="11_53ehn"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="12_bul1j"]
+[ext_resource type="Resource" uid="uid://dinerntw1rsen" path="res://Scripts/Resources/Events/Neutral Events/hold_rally.tres" id="12_ioc45"]
+[ext_resource type="Resource" uid="uid://dmolbamwb7pjo" path="res://Scripts/Resources/Events/Neutral Events/address_controversy.tres" id="13_ugcst"]
+[ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="14_aov8o"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="15_dyf1y"]
+[ext_resource type="Resource" uid="uid://bhpjg4umgoggk" path="res://Scripts/Resources/Events/Neutral Events/build_mine.tres" id="15_qljhe"]
 
 [sub_resource type="Resource" id="Resource_ns3tc"]
 script = ExtResource("12_bul1j")
@@ -73,7 +78,7 @@ threaten_success_message = Array[ExtResource("15_dyf1y")]([SubResource("Resource
 current_relations = Array[ExtResource("2_skv75")]([])
 current_reputation = Array[ExtResource("3_syww1")]([])
 current_info = Array[ExtResource("1_k8x0i")]([])
-event_pool = Array[ExtResource("4_5qy3j")]([ExtResource("5_yqb73"), ExtResource("7_fiond"), ExtResource("8_p4gdh"), ExtResource("9_0fxvf"), ExtResource("10_swav2")])
+event_pool = Array[ExtResource("4_5qy3j")]([ExtResource("5_yqb73"), ExtResource("7_fiond"), ExtResource("8_p4gdh"), ExtResource("9_0fxvf"), ExtResource("10_swav2"), ExtResource("11_53ehn"), ExtResource("12_ioc45"), ExtResource("13_ugcst"), ExtResource("14_aov8o"), ExtResource("15_qljhe")])
 live_events = Array[ExtResource("4_5qy3j")]([])
 event_history = Array[ExtResource("4_5qy3j")]([])
 leader_name = "Khevyn \"The Father\" Fram"

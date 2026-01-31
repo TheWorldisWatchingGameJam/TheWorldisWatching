@@ -37,7 +37,7 @@ func _on_planet_selected(planet_data):
 
 	
 	# Setup galaxy
-	galaxy_manager.setup_galaxy(planet_data)
+	galaxy_manager.setup_galaxy(planet_data.duplicate(true))
 	galaxy_manager.print_map()
 	
 	galaxy_manager.	generate_graph_and_draw()
@@ -47,7 +47,7 @@ func _on_planet_selected(planet_data):
 	print("Galaxy generated! Check console for map.")
 
 func _update_election_counter():
-	election_counter.text = "Days until next election: " + str(galaxy_manager.days_until_election)
+	election_counter.text = "Days until next election: " + str(max(galaxy_manager.days_until_election, 0))
 	election_counter.visible = true
 
 

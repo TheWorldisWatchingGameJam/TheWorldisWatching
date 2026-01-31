@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=25 format=3 uid="uid://b0wugdfli82wd"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=30 format=3 uid="uid://b0wugdfli82wd"]
 
 [ext_resource type="Texture2D" uid="uid://5giba85nylsd" path="res://Assets/BGs/Verp.png" id="1_a8jsj"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_ol3aw"]
@@ -14,7 +14,12 @@
 [ext_resource type="Resource" uid="uid://b8oag7b4k2qo0" path="res://Scripts/Resources/Events/Verp Events/send_apprentices.tres" id="9_bxpbc"]
 [ext_resource type="Resource" uid="uid://dcwbu3w1ovvcw" path="res://Scripts/Resources/Events/Verp Events/meet_leynardeux_macdonald.tres" id="10_qwa4l"]
 [ext_resource type="Resource" uid="uid://cayj8vvy5x8qj" path="res://Scripts/Resources/Events/Verp Events/train_blacksmiths.tres" id="11_s5vnt"]
+[ext_resource type="Resource" uid="uid://dmolbamwb7pjo" path="res://Scripts/Resources/Events/Neutral Events/address_controversy.tres" id="12_sw22q"]
+[ext_resource type="Resource" uid="uid://bhpjg4umgoggk" path="res://Scripts/Resources/Events/Neutral Events/build_mine.tres" id="13_odgtx"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="13_stl3f"]
+[ext_resource type="Resource" uid="uid://d1ljl4p748x0m" path="res://Scripts/Resources/Events/Neutral Events/cultivate_farmland.tres" id="14_ajvas"]
+[ext_resource type="Resource" uid="uid://dinerntw1rsen" path="res://Scripts/Resources/Events/Neutral Events/hold_rally.tres" id="15_3uyjt"]
+[ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="16_rhqc5"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="16_xf2i0"]
 
 [sub_resource type="Resource" id="Resource_u2ba4"]
@@ -85,7 +90,7 @@ threaten_success_message = Array[ExtResource("16_xf2i0")]([SubResource("Resource
 current_relations = Array[ExtResource("2_k1j0k")]([])
 current_reputation = Array[ExtResource("3_3a0u1")]([])
 current_info = Array[ExtResource("1_ol3aw")]([])
-event_pool = Array[ExtResource("4_qejpo")]([ExtResource("6_u1pkg"), ExtResource("7_wkgrv"), ExtResource("8_tmt7v"), ExtResource("9_bxpbc"), ExtResource("10_qwa4l"), ExtResource("11_s5vnt")])
+event_pool = Array[ExtResource("4_qejpo")]([ExtResource("6_u1pkg"), ExtResource("7_wkgrv"), ExtResource("8_tmt7v"), ExtResource("9_bxpbc"), ExtResource("10_qwa4l"), ExtResource("11_s5vnt"), ExtResource("12_sw22q"), ExtResource("13_odgtx"), ExtResource("14_ajvas"), ExtResource("15_3uyjt"), ExtResource("16_rhqc5")])
 live_events = Array[ExtResource("4_qejpo")]([])
 event_history = Array[ExtResource("4_qejpo")]([])
 leader_name = "Leynardeux MacDonald"

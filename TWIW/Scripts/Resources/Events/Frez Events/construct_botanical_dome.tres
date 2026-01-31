@@ -1,0 +1,132 @@
+[gd_resource type="Resource" script_class="Event" load_steps=23 format=3 uid="uid://d2cn2fyuf5ii3"]
+
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_wuin0"]
+[ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_7mbrn"]
+[ext_resource type="Script" path="res://Scripts/Components/event_condition.gd" id="3_es6pi"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_wgyov"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="5_o74yn"]
+[ext_resource type="Script" path="res://Scripts/Components/event.gd" id="6_qctcd"]
+
+[sub_resource type="Resource" id="Resource_qb1so"]
+script = ExtResource("2_7mbrn")
+cost_type = "Food"
+cost_value = -100
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_lm507"]
+script = ExtResource("2_7mbrn")
+cost_type = "Money"
+cost_value = -100
+on_planet = &""
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_ah18h"]
+script = ExtResource("2_7mbrn")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Blex"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_pp464"]
+script = ExtResource("5_o74yn")
+effect_value_token = SubResource("Resource_ah18h")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_wgyov")]([])
+effect_delay = 7
+
+[sub_resource type="Resource" id="Resource_ddtcd"]
+script = ExtResource("2_7mbrn")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Frez"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_rxijt"]
+script = ExtResource("5_o74yn")
+effect_value_token = SubResource("Resource_ddtcd")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_wgyov")]([])
+effect_delay = 7
+
+[sub_resource type="Resource" id="Resource_2rlmo"]
+script = ExtResource("2_7mbrn")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Gomix"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_l605h"]
+script = ExtResource("5_o74yn")
+effect_value_token = SubResource("Resource_2rlmo")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_wgyov")]([])
+effect_delay = 7
+
+[sub_resource type="Resource" id="Resource_lg6n1"]
+script = ExtResource("2_7mbrn")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Huldar"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_du4ae"]
+script = ExtResource("5_o74yn")
+effect_value_token = SubResource("Resource_lg6n1")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_wgyov")]([])
+effect_delay = 7
+
+[sub_resource type="Resource" id="Resource_8to8l"]
+script = ExtResource("2_7mbrn")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Opal"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_i481j"]
+script = ExtResource("5_o74yn")
+effect_value_token = SubResource("Resource_8to8l")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_wgyov")]([])
+effect_delay = 7
+
+[sub_resource type="Resource" id="Resource_2bhc8"]
+script = ExtResource("4_wgyov")
+name = ""
+dialogue = "Construction on the Frez Botanical Dome has completed. The galaxy is in awe of this architectural wonder! "
+
+[sub_resource type="Resource" id="Resource_8c2e4"]
+script = ExtResource("4_wgyov")
+name = ""
+dialogue = "Reputation on ALL planets has increased."
+
+[sub_resource type="Resource" id="Resource_jmax5"]
+script = ExtResource("2_7mbrn")
+cost_type = "Rep"
+cost_value = 5
+on_planet = &"Verp"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_mavr2"]
+script = ExtResource("5_o74yn")
+effect_value_token = SubResource("Resource_jmax5")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_wgyov")]([SubResource("Resource_2bhc8"), SubResource("Resource_8c2e4")])
+effect_delay = 7
+
+[resource]
+script = ExtResource("6_qctcd")
+event_id = ""
+event_name = &"Construct the Frez Botanical Dome"
+event_desc = "Gather the greatest landscape architects from all over Frez to begin construction on the galaxy's largest wildlife reserve. The dome takes 10 days to complete."
+event_button_text = "Construct ($100, 100 Food)"
+is_priority = false
+one_time_event = true
+home_exclusive = true
+non_home_exclusive = false
+event_conditions = Array[ExtResource("3_es6pi")]([])
+event_dialogue = Array[ExtResource("4_wgyov")]([])
+event_effects = Array[ExtResource("5_o74yn")]([SubResource("Resource_pp464"), SubResource("Resource_rxijt"), SubResource("Resource_l605h"), SubResource("Resource_du4ae"), SubResource("Resource_i481j"), SubResource("Resource_mavr2")])
+choices = Array[ExtResource("1_wuin0")]([])
+cost = Array[ExtResource("2_7mbrn")]([SubResource("Resource_qb1so"), SubResource("Resource_lm507")])

@@ -11,14 +11,13 @@ var _weapons := 0
 var _money := 0
 var _total_rep := 0
 var completed_events: Dictionary = {}
-var delayed_effects: Array[EventEffect]
+var delayed_effects: Array[EventEffect] = []
 
 @export var home_planet_data: PlanetData: set = on_home_planet_data_set
 @export var time_tracker: TimeTracker
-@export var trade_routes: Array[TradeRoute]
+@export var trade_routes: Array[TradeRoute] = []
 @export var current_location: String
 @export var all_planets: Array[PlanetData]
-
 
 
 
@@ -130,6 +129,7 @@ func update_total_rep():
 	total_rep = new_total_rep
 
 func initialize_reputation_values(planets: Array[PlanetData]) -> void:
+	print("Player rep values being initialized.")
 	#set rep values to zero
 	for planet in planets:
 		var new_rep_value = Reputation.new()
@@ -142,6 +142,7 @@ func initialize_reputation_values(planets: Array[PlanetData]) -> void:
 	update_total_rep()
 
 func initialize_time_tracker() -> void:
+	print("Player time tracker being initialized.")
 	time_tracker = TimeTracker.new()
 	time_tracker.dayPassed.connect(simulate_day)
 
@@ -266,3 +267,20 @@ func debug_print_all_planet_demands() -> void:
 		else:
 			print("WARNING: Found null planet in array!")
 	print("============================\n")
+
+func reset_player(selected_planets: Array[PlanetData]) -> void:
+	print("Player being reset.")
+	all_planets = selected_planets
+	food = 0
+	luxuries = 0
+	weapons = 0
+	money = 0
+	for i in [food, luxuries, weapons, money]:
+		i = 0
+	initialize_time_tracker()
+	initialize_reputation_values(all_planets)
+	completed_events.clear()
+	delayed_effects.clear()
+	trade_routes.clear()
+	current_location = ""
+	

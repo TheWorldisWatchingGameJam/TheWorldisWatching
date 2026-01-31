@@ -42,7 +42,7 @@ dialogue = "Your rally was VERY successful! Your reputation on this planet as in
 [sub_resource type="Resource" id="Resource_1vcy7"]
 script = ExtResource("1_72kst")
 cost_type = "Rep"
-cost_value = 6
+cost_value = 5
 on_planet = &""
 on_current_planet = true
 

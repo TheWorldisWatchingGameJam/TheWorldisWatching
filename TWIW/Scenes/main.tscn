@@ -59,11 +59,13 @@ days_until_election = 40
 
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(0.14802, 0.326744, 0.46502, 1)
-offset_left = 5.0
-offset_top = 7.0
-offset_right = 1925.0
-offset_bottom = 1087.0
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 1420.0
+offset_bottom = 880.0
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_iuy13")
+expand_mode = 3
 
 [node name="Choose" type="Label" parent="."]
 offset_left = 480.0

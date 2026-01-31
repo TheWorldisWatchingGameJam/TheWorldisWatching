@@ -39,6 +39,7 @@ var max_distance: float = 0.0
 var planet_just_left: String
 
 func _ready():
+	print("======NEW GAME START======")
 	add_to_group("galaxy_manager")
 	if camera:
 		default_zoom = camera.zoom
@@ -51,6 +52,7 @@ func get_3_random_planets() -> Array:
 	return [shuffled[0], shuffled[1], shuffled[2]]
 
 func setup_galaxy(chosen_planet: PlanetData):
+	selected_planets.clear()
 	player_planet = chosen_planet
 	player_current_location = chosen_planet
 	selected_planets = [player_planet]
@@ -62,18 +64,16 @@ func setup_galaxy(chosen_planet: PlanetData):
 	var count = 0
 	for planet in remaining:
 		if planet.id != player_planet.id and count < 5:
-			selected_planets.append(planet)
+			selected_planets.append(planet.duplicate(true))
 			count += 1
 
-	player_data.all_planets = selected_planets
-	player_data.initialize_reputation_values(selected_planets)
+	#Initialize player values
+	player_data.reset_player(selected_planets)
 	
 	# Initialize AI reputation for only the 5 OTHER planets (not home)
 	if ai_data:
 		var ai_planets = selected_planets.filter(func(p): return p.id != player_planet.id)
 		ai_data.initialize_leaders(ai_planets)
-	# Initialize player's time tracker
-	player_data.initialize_time_tracker()
 
 	draw_galaxy_random()
 	generate_graph_and_draw()
@@ -418,3 +418,11 @@ func player_won() -> void:
 
 func _on_try_again_pressed() -> void:
 	print("Try Again Button Pressed.")
+
+	var main_menu = load("res://Scenes/main_menu.tscn").instantiate()
+	get_tree().get_root().add_child(main_menu)
+	for child in get_tree().get_root().get_children():
+		if child != main_menu:
+			child.queue_free()
+		
+	
