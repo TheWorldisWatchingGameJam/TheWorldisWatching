@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=15 format=3 uid="uid://bl8fxvgpmrgc7"]
+[gd_resource type="Resource" script_class="Event" load_steps=17 format=3 uid="uid://bl8fxvgpmrgc7"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_e37p2"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_nd451"]
@@ -32,6 +32,20 @@ condition_type = ""
 condition_value = 0
 on_planet = &""
 
+[sub_resource type="Resource" id="Resource_iurwr"]
+script = ExtResource("2_nd451")
+cost_type = "WeaponDemand"
+cost_value = -3
+on_planet = &"Gomix"
+on_current_planet = false
+
+[sub_resource type="Resource" id="Resource_vw0rm"]
+script = ExtResource("5_vjuwj")
+effect_value_token = SubResource("Resource_iurwr")
+effect_probability = 0
+effect_dialogue = Array[ExtResource("4_p415w")]([])
+effect_delay = 0
+
 [sub_resource type="Resource" id="Resource_0qa1t"]
 script = ExtResource("4_p415w")
 name = "Mahkus"
@@ -64,6 +78,6 @@ home_exclusive = false
 non_home_exclusive = false
 event_conditions = Array[ExtResource("3_6i784")]([SubResource("Resource_a04yb")])
 event_dialogue = Array[ExtResource("4_p415w")]([])
-event_effects = Array[ExtResource("5_vjuwj")]([SubResource("Resource_8k3mb")])
+event_effects = Array[ExtResource("5_vjuwj")]([SubResource("Resource_vw0rm"), SubResource("Resource_8k3mb")])
 choices = Array[ExtResource("1_e37p2")]([])
 cost = Array[ExtResource("2_nd451")]([SubResource("Resource_lr48h")])
