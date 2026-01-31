@@ -49,7 +49,7 @@ func _on_food_sell_button_pressed() -> void:
 		print("Not enough food in player inventory.")
 		return
 	player_data.player_data_modify(food_cost_token)
-	player_data.money += food_price
+	player_data.money += food_price * (food_cost_token.cost_value * -1)
 	print("Player now has ", str(player_data.food), " food, and ", str(player_data.money), " money")
 
 
@@ -65,7 +65,7 @@ func _on_luxuries_sell_button_pressed() -> void:
 		print("Not enough luxuries in player inventory.")
 		return
 	player_data.player_data_modify(luxury_cost_token)
-	player_data.money += luxuries_price
+	player_data.money += luxuries_price * (luxury_cost_token.cost_value * -1)
 	print("Player now has ", str(player_data.luxuries), " luxuries and ", str(player_data.money), " money")
 
 
@@ -81,7 +81,7 @@ func _on_weapons_sell_button_pressed() -> void:
 		print("Not enough weapons in player inventory.")
 		return
 	player_data.player_data_modify(weapon_cost_token)
-	player_data.money += weapons_price
+	player_data.money += weapons_price * (weapon_cost_token.cost_value * -1)
 	print("Player now has ", str(player_data.weapons), " weapons and ", str(player_data.money), " money")
 
 
