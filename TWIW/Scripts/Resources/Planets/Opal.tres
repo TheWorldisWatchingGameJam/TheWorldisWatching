@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=23 format=3 uid="uid://f0quaynyrmg"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=28 format=3 uid="uid://f0quaynyrmg"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="1_25gqv"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_atbtt"]
@@ -15,7 +15,12 @@
 [ext_resource type="Texture2D" uid="uid://eckrwpp0gi2i" path="res://Assets/PlanetSprites/Opal.webp" id="10_2i0hb"]
 [ext_resource type="Resource" uid="uid://d24up0642eqrc" path="res://Scripts/Resources/Events/Opal Events/approach_local_jeweler.tres" id="10_fx055"]
 [ext_resource type="Resource" uid="uid://jok3wnjbp4l1" path="res://Scripts/Resources/Events/Opal Events/establish_quarry.tres" id="11_8t2st"]
+[ext_resource type="Resource" uid="uid://dmolbamwb7pjo" path="res://Scripts/Resources/Events/Neutral Events/address_controversy.tres" id="12_5mebl"]
+[ext_resource type="Resource" uid="uid://bhpjg4umgoggk" path="res://Scripts/Resources/Events/Neutral Events/build_mine.tres" id="13_ehbbs"]
+[ext_resource type="Resource" uid="uid://d1ljl4p748x0m" path="res://Scripts/Resources/Events/Neutral Events/cultivate_farmland.tres" id="14_dtpqv"]
+[ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="15_b3xl2"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="16_k0csq"]
+[ext_resource type="Resource" uid="uid://c5sipxl85osk" path="res://Scripts/Resources/Events/Opal Events/send_volunteer_guards.tres" id="16_lic7w"]
 
 [sub_resource type="Resource" id="Resource_roi81"]
 script = ExtResource("8_ihskw")
@@ -73,7 +78,7 @@ threaten_success_message = Array[ExtResource("16_k0csq")]([SubResource("Resource
 current_relations = Array[ExtResource("2_htv20")]([])
 current_reputation = Array[ExtResource("3_6c5ua")]([])
 current_info = Array[ExtResource("1_atbtt")]([])
-event_pool = Array[ExtResource("1_25gqv")]([ExtResource("5_2e7u1"), ExtResource("6_ywsmr"), ExtResource("7_6lloy"), ExtResource("9_3qh21"), ExtResource("10_fx055"), ExtResource("11_8t2st")])
+event_pool = Array[ExtResource("1_25gqv")]([ExtResource("5_2e7u1"), ExtResource("6_ywsmr"), ExtResource("7_6lloy"), ExtResource("9_3qh21"), ExtResource("10_fx055"), ExtResource("11_8t2st"), ExtResource("12_5mebl"), ExtResource("13_ehbbs"), ExtResource("14_dtpqv"), ExtResource("7_6lloy"), ExtResource("15_b3xl2"), ExtResource("16_lic7w")])
 live_events = Array[ExtResource("1_25gqv")]([])
 event_history = Array[ExtResource("1_25gqv")]([])
 leader_name = "Jeevint KaJeemit"

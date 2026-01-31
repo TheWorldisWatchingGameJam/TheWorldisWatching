@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=22 format=3 uid="uid://b4kf7erwn6muh"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=27 format=3 uid="uid://b4kf7erwn6muh"]
 
 [ext_resource type="Texture2D" uid="uid://d3iwyepsogcfd" path="res://Assets/BGs/Frez.png" id="1_lic45"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_rb1px"]
@@ -13,7 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://dhx2b30rqhvkw" path="res://Assets/PlanetSprites/Frez.webp" id="8_tal5m"]
 [ext_resource type="Resource" uid="uid://ptkemcbm6tko" path="res://Scripts/Resources/Events/Frez Events/attend_farming_seminar.tres" id="9_xjf4g"]
 [ext_resource type="Resource" uid="uid://b416bl5cpbwc8" path="res://Scripts/Resources/Events/Frez Events/build_farm.tres" id="10_q1gwv"]
+[ext_resource type="Resource" uid="uid://bhpjg4umgoggk" path="res://Scripts/Resources/Events/Neutral Events/build_mine.tres" id="11_6pu11"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="12_i1dvh"]
+[ext_resource type="Resource" uid="uid://dmolbamwb7pjo" path="res://Scripts/Resources/Events/Neutral Events/address_controversy.tres" id="12_knrmb"]
+[ext_resource type="Resource" uid="uid://dinerntw1rsen" path="res://Scripts/Resources/Events/Neutral Events/hold_rally.tres" id="13_jhvmd"]
+[ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="14_a6r6q"]
+[ext_resource type="Resource" uid="uid://d2cn2fyuf5ii3" path="res://Scripts/Resources/Events/Frez Events/construct_botanical_dome.tres" id="15_lrhah"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="15_v3po4"]
 
 [sub_resource type="Resource" id="Resource_xv22o"]
@@ -72,7 +77,7 @@ threaten_success_message = Array[ExtResource("15_v3po4")]([SubResource("Resource
 current_relations = Array[ExtResource("2_r0xra")]([])
 current_reputation = Array[ExtResource("3_hwu0p")]([])
 current_info = Array[ExtResource("1_rb1px")]([])
-event_pool = Array[ExtResource("4_q1n0u")]([ExtResource("6_7sefl"), ExtResource("7_j7yk2"), ExtResource("8_crto2"), ExtResource("9_xjf4g"), ExtResource("10_q1gwv")])
+event_pool = Array[ExtResource("4_q1n0u")]([ExtResource("6_7sefl"), ExtResource("7_j7yk2"), ExtResource("8_crto2"), ExtResource("9_xjf4g"), ExtResource("10_q1gwv"), ExtResource("11_6pu11"), ExtResource("12_knrmb"), ExtResource("13_jhvmd"), ExtResource("14_a6r6q"), ExtResource("15_lrhah")])
 live_events = Array[ExtResource("4_q1n0u")]([])
 event_history = Array[ExtResource("4_q1n0u")]([])
 leader_name = "Wilyam B. Farmstar III"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=23 format=3 uid="uid://d1r5bocod2xw1"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=29 format=3 uid="uid://d1r5bocod2xw1"]
 
 [ext_resource type="Texture2D" uid="uid://c3fslapq8tkbs" path="res://Assets/BGs/Huldar.png" id="1_qhhoy"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="2_ahpji"]
@@ -13,8 +13,14 @@
 [ext_resource type="Resource" uid="uid://dfrwdpdp4dygr" path="res://Scripts/Resources/Events/Huldar Events/sponsor_banquet.tres" id="8_uuc0c"]
 [ext_resource type="Resource" uid="uid://87aqduay7cwr" path="res://Scripts/Resources/Events/Huldar Events/gather_army.tres" id="9_dxkjt"]
 [ext_resource type="Resource" uid="uid://ff6jrw4eow2o" path="res://Scripts/Resources/Events/Huldar Events/gather_forces.tres" id="10_0yecs"]
+[ext_resource type="Resource" uid="uid://dmolbamwb7pjo" path="res://Scripts/Resources/Events/Neutral Events/address_controversy.tres" id="11_mdsmg"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="12_4kg8q"]
+[ext_resource type="Resource" uid="uid://bhpjg4umgoggk" path="res://Scripts/Resources/Events/Neutral Events/build_mine.tres" id="12_gl2c6"]
+[ext_resource type="Resource" uid="uid://d1ljl4p748x0m" path="res://Scripts/Resources/Events/Neutral Events/cultivate_farmland.tres" id="13_c4u7r"]
+[ext_resource type="Resource" uid="uid://dinerntw1rsen" path="res://Scripts/Resources/Events/Neutral Events/hold_rally.tres" id="14_hf8oq"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="15_iwuj7"]
+[ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="15_oe4i8"]
+[ext_resource type="Resource" uid="uid://hbdawtvaikdh" path="res://Scripts/Resources/Events/Huldar Events/meet_shay_rimizio.tres" id="16_w7tes"]
 
 [sub_resource type="Resource" id="Resource_ydr0v"]
 script = ExtResource("12_4kg8q")
@@ -78,7 +84,7 @@ threaten_success_message = Array[ExtResource("15_iwuj7")]([SubResource("Resource
 current_relations = Array[ExtResource("3_ahjdv")]([])
 current_reputation = Array[ExtResource("4_0q04l")]([])
 current_info = Array[ExtResource("2_ahpji")]([])
-event_pool = Array[ExtResource("4_m4vwl")]([ExtResource("6_os51l"), ExtResource("7_facmb"), ExtResource("8_uuc0c"), ExtResource("9_dxkjt"), ExtResource("10_0yecs")])
+event_pool = Array[ExtResource("4_m4vwl")]([ExtResource("6_os51l"), ExtResource("7_facmb"), ExtResource("8_uuc0c"), ExtResource("9_dxkjt"), ExtResource("10_0yecs"), ExtResource("11_mdsmg"), ExtResource("12_gl2c6"), ExtResource("13_c4u7r"), ExtResource("14_hf8oq"), ExtResource("15_oe4i8"), ExtResource("16_w7tes")])
 live_events = Array[ExtResource("4_m4vwl")]([])
 event_history = Array[ExtResource("4_m4vwl")]([])
 leader_name = "Emperor Shay Rimizio"

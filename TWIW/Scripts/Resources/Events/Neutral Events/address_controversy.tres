@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Event" load_steps=14 format=3 uid="uid://dmolbamwb7pjo"]
+[gd_resource type="Resource" script_class="Event" load_steps=16 format=3 uid="uid://dmolbamwb7pjo"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="1_8l6ch"]
 [ext_resource type="Script" path="res://Scripts/Components/event_cost.gd" id="2_raioi"]
@@ -10,7 +10,7 @@
 [sub_resource type="Resource" id="Resource_lcrhi"]
 script = ExtResource("2_raioi")
 cost_type = "Money"
-cost_value = 100
+cost_value = -100
 on_planet = &""
 on_current_planet = false
 
@@ -34,9 +34,19 @@ on_current_planet = true
 [sub_resource type="Resource" id="Resource_nniq5"]
 script = ExtResource("5_wswde")
 effect_value_token = SubResource("Resource_bpjiq")
-effect_probability = 30
+effect_probability = 40
 effect_dialogue = Array[ExtResource("4_hy3n6")]([SubResource("Resource_dgyqj"), SubResource("Resource_afiox")])
 effect_delay = 0
+
+[sub_resource type="Resource" id="Resource_dmnmn"]
+script = ExtResource("4_hy3n6")
+name = ""
+dialogue = "The crowd loved your response!"
+
+[sub_resource type="Resource" id="Resource_hd7pf"]
+script = ExtResource("4_hy3n6")
+name = ""
+dialogue = "Your reputation on this planet has increased."
 
 [sub_resource type="Resource" id="Resource_0wt1g"]
 script = ExtResource("2_raioi")
@@ -48,8 +58,8 @@ on_current_planet = true
 [sub_resource type="Resource" id="Resource_h8tcw"]
 script = ExtResource("5_wswde")
 effect_value_token = SubResource("Resource_0wt1g")
-effect_probability = 70
-effect_dialogue = Array[ExtResource("4_hy3n6")]([])
+effect_probability = 60
+effect_dialogue = Array[ExtResource("4_hy3n6")]([SubResource("Resource_dmnmn"), SubResource("Resource_hd7pf")])
 effect_delay = 0
 
 [resource]

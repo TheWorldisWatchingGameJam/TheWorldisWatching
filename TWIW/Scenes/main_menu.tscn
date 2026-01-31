@@ -1,0 +1,224 @@
+[gd_scene load_steps=11 format=3 uid="uid://fa3ejx8v7oln"]
+
+[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_fnp7t"]
+[ext_resource type="Texture2D" uid="uid://bvx8262od2u8v" path="res://Assets/BGs/galaxybg.png" id="2_o6tst"]
+[ext_resource type="StyleBox" uid="uid://caolg0d8y2b0k" path="res://Assets/Theme/generic_window.tres" id="3_bi25c"]
+[ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="4_0nq6r"]
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="4_tbqii"]
+[ext_resource type="Theme" uid="uid://kdox7h3lrego" path="res://Assets/Theme/button_theme.tres" id="5_7g5c2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dcjo4"]
+font = ExtResource("4_0nq6r")
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_0erj6"]
+font = ExtResource("4_tbqii")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_wa0fo"]
+font = ExtResource("4_tbqii")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_fsyb5"]
+font = ExtResource("4_0nq6r")
+font_size = 100
+outline_size = 3
+outline_color = Color(0.205117, 0.205117, 0.205117, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.25098)
+shadow_offset = Vector2(10, 10)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fnp7t")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.14902, 0.32549, 0.466667, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_o6tst")
+
+[node name="CreditsContainer" type="VBoxContainer" parent="TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control2" type="Control" parent="TextureRect/CreditsContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_dcjo4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="TextureRect/CreditsContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+text = "Art"
+label_settings = SubResource("LabelSettings_0erj6")
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+text = "Shae Remigio
+William Sotelo
+"
+label_settings = SubResource("LabelSettings_wa0fo")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="TextureRect/CreditsContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+text = "Game Design
+"
+label_settings = SubResource("LabelSettings_0erj6")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+text = "Justice Cabantangan 
+Micah Tossey
+"
+label_settings = SubResource("LabelSettings_wa0fo")
+horizontal_alignment = 1
+
+[node name="Control5" type="Control" parent="TextureRect/CreditsContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label8" type="Label" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_0erj6")
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+text = "Justice Cabantangan
+"
+label_settings = SubResource("LabelSettings_wa0fo")
+horizontal_alignment = 1
+
+[node name="Control3" type="Control" parent="TextureRect/CreditsContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+text = "Programming"
+label_settings = SubResource("LabelSettings_0erj6")
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+text = "Justice Cabantangan
+Micah Tossey
+"
+label_settings = SubResource("LabelSettings_wa0fo")
+horizontal_alignment = 1
+
+[node name="Control6" type="Control" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/CreditsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="TextureRect/CreditsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+theme = ExtResource("5_7g5c2")
+theme_override_font_sizes/font_size = 50
+text = "Close"
+
+[node name="Control7" type="Control" parent="TextureRect/CreditsContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="MenuContainer" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="TextureRect/MenuContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/MenuContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="TextureRect/MenuContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(1200, 150)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_bi25c")
+
+[node name="Label" type="Label" parent="TextureRect/MenuContainer/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+text = "Interplanetary Diplomat"
+label_settings = SubResource("LabelSettings_fsyb5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="TextureRect/MenuContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MenuContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="TextureRect/MenuContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+theme = ExtResource("5_7g5c2")
+theme_override_font_sizes/font_size = 50
+text = "Start
+"
+
+[node name="Control3" type="Control" parent="TextureRect/MenuContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/MenuContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="TextureRect/MenuContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+theme = ExtResource("5_7g5c2")
+theme_override_font_sizes/font_size = 50
+text = "Credits
+"
+
+[connection signal="pressed" from="TextureRect/CreditsContainer/HBoxContainer/Button" to="." method="_on_credits_close_button_pressed"]
+[connection signal="pressed" from="TextureRect/MenuContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TextureRect/MenuContainer/HBoxContainer3/Button" to="." method="_on_credits_button_pressed"]
