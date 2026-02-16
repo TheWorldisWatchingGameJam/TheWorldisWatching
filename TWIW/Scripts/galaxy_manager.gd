@@ -69,6 +69,9 @@ func setup_galaxy(chosen_planet: PlanetData):
 
 	#Initialize player values
 	player_data.reset_player(selected_planets)
+	#Add Player UI
+	var player_ui = load("res://Scenes/player_ui.tscn").instantiate()
+	self.add_child(player_ui)
 	
 	# Initialize AI reputation for only the 5 OTHER planets (not home)
 	if ai_data:
@@ -91,7 +94,8 @@ func draw_galaxy_random():
 	var max_attempts = 50
 
 	var screen_size = get_viewport().get_visible_rect().size
-	var padding = 100
+	var x_padding = 100
+	var y_padding = 200
 
 	for planet in selected_planets:
 		var pos: Vector2
@@ -99,8 +103,8 @@ func draw_galaxy_random():
 		while true:
 			attempt += 1
 			pos = Vector2(
-				randf_range(padding, screen_size.x - padding),
-				randf_range(padding, screen_size.y - padding)
+				randf_range(x_padding, screen_size.x - x_padding),
+				randf_range(y_padding, screen_size.y - y_padding)
 			)
 			var too_close = false
 			for existing in positions:

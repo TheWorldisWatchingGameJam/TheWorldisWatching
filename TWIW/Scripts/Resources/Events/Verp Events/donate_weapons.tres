@@ -27,6 +27,7 @@ script = ExtResource("4_kp038")
 name = "Leynardeux MacDonald"
 dialogue = "Your generosity does not go unnoticed. Your gifts will go towards the perfection of our craft."
 sprite = ExtResource("6_du6og")
+choices = Array[ExtResource("1_i8pn6")]([])
 
 [sub_resource type="Resource" id="Resource_fqceo"]
 script = ExtResource("2_plnwf")

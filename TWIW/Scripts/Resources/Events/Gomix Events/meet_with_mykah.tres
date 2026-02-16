@@ -30,6 +30,7 @@ script = ExtResource("5_0tuqd")
 name = "Mykah"
 dialogue = "Hello! I am glad you have decided to ally with us. Gomix is very pleased"
 sprite = ExtResource("6_cauxx")
+choices = Array[ExtResource("1_lqc6o")]([])
 
 [resource]
 script = ExtResource("7_xkibg")

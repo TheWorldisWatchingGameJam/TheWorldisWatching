@@ -28,6 +28,7 @@ on_planet = &""
 script = ExtResource("5_dr7g7")
 name = "Iborah"
 dialogue = "Thank you for supporting my followers. I will reward you with all the food so you may never hunger"
+choices = Array[ExtResource("1_0m2j3")]([])
 
 [sub_resource type="Resource" id="Resource_hx3vc"]
 script = ExtResource("2_qvt1h")

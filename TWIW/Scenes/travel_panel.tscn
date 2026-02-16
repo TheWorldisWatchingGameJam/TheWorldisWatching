@@ -1,0 +1,132 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcos63j6heksq"]
+
+[ext_resource type="StyleBox" uid="uid://ntcsaqma5i8l" path="res://Assets/Theme/flat_window.tres" id="1_6hhju"]
+[ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_xgy3y"]
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="3_0asnt"]
+[ext_resource type="StyleBox" uid="uid://cc42hkb5uwyyi" path="res://Assets/Theme/planet_profile_window.tres" id="4_64b1y"]
+[ext_resource type="Texture2D" uid="uid://eckrwpp0gi2i" path="res://Assets/PlanetSprites/Opal.webp" id="5_oh7qv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mk64"]
+font = ExtResource("2_xgy3y")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_pqilr"]
+font = ExtResource("3_0asnt")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_2aqig"]
+font = ExtResource("3_0asnt")
+font_size = 30
+
+[node name="TravelPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(700, 700)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_6hhju")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Planet Profile"
+label_settings = SubResource("LabelSettings_7mk64")
+horizontal_alignment = 1
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Planet Name: Opal"
+label_settings = SubResource("LabelSettings_pqilr")
+
+[node name="LeaderLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Leader: Jeevint Kageemit"
+label_settings = SubResource("LabelSettings_pqilr")
+
+[node name="ExportLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Major Export: Luxuries"
+label_settings = SubResource("LabelSettings_2aqig")
+
+[node name="RelevanceLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Relevance Here:"
+label_settings = SubResource("LabelSettings_2aqig")
+
+[node name="ReputationLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reputation Here:"
+label_settings = SubResource("LabelSettings_2aqig")
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("4_64b1y")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="PlanetSprite" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_oh7qv")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="Control3" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=27 format=3 uid="uid://cda2udbfuiixi"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=28 format=3 uid="uid://cda2udbfuiixi"]
 
 [ext_resource type="Texture2D" uid="uid://daul6l825l837" path="res://Assets/BGs/Gomix.png" id="1_7gtlo"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_bxaqs"]
@@ -23,6 +23,7 @@
 [ext_resource type="Resource" uid="uid://dinerntw1rsen" path="res://Scripts/Resources/Events/Neutral Events/hold_rally.tres" id="15_py46s"]
 [ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="16_8ofnv"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="16_u3yxb"]
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="24_olw4p"]
 
 [sub_resource type="Resource" id="Resource_5avlc"]
 script = ExtResource("13_3poxw")
@@ -35,11 +36,13 @@ on_current_planet = false
 script = ExtResource("16_u3yxb")
 name = ""
 dialogue = "Threat attempt failed. Insufficient weapons."
+choices = Array[ExtResource("24_olw4p")]([])
 
 [sub_resource type="Resource" id="Resource_oqwvi"]
 script = ExtResource("16_u3yxb")
 name = ""
 dialogue = "Threat attempt succeeded."
+choices = Array[ExtResource("24_olw4p")]([])
 
 [resource]
 script = ExtResource("5_u6a02")

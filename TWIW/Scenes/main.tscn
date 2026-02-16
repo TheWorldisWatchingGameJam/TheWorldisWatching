@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dfixd4skh3ig7"]
+[gd_scene load_steps=31 format=3 uid="uid://dfixd4skh3ig7"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_ektus"]
 [ext_resource type="Script" path="res://Scenes/PlanetOption.gd" id="2_1an38"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/ai_data.gd" id="15_7cmk1"]
 [ext_resource type="AudioStream" uid="uid://dcrvqt7dqo3wg" path="res://Assets/Audio/menu.wav" id="16_urgrp"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="17_qamgo"]
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="18_7gaee"]
 
 [sub_resource type="Resource" id="Resource_kyq7c"]
 script = ExtResource("15_7cmk1")
@@ -34,6 +35,7 @@ starting_rep = 0
 script = ExtResource("17_qamgo")
 name = ""
 dialogue = "You just traveled to this planet!"
+choices = Array[ExtResource("18_7gaee")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l35hw"]
 size = Vector2(150.435, 154.034)

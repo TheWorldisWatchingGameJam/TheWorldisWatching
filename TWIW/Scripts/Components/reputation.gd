@@ -6,4 +6,4 @@ class_name Reputation
 @export_range(-100, 100) var reputation: int: set = on_reputation_changed
 
 func on_reputation_changed(new_value: int) -> void:
-	reputation = new_value
+	reputation = clampi(new_value, -100, 100)

@@ -18,11 +18,13 @@ on_current_planet = false
 script = ExtResource("4_hy3n6")
 name = ""
 dialogue = "The crowd did not take your response well..."
+choices = Array[ExtResource("1_8l6ch")]([])
 
 [sub_resource type="Resource" id="Resource_afiox"]
 script = ExtResource("4_hy3n6")
 name = ""
 dialogue = "Your reputation on this planet has decreased."
+choices = Array[ExtResource("1_8l6ch")]([])
 
 [sub_resource type="Resource" id="Resource_bpjiq"]
 script = ExtResource("2_raioi")
@@ -42,11 +44,13 @@ effect_delay = 0
 script = ExtResource("4_hy3n6")
 name = ""
 dialogue = "The crowd loved your response!"
+choices = Array[ExtResource("1_8l6ch")]([])
 
 [sub_resource type="Resource" id="Resource_hd7pf"]
 script = ExtResource("4_hy3n6")
 name = ""
 dialogue = "Your reputation on this planet has increased."
+choices = Array[ExtResource("1_8l6ch")]([])
 
 [sub_resource type="Resource" id="Resource_0wt1g"]
 script = ExtResource("2_raioi")

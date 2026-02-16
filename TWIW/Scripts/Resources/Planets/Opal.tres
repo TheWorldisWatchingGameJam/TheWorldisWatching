@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=28 format=3 uid="uid://f0quaynyrmg"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=29 format=3 uid="uid://f0quaynyrmg"]
 
 [ext_resource type="Script" path="res://Scripts/Components/event.gd" id="1_25gqv"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_atbtt"]
@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="15_b3xl2"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="16_k0csq"]
 [ext_resource type="Resource" uid="uid://c5sipxl85osk" path="res://Scripts/Resources/Events/Opal Events/send_volunteer_guards.tres" id="16_lic7w"]
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="22_5y0bl"]
 
 [sub_resource type="Resource" id="Resource_roi81"]
 script = ExtResource("8_ihskw")
@@ -34,28 +35,33 @@ script = ExtResource("16_k0csq")
 name = "Jeevint KaJeemit"
 dialogue = "We Opalites will not yield! Especially to an army of your size."
 sprite = ExtResource("9_2iwie")
+choices = Array[ExtResource("22_5y0bl")]([])
 
 [sub_resource type="Resource" id="Resource_4ee6o"]
 script = ExtResource("16_k0csq")
 name = ""
 dialogue = "Threat attempt failed. Insufficient Weapons."
+choices = Array[ExtResource("22_5y0bl")]([])
 
 [sub_resource type="Resource" id="Resource_17h1a"]
 script = ExtResource("16_k0csq")
 name = "Jeevint KaJeemit"
 dialogue = "Do not harm us Opalites! "
 sprite = ExtResource("9_2iwie")
+choices = Array[ExtResource("22_5y0bl")]([])
 
 [sub_resource type="Resource" id="Resource_i771i"]
 script = ExtResource("16_k0csq")
 name = "Jeevint KaJeemit"
 dialogue = "Here, just take what you want and leave!"
 sprite = ExtResource("9_2iwie")
+choices = Array[ExtResource("22_5y0bl")]([])
 
 [sub_resource type="Resource" id="Resource_4w0v3"]
 script = ExtResource("16_k0csq")
 name = ""
 dialogue = "Threat attempt succeeded."
+choices = Array[ExtResource("22_5y0bl")]([])
 
 [resource]
 script = ExtResource("2_6bee7")

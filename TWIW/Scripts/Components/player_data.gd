@@ -15,6 +15,7 @@ var delayed_effects: Array[EventEffect] = []
 
 @export var home_planet_data: PlanetData: set = on_home_planet_data_set
 @export var time_tracker: TimeTracker
+@export var relevance: Array[Relevance]
 @export var trade_routes: Array[TradeRoute] = []
 @export var current_location: String
 @export var all_planets: Array[PlanetData]
@@ -25,28 +26,28 @@ var delayed_effects: Array[EventEffect] = []
 var food: int:
 	get: return _food
 	set(value):
-		_food = max(value, 0)
+		_food = maxi(value, 0)
 		emit_signal("playerDataChanged")
 
 @export_range(0, 999999, 1)
 var luxuries: int:
 	get: return _luxuries
 	set(value):
-		_luxuries = max(value, 0)
+		_luxuries = maxi(value, 0)
 		emit_signal("playerDataChanged")
 
 @export_range(0, 999999, 1)
 var weapons: int:
 	get: return _weapons
 	set(value):
-		_weapons = max(value, 0)
+		_weapons = maxi(value, 0)
 		emit_signal("playerDataChanged")
 
 @export_range(0, 999999, 1)
 var money: int:
 	get: return _money
 	set(value):
-		_money = max(value, 0)
+		_money = maxi(value, 0)
 		emit_signal("playerDataChanged")
 
 @export_range(0, 999999, 1)

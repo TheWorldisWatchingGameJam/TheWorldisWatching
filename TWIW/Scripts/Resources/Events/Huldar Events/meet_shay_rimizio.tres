@@ -26,12 +26,14 @@ effect_delay = 0
 script = ExtResource("4_jwpe2")
 name = ""
 dialogue = "You send mediocre combatants to spar with the Huldarian recruits."
+choices = Array[ExtResource("1_4mdvp")]([])
 
 [sub_resource type="Resource" id="Resource_ty8bi"]
 script = ExtResource("4_jwpe2")
 name = "Emperor Shay Rimizio"
 dialogue = "Hmmm... I was expecting a little more from your people."
 sprite = ExtResource("5_2eaku")
+choices = Array[ExtResource("1_4mdvp")]([])
 
 [sub_resource type="Resource" id="Resource_q3n3h"]
 script = ExtResource("2_3lxkq")
@@ -70,12 +72,14 @@ effect_delay = 0
 script = ExtResource("4_jwpe2")
 name = ""
 dialogue = "You sent skilled combatants to spar with the Huldarian recruits."
+choices = Array[ExtResource("1_4mdvp")]([])
 
 [sub_resource type="Resource" id="Resource_hr7au"]
 script = ExtResource("4_jwpe2")
 name = "Emperor Shay Rimizio"
 dialogue = "Impressive! Your planet is home to some fierce combatants, indeed. We appreciate your assistance!"
 sprite = ExtResource("5_2eaku")
+choices = Array[ExtResource("1_4mdvp")]([])
 
 [sub_resource type="Resource" id="Resource_1dpcb"]
 script = ExtResource("2_3lxkq")
@@ -115,12 +119,14 @@ script = ExtResource("4_jwpe2")
 name = "Emperor Shay Rimizio"
 dialogue = "We are looking for skilled combatants from planets abroad to spar with the new recruits of the mighty Huldarian Imperial Army!"
 sprite = ExtResource("5_2eaku")
+choices = Array[ExtResource("1_4mdvp")]([])
 
 [sub_resource type="Resource" id="Resource_2ohg5"]
 script = ExtResource("4_jwpe2")
 name = "Emperor Shay Rimizio"
 dialogue = "Would you be willing to send us your best?"
 sprite = ExtResource("5_2eaku")
+choices = Array[ExtResource("1_4mdvp")]([])
 
 [resource]
 script = ExtResource("6_iw4ax")

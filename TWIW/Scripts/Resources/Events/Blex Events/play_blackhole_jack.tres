@@ -18,6 +18,7 @@ on_current_planet = false
 script = ExtResource("3_fosu5")
 name = "[BLACKJACK]"
 dialogue = "[BLACKJACK]"
+choices = Array[ExtResource("1_efi20")]([])
 
 [resource]
 script = ExtResource("5_570qx")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://beey8odn5tdhc"]
+[gd_scene load_steps=18 format=3 uid="uid://beey8odn5tdhc"]
 
 [ext_resource type="Script" path="res://Scenes/market_window.gd" id="1_i4yx0"]
 [ext_resource type="Resource" uid="uid://b0wugdfli82wd" path="res://Scripts/Resources/Planets/Verp.tres" id="2_jtco7"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="4_b034q"]
 [ext_resource type="Texture2D" uid="uid://c284smqldiw1q" path="res://Assets/ResourceIcons/diamond-6687408.png" id="4_xvkky"]
 [ext_resource type="Texture2D" uid="uid://beh8mme8s3pmx" path="res://Assets/ResourceIcons/alien-gun-4780305.png" id="5_meayt"]
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="5_urrnp"]
 [ext_resource type="Resource" uid="uid://dgvksy7yjscfo" path="res://Scripts/Resources/Test/test_player_data.tres" id="7_47h0k"]
 [ext_resource type="LabelSettings" uid="uid://nya3oggxmp3m" path="res://Assets/Theme/market_item_label.tres" id="7_a5q74"]
 [ext_resource type="LabelSettings" uid="uid://dt0j1ho485ia6" path="res://Assets/Theme/event_name_label_settings.tres" id="8_gxlmt"]
@@ -19,6 +20,7 @@
 script = ExtResource("4_b034q")
 name = ""
 dialogue = "Insufficient resources!"
+choices = Array[ExtResource("5_urrnp")]([])
 
 [sub_resource type="LabelSettings" id="LabelSettings_dqy4e"]
 font = ExtResource("10_7bdig")

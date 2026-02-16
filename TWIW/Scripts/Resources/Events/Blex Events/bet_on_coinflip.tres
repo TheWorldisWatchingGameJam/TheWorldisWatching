@@ -11,6 +11,7 @@
 script = ExtResource("4_7pt5p")
 name = ""
 dialogue = "Heads! You Win!"
+choices = Array[ExtResource("1_j0edp")]([])
 
 [sub_resource type="Resource" id="Resource_37agq"]
 script = ExtResource("2_o4rmm")
@@ -30,6 +31,7 @@ effect_delay = 0
 script = ExtResource("4_7pt5p")
 name = ""
 dialogue = "Tails! Yoou Lose!"
+choices = Array[ExtResource("1_j0edp")]([])
 
 [sub_resource type="Resource" id="Resource_756id"]
 script = ExtResource("2_o4rmm")
@@ -54,6 +56,7 @@ choice_effects = Array[ExtResource("5_3ikwc")]([SubResource("Resource_tylxx"), S
 script = ExtResource("4_7pt5p")
 name = ""
 dialogue = "Tails! You Win!"
+choices = Array[ExtResource("1_j0edp")]([])
 
 [sub_resource type="Resource" id="Resource_8cs0f"]
 script = ExtResource("2_o4rmm")
@@ -73,6 +76,7 @@ effect_delay = 0
 script = ExtResource("4_7pt5p")
 name = ""
 dialogue = "Heads! You Lose!"
+choices = Array[ExtResource("1_j0edp")]([])
 
 [sub_resource type="Resource" id="Resource_d6jla"]
 script = ExtResource("2_o4rmm")

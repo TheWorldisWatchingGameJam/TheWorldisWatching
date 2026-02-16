@@ -1,21 +1,306 @@
-[gd_scene load_steps=7 format=3 uid="uid://cda42r1gvv8am"]
+[gd_scene load_steps=28 format=3 uid="uid://cda42r1gvv8am"]
 
 [ext_resource type="Script" path="res://Scenes/dialogue_window.gd" id="1_vvlpg"]
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_8gimu"]
-[ext_resource type="StyleBox" uid="uid://droamjcdw6swb" path="res://Assets/Theme/button_normal_stylebox.tres" id="2_x2uff"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="2_sxiib"]
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="3_hvnck"]
 [ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="3_m4032"]
+[ext_resource type="Script" path="res://Scripts/Components/mouse_state_machine.gd" id="3_tjj3q"]
+[ext_resource type="Script" path="res://Scripts/Components/event_effect.gd" id="4_rtgpq"]
+[ext_resource type="Script" path="res://Scenes/DialogueWindowStateMachine/open_state.gd" id="4_tbyjp"]
+[ext_resource type="StyleBox" uid="uid://yrkoifspi5nm" path="res://Assets/Theme/name_window.tres" id="5_bac22"]
+[ext_resource type="StyleBox" uid="uid://ncn86u8f2a25" path="res://Assets/Theme/choice_window.tres" id="5_gqkji"]
+[ext_resource type="Script" path="res://Scenes/DialogueWindowStateMachine/pressed_state.gd" id="5_rf62c"]
+[ext_resource type="StyleBox" uid="uid://ckg153ftjhrc0" path="res://Assets/Theme/dialogue_window.tres" id="8_6hgui"]
+[ext_resource type="Script" path="res://Scenes/DialogueWindowStateMachine/print_state.gd" id="8_ipgog"]
+[ext_resource type="Script" path="res://Scenes/finished_state.gd" id="11_svfor"]
+[ext_resource type="Script" path="res://Scenes/choice_state.gd" id="12_lmfqd"]
+
+[sub_resource type="Resource" id="Resource_fl80r"]
+script = ExtResource("2_sxiib")
+name = "Jeff"
+dialogue = "My name Jeff. 
+
+ 
+"
+choices = Array[ExtResource("3_hvnck")]([])
+
+[sub_resource type="Resource" id="Resource_jcqnn"]
+script = ExtResource("3_hvnck")
+choice_text = "Your name John. Your name John."
+choice_effects = Array[ExtResource("4_rtgpq")]([])
+
+[sub_resource type="Resource" id="Resource_tniuv"]
+script = ExtResource("3_hvnck")
+choice_text = "Your name Jeff."
+choice_effects = Array[ExtResource("4_rtgpq")]([])
+
+[sub_resource type="Resource" id="Resource_y5q3p"]
+script = ExtResource("2_sxiib")
+name = "John "
+dialogue = "My name John.
+"
+choices = Array[ExtResource("3_hvnck")]([SubResource("Resource_jcqnn"), SubResource("Resource_tniuv")])
+
+[sub_resource type="Animation" id="Animation_dg014"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/HBoxContainer2/DialogueContainer/VBoxContainer2/HBoxContainer/DialogueLabel:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/HBoxContainer2/DialogueContainer:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/HBoxContainer/NameContainer:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 140)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/HBoxContainer/NameContainer/NameLabel:custom_minimum_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(550, 120)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer/HBoxContainer/NameContainer/NameLabel:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VBoxContainer/HBoxContainer/NameContainer/NameLabel:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ChoicePanel:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ChoicePanel/HBoxContainer/VBoxContainer/PanelContainer:custom_minimum_size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 10)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ChoicePanel/HBoxContainer/VBoxContainer/Control:custom_minimum_size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 800)]
+}
+
+[sub_resource type="Animation" id="Animation_cna8g"]
+resource_name = "open_choice_panel"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChoicePanel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChoicePanel/HBoxContainer/VBoxContainer/PanelContainer:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(10, 10), Vector2(10, 100), Vector2(10, 10), Vector2(800, 10), Vector2(800, 300)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChoicePanel/HBoxContainer/VBoxContainer/Control:custom_minimum_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 800), Vector2(0, 350)]
+}
+
+[sub_resource type="Animation" id="Animation_1om58"]
+resource_name = "open_dialogue"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/HBoxContainer2/DialogueContainer/VBoxContainer2/HBoxContainer/DialogueLabel:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 250), Vector2(1750, 250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/HBoxContainer2/DialogueContainer:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0980392), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yeu8p"]
+resource_name = "open_name"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/HBoxContainer/NameContainer:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 140), Vector2(550, 140)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/HBoxContainer/NameContainer/NameLabel:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 120), Vector2(550, 120)]
+}
+
+[sub_resource type="Animation" id="Animation_qyx0e"]
+resource_name = "print_name"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/HBoxContainer/NameContainer/NameLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/HBoxContainer/NameContainer/NameLabel:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.18, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gjj41"]
+_data = {
+"RESET": SubResource("Animation_dg014"),
+"open_choice_panel": SubResource("Animation_cna8g"),
+"open_dialogue": SubResource("Animation_1om58"),
+"open_name": SubResource("Animation_yeu8p"),
+"print_name": SubResource("Animation_qyx0e")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_7vjws"]
 font = ExtResource("2_8gimu")
 font_size = 55
-font_color = Color(0, 0.133333, 0.00784314, 1)
+font_color = Color(1, 1, 0.941176, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_c883e"]
 font = ExtResource("3_m4032")
-font_size = 49
-font_color = Color(0, 0.133333, 0.00784314, 1)
+font_size = 50
+font_color = Color(1, 1, 0.941176, 1)
 
-[node name="DialogueWindow" type="Control"]
+[node name="DialogueWindow" type="Control" node_paths=PackedStringArray("state_machine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,13 +308,61 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vvlpg")
+dialogue_array = Array[ExtResource("2_sxiib")]([SubResource("Resource_fl80r"), SubResource("Resource_fl80r"), SubResource("Resource_y5q3p")])
+state_machine = NodePath("MouseItemStateMachine")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gjj41")
+}
+
+[node name="ChoicePanel" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChoicePanel"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChoicePanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="ChoicePanel/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ChoicePanel/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_gqkji")
+
+[node name="Selector" type="VBoxContainer" parent="ChoicePanel/HBoxContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Control2" type="Control" parent="ChoicePanel/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-theme_override_constants/separation = 0
+mouse_filter = 0
+theme_override_constants/separation = 1
 alignment = 2
 
 [node name="CharacterSprite" type="Sprite2D" parent="VBoxContainer"]
@@ -38,14 +371,22 @@ position = Vector2(960, 540)
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="NameContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(500, 140)
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-theme_override_styles/panel = ExtResource("2_x2uff")
+
+[node name="NameContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.862745)
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_bac22")
 metadata/_edit_use_anchors_ = true
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer/NameContainer"]
-custom_minimum_size = Vector2(500, 120)
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(550, 120)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Emperor Shay Rimizio"
@@ -58,41 +399,75 @@ autowrap_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DialogueContainer" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 300)
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DialogueContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_styles/panel = ExtResource("2_x2uff")
+theme_override_styles/panel = ExtResource("8_6hgui")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/DialogueContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/DialogueContainer"]
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="VBoxContainer/DialogueContainer/VBoxContainer2"]
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer2/DialogueContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DialogueContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/DialogueContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="VBoxContainer/DialogueContainer/VBoxContainer2/HBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer2/DialogueContainer/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="DialogueLabel" type="Label" parent="VBoxContainer/DialogueContainer/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(1882, 0)
+[node name="DialogueLabel" type="Label" parent="VBoxContainer/HBoxContainer2/DialogueContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 label_settings = SubResource("LabelSettings_c883e")
 autowrap_mode = 2
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
 
-[node name="Control2" type="Control" parent="VBoxContainer/DialogueContainer/VBoxContainer2/HBoxContainer"]
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer2/DialogueContainer/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
 
-[node name="Control" type="Control" parent="VBoxContainer/DialogueContainer/VBoxContainer2"]
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer2/DialogueContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MouseItemStateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState", "scene", "animator")]
+script = ExtResource("3_tjj3q")
+initialState = NodePath("OpenState")
+scene = NodePath("..")
+animator = NodePath("../AnimationPlayer")
+
+[node name="OpenState" type="Node" parent="MouseItemStateMachine"]
+script = ExtResource("4_tbyjp")
+
+[node name="PrintState" type="Node" parent="MouseItemStateMachine"]
+script = ExtResource("8_ipgog")
+
+[node name="PressedState" type="Node" parent="MouseItemStateMachine"]
+script = ExtResource("5_rf62c")
+
+[node name="FinishedState" type="Node" parent="MouseItemStateMachine"]
+script = ExtResource("11_svfor")
+
+[node name="ChoiceState" type="Node" parent="MouseItemStateMachine"]
+script = ExtResource("12_lmfqd")
+
 [connection signal="dialogueFinished" from="." to="." method="_on_dialogue_finished"]
-[connection signal="gui_input" from="VBoxContainer/DialogueContainer" to="." method="_on_dialogue_container_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/HBoxContainer2/DialogueContainer" to="." method="_on_gui_input"]

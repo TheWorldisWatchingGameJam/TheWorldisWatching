@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=27 format=3 uid="uid://b4kf7erwn6muh"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=28 format=3 uid="uid://b4kf7erwn6muh"]
 
 [ext_resource type="Texture2D" uid="uid://d3iwyepsogcfd" path="res://Assets/BGs/Frez.png" id="1_lic45"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_rb1px"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="14_a6r6q"]
 [ext_resource type="Resource" uid="uid://d2cn2fyuf5ii3" path="res://Scripts/Resources/Events/Frez Events/construct_botanical_dome.tres" id="15_lrhah"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="15_v3po4"]
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="21_bijah"]
 
 [sub_resource type="Resource" id="Resource_xv22o"]
 script = ExtResource("12_i1dvh")
@@ -33,28 +34,33 @@ script = ExtResource("15_v3po4")
 name = "Wilyam B. Farmstar III"
 dialogue = "Violence is not permitted here on Frez. Leave, now."
 sprite = ExtResource("8_51vu0")
+choices = Array[ExtResource("21_bijah")]([])
 
 [sub_resource type="Resource" id="Resource_e7jwy"]
 script = ExtResource("15_v3po4")
 name = ""
 dialogue = "Threat attempt failed. Insufficient weapons."
+choices = Array[ExtResource("21_bijah")]([])
 
 [sub_resource type="Resource" id="Resource_7idyt"]
 script = ExtResource("15_v3po4")
 name = "Wilyam B. Farmstar III"
 dialogue = "Take what you want, warmonger."
 sprite = ExtResource("8_51vu0")
+choices = Array[ExtResource("21_bijah")]([])
 
 [sub_resource type="Resource" id="Resource_ftayf"]
 script = ExtResource("15_v3po4")
 name = "Wilyam B. Farmstar III"
 dialogue = "The galaxy is better off without people like you."
 sprite = ExtResource("8_51vu0")
+choices = Array[ExtResource("21_bijah")]([])
 
 [sub_resource type="Resource" id="Resource_tijp7"]
 script = ExtResource("15_v3po4")
 name = ""
 dialogue = "Threat attempt suceeded."
+choices = Array[ExtResource("21_bijah")]([])
 
 [resource]
 script = ExtResource("5_fvv0p")

@@ -20,6 +20,7 @@ script = ExtResource("3_nfo3q")
 name = "Wilyam B. Farmstar III"
 dialogue = "Thank you so much for your generous donation to our Great Harvest Festival! "
 sprite = ExtResource("5_xm1hp")
+choices = Array[ExtResource("1_n3krj")]([])
 
 [sub_resource type="Resource" id="Resource_wegxw"]
 script = ExtResource("1_x6vj8")

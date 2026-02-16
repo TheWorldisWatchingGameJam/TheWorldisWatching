@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=29 format=3 uid="uid://d1r5bocod2xw1"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=30 format=3 uid="uid://d1r5bocod2xw1"]
 
 [ext_resource type="Texture2D" uid="uid://c3fslapq8tkbs" path="res://Assets/BGs/Huldar.png" id="1_qhhoy"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="2_ahpji"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="15_iwuj7"]
 [ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="15_oe4i8"]
 [ext_resource type="Resource" uid="uid://hbdawtvaikdh" path="res://Scripts/Resources/Events/Huldar Events/meet_shay_rimizio.tres" id="16_w7tes"]
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="22_44c4o"]
 
 [sub_resource type="Resource" id="Resource_ydr0v"]
 script = ExtResource("12_4kg8q")
@@ -34,34 +35,40 @@ script = ExtResource("15_iwuj7")
 name = "Emperor Shay Rimizio"
 dialogue = "BAHAHAHA! HAHAHA! AAAAHAHHAHAAHA!"
 sprite = ExtResource("6_bosoj")
+choices = Array[ExtResource("22_44c4o")]([])
 
 [sub_resource type="Resource" id="Resource_yibr4"]
 script = ExtResource("15_iwuj7")
 name = "Emperor Shay Rimizio"
 dialogue = "You and what army? You might just be denser than a black hole if you really think Huldarians would yield to you."
 sprite = ExtResource("6_bosoj")
+choices = Array[ExtResource("22_44c4o")]([])
 
 [sub_resource type="Resource" id="Resource_m5yhf"]
 script = ExtResource("15_iwuj7")
 name = ""
 dialogue = "Threat attempt failed. Insufficient weapons."
+choices = Array[ExtResource("22_44c4o")]([])
 
 [sub_resource type="Resource" id="Resource_6qcb5"]
 script = ExtResource("15_iwuj7")
 name = "Emperor Shay Rimizio"
 dialogue = "You... you are idiocy and insolence personified."
 sprite = ExtResource("6_bosoj")
+choices = Array[ExtResource("22_44c4o")]([])
 
 [sub_resource type="Resource" id="Resource_jay0c"]
 script = ExtResource("15_iwuj7")
 name = "Emperor Shay Rimizio"
 dialogue = "Take what you want. You will regret this..."
 sprite = ExtResource("6_bosoj")
+choices = Array[ExtResource("22_44c4o")]([])
 
 [sub_resource type="Resource" id="Resource_0kqy2"]
 script = ExtResource("15_iwuj7")
 name = ""
 dialogue = "Threat attempt succeeded."
+choices = Array[ExtResource("22_44c4o")]([])
 
 [resource]
 script = ExtResource("5_vlwws")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlanetData" load_steps=27 format=3 uid="uid://dbac38xsd7l2k"]
+[gd_resource type="Resource" script_class="PlanetData" load_steps=28 format=3 uid="uid://dbac38xsd7l2k"]
 
 [ext_resource type="Texture2D" uid="uid://cvob7e6gy4k3t" path="res://Assets/BGs/Blex.png" id="1_3va0k"]
 [ext_resource type="Script" path="res://Scripts/Components/info.gd" id="1_k8x0i"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://bxc4aww5yahdp" path="res://Scripts/Resources/Events/Neutral Events/host_banquet.tres" id="14_aov8o"]
 [ext_resource type="Script" path="res://Scripts/Components/dialogue_item.gd" id="15_dyf1y"]
 [ext_resource type="Resource" uid="uid://bhpjg4umgoggk" path="res://Scripts/Resources/Events/Neutral Events/build_mine.tres" id="15_qljhe"]
+[ext_resource type="Script" path="res://Scripts/Components/event_choice.gd" id="21_40noo"]
 
 [sub_resource type="Resource" id="Resource_ns3tc"]
 script = ExtResource("12_bul1j")
@@ -33,29 +34,34 @@ script = ExtResource("15_dyf1y")
 name = "Khevyn \"The Father\"  Fram"
 dialogue = "You think you can come into MY streets and just do as you please? "
 sprite = ExtResource("8_ywsn1")
+choices = Array[ExtResource("21_40noo")]([])
 
 [sub_resource type="Resource" id="Resource_bpy6s"]
 script = ExtResource("15_dyf1y")
 name = "Khevyn \"The Father\"  Fram"
 dialogue = "Nah, get your galactic stinkface off my planet before me and my pals roll dice to see who gets to punch a whole in your ship first."
 sprite = ExtResource("8_ywsn1")
+choices = Array[ExtResource("21_40noo")]([])
 
 [sub_resource type="Resource" id="Resource_864ff"]
 script = ExtResource("15_dyf1y")
 name = ""
 dialogue = "Threat attempt failed. Insufficient weapons."
+choices = Array[ExtResource("21_40noo")]([])
 
 [sub_resource type="Resource" id="Resource_fix7l"]
 script = ExtResource("15_dyf1y")
 name = "Khevyn \"The Father\"  Fram"
 dialogue = "What are you some kind of wild animal?"
 sprite = ExtResource("8_ywsn1")
+choices = Array[ExtResource("21_40noo")]([])
 
 [sub_resource type="Resource" id="Resource_hf3dr"]
 script = ExtResource("15_dyf1y")
 name = "Khevyn \"The Father\"  Fram"
 dialogue = "Fine, take what you please. Just get off my planet."
 sprite = ExtResource("8_ywsn1")
+choices = Array[ExtResource("21_40noo")]([])
 
 [resource]
 script = ExtResource("5_fu0gs")

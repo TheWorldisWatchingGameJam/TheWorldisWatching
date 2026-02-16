@@ -11,6 +11,7 @@
 script = ExtResource("4_o7iy1")
 name = ""
 dialogue = "You rolled a 1! -$100"
+choices = Array[ExtResource("1_b7ath")]([])
 
 [sub_resource type="Resource" id="Resource_7y31y"]
 script = ExtResource("2_wbp1c")
@@ -30,6 +31,7 @@ effect_delay = 0
 script = ExtResource("4_o7iy1")
 name = ""
 dialogue = "You rolled a 2! -$50"
+choices = Array[ExtResource("1_b7ath")]([])
 
 [sub_resource type="Resource" id="Resource_2qm8v"]
 script = ExtResource("2_wbp1c")
@@ -49,6 +51,7 @@ effect_delay = 0
 script = ExtResource("4_o7iy1")
 name = ""
 dialogue = "You rolled a 3! +$100"
+choices = Array[ExtResource("1_b7ath")]([])
 
 [sub_resource type="Resource" id="Resource_7ajvg"]
 script = ExtResource("2_wbp1c")
@@ -68,6 +71,7 @@ effect_delay = 0
 script = ExtResource("4_o7iy1")
 name = ""
 dialogue = "You rolled a 6! +15 rep on this planet"
+choices = Array[ExtResource("1_b7ath")]([])
 
 [sub_resource type="Resource" id="Resource_pfki4"]
 script = ExtResource("2_wbp1c")
@@ -87,11 +91,13 @@ effect_delay = 0
 script = ExtResource("4_o7iy1")
 name = ""
 dialogue = "You rolled a 4! +1 Luxury Production"
+choices = Array[ExtResource("1_b7ath")]([])
 
 [sub_resource type="Resource" id="Resource_fijhq"]
 script = ExtResource("4_o7iy1")
 name = ""
 dialogue = ""
+choices = Array[ExtResource("1_b7ath")]([])
 
 [sub_resource type="Resource" id="Resource_vokny"]
 script = ExtResource("2_wbp1c")
@@ -111,6 +117,7 @@ effect_delay = 0
 script = ExtResource("4_o7iy1")
 name = ""
 dialogue = "You Rolled a 5! +$400"
+choices = Array[ExtResource("1_b7ath")]([])
 
 [sub_resource type="Resource" id="Resource_ltagv"]
 script = ExtResource("2_wbp1c")

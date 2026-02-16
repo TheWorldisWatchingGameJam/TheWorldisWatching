@@ -27,7 +27,7 @@ func set_as_rocket_location(rocket_texture: Texture2D):
 	var rocket_half_height = rocket_sprite.texture.get_size().y * rocket_sprite.scale.y * 0.5
 	rocket_sprite.position = Vector2(
 		0,
-		-planet_radius - rocket_half_height + 5
+		-planet_radius - rocket_half_height + 35
 	)
 
 func remove_as_rocket_location():
@@ -63,8 +63,12 @@ func _resize_sprite_and_collision():
 
 func _on_mouse_entered():
 	if planet_data != null and galaxy_manager != null:
+		print("Mouse Entered Planet Node")
+		planet_sprite.self_modulate = Color(0.8, 0.8, 0.8)
 		galaxy_manager.show_planet_connections(planet_data.id)
 
 func _on_mouse_exited():
 	if planet_data != null and galaxy_manager != null:
+		print("Mouse Exited Planet Node")
+		planet_sprite.self_modulate = Color(1, 1, 1)
 		galaxy_manager.hide_planet_connections(planet_data.id)
