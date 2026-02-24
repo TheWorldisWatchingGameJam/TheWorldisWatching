@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcos63j6heksq"]
+[gd_scene load_steps=16 format=3 uid="uid://dcos63j6heksq"]
 
 [ext_resource type="StyleBox" uid="uid://ntcsaqma5i8l" path="res://Assets/Theme/flat_window.tres" id="1_6hhju"]
+[ext_resource type="Script" path="res://Scenes/travel_panel.gd" id="1_motbx"]
 [ext_resource type="FontFile" uid="uid://ceq3h5ry2brq" path="res://Assets/Theme/TypeLightSans-KV84p.otf" id="2_xgy3y"]
 [ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="3_0asnt"]
 [ext_resource type="StyleBox" uid="uid://cc42hkb5uwyyi" path="res://Assets/Theme/planet_profile_window.tres" id="4_64b1y"]
 [ext_resource type="Texture2D" uid="uid://eckrwpp0gi2i" path="res://Assets/PlanetSprites/Opal.webp" id="5_oh7qv"]
+[ext_resource type="Theme" uid="uid://kdox7h3lrego" path="res://Assets/Theme/button_theme.tres" id="6_d5ymi"]
+[ext_resource type="StyleBox" uid="uid://8gfifrmm6kfc" path="res://Assets/Theme/threaten_button_hover_stylebox.tres" id="8_6enyg"]
+[ext_resource type="StyleBox" uid="uid://cg4sm18yjmyjm" path="res://Assets/Theme/threaten_button_normal_stylebox.tres" id="9_cu0kx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7mk64"]
 font = ExtResource("2_xgy3y")
@@ -18,6 +22,212 @@ font_size = 30
 font = ExtResource("3_0asnt")
 font_size = 30
 
+[sub_resource type="Animation" id="Animation_7wj1n"]
+resource_name = "open"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 700), Vector2(700, 700)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExportLabel:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.08, 0.12, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/LeaderLabel:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 0.08, 0.12, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/NameLabel:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.05, 0.08, 0.12, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PanelContainer/VBoxContainer/Label:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.05, 0.08, 0.12, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.05, 0.08, 0.12, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_dok3h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer/VBoxContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 700)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/ExportLabel:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/LeaderLabel:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/NameLabel:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PanelContainer/VBoxContainer/Label:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mdana"]
+_data = {
+"RESET": SubResource("Animation_dok3h"),
+"open": SubResource("Animation_7wj1n")
+}
+
 [node name="TravelPanel" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -25,9 +235,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_motbx")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(700, 700)
+custom_minimum_size = Vector2(0, 700)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,6 +254,7 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_6hhju")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Control" type="Control" parent="PanelContainer/VBoxContainer"]
@@ -50,6 +262,7 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 text = "Planet Profile"
 label_settings = SubResource("LabelSettings_7mk64")
@@ -72,6 +285,7 @@ size_flags_horizontal = 3
 
 [node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Planet Name: Opal"
@@ -79,6 +293,7 @@ label_settings = SubResource("LabelSettings_pqilr")
 
 [node name="LeaderLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Leader: Jeevint Kageemit"
@@ -86,6 +301,7 @@ label_settings = SubResource("LabelSettings_pqilr")
 
 [node name="ExportLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 text = "Major Export: Luxuries"
 label_settings = SubResource("LabelSettings_2aqig")
@@ -109,6 +325,8 @@ size_flags_vertical = 0
 theme_override_styles/panel = ExtResource("4_64b1y")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 15
@@ -130,3 +348,34 @@ layout_mode = 2
 [node name="Control3" type="Control" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TravelButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 65)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("6_d5ymi")
+text = "Travel"
+
+[node name="CancelButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_0asnt")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover_mirrored = ExtResource("8_6enyg")
+theme_override_styles/normal = ExtResource("9_cu0kx")
+text = "Cancel"
+
+[node name="Control4" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mdana")
+}
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/TravelButton" to="." method="_on_travel_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

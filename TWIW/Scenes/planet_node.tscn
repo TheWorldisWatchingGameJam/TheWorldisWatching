@@ -1,34 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://bchhcro7px8l6"]
+[gd_scene load_steps=5 format=3 uid="uid://bchhcro7px8l6"]
 
 [ext_resource type="Script" path="res://PlanetNode.gd" id="1_hylc5"]
+[ext_resource type="FontFile" uid="uid://bvqyl8ghgkiik" path="res://Assets/Theme/Eightgon-OGn6p.ttf" id="2_m7d3f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pc2g8"]
+font = ExtResource("2_m7d3f")
+font_size = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k17nh"]
 size = Vector2(245.5, 191.5)
 
 [node name="PlanetNode" type="Area2D" node_paths=PackedStringArray("planet_sprite", "collision", "rocket_sprite")]
-position = Vector2(3, 5)
 script = ExtResource("1_hylc5")
 planet_sprite = NodePath("Sprite2D")
 collision = NodePath("CollisionShape2D")
 rocket_sprite = NodePath("RocketSprite")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, 1.00001)
 scale = Vector2(0.611821, 0.67734)
 
 [node name="Label" type="Label" parent="."]
-offset_left = -5.0
-offset_top = 29.0
-offset_right = 35.0
-offset_bottom = 52.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 50.0
+offset_right = 20.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 11)
+label_settings = SubResource("LabelSettings_pc2g8")
+horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-9, -3)
 shape = SubResource("RectangleShape2D_k17nh")
 
 [node name="RocketSprite" type="Sprite2D" parent="."]
 position = Vector2(-2, 137)
 scale = Vector2(0.1, 0.1)
+
+[node name="SelectCircle" type="Line2D" parent="."]
+closed = true
+width = 5.0
+default_color = Color(0.852789, 0.899379, 0.991391, 1)
+
+[node name="TravelPanelLine1" type="Line2D" parent="."]
+width = 5.0
+
+[node name="TravelPanelLine2" type="Line2D" parent="."]
+width = 5.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

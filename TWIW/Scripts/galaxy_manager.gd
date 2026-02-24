@@ -15,7 +15,9 @@ extends Node
 
 #camera variables
 @onready var camera: Camera2D = get_node("../MapCamera")
-@onready var travel_panel: Control = get_node("../UI/PlanetTravelPanel")
+
+#New Travel Panel
+@onready var travel_panel: Control = load("res://Scenes/travel_panel.tscn").instantiate()
 @onready var travel_button: Button = get_node("../UI/PlanetTravelPanel/VBoxContainer/TravelButton")
 
 
@@ -251,37 +253,49 @@ func hide_planet_connections(planet_id: String):
 			entry.label.visible = false
 
 func _on_planet_clicked(planet_node):
-	zoom_to_planet(planet_node)
+	planet_node.draw_select_circle(planet_node.collision.shape.size.x/1.5)
+	planet_node.draw_travel_panel_lines(Vector2(960, 540))
+	show_travel_panel(planet_node.planet_data)
+	current_focused_planet = planet_node
 
-func zoom_to_planet(planet_node: Node2D):
-	if camera:
-		camera.global_position = planet_node.global_position
-		camera.zoom = Vector2(2.0, 2.0)
-		zoomed_in = true
-		current_focused_planet = planet_node
-		show_travel_panel(planet_node.planet_data)
+#func zoom_to_planet(planet_node: Node2D):
+	#if camera:
+		#camera.global_position = planet_node.global_position
+		#camera.zoom = Vector2(2.0, 2.0)
+		#zoomed_in = true
+		#current_focused_planet = planet_node
+		#show_travel_panel(planet_node.planet_data)
 
-func reset_zoom():
-	if camera:
-		var screen_center = get_viewport().get_visible_rect().size / 2
-		camera.global_position = screen_center
-		camera.zoom = default_zoom
-		zoomed_in = false
-		current_focused_planet = null
-		hide_travel_panel()
+#func reset_zoom():
+	#if camera:
+		#var screen_center = get_viewport().get_visible_rect().size / 2
+		#camera.global_position = screen_center
+		#camera.zoom = default_zoom
+		#zoomed_in = false
+		#current_focused_planet = null
+		#hide_travel_panel()
 
-func show_travel_panel(planet_data = null):
-	if travel_panel:
-		travel_panel.visible = true
-		if planet_data and travel_button:
-			travel_button.text = "Travel to " + planet_data.name
+func show_travel_panel(planet_data: PlanetData = null):
+	travel_panel.hide()
+	travel_panel.player = player_data
+	travel_panel.travelButtonPressed.connect(_on_travel_button_pressed)
+	travel_panel.cancelButtonPressed.connect(_deselect_current_focused_planet)
+	get_tree().get_root().add_child(travel_panel)
+	travel_panel.visible = true
+	travel_panel.open_travel_panel(planet_data)
+	#if travel_panel:
+		#travel_panel.visible = true
+		#if planet_data and travel_button:
+			#travel_button.text = "Travel to " + planet_data.name
 
-func hide_travel_panel():
-	if travel_panel:
-		travel_panel.visible = false
-
-func _on_cancel_button_pressed():
-	reset_zoom()
+func _deselect_current_focused_planet() -> void:
+	current_focused_planet.deselect()
+#func hide_travel_panel():
+	#if travel_panel:
+		#travel_panel.visible = false
+#
+#func _on_cancel_button_pressed():
+	#reset_zoom()
 
 func _on_travel_button_pressed():
 	if current_focused_planet and current_focused_planet.planet_data:
@@ -295,7 +309,6 @@ func _on_travel_button_pressed():
 			#Check if its the planet that the player just left
 			if target_planet.name == planet_just_left:
 				print("Player just left this planet! Attempting to open window...")
-				reset_zoom()
 				var dialogue_window = load("res://Scenes/dialogue_window.tscn").instantiate()
 				dialogue_window.dialogue_array = planet_return_error_message
 				dialogue_window.dialogueFinished.connect(_on_dialogue_finished.bind(dialogue_window))
@@ -317,8 +330,8 @@ func _on_travel_button_pressed():
 			
 			update_player_time(target_planet.id)
 			get_tree().get_root().add_child(planet_screen)
-			hide_travel_panel()
-			reset_zoom()
+			#hide_travel_panel()
+			#reset_zoom()
 		else:
 			print("Error: Could not find planet in all_planets array")
 

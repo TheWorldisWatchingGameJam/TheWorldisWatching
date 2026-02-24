@@ -40,6 +40,7 @@ func _ready():
 	monitoring = true
 	
 	input_event.connect(_on_input_event)
+	
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -60,6 +61,8 @@ func _resize_sprite_and_collision():
 		collision.shape.radius = TARGET_SIZE.x * 0.5
 	elif collision.shape is RectangleShape2D:
 		collision.shape.size = TARGET_SIZE
+	
+	
 
 func _on_mouse_entered():
 	if planet_data != null and galaxy_manager != null:
@@ -72,3 +75,33 @@ func _on_mouse_exited():
 		print("Mouse Exited Planet Node")
 		planet_sprite.self_modulate = Color(1, 1, 1)
 		galaxy_manager.hide_planet_connections(planet_data.id)
+
+func draw_select_circle(radius: float, segments: int = 100) -> void:
+	$SelectCircle.clear_points()
+	
+	for i in segments + 1:
+		var angle = TAU * i / segments
+		var point = Vector2(cos(angle), sin(angle)) * radius
+		$SelectCircle.add_point(point)
+		
+func draw_travel_panel_lines(travel_panel_pos: Vector2):
+	var viewport_size = get_viewport_rect().size
+	var center_x = viewport_size.x / 2
+
+	$TravelPanelLine1.clear_points()
+	$TravelPanelLine2.clear_points()
+	
+	var select_circle_top = Vector2.ZERO - Vector2(0, (collision.shape.size.y/1.5))
+	var select_circle_bottom = Vector2.ZERO + Vector2(0, (collision.shape.size.y/1.5))
+	$TravelPanelLine1.add_point(select_circle_top)
+	$TravelPanelLine2.add_point(select_circle_bottom)
+
+	var travel_panel_top = travel_panel_pos - Vector2(0, 350)
+	var travel_panel_bottom = travel_panel_pos + Vector2(0, 350)
+	$TravelPanelLine1.add_point(to_local(travel_panel_top))
+	$TravelPanelLine2.add_point(to_local(travel_panel_bottom))
+	
+func deselect() -> void:
+	$SelectCircle.clear_points()
+	$TravelPanelLine1.clear_points()
+	$TravelPanelLine2.clear_points()

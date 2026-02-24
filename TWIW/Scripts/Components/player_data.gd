@@ -90,6 +90,13 @@ func player_data_modify(cost_token: EventCost) -> void:
 			update_total_rep()
 			for item in home_planet_data.current_reputation:
 				print("Reputation at ", item.planet_name, " is ", item.reputation)
+		"Relevance":
+			if cost_token.on_current_planet:
+				modify_relevance(current_location, cost_token.cost_value)
+			else:
+				modify_relevance(cost_token.on_planet, cost_token.cost_value)
+			for item in relevance:
+				print("Relevance at ", item.planet_name, " is ", item.relevance)
 		"FoodProd":
 			home_planet_data.apply_production_cost(cost_token)
 			print("New Food Production: ", home_planet_data.food_prod)
@@ -142,6 +149,15 @@ func initialize_reputation_values(planets: Array[PlanetData]) -> void:
 		total_rep += planet.reputation
 	update_total_rep()
 
+func initialize_relevance_values(planets: Array[PlanetData]) -> void:
+	print("Player rep values being initialized.")
+	#set rep values to zero
+	for planet in planets:
+		var new_value = Relevance.new()
+		new_value.planet_name = planet.name
+		new_value.relevance = 20
+		relevance.append(new_value)
+
 func initialize_time_tracker() -> void:
 	print("Player time tracker being initialized.")
 	time_tracker = TimeTracker.new()
@@ -153,6 +169,24 @@ func simulate_day() -> void:
 	update_delayed_effect_time(delayed_effects)
 	execute_trade_routes(trade_routes)
 	produce_goods(home_planet_data)
+	update_relevance_and_reputation()
+
+func update_relevance_and_reputation() -> void:
+	#Daily relevance change
+	print("Updating presence and reputation...")
+	for i in relevance:
+		i.relevance -= 1
+		print("Current relevance at ", i.planet_name, " now ", i.relevance, ".")
+	#Check for no relevance
+	for i in relevance:
+		for planet in all_planets:
+			if i.planet_name == planet.name:
+				if i.relevance <= 0:
+					print("No relevance on planet ", planet.name)
+					var rep_loss_token = EventCost.new()
+					rep_loss_token.on_planet = i.planet_name
+					rep_loss_token.cost_value = -5
+					player_data_modify(rep_loss_token)
 
 func update_delayed_effect_time(effect_array: Array[EventEffect]) -> void:
 	for effect in effect_array:
@@ -250,6 +284,21 @@ func get_non_home_planets() -> Array[PlanetData]:
 			result.append(planet)
 	return result
 
+func modify_relevance(on_planet: StringName, value: int) -> void:
+	for i in relevance:
+		if i.planet_name == on_planet:
+			i.relevance += value
+
+func get_relevance(on_planet: StringName) -> int:
+	for i in relevance:
+		if i.planet_name == on_planet:
+			return i.relevance
+	print("Planet relevance not found.")
+	return 0
+
+func get_reputation(on_planet: StringName) -> int:
+	return home_planet_data.get_reputation(on_planet)
+
 func debug_print_all_planet_demands() -> void:
 	print("=== PLANET DEMAND STATUS ===")
 	print("Total planets in all_planets array: ", all_planets.size())
@@ -276,9 +325,8 @@ func reset_player(selected_planets: Array[PlanetData]) -> void:
 	luxuries = 0
 	weapons = 0
 	money = 0
-	for i in [food, luxuries, weapons, money]:
-		i = 0
 	initialize_time_tracker()
+	initialize_relevance_values(all_planets)
 	initialize_reputation_values(all_planets)
 	completed_events.clear()
 	delayed_effects.clear()
